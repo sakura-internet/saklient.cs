@@ -1,3 +1,0 @@
-#!/bin/bash
-
-mono `dirname $0`/packages/nunit-color-console.0.1.0.0/tools/nunit-color-console.exe $*

@@ -3,7 +3,9 @@
 NUGET=`dirname $0`/nuget.exe
 
 if ! [ -f "$NUGET" ]; then
+	pushd `dirname $0` || exit $?
 	wget http://nuget.org/nuget.exe || exit $?
+	popd
 fi
 
 mono "$NUGET" $*

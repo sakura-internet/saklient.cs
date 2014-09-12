@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using Client = Saklient.Cloud.Client;
 
 namespace Saklient.Cloud {
@@ -13,6 +14,7 @@ namespace Saklient.Cloud {
 		private string apiRoot;
 		private string apiRootSuffix;
 		private string authorization;
+		public object additionalParams;
 		
 		public Client(string token, string secret)
 		{
@@ -50,10 +52,34 @@ namespace Saklient.Cloud {
 		public object Request(string method, string path, object parameters=null)
 		{
 			method = method.ToUpper();
-			string json = parameters==null ? null : Util.EncodeJson(parameters);
-			WebRequest req = WebRequest.Create(path);
-			req.Method = method;
-			if (method != "GET") {
+			path = (new Regex(@"/$")).Replace(path, "");
+			string json = null;
+			if (parameters != null) json = Util.EncodeJson(parameters);
+			if (path.Substring(0,4) != "http") {
+				string urlRoot = this.apiRoot;
+				if (this.apiRootSuffix != null) {
+					urlRoot += this.apiRootSuffix;
+					urlRoot = (new Regex(@"/?$")).Replace(urlRoot, "/");
+				}
+				path = urlRoot + "api/cloud/1.1" + path;
+			}
+			if (method == "GET" && json != null) {
+				path += "?" + Util.UrlEncode(json);
+				json = null;
+			}
+			//
+			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(path);
+			req.Method = method != "GET" ? "POST" : "GET";
+			req.ContentType = "application/x-www-form-urlencoded";
+			req.UserAgent = "sacloud-client-cs";
+			req.Headers.Add(HttpRequestHeader.Authorization, this.authorization);
+			req.Headers.Add("X-Requested-With", "XMLHttpRequest");
+			req.Headers.Add("X-Sakura-No-Authenticate-Header", "1");
+			req.Headers.Add("X-Sakura-HTTP-Method", method);
+			req.Headers.Add("X-Sakura-Request-Format", "json");
+			req.Headers.Add("X-Sakura-Response-Format", "json");
+			req.Headers.Add("X-Sakura-Error-Level", "warning");
+			if (json != null) {
 				req.ContentType = "application/json";
 				req.ContentLength = json.Length;
 				Stream stream = req.GetRequestStream();

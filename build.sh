@@ -1,11 +1,12 @@
 #!/bin/bash
 
 cd `dirname $0`
-NUNIT=./packages/nunit-color-console.0.1.0.0/tools/nunit-color-console.exe
 
 if ! [ -d packages ]; then
 	./nuget install
 fi
+
+mkdir -p out
 
 mcs -nologo -optimize+ -unsafe- \
 	-debug+ \
@@ -23,4 +24,5 @@ mcs -nologo -optimize+ -unsafe- \
 	-r:out/saklient.dll \
 	-r:NUnit.Framework \
 	|| exit $?
-mono $NUNIT out/tests.dll
+
+./test.sh out/tests.dll

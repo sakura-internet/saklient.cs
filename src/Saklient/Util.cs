@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web.Script.Serialization;
@@ -125,7 +124,7 @@ namespace Saklient {
 		
 		public static string UrlEncode(string s)
 		{
-			return WebUtility.UrlEncode(s);
+			return Uri.EscapeDataString(s);
 		}
 
 		public static void Sleep(int sec)
