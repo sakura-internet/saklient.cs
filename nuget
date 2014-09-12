@@ -1,0 +1,9 @@
+#!/bin/bash
+
+NUGET=`dirname $0`/nuget.exe
+
+if ! [ -f "$NUGET" ]; then
+	wget http://nuget.org/nuget.exe || exit $?
+fi
+
+mono "$NUGET" $*

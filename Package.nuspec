@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+	<metadata>
+		<id>Saklient</id>
+		<version>1.0.0</version>
+		<authors>SAKURA Internet Inc.</authors>
+		<owners>SAKURA Internet Inc.</owners>
+		<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+		<projectUrl>https://github.com/sakura-internet/saklient.cs</projectUrl>
+		<iconUrl>https://avatars0.githubusercontent.com/u/3508254?v=2&amp;s=200</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>An easy interface to control your resources on SAKURA Cloud.</description>
+		<releaseNotes>1.0.0</releaseNotes>
+		<copyright>Copyright 2014 SAKURA Internet Inc.</copyright>
+		<tags>cloud</tags>
+		<dependencies>
+			<dependency id="NUnit.Runners" version="2.6.3" />
+			<dependency id="nunit-color-console" version="0.1.0.0" />
+		</dependencies>
+	</metadata>
+</package>
