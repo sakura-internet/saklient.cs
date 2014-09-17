@@ -112,14 +112,14 @@ namespace Saklient {
 			return Activator.CreateInstance(Type.GetType(classPath), args);
 		}
 
-		public static DateTime Str2Date(string s)
+		public static DateTime Str2date(string s)
 		{
 			return DateTime.Parse(s);
 		}
 
-		public static string Date2Str(DateTime d)
+		public static string Date2str(DateTime? d)
 		{
-			return d.ToString("s");
+			return d==null ? null : ((DateTime)d).ToString("s");
 		}
 		
 		public static string UrlEncode(string s)
@@ -138,6 +138,21 @@ namespace Saklient {
 
 		public static void ValidateType(object value, string typeName, bool force=false)
 		{
+		}
+		
+		public static U[] CastArray<T, U>(T[] a, U dummy)
+		{
+			U[] ret = new U[a.Length];
+			a.CopyTo(ret, 0);
+			return ret;
+		}
+		
+		public static string[] DictionaryKeys(dynamic d)
+		{
+			var dict = d as System.Collections.Generic.Dictionary<string, object>;
+			string[] ret = new string[dict.Keys.Count];
+			dict.Keys.CopyTo(ret, 0);
+			return ret;
 		}
 		
 	}
