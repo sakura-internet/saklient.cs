@@ -14,7 +14,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Iface : Resource
+	public class Iface : Resource
 	{
 		
 		/**
@@ -130,7 +130,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface Save()
 		{
-			return ((Iface)(dynamic)(this._save()));
+			return ((Iface)(this._save()));
 		}
 		
 		/**
@@ -143,21 +143,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface Reload()
 		{
-			return ((Iface)(dynamic)(this._reload()));
+			return ((Iface)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Iface(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Iface(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -388,11 +388,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -445,13 +445,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -472,8 +472,8 @@ namespace Saklient.Cloud.Resources
 					(missing as System.Collections.IList).Add("serverId");
 				};
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Iface creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Iface creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

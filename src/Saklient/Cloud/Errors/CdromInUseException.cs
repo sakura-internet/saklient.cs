@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 要求された操作を行えません。ISOイメージをサーバから排出後に実行してください。
 	 */
-	class CdromInUseException : HttpConflictException
+	public class CdromInUseException : HttpConflictException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.CdromInUseException#DefaultMessage
-		 * @default "要求された操作を行えません。ISOイメージをサーバから排出後に実行してください。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "要求された操作を行えません。ISOイメージをサーバから排出後に実行してください。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public CdromInUseException(int status, string code=null, string message="") : base(status, code, message)
+		public CdromInUseException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作を行えません。ISOイメージをサーバから排出後に実行してください。" : message)
 		{
 			/*!base!*/;
 		}

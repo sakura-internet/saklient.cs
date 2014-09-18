@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Not Extended.
 	 */
-	class HttpNotExtendedException : HttpException
+	public class HttpNotExtendedException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpNotExtendedException#DefaultMessage
-		 * @default "HTTPエラー。Not Extended."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Not Extended.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpNotExtendedException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpNotExtendedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Not Extended." : message)
 		{
 			/*!base!*/;
 		}

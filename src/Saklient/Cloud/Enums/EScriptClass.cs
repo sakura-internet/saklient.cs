@@ -9,39 +9,39 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EScriptClass
 	 * @class EScriptClass
 	 */
-	class EScriptClass
+	public class EScriptClass
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "Shell", 200 },
-			{ "Ansible", 300 }
+			{ "shell", 200 },
+			{ "ansible", 300 }
 		};
 		
 		/**
 		 * @property Shell
-		 * @default "Shell"
+		 * @default "shell"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Shell = "Shell";
+		public static string Shell = "shell";
 		
 		/**
 		 * @property Ansible
-		 * @default "Ansible"
+		 * @default "ansible"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Ansible = "Ansible";
+		public static string Ansible = "ansible";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EScriptClass._map_[lhs];
-			int? r = EScriptClass._map_[rhs];
+			long? l = EScriptClass._map_[lhs];
+			long? r = EScriptClass._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

@@ -24,7 +24,7 @@ namespace Saklient.Cloud
 	 * @class API
 	 * @constructor
 	 */
-	class API
+	public class API
 	{
 		
 		/**
@@ -500,10 +500,7 @@ namespace Saklient.Cloud
 			Util.ValidateType(zone, "string");
 			Client c = new Client(token, secret);
 			API ret = new API(c);
-			if (zone != null) {
-				ret = ret.InZone(zone);
-			};
-			return ret;
+			return zone != null ? ret.InZone(zone) : ret;
 		}
 		
 		/**
@@ -518,8 +515,8 @@ namespace Saklient.Cloud
 		public API InZone(string name)
 		{
 			Util.ValidateType(name, "string");
-			dynamic ret = new API(this._client.CloneInstance());
-			dynamic suffix = "";
+			API ret = new API(this._client.CloneInstance());
+			string suffix = "";
 			if (name == "is1x" || name == "is1y") {
 				suffix = "-test";
 			};

@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Gateway Timeout.
 	 */
-	class HttpGatewayTimeoutException : HttpException
+	public class HttpGatewayTimeoutException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpGatewayTimeoutException#DefaultMessage
-		 * @default "HTTPエラー。Gateway Timeout."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Gateway Timeout.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpGatewayTimeoutException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpGatewayTimeoutException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Gateway Timeout." : message)
 		{
 			/*!base!*/;
 		}

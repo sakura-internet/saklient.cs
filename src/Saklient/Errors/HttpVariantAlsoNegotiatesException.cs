@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Variant Also Negotiates.
 	 */
-	class HttpVariantAlsoNegotiatesException : HttpException
+	public class HttpVariantAlsoNegotiatesException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpVariantAlsoNegotiatesException#DefaultMessage
-		 * @default "HTTPエラー。Variant Also Negotiates."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Variant Also Negotiates.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpVariantAlsoNegotiatesException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpVariantAlsoNegotiatesException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Variant Also Negotiates." : message)
 		{
 			/*!base!*/;
 		}

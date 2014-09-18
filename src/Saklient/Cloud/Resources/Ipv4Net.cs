@@ -14,7 +14,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Ipv4Net : Resource
+	public class Ipv4Net : Resource
 	{
 		
 		/**
@@ -39,10 +39,10 @@ namespace Saklient.Cloud.Resources
 		 * マスク長
 		 * 
 		 * @member saklient.cloud.resources.Ipv4Net#M_maskLen
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_maskLen;
+		internal long? M_maskLen;
 		
 		/**
 		 * デフォルトルート
@@ -129,21 +129,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Reload()
 		{
-			return ((Swytch)(dynamic)(this._reload()));
+			return ((Swytch)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Ipv4Net(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Ipv4Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -230,9 +230,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_maskLen
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_maskLen()
+		private long? Get_maskLen()
 		{
 			return this.M_maskLen;
 		}
@@ -241,11 +241,11 @@ namespace Saklient.Cloud.Resources
 		 * マスク長
 		 * 
 		 * @property MaskLen
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? MaskLen
+		public long? MaskLen
 		{
 			get { return this.Get_maskLen(); }
 		}
@@ -323,11 +323,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -350,7 +350,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_address = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
-				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "NetworkMaskLen"));
+				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
 			}
 			else {
 				this.M_maskLen = null;
@@ -380,12 +380,12 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};

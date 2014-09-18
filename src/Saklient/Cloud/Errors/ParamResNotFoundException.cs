@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。
 	 */
-	class ParamResNotFoundException : HttpBadRequestException
+	public class ParamResNotFoundException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.ParamResNotFoundException#DefaultMessage
-		 * @default "不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public ParamResNotFoundException(int status, string code=null, string message="") : base(status, code, message)
+		public ParamResNotFoundException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。" : message)
 		{
 			/*!base!*/;
 		}

@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Http Version Not Supported.
 	 */
-	class HttpHttpVersionNotSupportedException : HttpException
+	public class HttpHttpVersionNotSupportedException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpHttpVersionNotSupportedException#DefaultMessage
-		 * @default "HTTPエラー。Http Version Not Supported."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Http Version Not Supported.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpHttpVersionNotSupportedException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpHttpVersionNotSupportedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Http Version Not Supported." : message)
 		{
 			/*!base!*/;
 		}

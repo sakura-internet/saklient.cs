@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。対応するAAAAレコードが見つかりません。
 	 */
-	class DnsAaaaRecordNotFoundException : HttpBadRequestException
+	public class DnsAaaaRecordNotFoundException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.DnsAaaaRecordNotFoundException#DefaultMessage
-		 * @default "不適切な要求です。対応するAAAAレコードが見つかりません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。対応するAAAAレコードが見つかりません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public DnsAaaaRecordNotFoundException(int status, string code=null, string message="") : base(status, code, message)
+		public DnsAaaaRecordNotFoundException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。対応するAAAAレコードが見つかりません。" : message)
 		{
 			/*!base!*/;
 		}

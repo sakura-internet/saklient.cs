@@ -16,13 +16,3 @@ mcs -nologo -optimize+ -unsafe- \
 	-r:System.Web.Extensions \
 	|| exit $?
 
-mcs -nologo -optimize+ -unsafe- \
-	-debug+ \
-	-target:library \
-	-out:out/tests.dll \
-	-recurse:'tests/*.cs' \
-	-r:out/saklient.dll \
-	-r:NUnit.Framework \
-	|| exit $?
-
-./test.sh out/tests.dll

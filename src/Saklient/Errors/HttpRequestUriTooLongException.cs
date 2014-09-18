@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Request Uri Too Long.
 	 */
-	class HttpRequestUriTooLongException : HttpException
+	public class HttpRequestUriTooLongException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpRequestUriTooLongException#DefaultMessage
-		 * @default "HTTPエラー。Request Uri Too Long."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Request Uri Too Long.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpRequestUriTooLongException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpRequestUriTooLongException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Request Uri Too Long." : message)
 		{
 			/*!base!*/;
 		}

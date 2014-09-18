@@ -18,7 +18,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Swytch : Resource
+	public class Swytch : Resource
 	{
 		
 		/**
@@ -61,10 +61,10 @@ namespace Saklient.Cloud.Resources
 		 * ユーザ設定IPv4ネットワークのマスク長
 		 * 
 		 * @member saklient.cloud.resources.Swytch#M_userMaskLen
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_userMaskLen;
+		internal long? M_userMaskLen;
 		
 		/**
 		 * 接続されているルータ
@@ -79,19 +79,19 @@ namespace Saklient.Cloud.Resources
 		 * IPv4ネットワーク（ルータによる自動割当）
 		 * 
 		 * @member saklient.cloud.resources.Swytch#M_ipv4Nets
-		 * @type Ipv4Net[]
+		 * @type System.Collections.Generic.List<Ipv4Net>
 		 * @internal
 		 */
-		internal Ipv4Net[] M_ipv4Nets;
+		internal System.Collections.Generic.List<Ipv4Net> M_ipv4Nets;
 		
 		/**
 		 * IPv6ネットワーク（ルータによる自動割当）
 		 * 
 		 * @member saklient.cloud.resources.Swytch#M_ipv6Nets
-		 * @type Ipv6Net[]
+		 * @type System.Collections.Generic.List<Ipv6Net>
 		 * @internal
 		 */
-		internal Ipv6Net[] M_ipv6Nets;
+		internal System.Collections.Generic.List<Ipv6Net> M_ipv6Nets;
 		
 		/**
 		 * @private
@@ -161,7 +161,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Save()
 		{
-			return ((Swytch)(dynamic)(this._save()));
+			return ((Swytch)(this._save()));
 		}
 		
 		/**
@@ -174,21 +174,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Reload()
 		{
-			return ((Swytch)(dynamic)(this._reload()));
+			return ((Swytch)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Swytch(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Swytch(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -217,8 +217,8 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch RemoveIpv6Net()
 		{
-			Ipv6Net[] nets = this.Get_ipv6Nets();
-			this.Get_router().RemoveIpv6Net(nets[0]);
+			System.Collections.Generic.List<Ipv6Net> nets = this.Get_ipv6Nets();
+			this.Get_router().RemoveIpv6Net(nets[System.Convert.ToInt32(0)]);
 			this.Reload();
 			return this;
 		}
@@ -228,13 +228,13 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method AddStaticRoute
 		 * @public
-		 * @param {int} maskLen
+		 * @param {long} maskLen
 		 * @param {string} nextHop
 		 * @return {Ipv4Net} 追加されたIPv4ネットワーク
 		 */
-		public Ipv4Net AddStaticRoute(int maskLen, string nextHop)
+		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
-			Util.ValidateType(maskLen, "int");
+			Util.ValidateType(maskLen, "long");
 			Util.ValidateType(nextHop, "string");
 			Ipv4Net ret = this.Get_router().AddStaticRoute(maskLen, nextHop);
 			this.Reload();
@@ -264,12 +264,12 @@ namespace Saklient.Cloud.Resources
 		 * @method ChangePlan
 		 * @chainable
 		 * @public
-		 * @param {int} bandWidthMbps
+		 * @param {long} bandWidthMbps
 		 * @return {Swytch} this
 		 */
-		public Swytch ChangePlan(int bandWidthMbps)
+		public Swytch ChangePlan(long bandWidthMbps)
 		{
-			Util.ValidateType(bandWidthMbps, "int");
+			Util.ValidateType(bandWidthMbps, "long");
 			this.Get_router().ChangePlan(bandWidthMbps);
 			this.Reload();
 			return this;
@@ -459,9 +459,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_userMaskLen
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_userMaskLen()
+		private long? Get_userMaskLen()
 		{
 			return this.M_userMaskLen;
 		}
@@ -470,11 +470,11 @@ namespace Saklient.Cloud.Resources
 		 * ユーザ設定IPv4ネットワークのマスク長
 		 * 
 		 * @property UserMaskLen
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? UserMaskLen
+		public long? UserMaskLen
 		{
 			get { return this.Get_userMaskLen(); }
 		}
@@ -527,9 +527,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_ipv4Nets
 		 * @private
 		 * @ignore
-		 * @return {Ipv4Net[]}
+		 * @return {System.Collections.Generic.List<Ipv4Net>}
 		 */
-		private Ipv4Net[] Get_ipv4Nets()
+		private System.Collections.Generic.List<Ipv4Net> Get_ipv4Nets()
 		{
 			return this.M_ipv4Nets;
 		}
@@ -538,11 +538,11 @@ namespace Saklient.Cloud.Resources
 		 * IPv4ネットワーク（ルータによる自動割当）
 		 * 
 		 * @property Ipv4Nets
-		 * @type Ipv4Net[]
+		 * @type System.Collections.Generic.List<Ipv4Net>
 		 * @readOnly
 		 * @public
 		 */
-		public Ipv4Net[] Ipv4Nets
+		public System.Collections.Generic.List<Ipv4Net> Ipv4Nets
 		{
 			get { return this.Get_ipv4Nets(); }
 		}
@@ -561,9 +561,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_ipv6Nets
 		 * @private
 		 * @ignore
-		 * @return {Ipv6Net[]}
+		 * @return {System.Collections.Generic.List<Ipv6Net>}
 		 */
-		private Ipv6Net[] Get_ipv6Nets()
+		private System.Collections.Generic.List<Ipv6Net> Get_ipv6Nets()
 		{
 			return this.M_ipv6Nets;
 		}
@@ -572,11 +572,11 @@ namespace Saklient.Cloud.Resources
 		 * IPv6ネットワーク（ルータによる自動割当）
 		 * 
 		 * @property Ipv6Nets
-		 * @type Ipv6Net[]
+		 * @type System.Collections.Generic.List<Ipv6Net>
 		 * @readOnly
 		 * @public
 		 */
-		public Ipv6Net[] Ipv6Nets
+		public System.Collections.Generic.List<Ipv6Net> Ipv6Nets
 		{
 			get { return this.Get_ipv6Nets(); }
 		}
@@ -586,11 +586,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -629,7 +629,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_userDefaultRoute = false;
 			if (Util.ExistsPath(r, "UserSubnet.NetworkMaskLen")) {
-				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
+				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
 			}
 			else {
 				this.M_userMaskLen = null;
@@ -646,12 +646,12 @@ namespace Saklient.Cloud.Resources
 			this.N_router = false;
 			if (Util.ExistsPath(r, "Subnets")) {
 				if (Util.GetByPath(r, "Subnets") == null) {
-					this.M_ipv4Nets = new Ipv4Net[] {  };
+					this.M_ipv4Nets = new System.Collections.Generic.List<Ipv4Net> {  };
 				}
 				else {
-					this.M_ipv4Nets = new Ipv4Net[] {  };
-					for (int __it1=0; __it1 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Subnets"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Subnets")))[__it1];
+					this.M_ipv4Nets = new System.Collections.Generic.List<Ipv4Net> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets")))[__it1];
 						Ipv4Net v1 = null;
 						v1 = t == null ? null : new Ipv4Net(this._client, t);
 						(this.M_ipv4Nets as System.Collections.IList).Add(v1);
@@ -665,12 +665,12 @@ namespace Saklient.Cloud.Resources
 			this.N_ipv4Nets = false;
 			if (Util.ExistsPath(r, "IPv6Nets")) {
 				if (Util.GetByPath(r, "IPv6Nets") == null) {
-					this.M_ipv6Nets = new Ipv6Net[] {  };
+					this.M_ipv6Nets = new System.Collections.Generic.List<Ipv6Net> {  };
 				}
 				else {
-					this.M_ipv6Nets = new Ipv6Net[] {  };
-					for (int __it2=0; __it2 < (((dynamic[])(dynamic)(Util.GetByPath(r, "IPv6Nets"))) as System.Collections.IList).Count; __it2++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "IPv6Nets")))[__it2];
+					this.M_ipv6Nets = new System.Collections.Generic.List<Ipv6Net> {  };
+					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets"))) as System.Collections.IList).Count; __it2++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets")))[__it2];
 						Ipv6Net v2 = null;
 						v2 = t == null ? null : new Ipv6Net(this._client, t);
 						(this.M_ipv6Nets as System.Collections.IList).Add(v2);
@@ -689,13 +689,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -720,25 +720,25 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Internet", withClean ? (this.M_router == null ? null : this.M_router.ApiSerialize(withClean)) : (this.M_router == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_router.ApiSerializeID()));
 			};
 			if (withClean || this.N_ipv4Nets) {
-				Util.SetByPath(ret, "Subnets", new object[] {  });
+				Util.SetByPath(ret, "Subnets", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_ipv4Nets as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_ipv4Nets[__it1];
-					dynamic v = null;
+					object v = null;
 					v = withClean ? (r1 == null ? null : r1.ApiSerialize(withClean)) : (r1 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r1.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Subnets"] as System.Collections.IList).Add(v);
 				};
 			};
 			if (withClean || this.N_ipv6Nets) {
-				Util.SetByPath(ret, "IPv6Nets", new object[] {  });
+				Util.SetByPath(ret, "IPv6Nets", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ipv6Nets as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ipv6Nets[__it2];
-					dynamic v = null;
+					object v = null;
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["IPv6Nets"] as System.Collections.IList).Add(v);
 				};
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Swytch creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Swytch creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

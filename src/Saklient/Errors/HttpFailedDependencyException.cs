@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Failed Dependency.
 	 */
-	class HttpFailedDependencyException : HttpException
+	public class HttpFailedDependencyException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpFailedDependencyException#DefaultMessage
-		 * @default "HTTPエラー。Failed Dependency."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Failed Dependency.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpFailedDependencyException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpFailedDependencyException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Failed Dependency." : message)
 		{
 			/*!base!*/;
 		}

@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。必要なパラメータが指定されていません。
 	 */
-	class MissingParamException : HttpBadRequestException
+	public class MissingParamException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.MissingParamException#DefaultMessage
-		 * @default "不適切な要求です。必要なパラメータが指定されていません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。必要なパラメータが指定されていません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public MissingParamException(int status, string code=null, string message="") : base(status, code, message)
+		public MissingParamException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。必要なパラメータが指定されていません。" : message)
 		{
 			/*!base!*/;
 		}

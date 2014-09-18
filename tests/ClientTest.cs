@@ -35,9 +35,9 @@ namespace Saklient.Cloud.Tests
 				}}
 			};
 			object obj = client.Request("GET", "/archive", query);
-			ArrayList archives = (ArrayList)Util.GetByPath(obj, "Archives");
-			foreach (Hash archive in archives) {
-				Console.WriteLine((string)archive["Name"]);
+			List<object> archives = (List<object>)Util.GetByPath(obj, "Archives");
+			foreach (object archive in archives) {
+				Console.WriteLine((string)((Hash)archive)["Name"]);
 			}
 		}
 		

@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。パラメータに含まれている値のフォーマットが一部不正です。
 	 */
-	class InvalidFormatException : HttpBadRequestException
+	public class InvalidFormatException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.InvalidFormatException#DefaultMessage
-		 * @default "不適切な要求です。パラメータに含まれている値のフォーマットが一部不正です。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。パラメータに含まれている値のフォーマットが一部不正です。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public InvalidFormatException(int status, string code=null, string message="") : base(status, code, message)
+		public InvalidFormatException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。パラメータに含まれている値のフォーマットが一部不正です。" : message)
 		{
 			/*!base!*/;
 		}

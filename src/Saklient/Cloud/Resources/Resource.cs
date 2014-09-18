@@ -10,7 +10,7 @@ namespace Saklient.Cloud.Resources
 	 * @class Resource
 	 * @constructor
 	 */
-	class Resource
+	public class Resource
 	{
 		
 		/**
@@ -47,23 +47,23 @@ namespace Saklient.Cloud.Resources
 		/**
 		 * @private
 		 * @member saklient.cloud.resources.Resource#_query
-		 * @type dynamic
+		 * @type object
 		 * @internal
 		 * @ignore
 		 */
-		internal dynamic _query;
+		internal object _query;
 		
 		/**
 		 * @ignore
 		 * @method SetParam
 		 * @param {string} key
-		 * @param {dynamic} value
+		 * @param {object} value
 		 * @return {void}
 		 */
-		public void SetParam(string key, dynamic value)
+		public void SetParam(string key, object value)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			(this._query as System.Collections.Generic.Dictionary<string, object>)[key] = value;
 		}
 		
@@ -158,12 +158,12 @@ namespace Saklient.Cloud.Resources
 		 * @method _onBeforeSave
 		 * @internal
 		 * @ignore
-		 * @param {dynamic} r
+		 * @param {object} r
 		 * @return {void}
 		 */
-		internal virtual void _onBeforeSave(dynamic r)
+		internal virtual void _onBeforeSave(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 		}
 		
 		/**
@@ -171,14 +171,14 @@ namespace Saklient.Cloud.Resources
 		 * @method _onAfterApiDeserialize
 		 * @internal
 		 * @ignore
-		 * @param {dynamic} r
-		 * @param {dynamic} root
+		 * @param {object} r
+		 * @param {object} root
 		 * @return {void}
 		 */
-		internal virtual void _onAfterApiDeserialize(dynamic r, dynamic root)
+		internal virtual void _onAfterApiDeserialize(object r, object root)
 		{
-			Util.ValidateType(r, "dynamic");
-			Util.ValidateType(root, "dynamic");
+			Util.ValidateType(r, "object");
+			Util.ValidateType(root, "object");
 		}
 		
 		/**
@@ -186,13 +186,13 @@ namespace Saklient.Cloud.Resources
 		 * @method _onAfterApiSerialize
 		 * @internal
 		 * @ignore
-		 * @param {dynamic} r
+		 * @param {object} r
 		 * @param {bool} withClean
 		 * @return {void}
 		 */
-		internal virtual void _onAfterApiSerialize(dynamic r, bool withClean)
+		internal virtual void _onAfterApiSerialize(object r, bool withClean)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			Util.ValidateType(withClean, "bool");
 		}
 		
@@ -200,27 +200,27 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 * @return {void}
 		 */
-		internal virtual void ApiDeserializeImpl(dynamic r)
+		internal virtual void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 		}
 		
 		/**
 		 * @ignore
 		 * @method ApiDeserialize
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 * @return {void}
 		 */
-		public void ApiDeserialize(dynamic obj, bool wrapped=false)
+		public void ApiDeserialize(object obj, bool wrapped=false)
 		{
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
-			dynamic root = null;
-			dynamic record = null;
+			object root = null;
+			object record = null;
 			string rkey = this._rootKey();
 			if (obj != null) {
 				if (!wrapped) {
@@ -244,9 +244,9 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal virtual dynamic ApiSerializeImpl(bool withClean=false)
+		internal virtual object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
 			return null;
@@ -256,12 +256,12 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @method ApiSerialize
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		public dynamic ApiSerialize(bool withClean=false)
+		public object ApiSerialize(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			dynamic ret = this.ApiSerializeImpl(withClean);
+			object ret = this.ApiSerializeImpl(withClean);
 			this._onAfterApiSerialize(ret, withClean);
 			return ret;
 		}
@@ -270,15 +270,15 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @method ApiSerializeID
 		 * @internal
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal dynamic ApiSerializeID()
+		internal object ApiSerializeID()
 		{
 			string id = this._id();
 			if (id == null) {
 				return null;
 			};
-			dynamic r = new System.Collections.Generic.Dictionary<string, object> {};
+			object r = new System.Collections.Generic.Dictionary<string, object> {};
 			(r as System.Collections.Generic.Dictionary<string, object>)["ID"] = id;
 			return r;
 		}
@@ -293,6 +293,7 @@ namespace Saklient.Cloud.Resources
 		internal string NormalizeFieldName(string name)
 		{
 			Util.ValidateType(name, "string");
+			name = name.Substring(0, 1).ToUpper() + name.Substring(1);
 			return name;
 		}
 		
@@ -300,13 +301,13 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @method SetProperty
 		 * @param {string} name
-		 * @param {dynamic} value
+		 * @param {object} value
 		 * @return {void}
 		 */
-		public void SetProperty(string name, dynamic value)
+		public void SetProperty(string name, object value)
 		{
 			Util.ValidateType(name, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			name = this.NormalizeFieldName(name);
 			System.Reflection.PropertyInfo prop = this.GetType().GetProperty("M_"+name);
 			prop.SetValue(this, System.Convert.ChangeType(value, prop.PropertyType), null);
@@ -326,24 +327,24 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal Resource _save()
 		{
-			dynamic r = this.ApiSerialize();
-			dynamic query = this._query;
+			object r = this.ApiSerialize();
+			object query = this._query;
 			this._query = new System.Collections.Generic.Dictionary<string, object> {};
-			string[] keys = Util.DictionaryKeys(query);
+			System.Collections.Generic.List<string> keys = Util.DictionaryKeys(query);
 			for (int __it1=0; __it1 < (keys as System.Collections.IList).Count; __it1++) {
 				var k = keys[__it1];
-				dynamic v = (query as System.Collections.Generic.Dictionary<string, object>)[k];
+				object v = (query as System.Collections.Generic.Dictionary<string, object>)[k];
 				(r as System.Collections.Generic.Dictionary<string, object>)[k] = v;
 			};
 			this._onBeforeSave(r);
-			dynamic method = this.IsNew ? "POST" : "PUT";
-			dynamic path = this._apiPath();
+			string method = this.IsNew ? "POST" : "PUT";
+			string path = this._apiPath();
 			if (!this.IsNew) {
 				path += "/" + Util.UrlEncode(this._id());
 			};
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> {};
+			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			(q as System.Collections.Generic.Dictionary<string, object>)[this._rootKey()] = r;
-			dynamic result = this._client.Request(method, path, q);
+			object result = this._client.Request(method, path, q);
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -360,7 +361,7 @@ namespace Saklient.Cloud.Resources
 			if (this.IsNew) {
 				return;
 			};
-			dynamic path = this._apiPath() + "/" + Util.UrlEncode(this._id());
+			string path = this._apiPath() + "/" + Util.UrlEncode(this._id());
 			this._client.Request("DELETE", path);
 		}
 		
@@ -376,7 +377,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal Resource _reload()
 		{
-			dynamic result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(this._id()));
+			object result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(this._id()));
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -390,19 +391,19 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool Exists()
 		{
-			dynamic query = new System.Collections.Generic.Dictionary<string, object> {};
-			Util.SetByPath(query, "Filter.ID", new object[] { this._id() });
-			Util.SetByPath(query, "Include", new object[] { "ID" });
-			dynamic result = this._client.Request("GET", this._apiPath(), query);
-			return ((int?)(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)["Count"])) == 1;
+			object query = new System.Collections.Generic.Dictionary<string, object> {};
+			Util.SetByPath(query, "Filter.ID", new System.Collections.Generic.List<object> { this._id() });
+			Util.SetByPath(query, "Include", new System.Collections.Generic.List<object> { "ID" });
+			object result = this._client.Request("GET", this._apiPath(), query);
+			return ((long?)((result as System.Collections.Generic.Dictionary<string, object>)["Count"])) == 1;
 		}
 		
 		/**
 		 * @ignore
 		 * @method Dump
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		public dynamic Dump()
+		public object Dump()
 		{
 			return this.ApiSerialize(true);
 		}

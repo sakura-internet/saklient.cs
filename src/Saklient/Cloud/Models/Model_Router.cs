@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Router = Saklient.Cloud.Resources.Router;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Router : Model
+	public class Model_Router : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Router} this
 		 */
-		public Model_Router Offset(int offset)
+		public Model_Router Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Router)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Router)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Router} this
 		 */
-		public Model_Router Limit(int count)
+		public Model_Router Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Router)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Router)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Router}
 		 */
-		public Model_Router FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Router FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Router)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Router)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Reset()
 		{
-			return ((Model_Router)(dynamic)(this._reset()));
+			return ((Model_Router)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Router Create()
 		{
-			return ((Router)(dynamic)(this._create()));
+			return ((Router)(this._create()));
 		}
 		
 		/**
@@ -151,7 +152,7 @@ namespace Saklient.Cloud.Models
 		public Router GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Router)(dynamic)(this._getById(id)));
+			return ((Router)(this._getById(id)));
 		}
 		
 		/**
@@ -159,11 +160,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Router[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Router>} リソースオブジェクトの配列
 		 */
-		public Router[] Find()
+		public System.Collections.Generic.List<Router> Find()
 		{
-			return Util.CastArray(this._find(), ((Router)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Router)(null)));
 		}
 		
 		/**
@@ -182,7 +183,7 @@ namespace Saklient.Cloud.Models
 		public Model_Router WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Router)(dynamic)(this._withNameLike(name)));
+			return ((Model_Router)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -198,7 +199,7 @@ namespace Saklient.Cloud.Models
 		public Model_Router SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Router)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Router)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -209,7 +210,7 @@ namespace Saklient.Cloud.Models
 		public Model_Router(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -218,13 +219,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithBandWidthMbps
 		 * @chainable
 		 * @public
-		 * @param {int} mbps
+		 * @param {long} mbps
 		 * @return {Model_Router}
 		 */
-		public Model_Router WithBandWidthMbps(int mbps)
+		public Model_Router WithBandWidthMbps(long mbps)
 		{
-			Util.ValidateType(mbps, "int");
-			this._filterBy("BandWidthMbps", new object[] { mbps });
+			Util.ValidateType(mbps, "long");
+			this._filterBy("BandWidthMbps", new System.Collections.Generic.List<object> { mbps });
 			return this;
 		}
 		

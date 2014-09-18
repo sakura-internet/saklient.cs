@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。配列とは比較できない演算子がフィルタ中に含まれています。
 	 */
-	class FilterArrayComparisonException : HttpBadRequestException
+	public class FilterArrayComparisonException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.FilterArrayComparisonException#DefaultMessage
-		 * @default "不適切な要求です。配列とは比較できない演算子がフィルタ中に含まれています。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。配列とは比較できない演算子がフィルタ中に含まれています。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public FilterArrayComparisonException(int status, string code=null, string message="") : base(status, code, message)
+		public FilterArrayComparisonException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。配列とは比較できない演算子がフィルタ中に含まれています。" : message)
 		{
 			/*!base!*/;
 		}

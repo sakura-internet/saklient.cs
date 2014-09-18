@@ -158,19 +158,19 @@ namespace Saklient.Errors
 	 * @class ExceptionFactory
 	 * @constructor
 	 */
-	class ExceptionFactory
+	public class ExceptionFactory
 	{
 		
 		/**
 		 * @method Create
 		 * @static
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 * @return {HttpException}
 		 */
-		public static HttpException Create(int status, string code=null, string message="")
+		public static HttpException Create(long status, string code=null, string message="")
 		{
 			switch (code) {
 				case "access_apikey_disabled": {

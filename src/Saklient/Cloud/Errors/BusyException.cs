@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * サービスが利用できません。サーバが混雑しています。しばらく時間をおいてから再度お試しください。
 	 */
-	class BusyException : HttpServiceUnavailableException
+	public class BusyException : HttpServiceUnavailableException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.BusyException#DefaultMessage
-		 * @default "サービスが利用できません。サーバが混雑しています。しばらく時間をおいてから再度お試しください。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "サービスが利用できません。サーバが混雑しています。しばらく時間をおいてから再度お試しください。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public BusyException(int status, string code=null, string message="") : base(status, code, message)
+		public BusyException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "サービスが利用できません。サーバが混雑しています。しばらく時間をおいてから再度お試しください。" : message)
 		{
 			/*!base!*/;
 		}

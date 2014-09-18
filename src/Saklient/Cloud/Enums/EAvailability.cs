@@ -9,119 +9,119 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EAvailability
 	 * @class EAvailability
 	 */
-	class EAvailability
+	public class EAvailability
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "Selectable", 69 },
-			{ "Migrating", 70 },
-			{ "Precreate", 71 },
-			{ "Replicating", 72 },
-			{ "Transfering", 73 },
-			{ "Stopped", 75 },
-			{ "Failed", 78 },
-			{ "Charged", 79 },
-			{ "Uploading", 80 },
-			{ "Available", 100 }
+			{ "selectable", 69 },
+			{ "migrating", 70 },
+			{ "precreate", 71 },
+			{ "replicating", 72 },
+			{ "transfering", 73 },
+			{ "stopped", 75 },
+			{ "failed", 78 },
+			{ "charged", 79 },
+			{ "uploading", 80 },
+			{ "available", 100 }
 		};
 		
 		/**
 		 * @property Selectable
-		 * @default "Selectable"
+		 * @default "selectable"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Selectable = "Selectable";
+		public static string Selectable = "selectable";
 		
 		/**
 		 * @property Migrating
-		 * @default "Migrating"
+		 * @default "migrating"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Migrating = "Migrating";
+		public static string Migrating = "migrating";
 		
 		/**
 		 * @property Precreate
-		 * @default "Precreate"
+		 * @default "precreate"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Precreate = "Precreate";
+		public static string Precreate = "precreate";
 		
 		/**
 		 * @property Replicating
-		 * @default "Replicating"
+		 * @default "replicating"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Replicating = "Replicating";
+		public static string Replicating = "replicating";
 		
 		/**
 		 * @property Transfering
-		 * @default "Transfering"
+		 * @default "transfering"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Transfering = "Transfering";
+		public static string Transfering = "transfering";
 		
 		/**
 		 * @property Stopped
-		 * @default "Stopped"
+		 * @default "stopped"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Stopped = "Stopped";
+		public static string Stopped = "stopped";
 		
 		/**
 		 * @property Failed
-		 * @default "Failed"
+		 * @default "failed"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Failed = "Failed";
+		public static string Failed = "failed";
 		
 		/**
 		 * @property Charged
-		 * @default "Charged"
+		 * @default "charged"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Charged = "Charged";
+		public static string Charged = "charged";
 		
 		/**
 		 * @property Uploading
-		 * @default "Uploading"
+		 * @default "uploading"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Uploading = "Uploading";
+		public static string Uploading = "uploading";
 		
 		/**
 		 * @property Available
-		 * @default "Available"
+		 * @default "available"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Available = "Available";
+		public static string Available = "available";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EAvailability._map_[lhs];
-			int? r = EAvailability._map_[rhs];
+			long? l = EAvailability._map_[lhs];
+			long? r = EAvailability._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

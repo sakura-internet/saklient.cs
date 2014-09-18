@@ -9,39 +9,39 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EScope
 	 * @class EScope
 	 */
-	class EScope
+	public class EScope
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "User", 100 },
-			{ "Shared", 200 }
+			{ "user", 100 },
+			{ "shared", 200 }
 		};
 		
 		/**
 		 * @property User
-		 * @default "User"
+		 * @default "user"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string User = "User";
+		public static string User = "user";
 		
 		/**
 		 * @property Shared
-		 * @default "Shared"
+		 * @default "shared"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Shared = "Shared";
+		public static string Shared = "shared";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EScope._map_[lhs];
-			int? r = EScope._map_[rhs];
+			long? l = EScope._map_[lhs];
+			long? r = EScope._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

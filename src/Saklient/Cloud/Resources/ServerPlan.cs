@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class ServerPlan : Resource
+	public class ServerPlan : Resource
 	{
 		
 		/**
@@ -38,19 +38,19 @@ namespace Saklient.Cloud.Resources
 		 * 仮想コア数
 		 * 
 		 * @member saklient.cloud.resources.ServerPlan#M_cpu
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_cpu;
+		internal long? M_cpu;
 		
 		/**
 		 * メモリ容量[MiB]
 		 * 
 		 * @member saklient.cloud.resources.ServerPlan#M_memoryMib
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_memoryMib;
+		internal long? M_memoryMib;
 		
 		/**
 		 * サービスクラス
@@ -123,14 +123,14 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public ServerPlan(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public ServerPlan(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -139,21 +139,21 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_memoryGib
 		 * @internal
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		internal int? Get_memoryGib()
+		internal long? Get_memoryGib()
 		{
-			int? memoryMib = this.Get_memoryMib();
+			long? memoryMib = this.Get_memoryMib();
 			return memoryMib == null ? null : memoryMib >> 10;
 		}
 		
 		/**
 		 * @property MemoryGib
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? MemoryGib
+		public long? MemoryGib
 		{
 			get { return this.Get_memoryGib(); }
 		}
@@ -240,9 +240,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_cpu
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_cpu()
+		private long? Get_cpu()
 		{
 			return this.M_cpu;
 		}
@@ -251,11 +251,11 @@ namespace Saklient.Cloud.Resources
 		 * 仮想コア数
 		 * 
 		 * @property Cpu
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? Cpu
+		public long? Cpu
 		{
 			get { return this.Get_cpu(); }
 		}
@@ -274,9 +274,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_memoryMib
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_memoryMib()
+		private long? Get_memoryMib()
 		{
 			return this.M_memoryMib;
 		}
@@ -285,11 +285,11 @@ namespace Saklient.Cloud.Resources
 		 * メモリ容量[MiB]
 		 * 
 		 * @property MemoryMib
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? MemoryMib
+		public long? MemoryMib
 		{
 			get { return this.Get_memoryMib(); }
 		}
@@ -333,11 +333,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -360,7 +360,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_name = false;
 			if (Util.ExistsPath(r, "CPU")) {
-				this.M_cpu = Util.GetByPath(r, "CPU") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "CPU"));
+				this.M_cpu = Util.GetByPath(r, "CPU") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "CPU"));
 			}
 			else {
 				this.M_cpu = null;
@@ -368,7 +368,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_cpu = false;
 			if (Util.ExistsPath(r, "MemoryMB")) {
-				this.M_memoryMib = Util.GetByPath(r, "MemoryMB") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "MemoryMB"));
+				this.M_memoryMib = Util.GetByPath(r, "MemoryMB") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "MemoryMB"));
 			}
 			else {
 				this.M_memoryMib = null;
@@ -390,12 +390,12 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};

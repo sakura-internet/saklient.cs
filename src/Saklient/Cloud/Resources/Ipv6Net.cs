@@ -14,7 +14,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Ipv6Net : Resource
+	public class Ipv6Net : Resource
 	{
 		
 		/**
@@ -39,10 +39,10 @@ namespace Saklient.Cloud.Resources
 		 * ネットワークプレフィックス長
 		 * 
 		 * @member saklient.cloud.resources.Ipv6Net#M_prefixLen
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_prefixLen;
+		internal long? M_prefixLen;
 		
 		/**
 		 * このネットワーク範囲における最後のIPv6アドレス
@@ -120,21 +120,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Reload()
 		{
-			return ((Swytch)(dynamic)(this._reload()));
+			return ((Swytch)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Ipv6Net(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Ipv6Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -221,9 +221,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_prefixLen
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_prefixLen()
+		private long? Get_prefixLen()
 		{
 			return this.M_prefixLen;
 		}
@@ -232,11 +232,11 @@ namespace Saklient.Cloud.Resources
 		 * ネットワークプレフィックス長
 		 * 
 		 * @property PrefixLen
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? PrefixLen
+		public long? PrefixLen
 		{
 			get { return this.Get_prefixLen(); }
 		}
@@ -280,11 +280,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -307,7 +307,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_prefix = false;
 			if (Util.ExistsPath(r, "IPv6PrefixLen")) {
-				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "IPv6PrefixLen"));
+				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "IPv6PrefixLen"));
 			}
 			else {
 				this.M_prefixLen = null;
@@ -329,12 +329,12 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};

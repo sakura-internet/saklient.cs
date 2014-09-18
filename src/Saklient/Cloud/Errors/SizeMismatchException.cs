@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 不適切な要求です。参照するリソースのサイズが合致しません。
 	 */
-	class SizeMismatchException : HttpBadRequestException
+	public class SizeMismatchException : HttpBadRequestException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.SizeMismatchException#DefaultMessage
-		 * @default "不適切な要求です。参照するリソースのサイズが合致しません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "不適切な要求です。参照するリソースのサイズが合致しません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public SizeMismatchException(int status, string code=null, string message="") : base(status, code, message)
+		public SizeMismatchException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。参照するリソースのサイズが合致しません。" : message)
 		{
 			/*!base!*/;
 		}

@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Ipv6Net = Saklient.Cloud.Resources.Ipv6Net;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Ipv6Net : Model
+	public class Model_Ipv6Net : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Ipv6Net} this
 		 */
-		public Model_Ipv6Net Offset(int offset)
+		public Model_Ipv6Net Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Ipv6Net)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Ipv6Net)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Ipv6Net} this
 		 */
-		public Model_Ipv6Net Limit(int count)
+		public Model_Ipv6Net Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Ipv6Net)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Ipv6Net)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Ipv6Net}
 		 */
-		public Model_Ipv6Net FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Ipv6Net FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Ipv6Net)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Ipv6Net)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Reset()
 		{
-			return ((Model_Ipv6Net)(dynamic)(this._reset()));
+			return ((Model_Ipv6Net)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		public Ipv6Net GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Ipv6Net)(dynamic)(this._getById(id)));
+			return ((Ipv6Net)(this._getById(id)));
 		}
 		
 		/**
@@ -145,11 +146,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Ipv6Net[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Ipv6Net>} リソースオブジェクトの配列
 		 */
-		public Ipv6Net[] Find()
+		public System.Collections.Generic.List<Ipv6Net> Find()
 		{
-			return Util.CastArray(this._find(), ((Ipv6Net)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Ipv6Net)(null)));
 		}
 		
 		/**
@@ -160,7 +161,7 @@ namespace Saklient.Cloud.Models
 		public Model_Ipv6Net(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

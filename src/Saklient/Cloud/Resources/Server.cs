@@ -10,6 +10,8 @@ using ServerInstance = Saklient.Cloud.Resources.ServerInstance;
 using IsoImage = Saklient.Cloud.Resources.IsoImage;
 using EServerInstanceStatus = Saklient.Cloud.Enums.EServerInstanceStatus;
 using EAvailability = Saklient.Cloud.Enums.EAvailability;
+using Model_Disk = Saklient.Cloud.Models.Model_Disk;
+using Model_Iface = Saklient.Cloud.Models.Model_Iface;
 
 namespace Saklient.Cloud.Resources
 {
@@ -22,7 +24,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Server : Resource
+	public class Server : Resource
 	{
 		
 		/**
@@ -56,10 +58,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @member saklient.cloud.resources.Server#M_tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @internal
 		 */
-		internal string[] M_tags;
+		internal System.Collections.Generic.List<string> M_tags;
 		
 		/**
 		 * アイコン
@@ -83,10 +85,10 @@ namespace Saklient.Cloud.Resources
 		 * インタフェース
 		 * 
 		 * @member saklient.cloud.resources.Server#M_ifaces
-		 * @type Iface[]
+		 * @type System.Collections.Generic.List<Iface>
 		 * @internal
 		 */
-		internal Iface[] M_ifaces;
+		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
 		/**
 		 * インスタンス情報
@@ -174,7 +176,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Server Save()
 		{
-			return ((Server)(dynamic)(this._save()));
+			return ((Server)(this._save()));
 		}
 		
 		/**
@@ -187,21 +189,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Server Reload()
 		{
-			return ((Server)(dynamic)(this._reload()));
+			return ((Server)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Server(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Server(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -291,13 +293,13 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method AfterDown
 		 * @public
-		 * @param {int} timeoutSec
+		 * @param {long} timeoutSec
 		 * @param {System.Action<Server, bool>} callback
 		 * @return {void} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
 		 */
-		public void AfterDown(int timeoutSec, System.Action<Server, bool> callback)
+		public void AfterDown(long timeoutSec, System.Action<Server, bool> callback)
 		{
-			Util.ValidateType(timeoutSec, "int");
+			Util.ValidateType(timeoutSec, "long");
 			Util.ValidateType(callback, "function");
 			this.AfterStatus(EServerInstanceStatus.Down, timeoutSec, callback);
 		}
@@ -309,16 +311,16 @@ namespace Saklient.Cloud.Resources
 		 * @method AfterStatus
 		 * @private
 		 * @param {string} status
-		 * @param {int} timeoutSec
+		 * @param {long} timeoutSec
 		 * @param {System.Action<Server, bool>} callback
 		 * @return {void}
 		 */
-		private void AfterStatus(string status, int timeoutSec, System.Action<Server, bool> callback)
+		private void AfterStatus(string status, long timeoutSec, System.Action<Server, bool> callback)
 		{
 			Util.ValidateType(status, "string");
-			Util.ValidateType(timeoutSec, "int");
+			Util.ValidateType(timeoutSec, "long");
 			Util.ValidateType(callback, "function");
-			dynamic ret = this.SleepUntil(status, timeoutSec);
+			bool ret = this.SleepUntil(status, timeoutSec);
 			callback(this, ret);
 		}
 		
@@ -327,12 +329,12 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method SleepUntilDown
 		 * @public
-		 * @param {int} timeoutSec=180
+		 * @param {long} timeoutSec=180
 		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
 		 */
-		public bool SleepUntilDown(int timeoutSec=180)
+		public bool SleepUntilDown(long timeoutSec=180)
 		{
-			Util.ValidateType(timeoutSec, "int");
+			Util.ValidateType(timeoutSec, "long");
 			return this.SleepUntil(EServerInstanceStatus.Down, timeoutSec);
 		}
 		
@@ -343,14 +345,14 @@ namespace Saklient.Cloud.Resources
 		 * @method SleepUntil
 		 * @private
 		 * @param {string} status
-		 * @param {int} timeoutSec=180
+		 * @param {long} timeoutSec=180
 		 * @return {bool}
 		 */
-		private bool SleepUntil(string status, int timeoutSec=180)
+		private bool SleepUntil(string status, long timeoutSec=180)
 		{
 			Util.ValidateType(status, "string");
-			Util.ValidateType(timeoutSec, "int");
-			dynamic step = 3;
+			Util.ValidateType(timeoutSec, "long");
+			long step = 3;
 			while (0 < timeoutSec) {
 				this.Reload();
 				string s = this.Get_instance().Status;
@@ -383,7 +385,7 @@ namespace Saklient.Cloud.Resources
 		{
 			Util.ValidateType(planTo, "Saklient.Cloud.Resources.ServerPlan");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/to/plan/" + Util.UrlEncode(planTo._id());
-			dynamic result = this._client.Request("PUT", path);
+			object result = this._client.Request("PUT", path);
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -393,11 +395,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method FindDisks
 		 * @public
-		 * @return {Disk[]}
+		 * @return {System.Collections.Generic.List<Disk>}
 		 */
-		public Disk[] FindDisks()
+		public System.Collections.Generic.List<Disk> FindDisks()
 		{
-			dynamic model = Util.CreateClassInstance("saklient.cloud.models.Model_Disk", new object[] { this._client });
+			Model_Disk model = new Model_Disk(this._client);
 			return model.WithServerId(this._id()).Find();
 		}
 		
@@ -410,9 +412,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface AddIface()
 		{
-			dynamic model = Util.CreateClassInstance("saklient.cloud.models.Model_Iface", new object[] { this._client });
+			Model_Iface model = new Model_Iface(this._client);
 			Iface res = model.Create();
-			res.SetProperty("serverId", this._id());
+			res.ServerId = this._id();
 			return res.Save();
 		}
 		
@@ -429,8 +431,8 @@ namespace Saklient.Cloud.Resources
 		{
 			Util.ValidateType(iso, "Saklient.Cloud.Resources.IsoImage");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/cdrom";
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> { { "CDROM", new System.Collections.Generic.Dictionary<string, object> { { "ID", iso._id() } } } };
-			dynamic result = this._client.Request("PUT", path, q);
+			object q = new System.Collections.Generic.Dictionary<string, object> { { "CDROM", new System.Collections.Generic.Dictionary<string, object> { { "ID", iso._id() } } } };
+			this._client.Request("PUT", path, q);
 			this.Reload();
 			return this;
 		}
@@ -446,7 +448,7 @@ namespace Saklient.Cloud.Resources
 		public Server EjectIsoImage()
 		{
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/cdrom";
-			dynamic result = this._client.Request("DELETE", path);
+			this._client.Request("DELETE", path);
 			this.Reload();
 			return this;
 		}
@@ -601,9 +603,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_tags
 		 * @private
 		 * @ignore
-		 * @return {string[]}
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Get_tags()
+		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
@@ -614,10 +616,10 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_tags
 		 * @private
 		 * @ignore
-		 * @param {string[]} v
-		 * @return {string[]}
+		 * @param {System.Collections.Generic.List<string>} v
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Set_tags(string[] v)
+		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
@@ -629,10 +631,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @property Tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @public
 		 */
-		public string[] Tags
+		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
@@ -757,9 +759,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_ifaces
 		 * @private
 		 * @ignore
-		 * @return {Iface[]}
+		 * @return {System.Collections.Generic.List<Iface>}
 		 */
-		private Iface[] Get_ifaces()
+		private System.Collections.Generic.List<Iface> Get_ifaces()
 		{
 			return this.M_ifaces;
 		}
@@ -768,11 +770,11 @@ namespace Saklient.Cloud.Resources
 		 * インタフェース
 		 * 
 		 * @property Ifaces
-		 * @type Iface[]
+		 * @type System.Collections.Generic.List<Iface>
 		 * @readOnly
 		 * @public
 		 */
-		public Iface[] Ifaces
+		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
 		}
@@ -850,11 +852,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -886,12 +888,12 @@ namespace Saklient.Cloud.Resources
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
-					this.M_tags = new string[] {  };
+					this.M_tags = new System.Collections.Generic.List<string> {  };
 				}
 				else {
-					this.M_tags = new string[] {  };
-					for (int __it1=0; __it1 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Tags")))[__it1];
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
@@ -921,12 +923,12 @@ namespace Saklient.Cloud.Resources
 			this.N_plan = false;
 			if (Util.ExistsPath(r, "Interfaces")) {
 				if (Util.GetByPath(r, "Interfaces") == null) {
-					this.M_ifaces = new Iface[] {  };
+					this.M_ifaces = new System.Collections.Generic.List<Iface> {  };
 				}
 				else {
-					this.M_ifaces = new Iface[] {  };
-					for (int __it2=0; __it2 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Interfaces"))) as System.Collections.IList).Count; __it2++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Interfaces")))[__it2];
+					this.M_ifaces = new System.Collections.Generic.List<Iface> {  };
+					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces"))) as System.Collections.IList).Count; __it2++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces")))[__it2];
 						Iface v2 = null;
 						v2 = t == null ? null : new Iface(this._client, t);
 						(this.M_ifaces as System.Collections.IList).Add(v2);
@@ -961,13 +963,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -983,10 +985,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Description", this.M_description);
 			};
 			if (withClean || this.N_tags) {
-				Util.SetByPath(ret, "Tags", new object[] {  });
+				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_tags[__it1];
-					dynamic v = null;
+					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
 				};
@@ -1003,10 +1005,10 @@ namespace Saklient.Cloud.Resources
 				};
 			};
 			if (withClean || this.N_ifaces) {
-				Util.SetByPath(ret, "Interfaces", new object[] {  });
+				Util.SetByPath(ret, "Interfaces", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ifaces[__it2];
-					dynamic v = null;
+					object v = null;
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
 				};
@@ -1017,8 +1019,8 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_availability) {
 				Util.SetByPath(ret, "Availability", this.M_availability);
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Server creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Server creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

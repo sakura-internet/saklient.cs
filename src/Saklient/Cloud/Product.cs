@@ -14,7 +14,7 @@ namespace Saklient.Cloud
 	 * @class Product
 	 * @constructor
 	 */
-	class Product
+	public class Product
 	{
 		
 		/**

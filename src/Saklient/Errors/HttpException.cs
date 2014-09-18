@@ -7,15 +7,15 @@ namespace Saklient.Errors
 	 * @constructor
 	 * @extends System.Exception
 	 */
-	class HttpException : System.Exception
+	public class HttpException : System.Exception
 	{
 		
 		/**
 		 * @member saklient.errors.HttpException#Status
-		 * @type int
+		 * @type long
 		 * @public
 		 */
-		public int Status;
+		public long Status;
 		
 		/**
 		 * @member saklient.errors.HttpException#Code
@@ -25,25 +25,17 @@ namespace Saklient.Errors
 		public string Code;
 		
 		/**
-		 * @member saklient.errors.HttpException#Message
-		 * @type string
-		 * @public
-		 */
-		public string Message;
-		
-		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpException(int status, string code=null, string message="") : base(message)
+		public HttpException(long status, string code=null, string message="") : base(message)
 		{
 			/*!base!*/;
 			this.Status = status;
 			this.Code = code;
-			this.Message = message;
 		}
 		
 	}

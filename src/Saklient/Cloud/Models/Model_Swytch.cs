@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Swytch = Saklient.Cloud.Resources.Swytch;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Swytch : Model
+	public class Model_Swytch : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Swytch} this
 		 */
-		public Model_Swytch Offset(int offset)
+		public Model_Swytch Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Swytch)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Swytch)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Swytch} this
 		 */
-		public Model_Swytch Limit(int count)
+		public Model_Swytch Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Swytch)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Swytch)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Swytch}
 		 */
-		public Model_Swytch FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Swytch FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Swytch)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Swytch)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Reset()
 		{
-			return ((Model_Swytch)(dynamic)(this._reset()));
+			return ((Model_Swytch)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Swytch Create()
 		{
-			return ((Swytch)(dynamic)(this._create()));
+			return ((Swytch)(this._create()));
 		}
 		
 		/**
@@ -151,7 +152,7 @@ namespace Saklient.Cloud.Models
 		public Swytch GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Swytch)(dynamic)(this._getById(id)));
+			return ((Swytch)(this._getById(id)));
 		}
 		
 		/**
@@ -159,11 +160,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Swytch[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Swytch>} リソースオブジェクトの配列
 		 */
-		public Swytch[] Find()
+		public System.Collections.Generic.List<Swytch> Find()
 		{
-			return Util.CastArray(this._find(), ((Swytch)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Swytch)(null)));
 		}
 		
 		/**
@@ -182,7 +183,7 @@ namespace Saklient.Cloud.Models
 		public Model_Swytch WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Swytch)(dynamic)(this._withNameLike(name)));
+			return ((Model_Swytch)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -198,7 +199,7 @@ namespace Saklient.Cloud.Models
 		public Model_Swytch SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Swytch)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Swytch)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -209,7 +210,7 @@ namespace Saklient.Cloud.Models
 		public Model_Swytch(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Unprocessable Entity.
 	 */
-	class HttpUnprocessableEntityException : HttpException
+	public class HttpUnprocessableEntityException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpUnprocessableEntityException#DefaultMessage
-		 * @default "HTTPエラー。Unprocessable Entity."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Unprocessable Entity.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpUnprocessableEntityException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpUnprocessableEntityException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Unprocessable Entity." : message)
 		{
 			/*!base!*/;
 		}

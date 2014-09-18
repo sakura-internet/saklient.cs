@@ -7,7 +7,7 @@ namespace Saklient.Errors
 	 * @constructor
 	 * @extends System.Exception
 	 */
-	class SaklientException : System.Exception
+	public class SaklientException : System.Exception
 	{
 		
 		/**
@@ -16,13 +16,6 @@ namespace Saklient.Errors
 		 * @public
 		 */
 		public string Code;
-		
-		/**
-		 * @member saklient.errors.SaklientException#Message
-		 * @type string
-		 * @public
-		 */
-		public string Message;
 		
 		/**
 		 * @constructor
@@ -34,7 +27,6 @@ namespace Saklient.Errors
 		{
 			/*!base!*/;
 			this.Code = code;
-			this.Message = message;
 		}
 		
 	}

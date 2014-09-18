@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 要求された操作を行えません。このリソースは既に切断されています。
 	 */
-	class ResAlreadyDisconnectedException : HttpConflictException
+	public class ResAlreadyDisconnectedException : HttpConflictException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.ResAlreadyDisconnectedException#DefaultMessage
-		 * @default "要求された操作を行えません。このリソースは既に切断されています。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "要求された操作を行えません。このリソースは既に切断されています。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public ResAlreadyDisconnectedException(int status, string code=null, string message="") : base(status, code, message)
+		public ResAlreadyDisconnectedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作を行えません。このリソースは既に切断されています。" : message)
 		{
 			/*!base!*/;
 		}

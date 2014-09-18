@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class RouterPlan : Resource
+	public class RouterPlan : Resource
 	{
 		
 		/**
@@ -38,10 +38,10 @@ namespace Saklient.Cloud.Resources
 		 * 帯域幅
 		 * 
 		 * @member saklient.cloud.resources.RouterPlan#M_bandWidthMbps
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_bandWidthMbps;
+		internal long? M_bandWidthMbps;
 		
 		/**
 		 * サービスクラス
@@ -114,14 +114,14 @@ namespace Saklient.Cloud.Resources
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public RouterPlan(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public RouterPlan(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -208,9 +208,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_bandWidthMbps
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_bandWidthMbps()
+		private long? Get_bandWidthMbps()
 		{
 			return this.M_bandWidthMbps;
 		}
@@ -219,11 +219,11 @@ namespace Saklient.Cloud.Resources
 		 * 帯域幅
 		 * 
 		 * @property BandWidthMbps
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? BandWidthMbps
+		public long? BandWidthMbps
 		{
 			get { return this.Get_bandWidthMbps(); }
 		}
@@ -267,11 +267,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -294,7 +294,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_name = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
-				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "BandWidthMbps"));
+				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
 			}
 			else {
 				this.M_bandWidthMbps = null;
@@ -316,12 +316,12 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};

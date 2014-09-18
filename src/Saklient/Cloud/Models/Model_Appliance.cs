@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Appliance = Saklient.Cloud.Resources.Appliance;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Appliance : Model
+	public class Model_Appliance : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Appliance} this
 		 */
-		public Model_Appliance Offset(int offset)
+		public Model_Appliance Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Appliance)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Appliance)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Appliance} this
 		 */
-		public Model_Appliance Limit(int count)
+		public Model_Appliance Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Appliance)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Appliance)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Appliance}
 		 */
-		public Model_Appliance FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Appliance FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Appliance)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Appliance)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance Reset()
 		{
-			return ((Model_Appliance)(dynamic)(this._reset()));
+			return ((Model_Appliance)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		public Appliance GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Appliance)(dynamic)(this._getById(id)));
+			return ((Appliance)(this._getById(id)));
 		}
 		
 		/**
@@ -145,11 +146,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Appliance[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Appliance>} リソースオブジェクトの配列
 		 */
-		public Appliance[] Find()
+		public System.Collections.Generic.List<Appliance> Find()
 		{
-			return Util.CastArray(this._find(), ((Appliance)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Appliance)(null)));
 		}
 		
 		/**
@@ -168,7 +169,7 @@ namespace Saklient.Cloud.Models
 		public Model_Appliance WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Appliance)(dynamic)(this._withNameLike(name)));
+			return ((Model_Appliance)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -186,7 +187,7 @@ namespace Saklient.Cloud.Models
 		public Model_Appliance WithTag(string tag)
 		{
 			Util.ValidateType(tag, "string");
-			return ((Model_Appliance)(dynamic)(this._withTag(tag)));
+			return ((Model_Appliance)(this._withTag(tag)));
 		}
 		
 		/**
@@ -196,13 +197,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTags
 		 * @chainable
 		 * @public
-		 * @param {string[]} tags
+		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model_Appliance}
 		 */
-		public Model_Appliance WithTags(string[] tags)
+		public Model_Appliance WithTags(System.Collections.Generic.List<string> tags)
 		{
 			Util.ValidateType(tags, "System.Collections.ArrayList");
-			return ((Model_Appliance)(dynamic)(this._withTags(tags)));
+			return ((Model_Appliance)(this._withTags(tags)));
 		}
 		
 		/**
@@ -212,13 +213,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTagDnf
 		 * @chainable
 		 * @public
-		 * @param {string[][]} dnf
+		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model_Appliance}
 		 */
-		public Model_Appliance WithTagDnf(string[][] dnf)
+		public Model_Appliance WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
 			Util.ValidateType(dnf, "System.Collections.ArrayList");
-			return ((Model_Appliance)(dynamic)(this._withTagDnf(dnf)));
+			return ((Model_Appliance)(this._withTagDnf(dnf)));
 		}
 		
 		/**
@@ -234,7 +235,7 @@ namespace Saklient.Cloud.Models
 		public Model_Appliance SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Appliance)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Appliance)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -245,7 +246,7 @@ namespace Saklient.Cloud.Models
 		public Model_Appliance(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

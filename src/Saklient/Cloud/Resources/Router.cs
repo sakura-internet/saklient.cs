@@ -6,6 +6,7 @@ using Icon = Saklient.Cloud.Resources.Icon;
 using Swytch = Saklient.Cloud.Resources.Swytch;
 using Ipv4Net = Saklient.Cloud.Resources.Ipv4Net;
 using Ipv6Net = Saklient.Cloud.Resources.Ipv6Net;
+using Model_Swytch = Saklient.Cloud.Models.Model_Swytch;
 
 namespace Saklient.Cloud.Resources
 {
@@ -18,7 +19,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Router : Resource
+	public class Router : Resource
 	{
 		
 		/**
@@ -52,19 +53,19 @@ namespace Saklient.Cloud.Resources
 		 * ネットワークのマスク長
 		 * 
 		 * @member saklient.cloud.resources.Router#M_networkMaskLen
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_networkMaskLen;
+		internal long? M_networkMaskLen;
 		
 		/**
 		 * 帯域幅
 		 * 
 		 * @member saklient.cloud.resources.Router#M_bandWidthMbps
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_bandWidthMbps;
+		internal long? M_bandWidthMbps;
 		
 		/**
 		 * スイッチ
@@ -143,7 +144,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router Save()
 		{
-			return ((Router)(dynamic)(this._save()));
+			return ((Router)(this._save()));
 		}
 		
 		/**
@@ -156,21 +157,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router Reload()
 		{
-			return ((Router)(dynamic)(this._reload()));
+			return ((Router)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Router(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Router(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -180,15 +181,15 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @ignore
 		 * @method AfterCreate
-		 * @param {int} timeoutSec
+		 * @param {long} timeoutSec
 		 * @param {System.Action<Router, bool>} callback
 		 * @return {void}
 		 */
-		public void AfterCreate(int timeoutSec, System.Action<Router, bool> callback)
+		public void AfterCreate(long timeoutSec, System.Action<Router, bool> callback)
 		{
-			Util.ValidateType(timeoutSec, "int");
+			Util.ValidateType(timeoutSec, "long");
 			Util.ValidateType(callback, "function");
-			dynamic ret = this.SleepWhileCreating(timeoutSec);
+			bool ret = this.SleepWhileCreating(timeoutSec);
 			callback(this, ret);
 		}
 		
@@ -197,13 +198,13 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method SleepWhileCreating
 		 * @public
-		 * @param {int} timeoutSec=120
+		 * @param {long} timeoutSec=120
 		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
 		 */
-		public bool SleepWhileCreating(int timeoutSec=120)
+		public bool SleepWhileCreating(long timeoutSec=120)
 		{
-			Util.ValidateType(timeoutSec, "int");
-			int step = 3;
+			Util.ValidateType(timeoutSec, "long");
+			long step = 3;
 			while (0 < timeoutSec) {
 				if (this.Exists()) {
 					this.Reload();
@@ -226,7 +227,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch GetSwytch()
 		{
-			dynamic model = Util.CreateClassInstance("saklient.cloud.models.Model_Swytch", new object[] { this._client });
+			Model_Swytch model = new Model_Swytch(this._client);
 			string id = this.Get_swytchId();
 			return model.GetById(id);
 		}
@@ -240,7 +241,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Ipv6Net AddIpv6Net()
 		{
-			dynamic result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ipv6net");
+			object result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ipv6net");
 			this.Reload();
 			return new Ipv6Net(this._client, (result as System.Collections.Generic.Dictionary<string, object>)["IPv6Net"]);
 		}
@@ -267,18 +268,18 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method AddStaticRoute
 		 * @public
-		 * @param {int} maskLen
+		 * @param {long} maskLen
 		 * @param {string} nextHop
 		 * @return {Ipv4Net} 追加されたスタティックルート
 		 */
-		public Ipv4Net AddStaticRoute(int maskLen, string nextHop)
+		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
-			Util.ValidateType(maskLen, "int");
+			Util.ValidateType(maskLen, "long");
 			Util.ValidateType(nextHop, "string");
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> {};
+			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "NetworkMaskLen", maskLen);
 			Util.SetByPath(q, "NextHop", nextHop);
-			dynamic result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/subnet", q);
+			object result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/subnet", q);
 			this.Reload();
 			return new Ipv4Net(this._client, (result as System.Collections.Generic.Dictionary<string, object>)["Subnet"]);
 		}
@@ -308,16 +309,16 @@ namespace Saklient.Cloud.Resources
 		 * @method ChangePlan
 		 * @chainable
 		 * @public
-		 * @param {int} bandWidthMbps
+		 * @param {long} bandWidthMbps
 		 * @return {Router} this
 		 */
-		public Router ChangePlan(int bandWidthMbps)
+		public Router ChangePlan(long bandWidthMbps)
 		{
-			Util.ValidateType(bandWidthMbps, "int");
+			Util.ValidateType(bandWidthMbps, "long");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/bandwidth";
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> {};
+			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "Internet.BandWidthMbps", bandWidthMbps);
-			dynamic result = this._client.Request("PUT", path, q);
+			object result = this._client.Request("PUT", path, q);
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -472,9 +473,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_networkMaskLen
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_networkMaskLen()
+		private long? Get_networkMaskLen()
 		{
 			return this.M_networkMaskLen;
 		}
@@ -485,12 +486,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_networkMaskLen
 		 * @private
 		 * @ignore
-		 * @param {int?} v
-		 * @return {int?}
+		 * @param {long?} v
+		 * @return {long?}
 		 */
-		private int? Set_networkMaskLen(int? v)
+		private long? Set_networkMaskLen(long? v)
 		{
-			Util.ValidateType(v, "int");
+			Util.ValidateType(v, "long");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Router#Set_networkMaskLen");
 			};
@@ -503,10 +504,10 @@ namespace Saklient.Cloud.Resources
 		 * ネットワークのマスク長
 		 * 
 		 * @property NetworkMaskLen
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? NetworkMaskLen
+		public long? NetworkMaskLen
 		{
 			get { return this.Get_networkMaskLen(); }
 			set { this.Set_networkMaskLen(value); }
@@ -526,9 +527,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_bandWidthMbps
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_bandWidthMbps()
+		private long? Get_bandWidthMbps()
 		{
 			return this.M_bandWidthMbps;
 		}
@@ -539,12 +540,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_bandWidthMbps
 		 * @private
 		 * @ignore
-		 * @param {int?} v
-		 * @return {int?}
+		 * @param {long?} v
+		 * @return {long?}
 		 */
-		private int? Set_bandWidthMbps(int? v)
+		private long? Set_bandWidthMbps(long? v)
 		{
-			Util.ValidateType(v, "int");
+			Util.ValidateType(v, "long");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Router#Set_bandWidthMbps");
 			};
@@ -557,10 +558,10 @@ namespace Saklient.Cloud.Resources
 		 * 帯域幅
 		 * 
 		 * @property BandWidthMbps
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? BandWidthMbps
+		public long? BandWidthMbps
 		{
 			get { return this.Get_bandWidthMbps(); }
 			set { this.Set_bandWidthMbps(value); }
@@ -605,11 +606,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -640,7 +641,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_description = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
-				this.M_networkMaskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "NetworkMaskLen"));
+				this.M_networkMaskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
 			}
 			else {
 				this.M_networkMaskLen = null;
@@ -648,7 +649,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_networkMaskLen = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
-				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "BandWidthMbps"));
+				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
 			}
 			else {
 				this.M_bandWidthMbps = null;
@@ -670,13 +671,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -710,8 +711,8 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_swytchId) {
 				Util.SetByPath(ret, "Switch.ID", this.M_swytchId);
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Router creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Router creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

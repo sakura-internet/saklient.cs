@@ -17,7 +17,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Appliance : Resource
+	public class Appliance : Resource
 	{
 		
 		/**
@@ -60,10 +60,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @member saklient.cloud.resources.Appliance#M_tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @internal
 		 */
-		internal string[] M_tags;
+		internal System.Collections.Generic.List<string> M_tags;
 		
 		/**
 		 * アイコン
@@ -78,10 +78,10 @@ namespace Saklient.Cloud.Resources
 		 * プラン
 		 * 
 		 * @member saklient.cloud.resources.Appliance#M_ifaces
-		 * @type Iface[]
+		 * @type System.Collections.Generic.List<Iface>
 		 * @internal
 		 */
-		internal Iface[] M_ifaces;
+		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
 		/**
 		 * サービスクラス
@@ -160,7 +160,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Save()
 		{
-			return ((Appliance)(dynamic)(this._save()));
+			return ((Appliance)(this._save()));
 		}
 		
 		/**
@@ -173,21 +173,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Reload()
 		{
-			return ((Appliance)(dynamic)(this._reload()));
+			return ((Appliance)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Appliance(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Appliance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -452,9 +452,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_tags
 		 * @private
 		 * @ignore
-		 * @return {string[]}
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Get_tags()
+		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
@@ -465,10 +465,10 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_tags
 		 * @private
 		 * @ignore
-		 * @param {string[]} v
-		 * @return {string[]}
+		 * @param {System.Collections.Generic.List<string>} v
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Set_tags(string[] v)
+		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
@@ -480,10 +480,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @property Tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @public
 		 */
-		public string[] Tags
+		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
@@ -554,9 +554,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_ifaces
 		 * @private
 		 * @ignore
-		 * @return {Iface[]}
+		 * @return {System.Collections.Generic.List<Iface>}
 		 */
-		private Iface[] Get_ifaces()
+		private System.Collections.Generic.List<Iface> Get_ifaces()
 		{
 			return this.M_ifaces;
 		}
@@ -565,11 +565,11 @@ namespace Saklient.Cloud.Resources
 		 * プラン
 		 * 
 		 * @property Ifaces
-		 * @type Iface[]
+		 * @type System.Collections.Generic.List<Iface>
 		 * @readOnly
 		 * @public
 		 */
-		public Iface[] Ifaces
+		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
 		}
@@ -613,11 +613,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -657,12 +657,12 @@ namespace Saklient.Cloud.Resources
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
-					this.M_tags = new string[] {  };
+					this.M_tags = new System.Collections.Generic.List<string> {  };
 				}
 				else {
-					this.M_tags = new string[] {  };
-					for (int __it1=0; __it1 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Tags")))[__it1];
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
@@ -684,12 +684,12 @@ namespace Saklient.Cloud.Resources
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "Interfaces")) {
 				if (Util.GetByPath(r, "Interfaces") == null) {
-					this.M_ifaces = new Iface[] {  };
+					this.M_ifaces = new System.Collections.Generic.List<Iface> {  };
 				}
 				else {
-					this.M_ifaces = new Iface[] {  };
-					for (int __it2=0; __it2 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Interfaces"))) as System.Collections.IList).Count; __it2++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Interfaces")))[__it2];
+					this.M_ifaces = new System.Collections.Generic.List<Iface> {  };
+					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces"))) as System.Collections.IList).Count; __it2++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces")))[__it2];
 						Iface v2 = null;
 						v2 = t == null ? null : new Iface(this._client, t);
 						(this.M_ifaces as System.Collections.IList).Add(v2);
@@ -716,13 +716,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -746,10 +746,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Description", this.M_description);
 			};
 			if (withClean || this.N_tags) {
-				Util.SetByPath(ret, "Tags", new object[] {  });
+				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_tags[__it1];
-					dynamic v = null;
+					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
 				};
@@ -758,10 +758,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
 			};
 			if (withClean || this.N_ifaces) {
-				Util.SetByPath(ret, "Interfaces", new object[] {  });
+				Util.SetByPath(ret, "Interfaces", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ifaces[__it2];
-					dynamic v = null;
+					object v = null;
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
 				};
@@ -769,8 +769,8 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_serviceClass) {
 				Util.SetByPath(ret, "ServiceClass", this.M_serviceClass);
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Appliance creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Appliance creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

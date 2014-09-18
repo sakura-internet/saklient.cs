@@ -16,7 +16,7 @@ namespace Saklient {
 
 		public static object DecodeJson(string json)
 		{
-			return serializer.Deserialize<Hash>(json);
+			return ArrayList2List(serializer.Deserialize<Hash>(json));
 		}
 
 		public static string EncodeJson(object obj)
@@ -34,7 +34,7 @@ namespace Saklient {
 				if (Regex.IsMatch(key, @"^\d+$"))
 				{
 					int idx = Convert.ToInt32(key);
-					ArrayList arr = obj as ArrayList;
+					List<object> arr = obj as List<object>;
 					if (arr==null || arr.Count <= idx) return false;
 					obj = arr[idx];
 				}
@@ -58,7 +58,7 @@ namespace Saklient {
 				if (Regex.IsMatch(key, @"^\d+$"))
 				{
 					int idx = Convert.ToInt32(key);
-					ArrayList arr = obj as ArrayList;
+					List<object> arr = obj as List<object>;
 					if (arr==null || arr.Count <= idx) return null;
 					obj = arr[idx];
 				}
@@ -84,7 +84,7 @@ namespace Saklient {
 				if (Regex.IsMatch(key, @"^\d+$"))
 				{
 					int idx = Convert.ToInt32(key);
-					ArrayList arr = obj as ArrayList;
+					List<object> arr = obj as List<object>;
 					if (i==n-1) arr[idx] = value; else obj = arr[idx];
 				}
 				else
@@ -99,7 +99,7 @@ namespace Saklient {
 						if (!dic.ContainsKey(key))
 						{
 							bool isNum = Regex.IsMatch(aPath[i+1], @"^\d+$");
-							dic[key] = isNum ? (object)(new ArrayList {}) : (object)(new Hash {});
+							dic[key] = isNum ? (object)(new List<object> {}) : (object)(new Hash {});
 						}
 						obj = dic[key];
 					}
@@ -107,14 +107,22 @@ namespace Saklient {
 			}
 		}
 		
-		public static object CreateClassInstance(string classPath, object[] args)
+		public static object CreateClassInstance(string classPath, System.Collections.Generic.List<object> args)
 		{
-			return Activator.CreateInstance(Type.GetType(classPath), args);
+			string[] aPath = classPath.Split('.');
+			for (int i=0; i<aPath.Length; i++) {
+				aPath[i] = aPath[i].Substring(0, 1).ToUpper() + aPath[i].Substring(1);
+			}
+			classPath = string.Join(".", aPath);
+			//Console.WriteLine("[CreateClassInstance] " + classPath + " " + EncodeJson(args));
+			object[] a = new object[args.Count];
+			args.CopyTo(a);
+			return Activator.CreateInstance(Type.GetType(classPath), a);
 		}
 
-		public static DateTime Str2date(string s)
+		public static DateTime? Str2date(string s)
 		{
-			return DateTime.Parse(s);
+			return (DateTime?)DateTime.Parse(s);
 		}
 
 		public static string Date2str(DateTime? d)
@@ -127,12 +135,12 @@ namespace Saklient {
 			return Uri.EscapeDataString(s);
 		}
 
-		public static void Sleep(int sec)
+		public static void Sleep(long sec)
 		{
-			Thread.Sleep(1000 * sec);
+			Thread.Sleep(System.Convert.ToInt32(1000 * sec));
 		}
 
-		public static void ValidateArgCount(int actual, int expected)
+		public static void ValidateArgCount(long actual, long expected)
 		{
 		}
 
@@ -140,19 +148,41 @@ namespace Saklient {
 		{
 		}
 		
-		public static U[] CastArray<T, U>(T[] a, U dummy)
+		public static System.Collections.Generic.List<U> CastArray<T, U>(System.Collections.Generic.List<T> a, U dummy)
 		{
-			U[] ret = new U[a.Length];
-			a.CopyTo(ret, 0);
-			return ret;
+			return a.ConvertAll(new Converter<T, U>((T x) => {return (U)(object)x;}));
+//			System.Collections.Generic.List<U> ret = new System.Collections.Generic.List<U>();
+//			foreach (var t in a) ret.Add((U)(object)t);
+//			return ret;
 		}
 		
-		public static string[] DictionaryKeys(dynamic d)
+		public static System.Collections.Generic.List<string> DictionaryKeys(dynamic d)
 		{
 			var dict = d as System.Collections.Generic.Dictionary<string, object>;
 			string[] ret = new string[dict.Keys.Count];
 			dict.Keys.CopyTo(ret, 0);
-			return ret;
+			return new System.Collections.Generic.List<string>(ret);
+		}
+		
+		public static object ArrayList2List(object obj)
+		{
+			if (obj is ArrayList) {
+				var list = obj as ArrayList;
+				var ret = new List<object>();
+				for (int i=0; i<list.Count; i++) {
+					ret.Add(ArrayList2List(list[i]));
+				}
+				return ret;
+			}
+			else if (obj is Dictionary<string, object>) {
+				var dict = obj as Dictionary<string, object>;
+				List<string> keys = DictionaryKeys(dict);
+				foreach (string key in keys) {
+					dict[key] = ArrayList2List(dict[key]);
+				}
+				return dict;
+			}
+			return obj;
 		}
 		
 	}

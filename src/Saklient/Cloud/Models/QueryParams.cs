@@ -9,36 +9,36 @@ namespace Saklient.Cloud.Models
 	 * @class QueryParams
 	 * @constructor
 	 */
-	class QueryParams
+	public class QueryParams
 	{
 		
 		/**
 		 * @member saklient.cloud.models.QueryParams#Begin
-		 * @type int
+		 * @type long
 		 * @public
 		 */
-		public int Begin;
+		public long Begin;
 		
 		/**
 		 * @member saklient.cloud.models.QueryParams#Count
-		 * @type int
+		 * @type long
 		 * @public
 		 */
-		public int Count;
+		public long Count;
 		
 		/**
 		 * @member saklient.cloud.models.QueryParams#Filter
-		 * @type dynamic
+		 * @type object
 		 * @public
 		 */
-		public dynamic Filter;
+		public object Filter;
 		
 		/**
 		 * @member saklient.cloud.models.QueryParams#Sort
-		 * @type dynamic[]
+		 * @type System.Collections.Generic.List<string>
 		 * @public
 		 */
-		public dynamic[] Sort;
+		public System.Collections.Generic.List<string> Sort;
 		
 		/**
 		 * @constructor
@@ -49,15 +49,15 @@ namespace Saklient.Cloud.Models
 			this.Begin = 0;
 			this.Count = 0;
 			this.Filter = new System.Collections.Generic.Dictionary<string, object> {};
-			this.Sort = new dynamic[] {  };
+			this.Sort = new System.Collections.Generic.List<string> {  };
 		}
 		
 		/**
 		 * @method Build
 		 * @public
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		public dynamic Build()
+		public object Build()
 		{
 			return new System.Collections.Generic.Dictionary<string, object> {
 				{ "From", this.Begin },

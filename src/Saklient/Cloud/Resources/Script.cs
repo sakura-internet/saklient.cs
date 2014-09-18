@@ -17,7 +17,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Script : Resource
+	public class Script : Resource
 	{
 		
 		/**
@@ -69,10 +69,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @member saklient.cloud.resources.Script#M_tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @internal
 		 */
-		internal string[] M_tags;
+		internal System.Collections.Generic.List<string> M_tags;
 		
 		/**
 		 * アイコン
@@ -96,10 +96,10 @@ namespace Saklient.Cloud.Resources
 		 * 注釈
 		 * 
 		 * @member saklient.cloud.resources.Script#M_annotation
-		 * @type dynamic
+		 * @type object
 		 * @internal
 		 */
-		internal dynamic M_annotation;
+		internal object M_annotation;
 		
 		/**
 		 * @private
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Script Save()
 		{
-			return ((Script)(dynamic)(this._save()));
+			return ((Script)(this._save()));
 		}
 		
 		/**
@@ -182,21 +182,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Script Reload()
 		{
-			return ((Script)(dynamic)(this._reload()));
+			return ((Script)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Script(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Script(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -419,9 +419,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_tags
 		 * @private
 		 * @ignore
-		 * @return {string[]}
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Get_tags()
+		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
@@ -432,10 +432,10 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_tags
 		 * @private
 		 * @ignore
-		 * @param {string[]} v
-		 * @return {string[]}
+		 * @param {System.Collections.Generic.List<string>} v
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Set_tags(string[] v)
+		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
@@ -447,10 +447,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @property Tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @public
 		 */
-		public string[] Tags
+		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
@@ -572,9 +572,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_annotation
 		 * @private
 		 * @ignore
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		private dynamic Get_annotation()
+		private object Get_annotation()
 		{
 			return this.M_annotation;
 		}
@@ -585,12 +585,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_annotation
 		 * @private
 		 * @ignore
-		 * @param {dynamic} v
-		 * @return {dynamic}
+		 * @param {object} v
+		 * @return {object}
 		 */
-		private dynamic Set_annotation(dynamic v)
+		private object Set_annotation(object v)
 		{
-			Util.ValidateType(v, "dynamic");
+			Util.ValidateType(v, "object");
 			this.M_annotation = v;
 			this.N_annotation = true;
 			return this.M_annotation;
@@ -600,10 +600,10 @@ namespace Saklient.Cloud.Resources
 		 * 注釈
 		 * 
 		 * @property Annotation
-		 * @type dynamic
+		 * @type object
 		 * @public
 		 */
-		public dynamic Annotation
+		public object Annotation
 		{
 			get { return this.Get_annotation(); }
 			set { this.Set_annotation(value); }
@@ -614,11 +614,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -666,12 +666,12 @@ namespace Saklient.Cloud.Resources
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
-					this.M_tags = new string[] {  };
+					this.M_tags = new System.Collections.Generic.List<string> {  };
 				}
 				else {
-					this.M_tags = new string[] {  };
-					for (int __it1=0; __it1 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Tags")))[__it1];
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
@@ -714,13 +714,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -742,10 +742,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Description", this.M_description);
 			};
 			if (withClean || this.N_tags) {
-				Util.SetByPath(ret, "Tags", new object[] {  });
+				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_tags[__it1];
-					dynamic v = null;
+					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
 				};
@@ -764,8 +764,8 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_annotation) {
 				Util.SetByPath(ret, "Remark", this.M_annotation);
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Script creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Script creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}

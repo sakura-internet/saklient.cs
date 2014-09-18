@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * サービスが利用できません。サーバの画面が応答していません。
 	 */
-	class NoDisplayResponseException : HttpServiceUnavailableException
+	public class NoDisplayResponseException : HttpServiceUnavailableException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.NoDisplayResponseException#DefaultMessage
-		 * @default "サービスが利用できません。サーバの画面が応答していません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "サービスが利用できません。サーバの画面が応答していません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public NoDisplayResponseException(int status, string code=null, string message="") : base(status, code, message)
+		public NoDisplayResponseException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "サービスが利用できません。サーバの画面が応答していません。" : message)
 		{
 			/*!base!*/;
 		}

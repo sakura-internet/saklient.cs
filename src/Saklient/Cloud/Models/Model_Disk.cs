@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Disk = Saklient.Cloud.Resources.Disk;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Disk : Model
+	public class Model_Disk : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Disk} this
 		 */
-		public Model_Disk Offset(int offset)
+		public Model_Disk Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Disk)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Disk)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Disk} this
 		 */
-		public Model_Disk Limit(int count)
+		public Model_Disk Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Disk)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Disk)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Disk}
 		 */
-		public Model_Disk FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Disk FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Disk)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Disk)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk Reset()
 		{
-			return ((Model_Disk)(dynamic)(this._reset()));
+			return ((Model_Disk)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Disk Create()
 		{
-			return ((Disk)(dynamic)(this._create()));
+			return ((Disk)(this._create()));
 		}
 		
 		/**
@@ -151,7 +152,7 @@ namespace Saklient.Cloud.Models
 		public Disk GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Disk)(dynamic)(this._getById(id)));
+			return ((Disk)(this._getById(id)));
 		}
 		
 		/**
@@ -159,11 +160,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Disk[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Disk>} リソースオブジェクトの配列
 		 */
-		public Disk[] Find()
+		public System.Collections.Generic.List<Disk> Find()
 		{
-			return Util.CastArray(this._find(), ((Disk)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Disk)(null)));
 		}
 		
 		/**
@@ -182,7 +183,7 @@ namespace Saklient.Cloud.Models
 		public Model_Disk WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Disk)(dynamic)(this._withNameLike(name)));
+			return ((Model_Disk)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -200,7 +201,7 @@ namespace Saklient.Cloud.Models
 		public Model_Disk WithTag(string tag)
 		{
 			Util.ValidateType(tag, "string");
-			return ((Model_Disk)(dynamic)(this._withTag(tag)));
+			return ((Model_Disk)(this._withTag(tag)));
 		}
 		
 		/**
@@ -210,13 +211,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTags
 		 * @chainable
 		 * @public
-		 * @param {string[]} tags
+		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model_Disk}
 		 */
-		public Model_Disk WithTags(string[] tags)
+		public Model_Disk WithTags(System.Collections.Generic.List<string> tags)
 		{
 			Util.ValidateType(tags, "System.Collections.ArrayList");
-			return ((Model_Disk)(dynamic)(this._withTags(tags)));
+			return ((Model_Disk)(this._withTags(tags)));
 		}
 		
 		/**
@@ -226,13 +227,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTagDnf
 		 * @chainable
 		 * @public
-		 * @param {string[][]} dnf
+		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model_Disk}
 		 */
-		public Model_Disk WithTagDnf(string[][] dnf)
+		public Model_Disk WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
 			Util.ValidateType(dnf, "System.Collections.ArrayList");
-			return ((Model_Disk)(dynamic)(this._withTagDnf(dnf)));
+			return ((Model_Disk)(this._withTagDnf(dnf)));
 		}
 		
 		/**
@@ -248,7 +249,7 @@ namespace Saklient.Cloud.Models
 		public Model_Disk SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Disk)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Disk)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -259,7 +260,7 @@ namespace Saklient.Cloud.Models
 		public Model_Disk(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -268,13 +269,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithSizeGib
 		 * @chainable
 		 * @public
-		 * @param {int} sizeGib
+		 * @param {long} sizeGib
 		 * @return {Model_Disk}
 		 */
-		public Model_Disk WithSizeGib(int sizeGib)
+		public Model_Disk WithSizeGib(long sizeGib)
 		{
-			Util.ValidateType(sizeGib, "int");
-			this._filterBy("SizeMB", new object[] { sizeGib * 1024 });
+			Util.ValidateType(sizeGib, "long");
+			this._filterBy("SizeMB", new System.Collections.Generic.List<object> { sizeGib * 1024 });
 			return this;
 		}
 		
@@ -290,7 +291,7 @@ namespace Saklient.Cloud.Models
 		public Model_Disk WithServerId(string id)
 		{
 			Util.ValidateType(id, "string");
-			this._filterBy("Server.ID", new object[] { id });
+			this._filterBy("Server.ID", new System.Collections.Generic.List<object> { id });
 			return this;
 		}
 		

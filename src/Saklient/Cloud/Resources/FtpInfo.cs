@@ -10,7 +10,7 @@ namespace Saklient.Cloud.Resources
 	 * @class FtpInfo
 	 * @constructor
 	 */
-	class FtpInfo
+	public class FtpInfo
 	{
 		
 		/**
@@ -112,14 +112,14 @@ namespace Saklient.Cloud.Resources
 		/**
 		 * @ignore
 		 * @constructor
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 */
-		public FtpInfo(dynamic obj)
+		public FtpInfo(object obj)
 		{
-			Util.ValidateType(obj, "dynamic");
-			this._hostName = ((string)(dynamic)((obj as System.Collections.Generic.Dictionary<string, object>)["HostName"]));
-			this._user = ((string)(dynamic)((obj as System.Collections.Generic.Dictionary<string, object>)["User"]));
-			this._password = ((string)(dynamic)((obj as System.Collections.Generic.Dictionary<string, object>)["Password"]));
+			Util.ValidateType(obj, "object");
+			this._hostName = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["HostName"]));
+			this._user = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["User"]));
+			this._password = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["Password"]));
 		}
 		
 	}

@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Models
 	 * @class Model
 	 * @constructor
 	 */
-	class Model
+	public class Model
 	{
 		
 		/**
@@ -81,30 +81,30 @@ namespace Saklient.Cloud.Models
 		/**
 		 * @private
 		 * @member saklient.cloud.models.Model#_total
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal int? _total;
+		internal long? _total;
 		
 		/**
 		 * @method Get_total
 		 * @internal
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		internal int? Get_total()
+		internal long? Get_total()
 		{
 			return this._total;
 		}
 		
 		/**
 		 * @property Total
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? Total
+		public long? Total
 		{
 			get { return this.Get_total(); }
 		}
@@ -112,30 +112,30 @@ namespace Saklient.Cloud.Models
 		/**
 		 * @private
 		 * @member saklient.cloud.models.Model#_count
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal int? _count;
+		internal long? _count;
 		
 		/**
 		 * @method Get_count
 		 * @internal
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		internal int? Get_count()
+		internal long? Get_count()
 		{
 			return this._count;
 		}
 		
 		/**
 		 * @property Count
-		 * @type int?
+		 * @type long?
 		 * @readOnly
 		 * @public
 		 */
-		public int? Count
+		public long? Count
 		{
 			get { return this.Get_count(); }
 		}
@@ -208,12 +208,12 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @internal
 		 * @ignore
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model} this
 		 */
-		internal Model _offset(int offset)
+		internal Model _offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
+			Util.ValidateType(offset, "long");
 			this._query.Begin = offset;
 			return this;
 		}
@@ -226,12 +226,12 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @internal
 		 * @ignore
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model} this
 		 */
-		internal Model _limit(int count)
+		internal Model _limit(long count)
 		{
-			Util.ValidateType(count, "int");
+			Util.ValidateType(count, "long");
 			this._query.Count = count;
 			return this;
 		}
@@ -266,21 +266,21 @@ namespace Saklient.Cloud.Models
 		 * @internal
 		 * @ignore
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model}
 		 */
-		internal Model _filterBy(string key, dynamic value, bool multiple=false)
+		internal Model _filterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			dynamic filter = this._query.Filter;
+			object filter = this._query.Filter;
 			if (multiple) {
 				if (!(filter as System.Collections.Generic.Dictionary<string, object>).ContainsKey(key)) {
-					(filter as System.Collections.Generic.Dictionary<string, object>)[key] = new object[] {  };
+					(filter as System.Collections.Generic.Dictionary<string, object>)[key] = new System.Collections.Generic.List<object> {  };
 				};
-				dynamic[] values = ((dynamic[])(dynamic)((filter as System.Collections.Generic.Dictionary<string, object>)[key]));
+				System.Collections.Generic.List<object> values = ((System.Collections.Generic.List<object>)((filter as System.Collections.Generic.Dictionary<string, object>)[key]));
 				(values as System.Collections.IList).Add(value);
 			}
 			else {
@@ -323,8 +323,8 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Resource _create()
 		{
-			dynamic[] a = { this._client, null };
-			return ((Resource)(dynamic)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, null, false };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
 		}
 		
 		/**
@@ -340,12 +340,13 @@ namespace Saklient.Cloud.Models
 		internal Resource _getById(string id)
 		{
 			Util.ValidateType(id, "string");
-			dynamic query = this._query.Build();
+			object query = this._query.Build();
 			this._reset();
-			dynamic result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(id), query);
+			object result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(id), query);
 			this._total = 1;
 			this._count = 1;
-			return ((Resource)(dynamic)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), new object[] { this._client, result, true })));
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, result, true };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
 		}
 		
 		/**
@@ -355,24 +356,24 @@ namespace Saklient.Cloud.Models
 		 * @method _find
 		 * @internal
 		 * @ignore
-		 * @return {Resource[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Resource>} リソースオブジェクトの配列
 		 */
-		internal Resource[] _find()
+		internal System.Collections.Generic.List<Resource> _find()
 		{
-			dynamic query = this._query.Build();
+			object query = this._query.Build();
 			this._reset();
-			dynamic result = this._client.Request("GET", this._apiPath(), query);
-			this._total = ((int)(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)["Total"]));
-			this._count = ((int)(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)["Count"]));
-			dynamic[] records = ((dynamic[])(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
-			Resource[] data = {  };
+			object result = this._client.Request("GET", this._apiPath(), query);
+			this._total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
+			this._count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
+			System.Collections.Generic.List<Resource> data = new System.Collections.Generic.List<Resource> {  };
+			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
 			for (int __it1=0; __it1 < (records as System.Collections.IList).Count; __it1++) {
 				var record = records[__it1];
-				dynamic[] a = { this._client, record };
-				Resource i = ((Resource)(dynamic)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+				System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, record, false };
+				Resource i = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
 				(data as System.Collections.IList).Add(i);
 			};
-			return ((Resource[])(dynamic)(data));
+			return ((System.Collections.Generic.List<Resource>)(data));
 		}
 		
 		/**
@@ -386,16 +387,17 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Resource _findOne()
 		{
-			dynamic query = this._query.Build();
+			object query = this._query.Build();
 			this._reset();
-			dynamic result = this._client.Request("GET", this._apiPath(), query);
-			this._total = ((int)(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)["Total"]));
-			this._count = ((int)(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)["Count"]));
+			object result = this._client.Request("GET", this._apiPath(), query);
+			this._total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
+			this._count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
 			if (this._total == 0) {
 				return null;
 			};
-			dynamic[] records = ((dynamic[])(dynamic)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
-			return ((Resource)(dynamic)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), new object[] { this._client, records[0] })));
+			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, records[System.Convert.ToInt32(0)], false };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
 		}
 		
 		/**
@@ -436,7 +438,7 @@ namespace Saklient.Cloud.Models
 		internal Model _withTag(string tag)
 		{
 			Util.ValidateType(tag, "string");
-			return this._filterBy("Tags.Name", new object[] { tag });
+			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tag });
 		}
 		
 		/**
@@ -448,13 +450,13 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @internal
 		 * @ignore
-		 * @param {string[]} tags
+		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model}
 		 */
-		internal Model _withTags(string[] tags)
+		internal Model _withTags(System.Collections.Generic.List<string> tags)
 		{
 			Util.ValidateType(tags, "System.Collections.ArrayList");
-			return this._filterBy("Tags.Name", new object[] { tags });
+			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tags });
 		}
 		
 		/**
@@ -466,10 +468,10 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @internal
 		 * @ignore
-		 * @param {string[][]} dnf
+		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model}
 		 */
-		internal Model _withTagDnf(string[][] dnf)
+		internal Model _withTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
 			Util.ValidateType(dnf, "System.Collections.ArrayList");
 			return this._filterBy("Tags.Name", dnf);

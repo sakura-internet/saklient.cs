@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Server = Saklient.Cloud.Resources.Server;
 using ServerPlan = Saklient.Cloud.Resources.ServerPlan;
@@ -16,7 +17,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Server : Model
+	public class Model_Server : Model
 	{
 		
 		/**
@@ -73,13 +74,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Server} this
 		 */
-		public Model_Server Offset(int offset)
+		public Model_Server Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Server)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Server)(this._offset(offset)));
 		}
 		
 		/**
@@ -88,13 +89,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Server} this
 		 */
-		public Model_Server Limit(int count)
+		public Model_Server Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Server)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Server)(this._limit(count)));
 		}
 		
 		/**
@@ -104,16 +105,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Server}
 		 */
-		public Model_Server FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Server FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Server)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Server)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -126,7 +127,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Reset()
 		{
-			return ((Model_Server)(dynamic)(this._reset()));
+			return ((Model_Server)(this._reset()));
 		}
 		
 		/**
@@ -140,7 +141,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Server Create()
 		{
-			return ((Server)(dynamic)(this._create()));
+			return ((Server)(this._create()));
 		}
 		
 		/**
@@ -154,7 +155,7 @@ namespace Saklient.Cloud.Models
 		public Server GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Server)(dynamic)(this._getById(id)));
+			return ((Server)(this._getById(id)));
 		}
 		
 		/**
@@ -162,11 +163,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Server[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Server>} リソースオブジェクトの配列
 		 */
-		public Server[] Find()
+		public System.Collections.Generic.List<Server> Find()
 		{
-			return Util.CastArray(this._find(), ((Server)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Server)(null)));
 		}
 		
 		/**
@@ -185,7 +186,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Server)(dynamic)(this._withNameLike(name)));
+			return ((Model_Server)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -203,7 +204,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server WithTag(string tag)
 		{
 			Util.ValidateType(tag, "string");
-			return ((Model_Server)(dynamic)(this._withTag(tag)));
+			return ((Model_Server)(this._withTag(tag)));
 		}
 		
 		/**
@@ -213,13 +214,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTags
 		 * @chainable
 		 * @public
-		 * @param {string[]} tags
+		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model_Server}
 		 */
-		public Model_Server WithTags(string[] tags)
+		public Model_Server WithTags(System.Collections.Generic.List<string> tags)
 		{
 			Util.ValidateType(tags, "System.Collections.ArrayList");
-			return ((Model_Server)(dynamic)(this._withTags(tags)));
+			return ((Model_Server)(this._withTags(tags)));
 		}
 		
 		/**
@@ -229,13 +230,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTagDnf
 		 * @chainable
 		 * @public
-		 * @param {string[][]} dnf
+		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model_Server}
 		 */
-		public Model_Server WithTagDnf(string[][] dnf)
+		public Model_Server WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
 			Util.ValidateType(dnf, "System.Collections.ArrayList");
-			return ((Model_Server)(dynamic)(this._withTagDnf(dnf)));
+			return ((Model_Server)(this._withTagDnf(dnf)));
 		}
 		
 		/**
@@ -251,7 +252,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Server)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Server)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -262,7 +263,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -277,7 +278,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server WithPlan(ServerPlan plan)
 		{
 			Util.ValidateType(plan, "Saklient.Cloud.Resources.ServerPlan");
-			this._filterBy("ServerPlan.ID", new object[] { plan._id() });
+			this._filterBy("ServerPlan.ID", new System.Collections.Generic.List<object> { plan._id() });
 			return this;
 		}
 		
@@ -293,7 +294,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server WithStatus(string status)
 		{
 			Util.ValidateType(status, "string");
-			this._filterBy("Instance.Status", new object[] { status });
+			this._filterBy("Instance.Status", new System.Collections.Generic.List<object> { status });
 			return this;
 		}
 		
@@ -335,7 +336,7 @@ namespace Saklient.Cloud.Models
 		public Model_Server WithIsoImage(IsoImage iso)
 		{
 			Util.ValidateType(iso, "Saklient.Cloud.Resources.IsoImage");
-			this._filterBy("Instance.CDROM.ID", new object[] { iso._id() });
+			this._filterBy("Instance.CDROM.ID", new System.Collections.Generic.List<object> { iso._id() });
 			return this;
 		}
 		

@@ -9,49 +9,49 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EServerInstanceStatus
 	 * @class EServerInstanceStatus
 	 */
-	class EServerInstanceStatus
+	public class EServerInstanceStatus
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "Down", 0 },
-			{ "Cleaning", 5 },
-			{ "Up", 100 }
+			{ "down", 0 },
+			{ "cleaning", 5 },
+			{ "up", 100 }
 		};
 		
 		/**
 		 * @property Down
-		 * @default "Down"
+		 * @default "down"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Down = "Down";
+		public static string Down = "down";
 		
 		/**
 		 * @property Cleaning
-		 * @default "Cleaning"
+		 * @default "cleaning"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Cleaning = "Cleaning";
+		public static string Cleaning = "cleaning";
 		
 		/**
 		 * @property Up
-		 * @default "Up"
+		 * @default "up"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Up = "Up";
+		public static string Up = "up";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EServerInstanceStatus._map_[lhs];
-			int? r = EServerInstanceStatus._map_[rhs];
+			long? l = EServerInstanceStatus._map_[lhs];
+			long? r = EServerInstanceStatus._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

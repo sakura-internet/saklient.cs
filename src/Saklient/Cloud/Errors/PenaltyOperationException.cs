@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * お客様のご都合により操作を受け付けることができません。
 	 */
-	class PenaltyOperationException : HttpPaymentRequiredException
+	public class PenaltyOperationException : HttpPaymentRequiredException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.PenaltyOperationException#DefaultMessage
-		 * @default "お客様のご都合により操作を受け付けることができません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "お客様のご都合により操作を受け付けることができません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public PenaltyOperationException(int status, string code=null, string message="") : base(status, code, message)
+		public PenaltyOperationException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "お客様のご都合により操作を受け付けることができません。" : message)
 		{
 			/*!base!*/;
 		}

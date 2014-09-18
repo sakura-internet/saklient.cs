@@ -81,13 +81,10 @@ namespace Saklient.Cloud {
 			req.Headers.Add("X-Sakura-Error-Level", "warning");
 			if (json != null) {
 				req.ContentType = "application/json";
-				req.ContentLength = json.Length;
-				Stream stream = req.GetRequestStream();
-				StreamWriter writer = new StreamWriter(stream, Encoding.GetEncoding("UTF-8"));
-				writer.Write(json, 0, json.Length);
+				StreamWriter writer = new StreamWriter(req.GetRequestStream());
+				writer.Write(json);
 				writer.Flush();
-				writer.Dispose();
-				stream.Close();
+				writer.Close();
 			}
 			
 			System.Net.WebResponse response = req.GetResponse();

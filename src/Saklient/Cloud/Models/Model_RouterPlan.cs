@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using RouterPlan = Saklient.Cloud.Resources.RouterPlan;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_RouterPlan : Model
+	public class Model_RouterPlan : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_RouterPlan} this
 		 */
-		public Model_RouterPlan Offset(int offset)
+		public Model_RouterPlan Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_RouterPlan)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_RouterPlan)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_RouterPlan} this
 		 */
-		public Model_RouterPlan Limit(int count)
+		public Model_RouterPlan Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_RouterPlan)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_RouterPlan)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_RouterPlan}
 		 */
-		public Model_RouterPlan FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_RouterPlan FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_RouterPlan)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_RouterPlan)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_RouterPlan Reset()
 		{
-			return ((Model_RouterPlan)(dynamic)(this._reset()));
+			return ((Model_RouterPlan)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		public RouterPlan GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((RouterPlan)(dynamic)(this._getById(id)));
+			return ((RouterPlan)(this._getById(id)));
 		}
 		
 		/**
@@ -145,11 +146,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {RouterPlan[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<RouterPlan>} リソースオブジェクトの配列
 		 */
-		public RouterPlan[] Find()
+		public System.Collections.Generic.List<RouterPlan> Find()
 		{
-			return Util.CastArray(this._find(), ((RouterPlan)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((RouterPlan)(null)));
 		}
 		
 		/**
@@ -160,7 +161,7 @@ namespace Saklient.Cloud.Models
 		public Model_RouterPlan(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

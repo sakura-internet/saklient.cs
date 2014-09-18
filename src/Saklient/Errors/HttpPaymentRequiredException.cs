@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * HTTPエラー。Payment Required.
 	 */
-	class HttpPaymentRequiredException : HttpException
+	public class HttpPaymentRequiredException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpPaymentRequiredException#DefaultMessage
-		 * @default "HTTPエラー。Payment Required."
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "HTTPエラー。Payment Required.";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpPaymentRequiredException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpPaymentRequiredException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Payment Required." : message)
 		{
 			/*!base!*/;
 		}

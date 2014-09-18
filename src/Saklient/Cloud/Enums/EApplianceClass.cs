@@ -9,39 +9,39 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EApplianceClass
 	 * @class EApplianceClass
 	 */
-	class EApplianceClass
+	public class EApplianceClass
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "Loadbalancer", 10 },
-			{ "Vpcrouter", 20 }
+			{ "loadbalancer", 10 },
+			{ "vpcrouter", 20 }
 		};
 		
 		/**
 		 * @property Loadbalancer
-		 * @default "Loadbalancer"
+		 * @default "loadbalancer"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Loadbalancer = "Loadbalancer";
+		public static string Loadbalancer = "loadbalancer";
 		
 		/**
 		 * @property Vpcrouter
-		 * @default "Vpcrouter"
+		 * @default "vpcrouter"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Vpcrouter = "Vpcrouter";
+		public static string Vpcrouter = "vpcrouter";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EApplianceClass._map_[lhs];
-			int? r = EApplianceClass._map_[rhs];
+			long? l = EApplianceClass._map_[lhs];
+			long? r = EApplianceClass._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

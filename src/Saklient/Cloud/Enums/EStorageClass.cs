@@ -9,29 +9,29 @@ namespace Saklient.Cloud.Enums
 	 * @module saklient.cloud.enums.EStorageClass
 	 * @class EStorageClass
 	 */
-	class EStorageClass
+	public class EStorageClass
 	{
 		
-		static System.Collections.Generic.Dictionary<string, int> _map_ = new System.Collections.Generic.Dictionary<string, int>()
+		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
 		{
-			{ "Iscsi1204", 110 }
+			{ "iscsi1204", 110 }
 		};
 		
 		/**
 		 * @property Iscsi1204
-		 * @default "Iscsi1204"
+		 * @default "iscsi1204"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Iscsi1204 = "Iscsi1204";
+		public static string Iscsi1204 = "iscsi1204";
 		
-		public static int? Compare(string lhs, string rhs)
+		public static long? Compare(string lhs, string rhs)
 		{
-			int? l = EStorageClass._map_[lhs];
-			int? r = EStorageClass._map_[rhs];
+			long? l = EStorageClass._map_[lhs];
+			long? r = EStorageClass._map_[rhs];
 			if (l==null || r==null) return null;
-			int ret = (int)l - (int)r;
+			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);
 		}
 		

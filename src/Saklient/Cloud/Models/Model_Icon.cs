@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Icon = Saklient.Cloud.Resources.Icon;
 using EScope = Saklient.Cloud.Enums.EScope;
@@ -14,7 +15,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Icon : Model
+	public class Model_Icon : Model
 	{
 		
 		/**
@@ -71,13 +72,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Icon} this
 		 */
-		public Model_Icon Offset(int offset)
+		public Model_Icon Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Icon)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Icon)(this._offset(offset)));
 		}
 		
 		/**
@@ -86,13 +87,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Icon} this
 		 */
-		public Model_Icon Limit(int count)
+		public Model_Icon Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Icon)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Icon)(this._limit(count)));
 		}
 		
 		/**
@@ -102,16 +103,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Icon}
 		 */
-		public Model_Icon FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Icon FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Icon)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Icon)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -124,7 +125,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Reset()
 		{
-			return ((Model_Icon)(dynamic)(this._reset()));
+			return ((Model_Icon)(this._reset()));
 		}
 		
 		/**
@@ -138,7 +139,7 @@ namespace Saklient.Cloud.Models
 		public Icon GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Icon)(dynamic)(this._getById(id)));
+			return ((Icon)(this._getById(id)));
 		}
 		
 		/**
@@ -146,11 +147,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Icon[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Icon>} リソースオブジェクトの配列
 		 */
-		public Icon[] Find()
+		public System.Collections.Generic.List<Icon> Find()
 		{
-			return Util.CastArray(this._find(), ((Icon)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Icon)(null)));
 		}
 		
 		/**
@@ -169,7 +170,7 @@ namespace Saklient.Cloud.Models
 		public Model_Icon WithNameLike(string name)
 		{
 			Util.ValidateType(name, "string");
-			return ((Model_Icon)(dynamic)(this._withNameLike(name)));
+			return ((Model_Icon)(this._withNameLike(name)));
 		}
 		
 		/**
@@ -187,7 +188,7 @@ namespace Saklient.Cloud.Models
 		public Model_Icon WithTag(string tag)
 		{
 			Util.ValidateType(tag, "string");
-			return ((Model_Icon)(dynamic)(this._withTag(tag)));
+			return ((Model_Icon)(this._withTag(tag)));
 		}
 		
 		/**
@@ -197,13 +198,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTags
 		 * @chainable
 		 * @public
-		 * @param {string[]} tags
+		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model_Icon}
 		 */
-		public Model_Icon WithTags(string[] tags)
+		public Model_Icon WithTags(System.Collections.Generic.List<string> tags)
 		{
 			Util.ValidateType(tags, "System.Collections.ArrayList");
-			return ((Model_Icon)(dynamic)(this._withTags(tags)));
+			return ((Model_Icon)(this._withTags(tags)));
 		}
 		
 		/**
@@ -213,13 +214,13 @@ namespace Saklient.Cloud.Models
 		 * @method WithTagDnf
 		 * @chainable
 		 * @public
-		 * @param {string[][]} dnf
+		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model_Icon}
 		 */
-		public Model_Icon WithTagDnf(string[][] dnf)
+		public Model_Icon WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
 			Util.ValidateType(dnf, "System.Collections.ArrayList");
-			return ((Model_Icon)(dynamic)(this._withTagDnf(dnf)));
+			return ((Model_Icon)(this._withTagDnf(dnf)));
 		}
 		
 		/**
@@ -235,7 +236,7 @@ namespace Saklient.Cloud.Models
 		public Model_Icon SortByName(bool reverse=false)
 		{
 			Util.ValidateType(reverse, "bool");
-			return ((Model_Icon)(dynamic)(this._sortByName(reverse)));
+			return ((Model_Icon)(this._sortByName(reverse)));
 		}
 		
 		/**
@@ -246,7 +247,7 @@ namespace Saklient.Cloud.Models
 		public Model_Icon(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -259,7 +260,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithSharedScope()
 		{
-			this._filterBy("Scope", new object[] { EScope.Shared });
+			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
 			return this;
 		}
 		
@@ -273,7 +274,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithUserScope()
 		{
-			this._filterBy("Scope", new object[] { EScope.User });
+			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
 			return this;
 		}
 		

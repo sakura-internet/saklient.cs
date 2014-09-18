@@ -6,26 +6,17 @@ namespace Saklient.Cloud.Errors
 	/**
 	 * 対象が見つかりません。パスに使用できない文字が含まれています。
 	 */
-	class InvalidUriArgumentException : HttpNotFoundException
+	public class InvalidUriArgumentException : HttpNotFoundException
 	{
-		
-		/**
-		 * @member saklient.cloud.errors.InvalidUriArgumentException#DefaultMessage
-		 * @default "対象が見つかりません。パスに使用できない文字が含まれています。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "対象が見つかりません。パスに使用できない文字が含まれています。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public InvalidUriArgumentException(int status, string code=null, string message="") : base(status, code, message)
+		public InvalidUriArgumentException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "対象が見つかりません。パスに使用できない文字が含まれています。" : message)
 		{
 			/*!base!*/;
 		}

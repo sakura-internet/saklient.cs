@@ -12,7 +12,7 @@ namespace Saklient.Cloud.Resources
 	 * @class DiskConfig
 	 * @constructor
 	 */
-	class DiskConfig
+	public class DiskConfig
 	{
 		
 		/**
@@ -315,19 +315,19 @@ namespace Saklient.Cloud.Resources
 		/**
 		 * @private
 		 * @member saklient.cloud.resources.DiskConfig#_networkMaskLen
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal int? _networkMaskLen;
+		internal long? _networkMaskLen;
 		
 		/**
 		 * @method Get_networkMaskLen
 		 * @internal
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		internal int? Get_networkMaskLen()
+		internal long? Get_networkMaskLen()
 		{
 			return this._networkMaskLen;
 		}
@@ -336,12 +336,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_networkMaskLen
 		 * @internal
 		 * @ignore
-		 * @param {int?} v
-		 * @return {int?}
+		 * @param {long?} v
+		 * @return {long?}
 		 */
-		internal int? Set_networkMaskLen(int? v)
+		internal long? Set_networkMaskLen(long? v)
 		{
-			Util.ValidateType(v, "int");
+			Util.ValidateType(v, "long");
 			this._networkMaskLen = v;
 			return v;
 		}
@@ -350,10 +350,10 @@ namespace Saklient.Cloud.Resources
 		 * ネットワークマスク長
 		 * 
 		 * @property NetworkMaskLen
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? NetworkMaskLen
+		public long? NetworkMaskLen
 		{
 			get { return this.Get_networkMaskLen(); }
 			set { this.Set_networkMaskLen(value); }
@@ -362,19 +362,19 @@ namespace Saklient.Cloud.Resources
 		/**
 		 * @private
 		 * @member saklient.cloud.resources.DiskConfig#_scripts
-		 * @type Script[]
+		 * @type System.Collections.Generic.List<Script>
 		 * @internal
 		 * @ignore
 		 */
-		internal Script[] _scripts;
+		internal System.Collections.Generic.List<Script> _scripts;
 		
 		/**
 		 * @method Get_scripts
 		 * @internal
 		 * @ignore
-		 * @return {Script[]}
+		 * @return {System.Collections.Generic.List<Script>}
 		 */
-		internal Script[] Get_scripts()
+		internal System.Collections.Generic.List<Script> Get_scripts()
 		{
 			return this._scripts;
 		}
@@ -383,11 +383,11 @@ namespace Saklient.Cloud.Resources
 		 * スタートアップスクリプト（pushによりスクリプトを追加できます）
 		 * 
 		 * @property Scripts
-		 * @type Script[]
+		 * @type System.Collections.Generic.List<Script>
 		 * @readOnly
 		 * @public
 		 */
-		public Script[] Scripts
+		public System.Collections.Generic.List<Script> Scripts
 		{
 			get { return this.Get_scripts(); }
 		}
@@ -410,7 +410,7 @@ namespace Saklient.Cloud.Resources
 			this._ipAddress = null;
 			this._defaultRoute = null;
 			this._networkMaskLen = null;
-			this._scripts = new Script[] {  };
+			this._scripts = new System.Collections.Generic.List<Script> {  };
 		}
 		
 		/**
@@ -441,7 +441,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig Write()
 		{
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> {};
+			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			if (this._hostName != null) {
 				Util.SetByPath(q, "HostName", this._hostName);
 			};
@@ -460,8 +460,8 @@ namespace Saklient.Cloud.Resources
 			if (this._networkMaskLen != null) {
 				Util.SetByPath(q, "UserSubnet.NetworkMaskLen", this._networkMaskLen);
 			};
-			if (0 < this._scripts.Length) {
-				dynamic[] notes = {  };
+			if (0 < this._scripts.Count) {
+				System.Collections.Generic.List<object> notes = new System.Collections.Generic.List<object> {  };
 				for (int __it1=0; __it1 < (this._scripts as System.Collections.IList).Count; __it1++) {
 					var script = this._scripts[__it1];
 					(notes as System.Collections.IList).Add(new System.Collections.Generic.Dictionary<string, object> { { "ID", script._id() } });
@@ -469,7 +469,7 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(q, "Notes", notes);
 			};
 			string path = "/disk/" + this._diskId + "/config";
-			dynamic result = this._client.Request("PUT", path, q);
+			this._client.Request("PUT", path, q);
 			return this;
 		}
 		

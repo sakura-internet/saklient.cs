@@ -6,26 +6,17 @@ namespace Saklient.Errors
 	/**
 	 * 要求されたHTTPメソッドは対応していません。
 	 */
-	class HttpMethodNotAllowedException : HttpException
+	public class HttpMethodNotAllowedException : HttpException
 	{
-		
-		/**
-		 * @member saklient.errors.HttpMethodNotAllowedException#DefaultMessage
-		 * @default "要求されたHTTPメソッドは対応していません。"
-		 * @type string
-		 * @static
-		 * @public
-		 */
-		public static string DefaultMessage = "要求されたHTTPメソッドは対応していません。";
 		
 		/**
 		 * @constructor
 		 * @public
-		 * @param {int} status
+		 * @param {long} status
 		 * @param {string} code=null
 		 * @param {string} message=""
 		 */
-		public HttpMethodNotAllowedException(int status, string code=null, string message="") : base(status, code, message)
+		public HttpMethodNotAllowedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求されたHTTPメソッドは対応していません。" : message)
 		{
 			/*!base!*/;
 		}

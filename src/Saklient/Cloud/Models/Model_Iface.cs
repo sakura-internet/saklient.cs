@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Iface = Saklient.Cloud.Resources.Iface;
 
@@ -13,7 +14,7 @@ namespace Saklient.Cloud.Models
 	 * @constructor
 	 * @extends Model
 	 */
-	class Model_Iface : Model
+	public class Model_Iface : Model
 	{
 		
 		/**
@@ -70,13 +71,13 @@ namespace Saklient.Cloud.Models
 		 * @method Offset
 		 * @chainable
 		 * @public
-		 * @param {int} offset オフセット
+		 * @param {long} offset オフセット
 		 * @return {Model_Iface} this
 		 */
-		public Model_Iface Offset(int offset)
+		public Model_Iface Offset(long offset)
 		{
-			Util.ValidateType(offset, "int");
-			return ((Model_Iface)(dynamic)(this._offset(offset)));
+			Util.ValidateType(offset, "long");
+			return ((Model_Iface)(this._offset(offset)));
 		}
 		
 		/**
@@ -85,13 +86,13 @@ namespace Saklient.Cloud.Models
 		 * @method Limit
 		 * @chainable
 		 * @public
-		 * @param {int} count 上限レコード数
+		 * @param {long} count 上限レコード数
 		 * @return {Model_Iface} this
 		 */
-		public Model_Iface Limit(int count)
+		public Model_Iface Limit(long count)
 		{
-			Util.ValidateType(count, "int");
-			return ((Model_Iface)(dynamic)(this._limit(count)));
+			Util.ValidateType(count, "long");
+			return ((Model_Iface)(this._limit(count)));
 		}
 		
 		/**
@@ -101,16 +102,16 @@ namespace Saklient.Cloud.Models
 		 * @chainable
 		 * @public
 		 * @param {string} key キー
-		 * @param {dynamic} value 値
+		 * @param {object} value 値
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model_Iface}
 		 */
-		public Model_Iface FilterBy(string key, dynamic value, bool multiple=false)
+		public Model_Iface FilterBy(string key, object value, bool multiple=false)
 		{
 			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "dynamic");
+			Util.ValidateType(value, "object");
 			Util.ValidateType(multiple, "bool");
-			return ((Model_Iface)(dynamic)(this._filterBy(key, value, multiple)));
+			return ((Model_Iface)(this._filterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -123,7 +124,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Reset()
 		{
-			return ((Model_Iface)(dynamic)(this._reset()));
+			return ((Model_Iface)(this._reset()));
 		}
 		
 		/**
@@ -137,7 +138,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Iface Create()
 		{
-			return ((Iface)(dynamic)(this._create()));
+			return ((Iface)(this._create()));
 		}
 		
 		/**
@@ -151,7 +152,7 @@ namespace Saklient.Cloud.Models
 		public Iface GetById(string id)
 		{
 			Util.ValidateType(id, "string");
-			return ((Iface)(dynamic)(this._getById(id)));
+			return ((Iface)(this._getById(id)));
 		}
 		
 		/**
@@ -159,11 +160,11 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @method Find
 		 * @public
-		 * @return {Iface[]} リソースオブジェクトの配列
+		 * @return {System.Collections.Generic.List<Iface>} リソースオブジェクトの配列
 		 */
-		public Iface[] Find()
+		public System.Collections.Generic.List<Iface> Find()
 		{
-			return Util.CastArray(this._find(), ((Iface)(dynamic)(null)));
+			return Util.CastArray(this._find(), ((Iface)(null)));
 		}
 		
 		/**
@@ -174,7 +175,7 @@ namespace Saklient.Cloud.Models
 		public Model_Iface(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Client");
+			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

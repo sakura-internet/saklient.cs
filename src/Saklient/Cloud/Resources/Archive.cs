@@ -20,7 +20,7 @@ namespace Saklient.Cloud.Resources
 	 * @constructor
 	 * @extends Resource
 	 */
-	class Archive : Resource
+	public class Archive : Resource
 	{
 		
 		/**
@@ -63,10 +63,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @member saklient.cloud.resources.Archive#M_tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @internal
 		 */
-		internal string[] M_tags;
+		internal System.Collections.Generic.List<string> M_tags;
 		
 		/**
 		 * アイコン
@@ -81,19 +81,19 @@ namespace Saklient.Cloud.Resources
 		 * 表示順序
 		 * 
 		 * @member saklient.cloud.resources.Archive#M_displayOrder
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_displayOrder;
+		internal long? M_displayOrder;
 		
 		/**
 		 * サイズ[MiB]
 		 * 
 		 * @member saklient.cloud.resources.Archive#M_sizeMib
-		 * @type int?
+		 * @type long?
 		 * @internal
 		 */
-		internal int? M_sizeMib;
+		internal long? M_sizeMib;
 		
 		/**
 		 * サービスクラス
@@ -190,7 +190,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive Save()
 		{
-			return ((Archive)(dynamic)(this._save()));
+			return ((Archive)(this._save()));
 		}
 		
 		/**
@@ -203,21 +203,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive Reload()
 		{
-			return ((Archive)(dynamic)(this._reload()));
+			return ((Archive)(this._reload()));
 		}
 		
 		/**
 		 * @ignore
 		 * @constructor
 		 * @param {Client} client
-		 * @param {dynamic} obj
+		 * @param {object} obj
 		 * @param {bool} wrapped=false
 		 */
-		public Archive(Client client, dynamic obj, bool wrapped=false) : base(client)
+		public Archive(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "dynamic");
+			Util.ValidateType(obj, "object");
 			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
@@ -250,11 +250,11 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_sizeGib
 		 * @internal
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		internal int? Get_sizeGib()
+		internal long? Get_sizeGib()
 		{
-			int? sizeMib = this.Get_sizeMib();
+			long? sizeMib = this.Get_sizeMib();
 			return sizeMib == null ? null : sizeMib >> 10;
 		}
 		
@@ -262,12 +262,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_sizeGib
 		 * @internal
 		 * @ignore
-		 * @param {int?} sizeGib
-		 * @return {int?}
+		 * @param {long?} sizeGib
+		 * @return {long?}
 		 */
-		internal int? Set_sizeGib(int? sizeGib)
+		internal long? Set_sizeGib(long? sizeGib)
 		{
-			Util.ValidateType(sizeGib, "int");
+			Util.ValidateType(sizeGib, "long");
 			this.Set_sizeMib(sizeGib == null ? null : sizeGib * 1024);
 			return sizeGib;
 		}
@@ -276,10 +276,10 @@ namespace Saklient.Cloud.Resources
 		 * サイズ[GiB]
 		 * 
 		 * @property SizeGib
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? SizeGib
+		public long? SizeGib
 		{
 			get { return this.Get_sizeGib(); }
 			set { this.Set_sizeGib(value); }
@@ -366,17 +366,17 @@ namespace Saklient.Cloud.Resources
 		 * @method _onAfterApiDeserialize
 		 * @internal
 		 * @ignore
-		 * @param {dynamic} r
-		 * @param {dynamic} root
+		 * @param {object} r
+		 * @param {object} root
 		 * @return {void}
 		 */
-		internal override void _onAfterApiDeserialize(dynamic r, dynamic root)
+		internal override void _onAfterApiDeserialize(object r, object root)
 		{
-			Util.ValidateType(r, "dynamic");
-			Util.ValidateType(root, "dynamic");
+			Util.ValidateType(r, "object");
+			Util.ValidateType(root, "object");
 			if (root != null) {
 				if ((root as System.Collections.Generic.Dictionary<string, object>).ContainsKey("FTPServer")) {
-					dynamic ftp = (root as System.Collections.Generic.Dictionary<string, object>)["FTPServer"];
+					object ftp = (root as System.Collections.Generic.Dictionary<string, object>)["FTPServer"];
 					if (ftp != null) {
 						this._ftpInfo = new FtpInfo(ftp);
 					};
@@ -384,21 +384,21 @@ namespace Saklient.Cloud.Resources
 			};
 			if (r != null) {
 				if ((r as System.Collections.Generic.Dictionary<string, object>).ContainsKey("SourceArchive")) {
-					dynamic s = (r as System.Collections.Generic.Dictionary<string, object>)["SourceArchive"];
+					object s = (r as System.Collections.Generic.Dictionary<string, object>)["SourceArchive"];
 					if (s != null) {
-						dynamic id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
+						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
 							this._source = new Archive(this._client, s);
 						};
 					};
 				};
 				if ((r as System.Collections.Generic.Dictionary<string, object>).ContainsKey("SourceDisk")) {
-					dynamic s = (r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"];
+					object s = (r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"];
 					if (s != null) {
-						dynamic id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
+						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							dynamic obj = Util.CreateClassInstance("saklient.cloud.resources.Disk", new object[] { this._client, s });
-							this._source = ((Resource)(dynamic)(obj));
+							object obj = Util.CreateClassInstance("saklient.cloud.resources.Disk", new System.Collections.Generic.List<object> { this._client, s, false });
+							this._source = ((Resource)(obj));
 						};
 					};
 				};
@@ -410,25 +410,25 @@ namespace Saklient.Cloud.Resources
 		 * @method _onAfterApiSerialize
 		 * @internal
 		 * @ignore
-		 * @param {dynamic} r
+		 * @param {object} r
 		 * @param {bool} withClean
 		 * @return {void}
 		 */
-		internal override void _onAfterApiSerialize(dynamic r, bool withClean)
+		internal override void _onAfterApiSerialize(object r, bool withClean)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			Util.ValidateType(withClean, "bool");
 			if (r == null) {
 				return;
 			};
 			if (this._source != null) {
 				if (this._source._className() == "Archive") {
-					dynamic s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+					object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
 					(r as System.Collections.Generic.Dictionary<string, object>)["SourceArchive"] = s;
 				}
 				else {
 					if (this._source._className() == "Disk") {
-						dynamic s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+						object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
 						(r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"] = s;
 					}
 					else {
@@ -454,9 +454,9 @@ namespace Saklient.Cloud.Resources
 		{
 			Util.ValidateType(reset, "bool");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
-			dynamic q = new System.Collections.Generic.Dictionary<string, object> {};
+			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "ChangePassword", reset);
-			dynamic result = this._client.Request("PUT", path, q);
+			object result = this._client.Request("PUT", path, q);
 			this._onAfterApiDeserialize(null, result);
 			return this;
 		}
@@ -472,7 +472,7 @@ namespace Saklient.Cloud.Resources
 		public Archive CloseFtp()
 		{
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
-			dynamic result = this._client.Request("DELETE", path);
+			this._client.Request("DELETE", path);
 			this._ftpInfo = null;
 			return this;
 		}
@@ -482,15 +482,15 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @ignore
 		 * @method AfterCopy
-		 * @param {int} timeoutSec
+		 * @param {long} timeoutSec
 		 * @param {System.Action<Archive, bool>} callback
 		 * @return {void}
 		 */
-		public void AfterCopy(int timeoutSec, System.Action<Archive, bool> callback)
+		public void AfterCopy(long timeoutSec, System.Action<Archive, bool> callback)
 		{
-			Util.ValidateType(timeoutSec, "int");
+			Util.ValidateType(timeoutSec, "long");
 			Util.ValidateType(callback, "function");
-			dynamic ret = this.SleepWhileCopying(timeoutSec);
+			bool ret = this.SleepWhileCopying(timeoutSec);
 			callback(this, ret);
 		}
 		
@@ -499,13 +499,13 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method SleepWhileCopying
 		 * @public
-		 * @param {int} timeoutSec=3600
+		 * @param {long} timeoutSec=3600
 		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
 		 */
-		public bool SleepWhileCopying(int timeoutSec=3600)
+		public bool SleepWhileCopying(long timeoutSec=3600)
 		{
-			Util.ValidateType(timeoutSec, "int");
-			int step = 3;
+			Util.ValidateType(timeoutSec, "long");
+			long step = 3;
 			while (0 < timeoutSec) {
 				this.Reload();
 				string a = this.Get_availability();
@@ -707,9 +707,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_tags
 		 * @private
 		 * @ignore
-		 * @return {string[]}
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Get_tags()
+		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
@@ -720,10 +720,10 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_tags
 		 * @private
 		 * @ignore
-		 * @param {string[]} v
-		 * @return {string[]}
+		 * @param {System.Collections.Generic.List<string>} v
+		 * @return {System.Collections.Generic.List<string>}
 		 */
-		private string[] Set_tags(string[] v)
+		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
@@ -735,10 +735,10 @@ namespace Saklient.Cloud.Resources
 		 * タグ
 		 * 
 		 * @property Tags
-		 * @type string[]
+		 * @type System.Collections.Generic.List<string>
 		 * @public
 		 */
-		public string[] Tags
+		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
@@ -809,9 +809,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_displayOrder
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_displayOrder()
+		private long? Get_displayOrder()
 		{
 			return this.M_displayOrder;
 		}
@@ -822,12 +822,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_displayOrder
 		 * @private
 		 * @ignore
-		 * @param {int?} v
-		 * @return {int?}
+		 * @param {long?} v
+		 * @return {long?}
 		 */
-		private int? Set_displayOrder(int? v)
+		private long? Set_displayOrder(long? v)
 		{
-			Util.ValidateType(v, "int");
+			Util.ValidateType(v, "long");
 			this.M_displayOrder = v;
 			this.N_displayOrder = true;
 			return this.M_displayOrder;
@@ -837,10 +837,10 @@ namespace Saklient.Cloud.Resources
 		 * 表示順序
 		 * 
 		 * @property DisplayOrder
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? DisplayOrder
+		public long? DisplayOrder
 		{
 			get { return this.Get_displayOrder(); }
 			set { this.Set_displayOrder(value); }
@@ -860,9 +860,9 @@ namespace Saklient.Cloud.Resources
 		 * @method Get_sizeMib
 		 * @private
 		 * @ignore
-		 * @return {int?}
+		 * @return {long?}
 		 */
-		private int? Get_sizeMib()
+		private long? Get_sizeMib()
 		{
 			return this.M_sizeMib;
 		}
@@ -873,12 +873,12 @@ namespace Saklient.Cloud.Resources
 		 * @method Set_sizeMib
 		 * @private
 		 * @ignore
-		 * @param {int?} v
-		 * @return {int?}
+		 * @param {long?} v
+		 * @return {long?}
 		 */
-		private int? Set_sizeMib(int? v)
+		private long? Set_sizeMib(long? v)
 		{
-			Util.ValidateType(v, "int");
+			Util.ValidateType(v, "long");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Archive#Set_sizeMib");
 			};
@@ -891,10 +891,10 @@ namespace Saklient.Cloud.Resources
 		 * サイズ[MiB]
 		 * 
 		 * @property SizeMib
-		 * @type int?
+		 * @type long?
 		 * @public
 		 */
-		public int? SizeMib
+		public long? SizeMib
 		{
 			get { return this.Get_sizeMib(); }
 			set { this.Set_sizeMib(value); }
@@ -1007,11 +1007,11 @@ namespace Saklient.Cloud.Resources
 		 * 
 		 * @method ApiDeserializeImpl
 		 * @internal
-		 * @param {dynamic} r
+		 * @param {object} r
 		 */
-		internal override void ApiDeserializeImpl(dynamic r)
+		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "dynamic");
+			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
@@ -1051,12 +1051,12 @@ namespace Saklient.Cloud.Resources
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
-					this.M_tags = new string[] {  };
+					this.M_tags = new System.Collections.Generic.List<string> {  };
 				}
 				else {
-					this.M_tags = new string[] {  };
-					for (int __it1=0; __it1 < (((dynamic[])(dynamic)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((dynamic[])(dynamic)(Util.GetByPath(r, "Tags")))[__it1];
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
@@ -1077,7 +1077,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "DisplayOrder")) {
-				this.M_displayOrder = Util.GetByPath(r, "DisplayOrder") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "DisplayOrder"));
+				this.M_displayOrder = Util.GetByPath(r, "DisplayOrder") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "DisplayOrder"));
 			}
 			else {
 				this.M_displayOrder = null;
@@ -1085,7 +1085,7 @@ namespace Saklient.Cloud.Resources
 			};
 			this.N_displayOrder = false;
 			if (Util.ExistsPath(r, "SizeMB")) {
-				this.M_sizeMib = Util.GetByPath(r, "SizeMB") == null ? null : System.Convert.ToInt32("" + Util.GetByPath(r, "SizeMB"));
+				this.M_sizeMib = Util.GetByPath(r, "SizeMB") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "SizeMB"));
 			}
 			else {
 				this.M_sizeMib = null;
@@ -1123,13 +1123,13 @@ namespace Saklient.Cloud.Resources
 		 * @method ApiSerializeImpl
 		 * @internal
 		 * @param {bool} withClean=false
-		 * @return {dynamic}
+		 * @return {object}
 		 */
-		internal override dynamic ApiSerializeImpl(bool withClean=false)
+		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			Util.ValidateType(withClean, "bool");
-			string[] missing = {  };
-			dynamic ret = new System.Collections.Generic.Dictionary<string, object> {  };
+			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
+			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
 			};
@@ -1148,10 +1148,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "Description", this.M_description);
 			};
 			if (withClean || this.N_tags) {
-				Util.SetByPath(ret, "Tags", new object[] {  });
+				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_tags[__it1];
-					dynamic v = null;
+					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
 				};
@@ -1174,8 +1174,8 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_availability) {
 				Util.SetByPath(ret, "Availability", this.M_availability);
 			};
-			if (missing.Length > 0) {
-				throw new SaklientException("required_field", "Required fields must be set before the Archive creation: " + string.Join(", ", missing));
+			if (missing.Count > 0) {
+				throw new SaklientException("required_field", "Required fields must be set before the Archive creation: " + string.Join(", ", (missing).ToArray()));
 			};
 			return ret;
 		}
