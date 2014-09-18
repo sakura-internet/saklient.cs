@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Threading;
 using Saklient;
 using Saklient.Cloud;
 using Saklient.Cloud.Resources;
@@ -60,7 +61,6 @@ namespace Saklient.Cloud.Tests
 				string hostName = "saklient-test";
 				string sshPublicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3sSg8Vfxrs3eFTx3G//wMRlgqmFGxh5Ia8DZSSf2YrkZGqKbL1t2AsiUtIMwxGiEVVBc0K89lORzra7qoHQj5v5Xlcdqodgcs9nwuSeS38XWO6tXNF4a8LvKnfGS55+uzmBmVUwAztr3TIJR5TTWxZXpcxSsSEHx7nIcr31zcvosjgdxqvSokAsIgJyPQyxCxsPK8SFIsUV+aATqBCWNyp+R1jECPkd74ipEBoccnA0pYZnRhIsKNWR9phBRXIVd5jx/gK5jHqouhFWvCucUs0gwilEGwpng3b/YxrinNskpfOpMhOD9zjNU58OCoMS8MA17yqoZv59l3u16CrnrD saklient-test@local";
 				string sshPrivateKeyFile = root + "/test-sshkey.txt";
-				Console.WriteLine(root);
 				
 				// search archives
 				Console.WriteLine("searching archives...");
@@ -134,6 +134,108 @@ namespace Saklient.Cloud.Tests
 				iface.ConnectToSharedSegment();
 				
 				// wait disk copy
+				Console.WriteLine("waiting disk copy...");
+				if (!disk.SleepWhileCopying()) Assert.Fail("アーカイブからディスクへのコピーがタイムアウトしました");
+				disk.Source = null;
+				disk.Reload();
+				Assert.AreEqual((disk.Source as Archive).Id, archive.Id);
+				Assert.AreEqual(disk.SizeGib, archive.SizeGib);
+				
+				// connect the disk to the server
+				Console.WriteLine("connecting the disk to the server...");
+				disk.ConnectTo(server);
+				
+				// config the disk
+				Console.WriteLine("writing configuration to the disk...");
+				DiskConfig diskconf = disk.CreateConfig();
+				diskconf.HostName = hostName;
+				diskconf.Password = (new Regex(@"-.+")).Replace(System.Guid.NewGuid().ToString(), "");
+				diskconf.SshKey = sshPublicKey;
+				diskconf.Scripts.Add(script);
+				diskconf.Write();
+				
+				// boot
+				Console.WriteLine("booting the server...");
+				server.Boot();
+				Thread.Sleep(3);
+			
+				// boot conflict
+				Console.WriteLine("checking the server power conflicts...");
+				try {
+					server.Boot();
+				}
+				catch (Saklient.Errors.HttpConflictException ex)
+				{
+				}
+				// "サーバ起動中の起動試行時は HttpConflictException がスローされなければなりません"
+				
+				// ssh
+//				string ipAddress = server.ifaces[0].ipAddress;
+//				Assert.IsNotEmpty(ipAddress);
+//				string cmd = "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -i"+sshPrivateKeyFile+" root@"+ipAddress+" hostname 2>/dev/null";
+//				bool sshSuccess = false;
+//				Console.WriteLine("trying to SSH to the server...");
+//				for (int i=0; i<10; i++) {
+//					Thread.Sleep(5);
+//					if (hostName != execSync(cmd).replace(/\s+$/, "")) continue;
+//					sshSuccess = true;
+//					break;
+//				}
+//				if (!sshSuccess) Assert.Fail("作成したサーバへ正常にSSHできません");
+				
+				// stop the server
+				Thread.Sleep(1);
+				Console.WriteLine("stopping the server...");
+				server.Stop();
+				Assert.IsTrue(server.SleepUntilDown());
+				
+				// disconnect the disk from the server
+				Console.WriteLine("disconnecting the disk from the server...");
+				disk.Disconnect();
+				
+				// delete the server
+				Console.WriteLine("deleting the server...");
+				server.Destroy();
+				
+				// duplicate the disk
+				Console.WriteLine("duplicating the disk (expanding to 40GiB)...");
+				Disk disk2 = api.Disk.Create();
+				disk2.Name = name + "-copy";
+				disk2.Description = description;
+				disk2.Tags = new List<string> { tag };
+				disk2.Plan = api.Product.Disk.Hdd;
+				disk2.Source = disk;
+				disk2.SizeGib = 40;
+				disk2.Save();
+				
+				// wait disk duplication
+				Console.WriteLine("waiting disk duplication...");
+				if (!disk2.SleepWhileCopying()) Assert.Fail("ディスクの複製がタイムアウトしました");
+				disk2.Source = null;
+				disk2.Reload();
+				Assert.AreEqual((disk2.Source as Disk).Id, disk.Id);
+				Assert.AreEqual(disk2.SizeGib, 40);
+				
+				// delete the disk
+				Console.WriteLine("deleting the disk...");
+				
+				string id = disk2.Id;
+				disk2.Destroy();
+				try {
+					api.Disk.GetById(id);
+				}
+				catch (Saklient.Errors.HttpNotFoundException ex_)
+				{
+				}
+				
+				id = disk.Id;
+				disk.Destroy();
+				try {
+					api.Disk.GetById(id);
+				}
+				catch (Saklient.Errors.HttpNotFoundException ex_)
+				{
+				}
 			}
 			
 			

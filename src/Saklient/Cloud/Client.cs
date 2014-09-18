@@ -87,11 +87,40 @@ namespace Saklient.Cloud {
 				writer.Close();
 			}
 			
-			System.Net.WebResponse response = req.GetResponse();
-			StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"));
-			string dataSrc = reader.ReadToEnd();
-			reader.Close();
-			object data = Util.DecodeJson(dataSrc);
+			object data = null;
+			try {
+				using (WebResponse response = req.GetResponse() as HttpWebResponse) {
+					if (req.HaveResponse && response != null) {
+						using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"))) {
+							string dataSrc = reader.ReadToEnd();
+							reader.Close();
+							data = Util.DecodeJson(dataSrc);
+						}
+					}
+				}
+			}
+			catch (WebException ex)
+			{
+				long code = 0;
+				if (ex.Response != null) {
+					using (HttpWebResponse response = ex.Response as HttpWebResponse) {
+						code = (long)response.StatusCode;
+						using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.GetEncoding("UTF-8"))) {
+							string dataSrc = reader.ReadToEnd();
+							reader.Close();
+							data = Util.DecodeJson(dataSrc);
+						}
+					}
+				}
+				if (!(200<=code && code<300)) {
+					var uex = Saklient.Errors.ExceptionFactory.Create(
+						code,
+						data!=null ? Util.GetByPath(data, "error_code") as string : null,
+						data!=null ? Util.GetByPath(data, "error_msg") as string : null
+					);
+					throw uex;
+				}
+			}
 			return data;
 			
 		}
