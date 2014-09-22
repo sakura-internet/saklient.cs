@@ -1,8 +1,11 @@
 using NUnit.Framework;
 using System;
+using System.IO;
 using System.Net;
+using System.Net.Security;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Saklient;
@@ -20,7 +23,7 @@ namespace Saklient.Cloud.Tests
 		[Test]
 		public void Test()
 		{
-			string root = System.IO.Path.GetDirectoryName(Environment.CurrentDirectory);
+			string root = Path.GetDirectoryName(Environment.CurrentDirectory);
 			string token = System.Environment.GetEnvironmentVariable("SACLOUD_TOKEN");
 			string secret = System.Environment.GetEnvironmentVariable("SACLOUD_SECRET");
 			string zone = System.Environment.GetEnvironmentVariable("SACLOUD_ZONE");
@@ -30,7 +33,7 @@ namespace Saklient.Cloud.Tests
 			string description = "This instance was created by saklient.cs NUnit";
 			string tag = "saklient-test";
 			
-			// create
+			// create/upload
 			{
 				IsoImage iso = api.IsoImage.Create();
 				iso.Name = name;
@@ -50,25 +53,31 @@ namespace Saklient.Cloud.Tests
 				Assert.IsNotNull(ftp2.Password);
 				Assert.AreNotEqual(ftp.Password, ftp2.Password);
 				
-//				//
-//				string temp = tempnam(sys_get_temp_dir(), "saklient-");
-//				string cmd = "dd if=/dev/urandom bs=4096 count=64 > temp; ls -l temp";
-//				Console.WriteLine(cmd); Console.WriteLine(`( cmd ) 2>&1`);
-//				cmd  = "set ftp:ssl-allow true;";
-//				cmd += "set ftp:ssl-force true;";
-//				cmd += "set ftp:ssl-protect-data true;";
-//				cmd += "set ftp:ssl-protect-list true;";
-//				cmd += "put temp;";
-//				cmd += "exit";
-//				cmd = sprintf(
-//					"lftp -u %s,%s -p 21 -e '%s' %s",
-//					ftp2.User, ftp2.Password, cmd, ftp2.HostName
-//				);
-//				Console.WriteLine(cmd); Console.WriteLine(`( cmd ) 2>&1`);
-//				cmd = "rm -f temp";
-//				Console.WriteLine(cmd); Console.WriteLine(`( cmd ) 2>&1`);
-//				
-//				iso.CloseFtp();
+				//
+				Console.WriteLine("FTPS: " + ftp2.User+":"+ftp2.Password + "@" + ftp2.HostName);
+				ServicePointManager.ServerCertificateValidationCallback = (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) => true;
+				Uri uri = new Uri("ftp://" + ftp2.HostName + "/image.iso");
+				FtpWebRequest ftpReq = FtpWebRequest.Create(uri) as FtpWebRequest;
+				ftpReq.EnableSsl = true;
+				ftpReq.Credentials = new NetworkCredential(ftp2.User, ftp2.Password);
+				ftpReq.Method = WebRequestMethods.Ftp.UploadFile;
+//				ftpReq.KeepAlive = true;
+//				ftpReq.UseBinary = true;
+//				ftpReq.UsePassive = true;
+//				ftpReq.ContentLength = 1024 * 256;
+				Stream stream = ftpReq.GetRequestStream();
+				Random rnd = new Random();
+				byte[] buffer = new byte[1024];
+				for (int i=0; i<256; i++) {
+					rnd.NextBytes(buffer);
+					stream.Write(buffer, 0, buffer.Length);
+				}
+				stream.Close();
+				FtpWebResponse ftpRes = ftpReq.GetResponse() as FtpWebResponse;
+				Console.WriteLine("{0}: {1}", ftpRes.StatusCode, ftpRes.StatusDescription);
+				ftpRes.Close();
+				
+				iso.CloseFtp();
 				
 				//
 				iso.Destroy();
