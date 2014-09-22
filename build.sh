@@ -2,10 +2,6 @@
 
 cd `dirname $0`
 
-if ! [ -d packages ]; then
-	./nuget install
-fi
-
 mkdir -p out
 
 mcs -nologo -optimize+ -unsafe- \

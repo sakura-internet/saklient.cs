@@ -7,6 +7,8 @@ using System.Threading;
 using Saklient;
 using Saklient.Cloud;
 using Saklient.Cloud.Resources;
+using Tamir.SharpSsh;
+
 
 namespace Saklient.Cloud.Tests
 {
@@ -171,18 +173,21 @@ namespace Saklient.Cloud.Tests
 				// "サーバ起動中の起動試行時は HttpConflictException がスローされなければなりません"
 				
 				// ssh
-//				string ipAddress = server.ifaces[0].ipAddress;
-//				Assert.IsNotEmpty(ipAddress);
-//				string cmd = "ssh -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -i"+sshPrivateKeyFile+" root@"+ipAddress+" hostname 2>/dev/null";
-//				bool sshSuccess = false;
-//				Console.WriteLine("trying to SSH to the server...");
-//				for (int i=0; i<10; i++) {
-//					Thread.Sleep(5);
-//					if (hostName != execSync(cmd).replace(/\s+$/, "")) continue;
-//					sshSuccess = true;
-//					break;
-//				}
-//				if (!sshSuccess) Assert.Fail("作成したサーバへ正常にSSHできません");
+				string ipAddress = server.Ifaces[0].IpAddress;
+				Assert.IsNotEmpty(ipAddress);
+				bool sshSuccess = false;
+				Console.WriteLine("trying to SSH to the server...");
+				for (int i=0; i<10; i++) {
+					Thread.Sleep(5);
+					SshExec ssh = new SshExec(ipAddress, "root", diskconf.Password);
+					ssh.Connect();
+					string result = ssh.RunCommand("hostname 2>/dev/null").TrimEnd();
+					ssh.Close();
+					if (hostName != result) continue;
+					sshSuccess = true;
+					break;
+				}
+				if (!sshSuccess) Assert.Fail("作成したサーバへ正常にSSHできません");
 				
 				// stop the server
 				Thread.Sleep(1);
