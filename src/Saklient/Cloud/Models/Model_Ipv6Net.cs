@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Ipv6Net)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Ipv6Net)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Ipv6Net)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -137,7 +132,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Ipv6Net GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Ipv6Net)(this._getById(id)));
 		}
 		
@@ -161,7 +155,6 @@ namespace Saklient.Cloud.Models
 		public Model_Ipv6Net(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

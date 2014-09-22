@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_ServerPlan)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_ServerPlan)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_ServerPlan)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -137,7 +132,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public ServerPlan GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((ServerPlan)(this._getById(id)));
 		}
 		
@@ -161,7 +155,6 @@ namespace Saklient.Cloud.Models
 		public Model_ServerPlan(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -175,8 +168,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public ServerPlan GetBySpec(long cores, long memoryGib)
 		{
-			Util.ValidateType(cores, "long");
-			Util.ValidateType(memoryGib, "long");
 			this._filterBy("CPU", new System.Collections.Generic.List<object> { cores });
 			this._filterBy("MemoryMB", new System.Collections.Generic.List<object> { memoryGib * 1024 });
 			return ((ServerPlan)(this._findOne()));

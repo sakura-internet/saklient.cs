@@ -106,7 +106,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_hostName(string v)
 		{
-			Util.ValidateType(v, "string");
 			this._hostName = v;
 			return v;
 		}
@@ -153,7 +152,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_password(string v)
 		{
-			Util.ValidateType(v, "string");
 			this._password = v;
 			return v;
 		}
@@ -200,7 +198,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_sshKey(string v)
 		{
-			Util.ValidateType(v, "string");
 			this._sshKey = v;
 			return v;
 		}
@@ -247,7 +244,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_ipAddress(string v)
 		{
-			Util.ValidateType(v, "string");
 			this._ipAddress = v;
 			return v;
 		}
@@ -294,7 +290,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_defaultRoute(string v)
 		{
-			Util.ValidateType(v, "string");
 			this._defaultRoute = v;
 			return v;
 		}
@@ -341,7 +336,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal long? Set_networkMaskLen(long? v)
 		{
-			Util.ValidateType(v, "long");
 			this._networkMaskLen = v;
 			return v;
 		}
@@ -400,8 +394,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig(Client client, string diskId)
 		{
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(diskId, "string");
 			this._client = client;
 			this._diskId = diskId;
 			this._hostName = null;
@@ -426,7 +418,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig AddScript(Script script)
 		{
-			Util.ValidateType(script, "Saklient.Cloud.Resources.Script");
 			(this._scripts as System.Collections.IList).Add(script);
 			return this;
 		}
@@ -444,30 +435,30 @@ namespace Saklient.Cloud.Resources
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			if (this._hostName != null) {
 				Util.SetByPath(q, "HostName", this._hostName);
-			};
+			}
 			if (this._password != null) {
 				Util.SetByPath(q, "Password", this._password);
-			};
+			}
 			if (this._sshKey != null) {
 				Util.SetByPath(q, "SSHKey.PublicKey", this._sshKey);
-			};
+			}
 			if (this._ipAddress != null) {
 				Util.SetByPath(q, "UserIPAddress", this._ipAddress);
-			};
+			}
 			if (this._defaultRoute != null) {
 				Util.SetByPath(q, "UserSubnet.DefaultRoute", this._defaultRoute);
-			};
+			}
 			if (this._networkMaskLen != null) {
 				Util.SetByPath(q, "UserSubnet.NetworkMaskLen", this._networkMaskLen);
-			};
+			}
 			if (0 < this._scripts.Count) {
 				System.Collections.Generic.List<object> notes = new System.Collections.Generic.List<object> {  };
 				for (int __it1=0; __it1 < (this._scripts as System.Collections.IList).Count; __it1++) {
 					var script = this._scripts[__it1];
 					(notes as System.Collections.IList).Add(new System.Collections.Generic.Dictionary<string, object> { { "ID", script._id() } });
-				};
+				}
 				Util.SetByPath(q, "Notes", notes);
-			};
+			}
 			string path = "/disk/" + this._diskId + "/config";
 			this._client.Request("PUT", path, q);
 			return this;

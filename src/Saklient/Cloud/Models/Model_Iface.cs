@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Iface)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Iface)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Iface)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -151,7 +146,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Iface GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Iface)(this._getById(id)));
 		}
 		
@@ -175,7 +169,6 @@ namespace Saklient.Cloud.Models
 		public Model_Iface(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

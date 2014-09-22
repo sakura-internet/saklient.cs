@@ -170,9 +170,6 @@ namespace Saklient.Cloud.Resources
 		public Router(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -187,8 +184,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void AfterCreate(long timeoutSec, System.Action<Router, bool> callback)
 		{
-			Util.ValidateType(timeoutSec, "long");
-			Util.ValidateType(callback, "function");
 			bool ret = this.SleepWhileCreating(timeoutSec);
 			callback(this, ret);
 		}
@@ -203,18 +198,17 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool SleepWhileCreating(long timeoutSec=120)
 		{
-			Util.ValidateType(timeoutSec, "long");
 			long step = 3;
 			while (0 < timeoutSec) {
 				if (this.Exists()) {
 					this.Reload();
 					return true;
-				};
+				}
 				timeoutSec -= step;
 				if (0 < timeoutSec) {
 					Util.Sleep(step);
-				};
-			};
+				}
+			}
 			return false;
 		}
 		
@@ -257,7 +251,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router RemoveIpv6Net(Ipv6Net ipv6Net)
 		{
-			Util.ValidateType(ipv6Net, "Saklient.Cloud.Resources.Ipv6Net");
 			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ipv6net/" + ipv6Net._id());
 			this.Reload();
 			return this;
@@ -274,8 +267,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
-			Util.ValidateType(maskLen, "long");
-			Util.ValidateType(nextHop, "string");
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "NetworkMaskLen", maskLen);
 			Util.SetByPath(q, "NextHop", nextHop);
@@ -295,7 +286,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
-			Util.ValidateType(ipv4Net, "Saklient.Cloud.Resources.Ipv4Net");
 			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/subnet/" + ipv4Net._id());
 			this.Reload();
 			return this;
@@ -314,7 +304,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router ChangePlan(long bandWidthMbps)
 		{
-			Util.ValidateType(bandWidthMbps, "long");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/bandwidth";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "Internet.BandWidthMbps", bandWidthMbps);
@@ -389,7 +378,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_name(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_name = v;
 			this.N_name = true;
 			return this.M_name;
@@ -440,7 +428,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_description(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_description = v;
 			this.N_description = true;
 			return this.M_description;
@@ -491,10 +478,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		private long? Set_networkMaskLen(long? v)
 		{
-			Util.ValidateType(v, "long");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Router#Set_networkMaskLen");
-			};
+			}
 			this.M_networkMaskLen = v;
 			this.N_networkMaskLen = true;
 			return this.M_networkMaskLen;
@@ -545,10 +531,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		private long? Set_bandWidthMbps(long? v)
 		{
-			Util.ValidateType(v, "long");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Router#Set_bandWidthMbps");
-			};
+			}
 			this.M_bandWidthMbps = v;
 			this.N_bandWidthMbps = true;
 			return this.M_bandWidthMbps;
@@ -610,11 +595,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -622,7 +606,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
 				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
@@ -630,7 +614,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_name = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
 				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
@@ -638,7 +622,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_description = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_description = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
 				this.M_networkMaskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
@@ -646,7 +630,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_networkMaskLen = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_networkMaskLen = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
 				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
@@ -654,7 +638,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_bandWidthMbps = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_bandWidthMbps = false;
 			if (Util.ExistsPath(r, "Switch.ID")) {
 				this.M_swytchId = Util.GetByPath(r, "Switch.ID") == null ? null : "" + Util.GetByPath(r, "Switch.ID");
@@ -662,7 +646,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_swytchId = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_swytchId = false;
 		}
 		
@@ -675,45 +659,44 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_name) {
 				Util.SetByPath(ret, "Name", this.M_name);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("name");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_description) {
 				Util.SetByPath(ret, "Description", this.M_description);
-			};
+			}
 			if (withClean || this.N_networkMaskLen) {
 				Util.SetByPath(ret, "NetworkMaskLen", this.M_networkMaskLen);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("networkMaskLen");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_bandWidthMbps) {
 				Util.SetByPath(ret, "BandWidthMbps", this.M_bandWidthMbps);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("bandWidthMbps");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_swytchId) {
 				Util.SetByPath(ret, "Switch.ID", this.M_swytchId);
-			};
+			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Router creation: " + string.Join(", ", (missing).ToArray()));
-			};
+			}
 			return ret;
 		}
 		

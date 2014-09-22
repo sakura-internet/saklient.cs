@@ -142,9 +142,6 @@ namespace Saklient.Cloud.Resources
 		public Ipv4Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -327,11 +324,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -339,7 +335,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "NetworkAddress")) {
 				this.M_address = Util.GetByPath(r, "NetworkAddress") == null ? null : "" + Util.GetByPath(r, "NetworkAddress");
@@ -347,7 +343,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_address = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_address = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
 				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
@@ -355,7 +351,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_maskLen = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_maskLen = false;
 			if (Util.ExistsPath(r, "DefaultRoute")) {
 				this.M_defaultRoute = Util.GetByPath(r, "DefaultRoute") == null ? null : "" + Util.GetByPath(r, "DefaultRoute");
@@ -363,7 +359,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_defaultRoute = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_defaultRoute = false;
 			if (Util.ExistsPath(r, "NextHop")) {
 				this.M_nextHop = Util.GetByPath(r, "NextHop") == null ? null : "" + Util.GetByPath(r, "NextHop");
@@ -371,7 +367,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_nextHop = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_nextHop = false;
 		}
 		
@@ -384,23 +380,22 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_address) {
 				Util.SetByPath(ret, "NetworkAddress", this.M_address);
-			};
+			}
 			if (withClean || this.N_maskLen) {
 				Util.SetByPath(ret, "NetworkMaskLen", this.M_maskLen);
-			};
+			}
 			if (withClean || this.N_defaultRoute) {
 				Util.SetByPath(ret, "DefaultRoute", this.M_defaultRoute);
-			};
+			}
 			if (withClean || this.N_nextHop) {
 				Util.SetByPath(ret, "NextHop", this.M_nextHop);
-			};
+			}
 			return ret;
 		}
 		

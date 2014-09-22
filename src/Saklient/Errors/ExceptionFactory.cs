@@ -621,7 +621,7 @@ namespace Saklient.Errors
 					return new VncProxyRequestFailureException(status, code, message);
 				}
 			}
-			;
+			
 			switch (status) {
 				case 400: {
 					return new HttpBadRequestException(status, code, message);
@@ -714,7 +714,7 @@ namespace Saklient.Errors
 					return new HttpNotExtendedException(status, code, message);
 				}
 			}
-			;
+			
 			return new HttpException(status, code, message);
 		}
 		

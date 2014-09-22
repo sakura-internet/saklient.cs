@@ -195,7 +195,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model(Client client)
 		{
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 			this._client = client;
 			this._reset();
 		}
@@ -213,7 +212,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			this._query.Begin = offset;
 			return this;
 		}
@@ -231,7 +229,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			this._query.Count = count;
 			return this;
 		}
@@ -250,8 +247,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _sort(string column, bool reverse=false)
 		{
-			Util.ValidateType(column, "string");
-			Util.ValidateType(reverse, "bool");
 			string op = reverse ? "-" : "";
 			(this._query.Sort as System.Collections.IList).Add(op + column);
 			return this;
@@ -272,23 +267,20 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _filterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			object filter = this._query.Filter;
 			if (multiple) {
 				if (!(filter as System.Collections.Generic.Dictionary<string, object>).ContainsKey(key)) {
 					(filter as System.Collections.Generic.Dictionary<string, object>)[key] = new System.Collections.Generic.List<object> {  };
-				};
+				}
 				System.Collections.Generic.List<object> values = ((System.Collections.Generic.List<object>)((filter as System.Collections.Generic.Dictionary<string, object>)[key]));
 				(values as System.Collections.IList).Add(value);
 			}
 			else {
 				if ((filter as System.Collections.Generic.Dictionary<string, object>).ContainsKey(key)) {
 					throw new SaklientException("filter_duplicated", "The same filter key can be specified only once (by calling the same method 'withFooBar')");
-				};
+				}
 				(filter as System.Collections.Generic.Dictionary<string, object>)[key] = value;
-			};
+			}
 			return this;
 		}
 		
@@ -339,7 +331,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Resource _getById(string id)
 		{
-			Util.ValidateType(id, "string");
 			object query = this._query.Build();
 			this._reset();
 			object result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(id), query);
@@ -372,7 +363,7 @@ namespace Saklient.Cloud.Models
 				System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, record, false };
 				Resource i = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
 				(data as System.Collections.IList).Add(i);
-			};
+			}
 			return ((System.Collections.Generic.List<Resource>)(data));
 		}
 		
@@ -394,7 +385,7 @@ namespace Saklient.Cloud.Models
 			this._count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
 			if (this._total == 0) {
 				return null;
-			};
+			}
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
 			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, records[System.Convert.ToInt32(0)], false };
 			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
@@ -417,7 +408,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _withNameLike(string name)
 		{
-			Util.ValidateType(name, "string");
 			return this._filterBy("Name", name);
 		}
 		
@@ -437,7 +427,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _withTag(string tag)
 		{
-			Util.ValidateType(tag, "string");
 			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tag });
 		}
 		
@@ -455,7 +444,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _withTags(System.Collections.Generic.List<string> tags)
 		{
-			Util.ValidateType(tags, "System.Collections.ArrayList");
 			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tags });
 		}
 		
@@ -473,7 +461,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _withTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			Util.ValidateType(dnf, "System.Collections.ArrayList");
 			return this._filterBy("Tags.Name", dnf);
 		}
 		
@@ -491,7 +478,6 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Model _sortByName(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			return this._sort("Name", reverse);
 		}
 		

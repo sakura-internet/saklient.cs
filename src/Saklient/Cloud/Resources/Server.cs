@@ -202,9 +202,6 @@ namespace Saklient.Cloud.Resources
 		public Server(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -299,8 +296,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void AfterDown(long timeoutSec, System.Action<Server, bool> callback)
 		{
-			Util.ValidateType(timeoutSec, "long");
-			Util.ValidateType(callback, "function");
 			this.AfterStatus(EServerInstanceStatus.Down, timeoutSec, callback);
 		}
 		
@@ -317,9 +312,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private void AfterStatus(string status, long timeoutSec, System.Action<Server, bool> callback)
 		{
-			Util.ValidateType(status, "string");
-			Util.ValidateType(timeoutSec, "long");
-			Util.ValidateType(callback, "function");
 			bool ret = this.SleepUntil(status, timeoutSec);
 			callback(this, ret);
 		}
@@ -334,7 +326,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool SleepUntilDown(long timeoutSec=180)
 		{
-			Util.ValidateType(timeoutSec, "long");
 			return this.SleepUntil(EServerInstanceStatus.Down, timeoutSec);
 		}
 		
@@ -350,23 +341,21 @@ namespace Saklient.Cloud.Resources
 		 */
 		private bool SleepUntil(string status, long timeoutSec=180)
 		{
-			Util.ValidateType(status, "string");
-			Util.ValidateType(timeoutSec, "long");
 			long step = 3;
 			while (0 < timeoutSec) {
 				this.Reload();
 				string s = this.Get_instance().Status;
 				if (s == null) {
 					s = EServerInstanceStatus.Down;
-				};
+				}
 				if (s == status) {
 					return true;
-				};
+				}
 				timeoutSec -= step;
 				if (0 < timeoutSec) {
 					Util.Sleep(step);
-				};
-			};
+				}
+			}
 			return false;
 		}
 		
@@ -383,7 +372,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Server ChangePlan(ServerPlan planTo)
 		{
-			Util.ValidateType(planTo, "Saklient.Cloud.Resources.ServerPlan");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/to/plan/" + Util.UrlEncode(planTo._id());
 			object result = this._client.Request("PUT", path);
 			this.ApiDeserialize(result, true);
@@ -429,7 +417,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Server InsertIsoImage(IsoImage iso)
 		{
-			Util.ValidateType(iso, "Saklient.Cloud.Resources.IsoImage");
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/cdrom";
 			object q = new System.Collections.Generic.Dictionary<string, object> { { "CDROM", new System.Collections.Generic.Dictionary<string, object> { { "ID", iso._id() } } } };
 			this._client.Request("PUT", path, q);
@@ -519,7 +506,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_name(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_name = v;
 			this.N_name = true;
 			return this.M_name;
@@ -570,7 +556,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_description(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_description = v;
 			this.N_description = true;
 			return this.M_description;
@@ -621,7 +606,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
-			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
 			this.N_tags = true;
 			return this.M_tags;
@@ -672,7 +656,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private Icon Set_icon(Icon v)
 		{
-			Util.ValidateType(v, "Saklient.Cloud.Resources.Icon");
 			this.M_icon = v;
 			this.N_icon = true;
 			return this.M_icon;
@@ -723,10 +706,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		private ServerPlan Set_plan(ServerPlan v)
 		{
-			Util.ValidateType(v, "Saklient.Cloud.Resources.ServerPlan");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Server#Set_plan");
-			};
+			}
 			this.M_plan = v;
 			this.N_plan = true;
 			return this.M_plan;
@@ -856,11 +838,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -868,7 +849,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
 				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
@@ -876,7 +857,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_name = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
 				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
@@ -884,7 +865,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_description = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
@@ -897,13 +878,13 @@ namespace Saklient.Cloud.Resources
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
-					};
-				};
+					}
+				}
 			}
 			else {
 				this.M_tags = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
 				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
@@ -911,7 +892,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_icon = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "ServerPlan")) {
 				this.M_plan = Util.GetByPath(r, "ServerPlan") == null ? null : new ServerPlan(this._client, Util.GetByPath(r, "ServerPlan"));
@@ -919,7 +900,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_plan = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_plan = false;
 			if (Util.ExistsPath(r, "Interfaces")) {
 				if (Util.GetByPath(r, "Interfaces") == null) {
@@ -932,13 +913,13 @@ namespace Saklient.Cloud.Resources
 						Iface v2 = null;
 						v2 = t == null ? null : new Iface(this._client, t);
 						(this.M_ifaces as System.Collections.IList).Add(v2);
-					};
-				};
+					}
+				}
 			}
 			else {
 				this.M_ifaces = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_ifaces = false;
 			if (Util.ExistsPath(r, "Instance")) {
 				this.M_instance = Util.GetByPath(r, "Instance") == null ? null : new ServerInstance(this._client, Util.GetByPath(r, "Instance"));
@@ -946,7 +927,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_instance = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_instance = false;
 			if (Util.ExistsPath(r, "Availability")) {
 				this.M_availability = Util.GetByPath(r, "Availability") == null ? null : "" + Util.GetByPath(r, "Availability");
@@ -954,7 +935,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_availability = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_availability = false;
 		}
 		
@@ -967,23 +948,22 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_name) {
 				Util.SetByPath(ret, "Name", this.M_name);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("name");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_description) {
 				Util.SetByPath(ret, "Description", this.M_description);
-			};
+			}
 			if (withClean || this.N_tags) {
 				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
@@ -991,19 +971,19 @@ namespace Saklient.Cloud.Resources
 					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
-				};
-			};
+				}
+			}
 			if (withClean || this.N_icon) {
 				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
-			};
+			}
 			if (withClean || this.N_plan) {
 				Util.SetByPath(ret, "ServerPlan", withClean ? (this.M_plan == null ? null : this.M_plan.ApiSerialize(withClean)) : (this.M_plan == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_plan.ApiSerializeID()));
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("plan");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_ifaces) {
 				Util.SetByPath(ret, "Interfaces", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
@@ -1011,17 +991,17 @@ namespace Saklient.Cloud.Resources
 					object v = null;
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
-				};
-			};
+				}
+			}
 			if (withClean || this.N_instance) {
 				Util.SetByPath(ret, "Instance", withClean ? (this.M_instance == null ? null : this.M_instance.ApiSerialize(withClean)) : (this.M_instance == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_instance.ApiSerializeID()));
-			};
+			}
 			if (withClean || this.N_availability) {
 				Util.SetByPath(ret, "Availability", this.M_availability);
-			};
+			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Server creation: " + string.Join(", ", (missing).ToArray()));
-			};
+			}
 			return ret;
 		}
 		

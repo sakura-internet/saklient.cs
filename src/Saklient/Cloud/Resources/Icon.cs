@@ -148,9 +148,6 @@ namespace Saklient.Cloud.Resources
 		public Icon(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -254,7 +251,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_name(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_name = v;
 			this.N_name = true;
 			return this.M_name;
@@ -316,11 +312,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -328,7 +323,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Scope")) {
 				this.M_scope = Util.GetByPath(r, "Scope") == null ? null : "" + Util.GetByPath(r, "Scope");
@@ -336,7 +331,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_scope = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_scope = false;
 			if (Util.ExistsPath(r, "Name")) {
 				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
@@ -344,7 +339,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_name = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "URL")) {
 				this.M_url = Util.GetByPath(r, "URL") == null ? null : "" + Util.GetByPath(r, "URL");
@@ -352,7 +347,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_url = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_url = false;
 		}
 		
@@ -365,29 +360,28 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_scope) {
 				Util.SetByPath(ret, "Scope", this.M_scope);
-			};
+			}
 			if (withClean || this.N_name) {
 				Util.SetByPath(ret, "Name", this.M_name);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("name");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_url) {
 				Util.SetByPath(ret, "URL", this.M_url);
-			};
+			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Icon creation: " + string.Join(", ", (missing).ToArray()));
-			};
+			}
 			return ret;
 		}
 		

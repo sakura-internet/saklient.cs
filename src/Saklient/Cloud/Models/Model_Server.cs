@@ -79,7 +79,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Server)(this._offset(offset)));
 		}
 		
@@ -94,7 +93,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Server)(this._limit(count)));
 		}
 		
@@ -111,9 +109,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Server)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -154,7 +149,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Server GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Server)(this._getById(id)));
 		}
 		
@@ -185,7 +179,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithNameLike(string name)
 		{
-			Util.ValidateType(name, "string");
 			return ((Model_Server)(this._withNameLike(name)));
 		}
 		
@@ -203,7 +196,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTag(string tag)
 		{
-			Util.ValidateType(tag, "string");
 			return ((Model_Server)(this._withTag(tag)));
 		}
 		
@@ -219,7 +211,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTags(System.Collections.Generic.List<string> tags)
 		{
-			Util.ValidateType(tags, "System.Collections.ArrayList");
 			return ((Model_Server)(this._withTags(tags)));
 		}
 		
@@ -235,7 +226,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			Util.ValidateType(dnf, "System.Collections.ArrayList");
 			return ((Model_Server)(this._withTagDnf(dnf)));
 		}
 		
@@ -251,7 +241,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByName(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			return ((Model_Server)(this._sortByName(reverse)));
 		}
 		
@@ -263,7 +252,6 @@ namespace Saklient.Cloud.Models
 		public Model_Server(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -277,7 +265,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithPlan(ServerPlan plan)
 		{
-			Util.ValidateType(plan, "Saklient.Cloud.Resources.ServerPlan");
 			this._filterBy("ServerPlan.ID", new System.Collections.Generic.List<object> { plan._id() });
 			return this;
 		}
@@ -293,7 +280,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithStatus(string status)
 		{
-			Util.ValidateType(status, "string");
 			this._filterBy("Instance.Status", new System.Collections.Generic.List<object> { status });
 			return this;
 		}
@@ -335,7 +321,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithIsoImage(IsoImage iso)
 		{
-			Util.ValidateType(iso, "Saklient.Cloud.Resources.IsoImage");
 			this._filterBy("Instance.CDROM.ID", new System.Collections.Generic.List<object> { iso._id() });
 			return this;
 		}
@@ -351,7 +336,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByCpu(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			this._sort("ServerPlan.CPU", reverse);
 			return this;
 		}
@@ -367,7 +351,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByMemory(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			this._sort("ServerPlan.MemoryMB", reverse);
 			return this;
 		}

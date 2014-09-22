@@ -156,9 +156,6 @@ namespace Saklient.Cloud.Resources
 		public Iface(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -310,7 +307,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_userIpAddress(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_userIpAddress = v;
 			this.N_userIpAddress = true;
 			return this.M_userIpAddress;
@@ -361,10 +357,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_serverId(string v)
 		{
-			Util.ValidateType(v, "string");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Iface#Set_serverId");
-			};
+			}
 			this.M_serverId = v;
 			this.N_serverId = true;
 			return this.M_serverId;
@@ -392,11 +387,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -404,7 +398,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "MACAddress")) {
 				this.M_macAddress = Util.GetByPath(r, "MACAddress") == null ? null : "" + Util.GetByPath(r, "MACAddress");
@@ -412,7 +406,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_macAddress = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_macAddress = false;
 			if (Util.ExistsPath(r, "IPAddress")) {
 				this.M_ipAddress = Util.GetByPath(r, "IPAddress") == null ? null : "" + Util.GetByPath(r, "IPAddress");
@@ -420,7 +414,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_ipAddress = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_ipAddress = false;
 			if (Util.ExistsPath(r, "UserIPAddress")) {
 				this.M_userIpAddress = Util.GetByPath(r, "UserIPAddress") == null ? null : "" + Util.GetByPath(r, "UserIPAddress");
@@ -428,7 +422,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_userIpAddress = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_userIpAddress = false;
 			if (Util.ExistsPath(r, "Server.ID")) {
 				this.M_serverId = Util.GetByPath(r, "Server.ID") == null ? null : "" + Util.GetByPath(r, "Server.ID");
@@ -436,7 +430,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_serverId = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_serverId = false;
 		}
 		
@@ -449,32 +443,31 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_macAddress) {
 				Util.SetByPath(ret, "MACAddress", this.M_macAddress);
-			};
+			}
 			if (withClean || this.N_ipAddress) {
 				Util.SetByPath(ret, "IPAddress", this.M_ipAddress);
-			};
+			}
 			if (withClean || this.N_userIpAddress) {
 				Util.SetByPath(ret, "UserIPAddress", this.M_userIpAddress);
-			};
+			}
 			if (withClean || this.N_serverId) {
 				Util.SetByPath(ret, "Server.ID", this.M_serverId);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("serverId");
-				};
-			};
+				}
+			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Iface creation: " + string.Join(", ", (missing).ToArray()));
-			};
+			}
 			return ret;
 		}
 		

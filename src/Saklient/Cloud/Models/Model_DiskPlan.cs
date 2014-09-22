@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_DiskPlan)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_DiskPlan)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_DiskPlan)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -137,7 +132,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public DiskPlan GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((DiskPlan)(this._getById(id)));
 		}
 		
@@ -161,7 +155,6 @@ namespace Saklient.Cloud.Models
 		public Model_DiskPlan(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 			this._hdd = null;
 			this._ssd = null;
 		}
@@ -185,7 +178,7 @@ namespace Saklient.Cloud.Models
 		{
 			if (this._hdd == null) {
 				this._hdd = this.GetById("2");
-			};
+			}
 			return this._hdd;
 		}
 		
@@ -221,7 +214,7 @@ namespace Saklient.Cloud.Models
 		{
 			if (this._ssd == null) {
 				this._ssd = this.GetById("4");
-			};
+			}
 			return this._ssd;
 		}
 		

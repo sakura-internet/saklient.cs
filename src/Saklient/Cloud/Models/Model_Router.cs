@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Router)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Router)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Router)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -151,7 +146,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Router GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Router)(this._getById(id)));
 		}
 		
@@ -182,7 +176,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router WithNameLike(string name)
 		{
-			Util.ValidateType(name, "string");
 			return ((Model_Router)(this._withNameLike(name)));
 		}
 		
@@ -198,7 +191,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router SortByName(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			return ((Model_Router)(this._sortByName(reverse)));
 		}
 		
@@ -210,7 +202,6 @@ namespace Saklient.Cloud.Models
 		public Model_Router(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**
@@ -224,7 +215,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router WithBandWidthMbps(long mbps)
 		{
-			Util.ValidateType(mbps, "long");
 			this._filterBy("BandWidthMbps", new System.Collections.Generic.List<object> { mbps });
 			return this;
 		}

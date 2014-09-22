@@ -123,7 +123,6 @@ namespace Saklient.Cloud
 		 */
 		public Product(Client client)
 		{
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 			this._server = new Model_ServerPlan(client);
 			this._disk = new Model_DiskPlan(client);
 			this._router = new Model_RouterPlan(client);

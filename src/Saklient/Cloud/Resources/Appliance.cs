@@ -186,9 +186,6 @@ namespace Saklient.Cloud.Resources
 		public Appliance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -314,10 +311,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_clazz(string v)
 		{
-			Util.ValidateType(v, "string");
 			if (!this.IsNew) {
 				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Appliance#Set_clazz");
-			};
+			}
 			this.M_clazz = v;
 			this.N_clazz = true;
 			return this.M_clazz;
@@ -368,7 +364,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_name(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_name = v;
 			this.N_name = true;
 			return this.M_name;
@@ -419,7 +414,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private string Set_description(string v)
 		{
-			Util.ValidateType(v, "string");
 			this.M_description = v;
 			this.N_description = true;
 			return this.M_description;
@@ -470,7 +464,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
-			Util.ValidateType(v, "System.Collections.ArrayList");
 			this.M_tags = v;
 			this.N_tags = true;
 			return this.M_tags;
@@ -521,7 +514,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		private Icon Set_icon(Icon v)
 		{
-			Util.ValidateType(v, "Saklient.Cloud.Resources.Icon");
 			this.M_icon = v;
 			this.N_icon = true;
 			return this.M_icon;
@@ -617,11 +609,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -629,7 +620,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Class")) {
 				this.M_clazz = Util.GetByPath(r, "Class") == null ? null : "" + Util.GetByPath(r, "Class");
@@ -637,7 +628,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_clazz = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_clazz = false;
 			if (Util.ExistsPath(r, "Name")) {
 				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
@@ -645,7 +636,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_name = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
 				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
@@ -653,7 +644,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_description = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_description = false;
 			if (Util.ExistsPath(r, "Tags")) {
 				if (Util.GetByPath(r, "Tags") == null) {
@@ -666,13 +657,13 @@ namespace Saklient.Cloud.Resources
 						string v1 = null;
 						v1 = t == null ? null : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
-					};
-				};
+					}
+				}
 			}
 			else {
 				this.M_tags = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
 				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
@@ -680,7 +671,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_icon = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "Interfaces")) {
 				if (Util.GetByPath(r, "Interfaces") == null) {
@@ -693,13 +684,13 @@ namespace Saklient.Cloud.Resources
 						Iface v2 = null;
 						v2 = t == null ? null : new Iface(this._client, t);
 						(this.M_ifaces as System.Collections.IList).Add(v2);
-					};
-				};
+					}
+				}
 			}
 			else {
 				this.M_ifaces = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_ifaces = false;
 			if (Util.ExistsPath(r, "ServiceClass")) {
 				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? null : "" + Util.GetByPath(r, "ServiceClass");
@@ -707,7 +698,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_serviceClass = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_serviceClass = false;
 		}
 		
@@ -720,31 +711,30 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_clazz) {
 				Util.SetByPath(ret, "Class", this.M_clazz);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("clazz");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_name) {
 				Util.SetByPath(ret, "Name", this.M_name);
 			}
 			else {
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("name");
-				};
-			};
+				}
+			}
 			if (withClean || this.N_description) {
 				Util.SetByPath(ret, "Description", this.M_description);
-			};
+			}
 			if (withClean || this.N_tags) {
 				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
@@ -752,11 +742,11 @@ namespace Saklient.Cloud.Resources
 					object v = null;
 					v = r1;
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
-				};
-			};
+				}
+			}
 			if (withClean || this.N_icon) {
 				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
-			};
+			}
 			if (withClean || this.N_ifaces) {
 				Util.SetByPath(ret, "Interfaces", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
@@ -764,14 +754,14 @@ namespace Saklient.Cloud.Resources
 					object v = null;
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
-				};
-			};
+				}
+			}
 			if (withClean || this.N_serviceClass) {
 				Util.SetByPath(ret, "ServiceClass", this.M_serviceClass);
-			};
+			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Appliance creation: " + string.Join(", ", (missing).ToArray()));
-			};
+			}
 			return ret;
 		}
 		

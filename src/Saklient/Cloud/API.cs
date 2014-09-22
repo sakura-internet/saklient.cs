@@ -462,7 +462,6 @@ namespace Saklient.Cloud
 		 */
 		internal API(Client client)
 		{
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 			this._client = client;
 			this._product = new Product(client);
 			this._icon = new Model_Icon(client);
@@ -495,9 +494,6 @@ namespace Saklient.Cloud
 		 */
 		public static API Authorize(string token, string secret, string zone=null)
 		{
-			Util.ValidateType(token, "string");
-			Util.ValidateType(secret, "string");
-			Util.ValidateType(zone, "string");
 			Client c = new Client(token, secret);
 			API ret = new API(c);
 			return zone != null ? ret.InZone(zone) : ret;
@@ -514,12 +510,11 @@ namespace Saklient.Cloud
 		 */
 		public API InZone(string name)
 		{
-			Util.ValidateType(name, "string");
 			API ret = new API(this._client.CloneInstance());
 			string suffix = "";
 			if (name == "is1x" || name == "is1y") {
 				suffix = "-test";
-			};
+			}
 			ret._client.SetApiRoot("https://secure.sakura.ad.jp/cloud" + suffix + "/");
 			ret._client.SetApiRootSuffix("zone/" + name);
 			return ret;

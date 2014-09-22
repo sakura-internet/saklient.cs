@@ -129,9 +129,6 @@ namespace Saklient.Cloud.Resources
 		public ServerPlan(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -337,11 +334,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -349,7 +345,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
 				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
@@ -357,7 +353,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_name = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "CPU")) {
 				this.M_cpu = Util.GetByPath(r, "CPU") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "CPU"));
@@ -365,7 +361,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_cpu = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_cpu = false;
 			if (Util.ExistsPath(r, "MemoryMB")) {
 				this.M_memoryMib = Util.GetByPath(r, "MemoryMB") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "MemoryMB"));
@@ -373,7 +369,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_memoryMib = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_memoryMib = false;
 			if (Util.ExistsPath(r, "ServiceClass")) {
 				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? null : "" + Util.GetByPath(r, "ServiceClass");
@@ -381,7 +377,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_serviceClass = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_serviceClass = false;
 		}
 		
@@ -394,23 +390,22 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_name) {
 				Util.SetByPath(ret, "Name", this.M_name);
-			};
+			}
 			if (withClean || this.N_cpu) {
 				Util.SetByPath(ret, "CPU", this.M_cpu);
-			};
+			}
 			if (withClean || this.N_memoryMib) {
 				Util.SetByPath(ret, "MemoryMB", this.M_memoryMib);
-			};
+			}
 			if (withClean || this.N_serviceClass) {
 				Util.SetByPath(ret, "ServiceClass", this.M_serviceClass);
-			};
+			}
 			return ret;
 		}
 		

@@ -62,8 +62,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void SetParam(string key, object value)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
 			(this._query as System.Collections.Generic.Dictionary<string, object>)[key] = value;
 		}
 		
@@ -132,7 +130,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource(Client client)
 		{
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 			this._client = client;
 			this._query = new System.Collections.Generic.Dictionary<string, object> {};
 		}
@@ -163,7 +160,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal virtual void _onBeforeSave(object r)
 		{
-			Util.ValidateType(r, "object");
+			
 		}
 		
 		/**
@@ -177,8 +174,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal virtual void _onAfterApiDeserialize(object r, object root)
 		{
-			Util.ValidateType(r, "object");
-			Util.ValidateType(root, "object");
+			
 		}
 		
 		/**
@@ -192,8 +188,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal virtual void _onAfterApiSerialize(object r, bool withClean)
 		{
-			Util.ValidateType(r, "object");
-			Util.ValidateType(withClean, "bool");
+			
 		}
 		
 		/**
@@ -205,7 +200,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal virtual void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
+			
 		}
 		
 		/**
@@ -217,8 +212,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void ApiDeserialize(object obj, bool wrapped=false)
 		{
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			object root = null;
 			object record = null;
 			string rkey = this._rootKey();
@@ -227,14 +220,14 @@ namespace Saklient.Cloud.Resources
 					if (rkey != null) {
 						root = new System.Collections.Generic.Dictionary<string, object> {};
 						(root as System.Collections.Generic.Dictionary<string, object>)[rkey] = obj;
-					};
+					}
 					record = obj;
 				}
 				else {
 					root = obj;
 					record = (obj as System.Collections.Generic.Dictionary<string, object>)[rkey];
-				};
-			};
+				}
+			}
 			this.ApiDeserializeImpl(record);
 			this._onAfterApiDeserialize(record, root);
 		}
@@ -248,7 +241,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal virtual object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			return null;
 		}
 		
@@ -260,7 +252,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public object ApiSerialize(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			object ret = this.ApiSerializeImpl(withClean);
 			this._onAfterApiSerialize(ret, withClean);
 			return ret;
@@ -277,7 +268,7 @@ namespace Saklient.Cloud.Resources
 			string id = this._id();
 			if (id == null) {
 				return null;
-			};
+			}
 			object r = new System.Collections.Generic.Dictionary<string, object> {};
 			(r as System.Collections.Generic.Dictionary<string, object>)["ID"] = id;
 			return r;
@@ -292,7 +283,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string NormalizeFieldName(string name)
 		{
-			Util.ValidateType(name, "string");
 			name = name.Substring(0, 1).ToUpper() + name.Substring(1);
 			return name;
 		}
@@ -306,8 +296,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void SetProperty(string name, object value)
 		{
-			Util.ValidateType(name, "string");
-			Util.ValidateType(value, "object");
 			name = this.NormalizeFieldName(name);
 			System.Reflection.PropertyInfo prop = this.GetType().GetProperty("M_"+name);
 			prop.SetValue(this, System.Convert.ChangeType(value, prop.PropertyType), null);
@@ -335,13 +323,13 @@ namespace Saklient.Cloud.Resources
 				var k = keys[__it1];
 				object v = (query as System.Collections.Generic.Dictionary<string, object>)[k];
 				(r as System.Collections.Generic.Dictionary<string, object>)[k] = v;
-			};
+			}
 			this._onBeforeSave(r);
 			string method = this.IsNew ? "POST" : "PUT";
 			string path = this._apiPath();
 			if (!this.IsNew) {
 				path += "/" + Util.UrlEncode(this._id());
-			};
+			}
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			(q as System.Collections.Generic.Dictionary<string, object>)[this._rootKey()] = r;
 			object result = this._client.Request(method, path, q);
@@ -360,7 +348,7 @@ namespace Saklient.Cloud.Resources
 		{
 			if (this.IsNew) {
 				return;
-			};
+			}
 			string path = this._apiPath() + "/" + Util.UrlEncode(this._id());
 			this._client.Request("DELETE", path);
 		}

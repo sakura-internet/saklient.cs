@@ -77,7 +77,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Icon)(this._offset(offset)));
 		}
 		
@@ -92,7 +91,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Icon)(this._limit(count)));
 		}
 		
@@ -109,9 +107,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Icon)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -138,7 +133,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Icon GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Icon)(this._getById(id)));
 		}
 		
@@ -169,7 +163,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithNameLike(string name)
 		{
-			Util.ValidateType(name, "string");
 			return ((Model_Icon)(this._withNameLike(name)));
 		}
 		
@@ -187,7 +180,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTag(string tag)
 		{
-			Util.ValidateType(tag, "string");
 			return ((Model_Icon)(this._withTag(tag)));
 		}
 		
@@ -203,7 +195,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTags(System.Collections.Generic.List<string> tags)
 		{
-			Util.ValidateType(tags, "System.Collections.ArrayList");
 			return ((Model_Icon)(this._withTags(tags)));
 		}
 		
@@ -219,7 +210,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			Util.ValidateType(dnf, "System.Collections.ArrayList");
 			return ((Model_Icon)(this._withTagDnf(dnf)));
 		}
 		
@@ -235,7 +225,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon SortByName(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			return ((Model_Icon)(this._sortByName(reverse)));
 		}
 		
@@ -247,7 +236,6 @@ namespace Saklient.Cloud.Models
 		public Model_Icon(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 		/**

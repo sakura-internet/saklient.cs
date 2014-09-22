@@ -76,7 +76,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Offset(long offset)
 		{
-			Util.ValidateType(offset, "long");
 			return ((Model_Swytch)(this._offset(offset)));
 		}
 		
@@ -91,7 +90,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Limit(long count)
 		{
-			Util.ValidateType(count, "long");
 			return ((Model_Swytch)(this._limit(count)));
 		}
 		
@@ -108,9 +106,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch FilterBy(string key, object value, bool multiple=false)
 		{
-			Util.ValidateType(key, "string");
-			Util.ValidateType(value, "object");
-			Util.ValidateType(multiple, "bool");
 			return ((Model_Swytch)(this._filterBy(key, value, multiple)));
 		}
 		
@@ -151,7 +146,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Swytch GetById(string id)
 		{
-			Util.ValidateType(id, "string");
 			return ((Swytch)(this._getById(id)));
 		}
 		
@@ -182,7 +176,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch WithNameLike(string name)
 		{
-			Util.ValidateType(name, "string");
 			return ((Model_Swytch)(this._withNameLike(name)));
 		}
 		
@@ -198,7 +191,6 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch SortByName(bool reverse=false)
 		{
-			Util.ValidateType(reverse, "bool");
 			return ((Model_Swytch)(this._sortByName(reverse)));
 		}
 		
@@ -210,7 +202,6 @@ namespace Saklient.Cloud.Models
 		public Model_Swytch(Client client) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
 		}
 		
 	}

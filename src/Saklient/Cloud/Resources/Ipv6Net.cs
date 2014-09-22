@@ -133,9 +133,6 @@ namespace Saklient.Cloud.Resources
 		public Ipv6Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
-			Util.ValidateType(client, "Saklient.Cloud.Client");
-			Util.ValidateType(obj, "object");
-			Util.ValidateType(wrapped, "bool");
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -284,11 +281,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override void ApiDeserializeImpl(object r)
 		{
-			Util.ValidateType(r, "object");
 			this.IsNew = r == null;
 			if (this.IsNew) {
 				r = new System.Collections.Generic.Dictionary<string, object> {  };
-			};
+			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
 				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
@@ -296,7 +292,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_id = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "IPv6Prefix")) {
 				this.M_prefix = Util.GetByPath(r, "IPv6Prefix") == null ? null : "" + Util.GetByPath(r, "IPv6Prefix");
@@ -304,7 +300,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_prefix = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_prefix = false;
 			if (Util.ExistsPath(r, "IPv6PrefixLen")) {
 				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "IPv6PrefixLen"));
@@ -312,7 +308,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_prefixLen = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_prefixLen = false;
 			if (Util.ExistsPath(r, "IPv6PrefixTail")) {
 				this.M_prefixTail = Util.GetByPath(r, "IPv6PrefixTail") == null ? null : "" + Util.GetByPath(r, "IPv6PrefixTail");
@@ -320,7 +316,7 @@ namespace Saklient.Cloud.Resources
 			else {
 				this.M_prefixTail = null;
 				this.IsIncomplete = true;
-			};
+			}
 			this.N_prefixTail = false;
 		}
 		
@@ -333,20 +329,19 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
-			Util.ValidateType(withClean, "bool");
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };
 			if (withClean || this.N_id) {
 				Util.SetByPath(ret, "ID", this.M_id);
-			};
+			}
 			if (withClean || this.N_prefix) {
 				Util.SetByPath(ret, "IPv6Prefix", this.M_prefix);
-			};
+			}
 			if (withClean || this.N_prefixLen) {
 				Util.SetByPath(ret, "IPv6PrefixLen", this.M_prefixLen);
-			};
+			}
 			if (withClean || this.N_prefixTail) {
 				Util.SetByPath(ret, "IPv6PrefixTail", this.M_prefixTail);
-			};
+			}
 			return ret;
 		}
 		

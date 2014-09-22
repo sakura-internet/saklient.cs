@@ -116,7 +116,6 @@ namespace Saklient.Cloud.Resources
 		 */
 		public FtpInfo(object obj)
 		{
-			Util.ValidateType(obj, "object");
 			this._hostName = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["HostName"]));
 			this._user = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["User"]));
 			this._password = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["Password"]));
