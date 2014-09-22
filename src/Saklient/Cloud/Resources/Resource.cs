@@ -383,7 +383,8 @@ namespace Saklient.Cloud.Resources
 			Util.SetByPath(query, "Filter.ID", new System.Collections.Generic.List<object> { this._Id() });
 			Util.SetByPath(query, "Include", new System.Collections.Generic.List<object> { "ID" });
 			object result = this._Client.Request("GET", this._ApiPath(), query);
-			return ((long?)((result as System.Collections.Generic.Dictionary<string, object>)["Count"])) == 1;
+			object cnt = (result as System.Collections.Generic.Dictionary<string, object>)["Count"];
+			return System.Convert.ToInt64(cnt) == 1;
 		}
 		
 		/**

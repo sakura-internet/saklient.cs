@@ -294,7 +294,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithStatusUp()
 		{
-			return this.WithStatus(EServerInstanceStatus.Up);
+			return this.WithStatus(EServerInstanceStatus.UP);
 		}
 		
 		/**
@@ -307,7 +307,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithStatusDown()
 		{
-			return this.WithStatus(EServerInstanceStatus.Down);
+			return this.WithStatus(EServerInstanceStatus.DOWN);
 		}
 		
 		/**

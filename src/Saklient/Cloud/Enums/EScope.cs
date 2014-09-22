@@ -12,34 +12,34 @@ namespace Saklient.Cloud.Enums
 	public class EScope
 	{
 		
-		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
+		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
 			{ "user", 100 },
 			{ "shared", 200 }
 		};
 		
 		/**
-		 * @property User
+		 * @property USER
 		 * @default "user"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string User = "user";
+		public static string USER = "user";
 		
 		/**
-		 * @property Shared
+		 * @property SHARED
 		 * @default "shared"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Shared = "shared";
+		public static string SHARED = "shared";
 		
 		public static long? Compare(string lhs, string rhs)
 		{
-			long? l = EScope._map_[lhs];
-			long? r = EScope._map_[rhs];
+			long? l = lhs!=null && _map_.ContainsKey(lhs) ? _map_[lhs] : null;
+			long? r = rhs!=null && _map_.ContainsKey(rhs) ? _map_[rhs] : null;
 			if (l==null || r==null) return null;
 			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);

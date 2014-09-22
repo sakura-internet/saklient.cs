@@ -227,7 +227,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal bool Get_isAvailable()
 		{
-			return this.Get_availability() == EAvailability.Available;
+			return this.Get_availability() == EAvailability.AVAILABLE;
 		}
 		
 		/**
@@ -496,10 +496,10 @@ namespace Saklient.Cloud.Resources
 			while (0 < timeoutSec) {
 				this.Reload();
 				string a = this.Get_availability();
-				if (a == EAvailability.Available) {
+				if (a == EAvailability.AVAILABLE) {
 					return true;
 				}
-				if (a != EAvailability.Migrating) {
+				if (a != EAvailability.MIGRATING) {
 					timeoutSec = 0;
 				}
 				timeoutSec -= step;

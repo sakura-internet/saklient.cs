@@ -14,6 +14,7 @@ namespace Saklient.Cloud.Tests
 	using Hash = Dictionary<string, object>;
 	
 	[TestFixture]
+	[Category("Server")]
 	public class ServerTest
 	{
 
@@ -238,29 +239,6 @@ namespace Saklient.Cloud.Tests
 				}
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-//			object query = new Hash {
-//				{ "Filter", new Hash {
-//					{ "Tags", new [] {
-//						new [] { "distro-centos", "distro-ver-6.5" },
-//						new [] { "distro-sl" }
-//					}}
-//				}}
-//			};
-//			object obj = client.Request("GET", "/archive", query);
-//			ArrayList archives = (ArrayList)Util.GetByPath(obj, "Archives");
-//			foreach (Hash archive in archives) {
-//				Console.WriteLine((string)archive["Name"]);
-//			}
 		}
 		
 	}

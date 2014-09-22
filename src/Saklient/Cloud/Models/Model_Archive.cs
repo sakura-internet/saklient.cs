@@ -277,7 +277,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Archive WithSharedScope()
 		{
-			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.SHARED });
 			return this;
 		}
 		
@@ -291,7 +291,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Archive WithUserScope()
 		{
-			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.USER });
 			return this;
 		}
 		

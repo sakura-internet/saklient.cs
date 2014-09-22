@@ -12,34 +12,34 @@ namespace Saklient.Cloud.Enums
 	public class EApplianceClass
 	{
 		
-		static System.Collections.Generic.Dictionary<string, long> _map_ = new System.Collections.Generic.Dictionary<string, long>()
+		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
 			{ "loadbalancer", 10 },
 			{ "vpcrouter", 20 }
 		};
 		
 		/**
-		 * @property Loadbalancer
+		 * @property LOADBALANCER
 		 * @default "loadbalancer"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Loadbalancer = "loadbalancer";
+		public static string LOADBALANCER = "loadbalancer";
 		
 		/**
-		 * @property Vpcrouter
+		 * @property VPCROUTER
 		 * @default "vpcrouter"
 		 * @type string
 		 * @static
 		 * @public
 		 */
-		public static string Vpcrouter = "vpcrouter";
+		public static string VPCROUTER = "vpcrouter";
 		
 		public static long? Compare(string lhs, string rhs)
 		{
-			long? l = EApplianceClass._map_[lhs];
-			long? r = EApplianceClass._map_[rhs];
+			long? l = lhs!=null && _map_.ContainsKey(lhs) ? _map_[lhs] : null;
+			long? r = rhs!=null && _map_.ContainsKey(rhs) ? _map_[rhs] : null;
 			if (l==null || r==null) return null;
 			long ret = (long)l - (long)r;
 			return 0 < ret ? 1 : (ret < 0 ? -1 : 0);

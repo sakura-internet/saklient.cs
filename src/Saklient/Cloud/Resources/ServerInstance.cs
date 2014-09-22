@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool IsUp()
 		{
-			return this.Get_status() != null && EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.Up) == 0;
+			return this.Get_status() != null && EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.UP) == 0;
 		}
 		
 		/**
@@ -88,7 +88,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool IsDown()
 		{
-			return this.Get_status() == null || EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.Down) == 0;
+			return this.Get_status() == null || EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.DOWN) == 0;
 		}
 		
 		/**

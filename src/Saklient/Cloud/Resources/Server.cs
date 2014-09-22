@@ -296,7 +296,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void AfterDown(long timeoutSec, System.Action<Server, bool> callback)
 		{
-			this.AfterStatus(EServerInstanceStatus.Down, timeoutSec, callback);
+			this.AfterStatus(EServerInstanceStatus.DOWN, timeoutSec, callback);
 		}
 		
 		/**
@@ -326,7 +326,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public bool SleepUntilDown(long timeoutSec=180)
 		{
-			return this.SleepUntil(EServerInstanceStatus.Down, timeoutSec);
+			return this.SleepUntil(EServerInstanceStatus.DOWN, timeoutSec);
 		}
 		
 		/**
@@ -346,7 +346,7 @@ namespace Saklient.Cloud.Resources
 				this.Reload();
 				string s = this.Get_instance().Status;
 				if (s == null) {
-					s = EServerInstanceStatus.Down;
+					s = EServerInstanceStatus.DOWN;
 				}
 				if (s == status) {
 					return true;

@@ -15,4 +15,4 @@ mcs -nologo -optimize+ -unsafe- \
 	-r:NUnit.Framework \
 	|| exit $?
 
-mono packages/nunit-color-console.0.1.0.0/tools/nunit-color-console.exe out/tests.dll
+mono packages/nunit-color-console.0.1.0.0/tools/nunit-color-console.exe out/tests.dll $*
