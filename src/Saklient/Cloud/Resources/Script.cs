@@ -103,58 +103,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/note";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Note";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Notes";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Script";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Script Save()
 		{
-			return ((Script)(this._save()));
+			return ((Script)(this._Save()));
 		}
 		
 		/**
@@ -182,7 +182,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Script Reload()
 		{
-			return ((Script)(this._reload()));
+			return ((Script)(this._Reload()));
 		}
 		
 		/**
@@ -674,7 +674,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
-				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
 			}
 			else {
 				this.M_icon = null;

@@ -103,58 +103,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/cdrom";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "CDROM";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "CDROMs";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "IsoImage";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public IsoImage Save()
 		{
-			return ((IsoImage)(this._save()));
+			return ((IsoImage)(this._Save()));
 		}
 		
 		/**
@@ -182,7 +182,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public IsoImage Reload()
 		{
-			return ((IsoImage)(this._reload()));
+			return ((IsoImage)(this._Reload()));
 		}
 		
 		/**
@@ -200,14 +200,14 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onAfterApiDeserialize
+		 * @method _OnAfterApiDeserialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {object} root
 		 * @return {void}
 		 */
-		internal override void _onAfterApiDeserialize(object r, object root)
+		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (root == null) {
 				return;
@@ -215,7 +215,7 @@ namespace Saklient.Cloud.Resources
 			if ((root as System.Collections.Generic.Dictionary<string, object>).ContainsKey("FTPServer")) {
 				object ftp = (root as System.Collections.Generic.Dictionary<string, object>)["FTPServer"];
 				if (ftp != null) {
-					this._ftpInfo = new FtpInfo(ftp);
+					this._FtpInfo = new FtpInfo(ftp);
 				}
 			}
 		}
@@ -260,12 +260,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.IsoImage#_ftpInfo
+		 * @member saklient.cloud.resources.IsoImage#_FtpInfo
 		 * @type FtpInfo
 		 * @internal
 		 * @ignore
 		 */
-		internal FtpInfo _ftpInfo;
+		internal FtpInfo _FtpInfo;
 		
 		/**
 		 * @method Get_ftpInfo
@@ -274,7 +274,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public FtpInfo Get_ftpInfo()
 		{
-			return this._ftpInfo;
+			return this._FtpInfo;
 		}
 		
 		/**
@@ -303,11 +303,11 @@ namespace Saklient.Cloud.Resources
 		 */
 		public IsoImage OpenFtp(bool reset=false)
 		{
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "ChangePassword", reset);
-			object result = this._client.Request("PUT", path, q);
-			this._onAfterApiDeserialize(null, result);
+			object result = this._Client.Request("PUT", path, q);
+			this._OnAfterApiDeserialize(null, result);
 			return this;
 		}
 		
@@ -321,9 +321,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		public IsoImage CloseFtp()
 		{
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
-			this._client.Request("DELETE", path);
-			this._ftpInfo = null;
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
+			this._Client.Request("DELETE", path);
+			this._FtpInfo = null;
 			return this;
 		}
 		
@@ -814,7 +814,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
-				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
 			}
 			else {
 				this.M_icon = null;

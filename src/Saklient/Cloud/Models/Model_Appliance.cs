@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/appliance";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Appliance";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Appliances";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Appliance";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance Offset(long offset)
 		{
-			return ((Model_Appliance)(this._offset(offset)));
+			return ((Model_Appliance)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance Limit(long count)
 		{
-			return ((Model_Appliance)(this._limit(count)));
+			return ((Model_Appliance)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Appliance)(this._filterBy(key, value, multiple)));
+			return ((Model_Appliance)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance Reset()
 		{
-			return ((Model_Appliance)(this._reset()));
+			return ((Model_Appliance)(this._Reset()));
 		}
 		
 		/**
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Appliance GetById(string id)
 		{
-			return ((Appliance)(this._getById(id)));
+			return ((Appliance)(this._GetById(id)));
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Appliance> Find()
 		{
-			return Util.CastArray(this._find(), ((Appliance)(null)));
+			return Util.CastArray(this._Find(), ((Appliance)(null)));
 		}
 		
 		/**
@@ -162,7 +162,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance WithNameLike(string name)
 		{
-			return ((Model_Appliance)(this._withNameLike(name)));
+			return ((Model_Appliance)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -179,7 +179,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance WithTag(string tag)
 		{
-			return ((Model_Appliance)(this._withTag(tag)));
+			return ((Model_Appliance)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -194,7 +194,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_Appliance)(this._withTags(tags)));
+			return ((Model_Appliance)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -209,7 +209,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_Appliance)(this._withTagDnf(dnf)));
+			return ((Model_Appliance)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -224,7 +224,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Appliance SortByName(bool reverse=false)
 		{
-			return ((Model_Appliance)(this._sortByName(reverse)));
+			return ((Model_Appliance)(this._SortByName(reverse)));
 		}
 		
 		/**

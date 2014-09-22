@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/interface";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Interface";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Interfaces";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Iface";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Offset(long offset)
 		{
-			return ((Model_Iface)(this._offset(offset)));
+			return ((Model_Iface)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Limit(long count)
 		{
-			return ((Model_Iface)(this._limit(count)));
+			return ((Model_Iface)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Iface)(this._filterBy(key, value, multiple)));
+			return ((Model_Iface)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Iface Reset()
 		{
-			return ((Model_Iface)(this._reset()));
+			return ((Model_Iface)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Iface Create()
 		{
-			return ((Iface)(this._create()));
+			return ((Iface)(this._Create()));
 		}
 		
 		/**
@@ -146,7 +146,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Iface GetById(string id)
 		{
-			return ((Iface)(this._getById(id)));
+			return ((Iface)(this._GetById(id)));
 		}
 		
 		/**
@@ -158,7 +158,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Iface> Find()
 		{
-			return Util.CastArray(this._find(), ((Iface)(null)));
+			return Util.CastArray(this._Find(), ((Iface)(null)));
 		}
 		
 		/**

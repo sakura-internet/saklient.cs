@@ -55,58 +55,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/ipv6net";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "IPv6Net";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "IPv6Nets";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Ipv6Net";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -120,7 +120,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Reload()
 		{
-			return ((Swytch)(this._reload()));
+			return ((Swytch)(this._Reload()));
 		}
 		
 		/**

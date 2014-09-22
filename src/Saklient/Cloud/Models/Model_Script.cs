@@ -20,48 +20,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/note";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Note";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Notes";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Script";
 		}
@@ -77,7 +77,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script Offset(long offset)
 		{
-			return ((Model_Script)(this._offset(offset)));
+			return ((Model_Script)(this._Offset(offset)));
 		}
 		
 		/**
@@ -91,7 +91,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script Limit(long count)
 		{
-			return ((Model_Script)(this._limit(count)));
+			return ((Model_Script)(this._Limit(count)));
 		}
 		
 		/**
@@ -107,7 +107,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Script)(this._filterBy(key, value, multiple)));
+			return ((Model_Script)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -120,7 +120,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script Reset()
 		{
-			return ((Model_Script)(this._reset()));
+			return ((Model_Script)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Script GetById(string id)
 		{
-			return ((Script)(this._getById(id)));
+			return ((Script)(this._GetById(id)));
 		}
 		
 		/**
@@ -145,7 +145,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Script> Find()
 		{
-			return Util.CastArray(this._find(), ((Script)(null)));
+			return Util.CastArray(this._Find(), ((Script)(null)));
 		}
 		
 		/**
@@ -163,7 +163,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithNameLike(string name)
 		{
-			return ((Model_Script)(this._withNameLike(name)));
+			return ((Model_Script)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -180,7 +180,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithTag(string tag)
 		{
-			return ((Model_Script)(this._withTag(tag)));
+			return ((Model_Script)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -195,7 +195,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_Script)(this._withTags(tags)));
+			return ((Model_Script)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -210,7 +210,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_Script)(this._withTagDnf(dnf)));
+			return ((Model_Script)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -225,7 +225,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script SortByName(bool reverse=false)
 		{
-			return ((Model_Script)(this._sortByName(reverse)));
+			return ((Model_Script)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -248,7 +248,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithSharedScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
 			return this;
 		}
 		
@@ -262,7 +262,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Script WithUserScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
 			return this;
 		}
 		

@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/ipv6net";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "IPv6Net";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "IPv6Nets";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "IPv6Net";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Offset(long offset)
 		{
-			return ((Model_Ipv6Net)(this._offset(offset)));
+			return ((Model_Ipv6Net)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Limit(long count)
 		{
-			return ((Model_Ipv6Net)(this._limit(count)));
+			return ((Model_Ipv6Net)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Ipv6Net)(this._filterBy(key, value, multiple)));
+			return ((Model_Ipv6Net)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Ipv6Net Reset()
 		{
-			return ((Model_Ipv6Net)(this._reset()));
+			return ((Model_Ipv6Net)(this._Reset()));
 		}
 		
 		/**
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Ipv6Net GetById(string id)
 		{
-			return ((Ipv6Net)(this._getById(id)));
+			return ((Ipv6Net)(this._GetById(id)));
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Ipv6Net> Find()
 		{
-			return Util.CastArray(this._find(), ((Ipv6Net)(null)));
+			return Util.CastArray(this._Find(), ((Ipv6Net)(null)));
 		}
 		
 		/**

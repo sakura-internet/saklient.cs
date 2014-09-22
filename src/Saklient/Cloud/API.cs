@@ -29,12 +29,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_client
+		 * @member saklient.cloud.API#_Client
 		 * @type Client
 		 * @internal
 		 * @ignore
 		 */
-		internal Client _client;
+		internal Client _Client;
 		
 		/**
 		 * @method Get_client
@@ -44,7 +44,7 @@ namespace Saklient.Cloud
 		 */
 		internal Client Get_client()
 		{
-			return this._client;
+			return this._Client;
 		}
 		
 		/**
@@ -60,12 +60,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_product
+		 * @member saklient.cloud.API#_Product
 		 * @type Product
 		 * @internal
 		 * @ignore
 		 */
-		internal Product _product;
+		internal Product _Product;
 		
 		/**
 		 * @method Get_product
@@ -75,7 +75,7 @@ namespace Saklient.Cloud
 		 */
 		internal Product Get_product()
 		{
-			return this._product;
+			return this._Product;
 		}
 		
 		/**
@@ -93,12 +93,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_icon
+		 * @member saklient.cloud.API#_Icon
 		 * @type Model_Icon
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Icon _icon;
+		internal Model_Icon _Icon;
 		
 		/**
 		 * @method Get_icon
@@ -108,7 +108,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Icon Get_icon()
 		{
-			return this._icon;
+			return this._Icon;
 		}
 		
 		/**
@@ -126,12 +126,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_server
+		 * @member saklient.cloud.API#_Server
 		 * @type Model_Server
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Server _server;
+		internal Model_Server _Server;
 		
 		/**
 		 * @method Get_server
@@ -141,7 +141,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Server Get_server()
 		{
-			return this._server;
+			return this._Server;
 		}
 		
 		/**
@@ -159,12 +159,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_disk
+		 * @member saklient.cloud.API#_Disk
 		 * @type Model_Disk
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Disk _disk;
+		internal Model_Disk _Disk;
 		
 		/**
 		 * @method Get_disk
@@ -174,7 +174,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Disk Get_disk()
 		{
-			return this._disk;
+			return this._Disk;
 		}
 		
 		/**
@@ -192,12 +192,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_appliance
+		 * @member saklient.cloud.API#_Appliance
 		 * @type Model_Appliance
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Appliance _appliance;
+		internal Model_Appliance _Appliance;
 		
 		/**
 		 * @method Get_appliance
@@ -207,7 +207,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Appliance Get_appliance()
 		{
-			return this._appliance;
+			return this._Appliance;
 		}
 		
 		/**
@@ -225,12 +225,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_archive
+		 * @member saklient.cloud.API#_Archive
 		 * @type Model_Archive
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Archive _archive;
+		internal Model_Archive _Archive;
 		
 		/**
 		 * @method Get_archive
@@ -240,7 +240,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Archive Get_archive()
 		{
-			return this._archive;
+			return this._Archive;
 		}
 		
 		/**
@@ -258,12 +258,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_isoImage
+		 * @member saklient.cloud.API#_IsoImage
 		 * @type Model_IsoImage
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_IsoImage _isoImage;
+		internal Model_IsoImage _IsoImage;
 		
 		/**
 		 * @method Get_isoImage
@@ -273,7 +273,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_IsoImage Get_isoImage()
 		{
-			return this._isoImage;
+			return this._IsoImage;
 		}
 		
 		/**
@@ -291,12 +291,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_iface
+		 * @member saklient.cloud.API#_Iface
 		 * @type Model_Iface
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Iface _iface;
+		internal Model_Iface _Iface;
 		
 		/**
 		 * @method Get_iface
@@ -306,7 +306,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Iface Get_iface()
 		{
-			return this._iface;
+			return this._Iface;
 		}
 		
 		/**
@@ -324,12 +324,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_swytch
+		 * @member saklient.cloud.API#_Swytch
 		 * @type Model_Swytch
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Swytch _swytch;
+		internal Model_Swytch _Swytch;
 		
 		/**
 		 * @method Get_swytch
@@ -339,7 +339,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Swytch Get_swytch()
 		{
-			return this._swytch;
+			return this._Swytch;
 		}
 		
 		/**
@@ -357,12 +357,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_router
+		 * @member saklient.cloud.API#_Router
 		 * @type Model_Router
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Router _router;
+		internal Model_Router _Router;
 		
 		/**
 		 * @method Get_router
@@ -372,7 +372,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Router Get_router()
 		{
-			return this._router;
+			return this._Router;
 		}
 		
 		/**
@@ -390,12 +390,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_ipv6Net
+		 * @member saklient.cloud.API#_Ipv6Net
 		 * @type Model_Ipv6Net
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Ipv6Net _ipv6Net;
+		internal Model_Ipv6Net _Ipv6Net;
 		
 		/**
 		 * @method Get_ipv6Net
@@ -405,7 +405,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Ipv6Net Get_ipv6Net()
 		{
-			return this._ipv6Net;
+			return this._Ipv6Net;
 		}
 		
 		/**
@@ -423,12 +423,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.API#_script
+		 * @member saklient.cloud.API#_Script
 		 * @type Model_Script
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_Script _script;
+		internal Model_Script _Script;
 		
 		/**
 		 * @method Get_script
@@ -438,7 +438,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_Script Get_script()
 		{
-			return this._script;
+			return this._Script;
 		}
 		
 		/**
@@ -462,19 +462,19 @@ namespace Saklient.Cloud
 		 */
 		internal API(Client client)
 		{
-			this._client = client;
-			this._product = new Product(client);
-			this._icon = new Model_Icon(client);
-			this._server = new Model_Server(client);
-			this._disk = new Model_Disk(client);
-			this._appliance = new Model_Appliance(client);
-			this._archive = new Model_Archive(client);
-			this._isoImage = new Model_IsoImage(client);
-			this._iface = new Model_Iface(client);
-			this._swytch = new Model_Swytch(client);
-			this._router = new Model_Router(client);
-			this._ipv6Net = new Model_Ipv6Net(client);
-			this._script = new Model_Script(client);
+			this._Client = client;
+			this._Product = new Product(client);
+			this._Icon = new Model_Icon(client);
+			this._Server = new Model_Server(client);
+			this._Disk = new Model_Disk(client);
+			this._Appliance = new Model_Appliance(client);
+			this._Archive = new Model_Archive(client);
+			this._IsoImage = new Model_IsoImage(client);
+			this._Iface = new Model_Iface(client);
+			this._Swytch = new Model_Swytch(client);
+			this._Router = new Model_Router(client);
+			this._Ipv6Net = new Model_Ipv6Net(client);
+			this._Script = new Model_Script(client);
 		}
 		
 		/**
@@ -510,13 +510,13 @@ namespace Saklient.Cloud
 		 */
 		public API InZone(string name)
 		{
-			API ret = new API(this._client.CloneInstance());
+			API ret = new API(this._Client.CloneInstance());
 			string suffix = "";
 			if (name == "is1x" || name == "is1y") {
 				suffix = "-test";
 			}
-			ret._client.SetApiRoot("https://secure.sakura.ad.jp/cloud" + suffix + "/");
-			ret._client.SetApiRootSuffix("zone/" + name);
+			ret._Client.SetApiRoot("https://secure.sakura.ad.jp/cloud" + suffix + "/");
+			ret._Client.SetApiRootSuffix("zone/" + name);
 			return ret;
 		}
 		

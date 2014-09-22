@@ -19,12 +19,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.Product#_server
+		 * @member saklient.cloud.Product#_Server
 		 * @type Model_ServerPlan
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_ServerPlan _server;
+		internal Model_ServerPlan _Server;
 		
 		/**
 		 * @method Get_server
@@ -34,7 +34,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_ServerPlan Get_server()
 		{
-			return this._server;
+			return this._Server;
 		}
 		
 		/**
@@ -52,12 +52,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.Product#_disk
+		 * @member saklient.cloud.Product#_Disk
 		 * @type Model_DiskPlan
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_DiskPlan _disk;
+		internal Model_DiskPlan _Disk;
 		
 		/**
 		 * @method Get_disk
@@ -67,7 +67,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_DiskPlan Get_disk()
 		{
-			return this._disk;
+			return this._Disk;
 		}
 		
 		/**
@@ -85,12 +85,12 @@ namespace Saklient.Cloud
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.Product#_router
+		 * @member saklient.cloud.Product#_Router
 		 * @type Model_RouterPlan
 		 * @internal
 		 * @ignore
 		 */
-		internal Model_RouterPlan _router;
+		internal Model_RouterPlan _Router;
 		
 		/**
 		 * @method Get_router
@@ -100,7 +100,7 @@ namespace Saklient.Cloud
 		 */
 		internal Model_RouterPlan Get_router()
 		{
-			return this._router;
+			return this._Router;
 		}
 		
 		/**
@@ -123,9 +123,9 @@ namespace Saklient.Cloud
 		 */
 		public Product(Client client)
 		{
-			this._server = new Model_ServerPlan(client);
-			this._disk = new Model_DiskPlan(client);
-			this._router = new Model_RouterPlan(client);
+			this._Server = new Model_ServerPlan(client);
+			this._Disk = new Model_DiskPlan(client);
+			this._Router = new Model_RouterPlan(client);
 		}
 		
 	}

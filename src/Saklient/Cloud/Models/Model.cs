@@ -18,12 +18,12 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model#_client
+		 * @member saklient.cloud.models.Model#_Client
 		 * @type Client
 		 * @internal
 		 * @ignore
 		 */
-		internal Client _client;
+		internal Client _Client;
 		
 		/**
 		 * @method Get_client
@@ -33,7 +33,7 @@ namespace Saklient.Cloud.Models
 		 */
 		internal Client Get_client()
 		{
-			return this._client;
+			return this._Client;
 		}
 		
 		/**
@@ -49,12 +49,12 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model#_query
+		 * @member saklient.cloud.models.Model#_Query
 		 * @type QueryParams
 		 * @internal
 		 * @ignore
 		 */
-		internal QueryParams _query;
+		internal QueryParams _Query;
 		
 		/**
 		 * @method Get_query
@@ -64,7 +64,7 @@ namespace Saklient.Cloud.Models
 		 */
 		internal QueryParams Get_query()
 		{
-			return this._query;
+			return this._Query;
 		}
 		
 		/**
@@ -80,12 +80,12 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model#_total
+		 * @member saklient.cloud.models.Model#_Total
 		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal long? _total;
+		internal long? _Total;
 		
 		/**
 		 * @method Get_total
@@ -95,7 +95,7 @@ namespace Saklient.Cloud.Models
 		 */
 		internal long? Get_total()
 		{
-			return this._total;
+			return this._Total;
 		}
 		
 		/**
@@ -111,12 +111,12 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model#_count
+		 * @member saklient.cloud.models.Model#_Count
 		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal long? _count;
+		internal long? _Count;
 		
 		/**
 		 * @method Get_count
@@ -126,7 +126,7 @@ namespace Saklient.Cloud.Models
 		 */
 		internal long? Get_count()
 		{
-			return this._count;
+			return this._Count;
 		}
 		
 		/**
@@ -142,48 +142,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _apiPath()
+		internal virtual string _ApiPath()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _rootKey()
+		internal virtual string _RootKey()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _rootKeyM()
+		internal virtual string _RootKeyM()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _className()
+		internal virtual string _ClassName()
 		{
 			return null;
 		}
@@ -195,24 +195,24 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model(Client client)
 		{
-			this._client = client;
-			this._reset();
+			this._Client = client;
+			this._Reset();
 		}
 		
 		/**
 		 * 次に取得するリストの開始オフセットを指定します。
 		 * 
 		 * @private
-		 * @method _offset
+		 * @method _Offset
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {long} offset オフセット
 		 * @return {Model} this
 		 */
-		internal Model _offset(long offset)
+		internal Model _Offset(long offset)
 		{
-			this._query.Begin = offset;
+			this._Query.Begin = offset;
 			return this;
 		}
 		
@@ -220,16 +220,16 @@ namespace Saklient.Cloud.Models
 		 * 次に取得するリストの上限レコード数を指定します。
 		 * 
 		 * @private
-		 * @method _limit
+		 * @method _Limit
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {long} count 上限レコード数
 		 * @return {Model} this
 		 */
-		internal Model _limit(long count)
+		internal Model _Limit(long count)
 		{
-			this._query.Count = count;
+			this._Query.Count = count;
 			return this;
 		}
 		
@@ -237,7 +237,7 @@ namespace Saklient.Cloud.Models
 		 * 次に取得するリストのソートカラムを指定します。
 		 * 
 		 * @private
-		 * @method _sort
+		 * @method _Sort
 		 * @chainable
 		 * @internal
 		 * @ignore
@@ -245,10 +245,10 @@ namespace Saklient.Cloud.Models
 		 * @param {bool} reverse=false
 		 * @return {Model} this
 		 */
-		internal Model _sort(string column, bool reverse=false)
+		internal Model _Sort(string column, bool reverse=false)
 		{
 			string op = reverse ? "-" : "";
-			(this._query.Sort as System.Collections.IList).Add(op + column);
+			(this._Query.Sort as System.Collections.IList).Add(op + column);
 			return this;
 		}
 		
@@ -256,7 +256,7 @@ namespace Saklient.Cloud.Models
 		 * Web APIのフィルタリング設定を直接指定します。
 		 * 
 		 * @private
-		 * @method _filterBy
+		 * @method _FilterBy
 		 * @chainable
 		 * @internal
 		 * @ignore
@@ -265,9 +265,9 @@ namespace Saklient.Cloud.Models
 		 * @param {bool} multiple=false valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。
 		 * @return {Model}
 		 */
-		internal Model _filterBy(string key, object value, bool multiple=false)
+		internal Model _FilterBy(string key, object value, bool multiple=false)
 		{
-			object filter = this._query.Filter;
+			object filter = this._Query.Filter;
 			if (multiple) {
 				if (!(filter as System.Collections.Generic.Dictionary<string, object>).ContainsKey(key)) {
 					(filter as System.Collections.Generic.Dictionary<string, object>)[key] = new System.Collections.Generic.List<object> {  };
@@ -288,17 +288,17 @@ namespace Saklient.Cloud.Models
 		 * 次のリクエストのために設定されているステートをすべて破棄します。
 		 * 
 		 * @private
-		 * @method _reset
+		 * @method _Reset
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @return {Model} this
 		 */
-		internal Model _reset()
+		internal Model _Reset()
 		{
-			this._query = new QueryParams();
-			this._total = 0;
-			this._count = 0;
+			this._Query = new QueryParams();
+			this._Total = 0;
+			this._Count = 0;
 			return this;
 		}
 		
@@ -308,60 +308,60 @@ namespace Saklient.Cloud.Models
 		 * 返り値のオブジェクトにパラメータを設定し、save() を呼ぶことで実際のリソースが作成されます。
 		 * 
 		 * @private
-		 * @method _create
+		 * @method _Create
 		 * @internal
 		 * @ignore
 		 * @return {Resource} リソースオブジェクト
 		 */
-		internal Resource _create()
+		internal Resource _Create()
 		{
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, null, false };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, null, false };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
 		}
 		
 		/**
 		 * 指定したIDを持つ唯一のリソースを取得します。
 		 * 
 		 * @private
-		 * @method _getById
+		 * @method _GetById
 		 * @internal
 		 * @ignore
 		 * @param {string} id
 		 * @return {Resource} リソースオブジェクト
 		 */
-		internal Resource _getById(string id)
+		internal Resource _GetById(string id)
 		{
-			object query = this._query.Build();
-			this._reset();
-			object result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(id), query);
-			this._total = 1;
-			this._count = 1;
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, result, true };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+			object query = this._Query.Build();
+			this._Reset();
+			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(id), query);
+			this._Total = 1;
+			this._Count = 1;
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, result, true };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
 		}
 		
 		/**
 		 * リソースの検索リクエストを実行し、結果をリストで取得します。
 		 * 
 		 * @private
-		 * @method _find
+		 * @method _Find
 		 * @internal
 		 * @ignore
 		 * @return {System.Collections.Generic.List<Resource>} リソースオブジェクトの配列
 		 */
-		internal System.Collections.Generic.List<Resource> _find()
+		internal System.Collections.Generic.List<Resource> _Find()
 		{
-			object query = this._query.Build();
-			this._reset();
-			object result = this._client.Request("GET", this._apiPath(), query);
-			this._total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
-			this._count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
+			object query = this._Query.Build();
+			this._Reset();
+			object result = this._Client.Request("GET", this._ApiPath(), query);
+			this._Total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
+			this._Count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
 			System.Collections.Generic.List<Resource> data = new System.Collections.Generic.List<Resource> {  };
-			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
+			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
 			for (int __it1=0; __it1 < (records as System.Collections.IList).Count; __it1++) {
 				var record = records[__it1];
-				System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, record, false };
-				Resource i = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+				System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, record, false };
+				Resource i = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
 				(data as System.Collections.IList).Add(i);
 			}
 			return ((System.Collections.Generic.List<Resource>)(data));
@@ -371,24 +371,24 @@ namespace Saklient.Cloud.Models
 		 * リソースの検索リクエストを実行し、唯一のリソースを取得します。
 		 * 
 		 * @private
-		 * @method _findOne
+		 * @method _FindOne
 		 * @internal
 		 * @ignore
 		 * @return {Resource} リソースオブジェクト
 		 */
-		internal Resource _findOne()
+		internal Resource _FindOne()
 		{
-			object query = this._query.Build();
-			this._reset();
-			object result = this._client.Request("GET", this._apiPath(), query);
-			this._total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
-			this._count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
-			if (this._total == 0) {
+			object query = this._Query.Build();
+			this._Reset();
+			object result = this._Client.Request("GET", this._ApiPath(), query);
+			this._Total = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Total"]);
+			this._Count = System.Convert.ToInt64((result as System.Collections.Generic.Dictionary<string, object>)["Count"]);
+			if (this._Total == 0) {
 				return null;
 			}
-			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._rootKeyM()]));
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._client, records[System.Convert.ToInt32(0)], false };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._className(), a)));
+			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, records[System.Convert.ToInt32(0)], false };
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
 		}
 		
 		/**
@@ -399,16 +399,16 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @private
 		 * @todo Implement test case
-		 * @method _withNameLike
+		 * @method _WithNameLike
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {string} name
 		 * @return {Model}
 		 */
-		internal Model _withNameLike(string name)
+		internal Model _WithNameLike(string name)
 		{
-			return this._filterBy("Name", name);
+			return this._FilterBy("Name", name);
 		}
 		
 		/**
@@ -418,16 +418,16 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @private
 		 * @todo Implement test case
-		 * @method _withTag
+		 * @method _WithTag
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {string} tag
 		 * @return {Model}
 		 */
-		internal Model _withTag(string tag)
+		internal Model _WithTag(string tag)
 		{
-			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tag });
+			return this._FilterBy("Tags.Name", new System.Collections.Generic.List<object> { tag });
 		}
 		
 		/**
@@ -435,16 +435,16 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @private
 		 * @todo Implement test case
-		 * @method _withTags
+		 * @method _WithTags
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {System.Collections.Generic.List<string>} tags
 		 * @return {Model}
 		 */
-		internal Model _withTags(System.Collections.Generic.List<string> tags)
+		internal Model _WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return this._filterBy("Tags.Name", new System.Collections.Generic.List<object> { tags });
+			return this._FilterBy("Tags.Name", new System.Collections.Generic.List<object> { tags });
 		}
 		
 		/**
@@ -452,16 +452,16 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @private
 		 * @todo Implement test case
-		 * @method _withTagDnf
+		 * @method _WithTagDnf
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {System.Collections.Generic.List<System.Collections.Generic.List<string>>} dnf
 		 * @return {Model}
 		 */
-		internal Model _withTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
+		internal Model _WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return this._filterBy("Tags.Name", dnf);
+			return this._FilterBy("Tags.Name", dnf);
 		}
 		
 		/**
@@ -469,16 +469,16 @@ namespace Saklient.Cloud.Models
 		 * 
 		 * @private
 		 * @todo Implement test case
-		 * @method _sortByName
+		 * @method _SortByName
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @param {bool} reverse=false
 		 * @return {Model}
 		 */
-		internal Model _sortByName(bool reverse=false)
+		internal Model _SortByName(bool reverse=false)
 		{
-			return this._sort("Name", reverse);
+			return this._Sort("Name", reverse);
 		}
 		
 	}

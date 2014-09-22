@@ -56,58 +56,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/icon";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Icon";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Icons";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Icon";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -122,7 +122,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Icon Save()
 		{
-			return ((Icon)(this._save()));
+			return ((Icon)(this._Save()));
 		}
 		
 		/**
@@ -135,7 +135,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Icon Reload()
 		{
-			return ((Icon)(this._reload()));
+			return ((Icon)(this._Reload()));
 		}
 		
 		/**

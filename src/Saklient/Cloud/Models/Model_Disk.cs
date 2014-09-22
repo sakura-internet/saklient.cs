@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Disks";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Disk";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk Offset(long offset)
 		{
-			return ((Model_Disk)(this._offset(offset)));
+			return ((Model_Disk)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk Limit(long count)
 		{
-			return ((Model_Disk)(this._limit(count)));
+			return ((Model_Disk)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Disk)(this._filterBy(key, value, multiple)));
+			return ((Model_Disk)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk Reset()
 		{
-			return ((Model_Disk)(this._reset()));
+			return ((Model_Disk)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Disk Create()
 		{
-			return ((Disk)(this._create()));
+			return ((Disk)(this._Create()));
 		}
 		
 		/**
@@ -146,7 +146,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Disk GetById(string id)
 		{
-			return ((Disk)(this._getById(id)));
+			return ((Disk)(this._GetById(id)));
 		}
 		
 		/**
@@ -158,7 +158,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Disk> Find()
 		{
-			return Util.CastArray(this._find(), ((Disk)(null)));
+			return Util.CastArray(this._Find(), ((Disk)(null)));
 		}
 		
 		/**
@@ -176,7 +176,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithNameLike(string name)
 		{
-			return ((Model_Disk)(this._withNameLike(name)));
+			return ((Model_Disk)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -193,7 +193,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithTag(string tag)
 		{
-			return ((Model_Disk)(this._withTag(tag)));
+			return ((Model_Disk)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -208,7 +208,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_Disk)(this._withTags(tags)));
+			return ((Model_Disk)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -223,7 +223,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_Disk)(this._withTagDnf(dnf)));
+			return ((Model_Disk)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -238,7 +238,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk SortByName(bool reverse=false)
 		{
-			return ((Model_Disk)(this._sortByName(reverse)));
+			return ((Model_Disk)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -262,7 +262,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithSizeGib(long sizeGib)
 		{
-			this._filterBy("SizeMB", new System.Collections.Generic.List<object> { sizeGib * 1024 });
+			this._FilterBy("SizeMB", new System.Collections.Generic.List<object> { sizeGib * 1024 });
 			return this;
 		}
 		
@@ -277,7 +277,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk WithServerId(string id)
 		{
-			this._filterBy("Server.ID", new System.Collections.Generic.List<object> { id });
+			this._FilterBy("Server.ID", new System.Collections.Generic.List<object> { id });
 			return this;
 		}
 		
@@ -292,7 +292,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Disk SortBySize(bool reverse=false)
 		{
-			this._sort("SizeMB", reverse);
+			this._Sort("SizeMB", reverse);
 			return this;
 		}
 		

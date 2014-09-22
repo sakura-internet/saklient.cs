@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Router";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Offset(long offset)
 		{
-			return ((Model_Router)(this._offset(offset)));
+			return ((Model_Router)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Limit(long count)
 		{
-			return ((Model_Router)(this._limit(count)));
+			return ((Model_Router)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Router)(this._filterBy(key, value, multiple)));
+			return ((Model_Router)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router Reset()
 		{
-			return ((Model_Router)(this._reset()));
+			return ((Model_Router)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Router Create()
 		{
-			return ((Router)(this._create()));
+			return ((Router)(this._Create()));
 		}
 		
 		/**
@@ -146,7 +146,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Router GetById(string id)
 		{
-			return ((Router)(this._getById(id)));
+			return ((Router)(this._GetById(id)));
 		}
 		
 		/**
@@ -158,7 +158,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Router> Find()
 		{
-			return Util.CastArray(this._find(), ((Router)(null)));
+			return Util.CastArray(this._Find(), ((Router)(null)));
 		}
 		
 		/**
@@ -176,7 +176,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router WithNameLike(string name)
 		{
-			return ((Model_Router)(this._withNameLike(name)));
+			return ((Model_Router)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -191,7 +191,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router SortByName(bool reverse=false)
 		{
-			return ((Model_Router)(this._sortByName(reverse)));
+			return ((Model_Router)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -215,7 +215,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Router WithBandWidthMbps(long mbps)
 		{
-			this._filterBy("BandWidthMbps", new System.Collections.Generic.List<object> { mbps });
+			this._FilterBy("BandWidthMbps", new System.Collections.Generic.List<object> { mbps });
 			return this;
 		}
 		

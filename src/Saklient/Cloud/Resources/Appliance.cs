@@ -94,58 +94,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/appliance";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Appliance";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Appliances";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Appliance";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -160,7 +160,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Save()
 		{
-			return ((Appliance)(this._save()));
+			return ((Appliance)(this._Save()));
 		}
 		
 		/**
@@ -173,7 +173,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Reload()
 		{
-			return ((Appliance)(this._reload()));
+			return ((Appliance)(this._Reload()));
 		}
 		
 		/**
@@ -199,7 +199,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Boot()
 		{
-			this._client.Request("PUT", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/power");
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
 		
@@ -213,7 +213,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Shutdown()
 		{
-			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/power");
+			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
 		
@@ -227,7 +227,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Stop()
 		{
-			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
+			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
 			return this;
 		}
 		
@@ -241,7 +241,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Appliance Reboot()
 		{
-			this._client.Request("PUT", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/reset");
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this;
 		}
 		
@@ -666,7 +666,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
-				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
 			}
 			else {
 				this.M_icon = null;
@@ -682,7 +682,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces"))) as System.Collections.IList).Count; __it2++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Interfaces")))[__it2];
 						Iface v2 = null;
-						v2 = t == null ? null : new Iface(this._client, t);
+						v2 = t == null ? null : new Iface(this._Client, t);
 						(this.M_ifaces as System.Collections.IList).Add(v2);
 					}
 				}

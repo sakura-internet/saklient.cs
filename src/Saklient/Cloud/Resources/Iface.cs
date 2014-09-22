@@ -64,58 +64,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/interface";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Interface";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Interfaces";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Iface";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -130,7 +130,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface Save()
 		{
-			return ((Iface)(this._save()));
+			return ((Iface)(this._Save()));
 		}
 		
 		/**
@@ -143,7 +143,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface Reload()
 		{
-			return ((Iface)(this._reload()));
+			return ((Iface)(this._Reload()));
 		}
 		
 		/**
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Iface ConnectToSharedSegment()
 		{
-			this._client.Request("PUT", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/to/switch/shared");
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/shared");
 			return this.Reload();
 		}
 		

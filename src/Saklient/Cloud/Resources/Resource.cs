@@ -15,12 +15,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.Resource#_client
+		 * @member saklient.cloud.resources.Resource#_Client
 		 * @type Client
 		 * @internal
 		 * @ignore
 		 */
-		internal Client _client;
+		internal Client _Client;
 		
 		/**
 		 * @method Get_client
@@ -30,7 +30,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal Client Get_client()
 		{
-			return this._client;
+			return this._Client;
 		}
 		
 		/**
@@ -46,12 +46,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.Resource#_query
+		 * @member saklient.cloud.resources.Resource#_Query
 		 * @type object
 		 * @internal
 		 * @ignore
 		 */
-		internal object _query;
+		internal object _Query;
 		
 		/**
 		 * @ignore
@@ -62,63 +62,63 @@ namespace Saklient.Cloud.Resources
 		 */
 		public void SetParam(string key, object value)
 		{
-			(this._query as System.Collections.Generic.Dictionary<string, object>)[key] = value;
+			(this._Query as System.Collections.Generic.Dictionary<string, object>)[key] = value;
 		}
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _apiPath()
+		internal virtual string _ApiPath()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _rootKey()
+		internal virtual string _RootKey()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal virtual string _rootKeyM()
+		internal virtual string _RootKeyM()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public virtual string _className()
+		public virtual string _ClassName()
 		{
 			return null;
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public virtual string _id()
+		public virtual string _Id()
 		{
 			return null;
 		}
@@ -130,8 +130,8 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource(Client client)
 		{
-			this._client = client;
-			this._query = new System.Collections.Generic.Dictionary<string, object> {};
+			this._Client = client;
+			this._Query = new System.Collections.Generic.Dictionary<string, object> {};
 		}
 		
 		/**
@@ -152,41 +152,41 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onBeforeSave
+		 * @method _OnBeforeSave
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @return {void}
 		 */
-		internal virtual void _onBeforeSave(object r)
+		internal virtual void _OnBeforeSave(object r)
 		{
 			
 		}
 		
 		/**
 		 * @private
-		 * @method _onAfterApiDeserialize
+		 * @method _OnAfterApiDeserialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {object} root
 		 * @return {void}
 		 */
-		internal virtual void _onAfterApiDeserialize(object r, object root)
+		internal virtual void _OnAfterApiDeserialize(object r, object root)
 		{
 			
 		}
 		
 		/**
 		 * @private
-		 * @method _onAfterApiSerialize
+		 * @method _OnAfterApiSerialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {bool} withClean
 		 * @return {void}
 		 */
-		internal virtual void _onAfterApiSerialize(object r, bool withClean)
+		internal virtual void _OnAfterApiSerialize(object r, bool withClean)
 		{
 			
 		}
@@ -214,7 +214,7 @@ namespace Saklient.Cloud.Resources
 		{
 			object root = null;
 			object record = null;
-			string rkey = this._rootKey();
+			string rkey = this._RootKey();
 			if (obj != null) {
 				if (!wrapped) {
 					if (rkey != null) {
@@ -229,7 +229,7 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 			this.ApiDeserializeImpl(record);
-			this._onAfterApiDeserialize(record, root);
+			this._OnAfterApiDeserialize(record, root);
 		}
 		
 		/**
@@ -253,7 +253,7 @@ namespace Saklient.Cloud.Resources
 		public object ApiSerialize(bool withClean=false)
 		{
 			object ret = this.ApiSerializeImpl(withClean);
-			this._onAfterApiSerialize(ret, withClean);
+			this._OnAfterApiSerialize(ret, withClean);
 			return ret;
 		}
 		
@@ -265,7 +265,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal object ApiSerializeID()
 		{
-			string id = this._id();
+			string id = this._Id();
 			if (id == null) {
 				return null;
 			}
@@ -307,32 +307,32 @@ namespace Saklient.Cloud.Resources
 		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
 		 * 
 		 * @private
-		 * @method _save
+		 * @method _Save
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @return {Resource} this
 		 */
-		internal Resource _save()
+		internal Resource _Save()
 		{
 			object r = this.ApiSerialize();
-			object query = this._query;
-			this._query = new System.Collections.Generic.Dictionary<string, object> {};
+			object query = this._Query;
+			this._Query = new System.Collections.Generic.Dictionary<string, object> {};
 			System.Collections.Generic.List<string> keys = Util.DictionaryKeys(query);
 			for (int __it1=0; __it1 < (keys as System.Collections.IList).Count; __it1++) {
 				var k = keys[__it1];
 				object v = (query as System.Collections.Generic.Dictionary<string, object>)[k];
 				(r as System.Collections.Generic.Dictionary<string, object>)[k] = v;
 			}
-			this._onBeforeSave(r);
+			this._OnBeforeSave(r);
 			string method = this.IsNew ? "POST" : "PUT";
-			string path = this._apiPath();
+			string path = this._ApiPath();
 			if (!this.IsNew) {
-				path += "/" + Util.UrlEncode(this._id());
+				path += "/" + Util.UrlEncode(this._Id());
 			}
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
-			(q as System.Collections.Generic.Dictionary<string, object>)[this._rootKey()] = r;
-			object result = this._client.Request(method, path, q);
+			(q as System.Collections.Generic.Dictionary<string, object>)[this._RootKey()] = r;
+			object result = this._Client.Request(method, path, q);
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -349,23 +349,23 @@ namespace Saklient.Cloud.Resources
 			if (this.IsNew) {
 				return;
 			}
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id());
-			this._client.Request("DELETE", path);
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id());
+			this._Client.Request("DELETE", path);
 		}
 		
 		/**
 		 * 最新のリソース情報を再取得します。
 		 * 
 		 * @private
-		 * @method _reload
+		 * @method _Reload
 		 * @chainable
 		 * @internal
 		 * @ignore
 		 * @return {Resource} this
 		 */
-		internal Resource _reload()
+		internal Resource _Reload()
 		{
-			object result = this._client.Request("GET", this._apiPath() + "/" + Util.UrlEncode(this._id()));
+			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()));
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -380,9 +380,9 @@ namespace Saklient.Cloud.Resources
 		public bool Exists()
 		{
 			object query = new System.Collections.Generic.Dictionary<string, object> {};
-			Util.SetByPath(query, "Filter.ID", new System.Collections.Generic.List<object> { this._id() });
+			Util.SetByPath(query, "Filter.ID", new System.Collections.Generic.List<object> { this._Id() });
 			Util.SetByPath(query, "Include", new System.Collections.Generic.List<object> { "ID" });
-			object result = this._client.Request("GET", this._apiPath(), query);
+			object result = this._Client.Request("GET", this._ApiPath(), query);
 			return ((long?)((result as System.Collections.Generic.Dictionary<string, object>)["Count"])) == 1;
 		}
 		

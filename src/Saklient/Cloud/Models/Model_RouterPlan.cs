@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/product/internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "InternetPlan";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "InternetPlans";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "RouterPlan";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_RouterPlan Offset(long offset)
 		{
-			return ((Model_RouterPlan)(this._offset(offset)));
+			return ((Model_RouterPlan)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_RouterPlan Limit(long count)
 		{
-			return ((Model_RouterPlan)(this._limit(count)));
+			return ((Model_RouterPlan)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_RouterPlan FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_RouterPlan)(this._filterBy(key, value, multiple)));
+			return ((Model_RouterPlan)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_RouterPlan Reset()
 		{
-			return ((Model_RouterPlan)(this._reset()));
+			return ((Model_RouterPlan)(this._Reset()));
 		}
 		
 		/**
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public RouterPlan GetById(string id)
 		{
-			return ((RouterPlan)(this._getById(id)));
+			return ((RouterPlan)(this._GetById(id)));
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<RouterPlan> Find()
 		{
-			return Util.CastArray(this._find(), ((RouterPlan)(null)));
+			return Util.CastArray(this._Find(), ((RouterPlan)(null)));
 		}
 		
 		/**

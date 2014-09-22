@@ -78,58 +78,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Internet";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Router";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router Save()
 		{
-			return ((Router)(this._save()));
+			return ((Router)(this._Save()));
 		}
 		
 		/**
@@ -157,7 +157,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router Reload()
 		{
-			return ((Router)(this._reload()));
+			return ((Router)(this._Reload()));
 		}
 		
 		/**
@@ -221,7 +221,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch GetSwytch()
 		{
-			Model_Swytch model = new Model_Swytch(this._client);
+			Model_Swytch model = new Model_Swytch(this._Client);
 			string id = this.Get_swytchId();
 			return model.GetById(id);
 		}
@@ -235,9 +235,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Ipv6Net AddIpv6Net()
 		{
-			object result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ipv6net");
+			object result = this._Client.Request("POST", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net");
 			this.Reload();
-			return new Ipv6Net(this._client, (result as System.Collections.Generic.Dictionary<string, object>)["IPv6Net"]);
+			return new Ipv6Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["IPv6Net"]);
 		}
 		
 		/**
@@ -251,7 +251,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router RemoveIpv6Net(Ipv6Net ipv6Net)
 		{
-			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ipv6net/" + ipv6Net._id());
+			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net/" + ipv6Net._Id());
 			this.Reload();
 			return this;
 		}
@@ -270,9 +270,9 @@ namespace Saklient.Cloud.Resources
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "NetworkMaskLen", maskLen);
 			Util.SetByPath(q, "NextHop", nextHop);
-			object result = this._client.Request("POST", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/subnet", q);
+			object result = this._Client.Request("POST", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/subnet", q);
 			this.Reload();
-			return new Ipv4Net(this._client, (result as System.Collections.Generic.Dictionary<string, object>)["Subnet"]);
+			return new Ipv4Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["Subnet"]);
 		}
 		
 		/**
@@ -286,7 +286,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
-			this._client.Request("DELETE", this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/subnet/" + ipv4Net._id());
+			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/subnet/" + ipv4Net._Id());
 			this.Reload();
 			return this;
 		}
@@ -304,10 +304,10 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Router ChangePlan(long bandWidthMbps)
 		{
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/bandwidth";
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/bandwidth";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "Internet.BandWidthMbps", bandWidthMbps);
-			object result = this._client.Request("PUT", path, q);
+			object result = this._Client.Request("PUT", path, q);
 			this.ApiDeserialize(result, true);
 			return this;
 		}

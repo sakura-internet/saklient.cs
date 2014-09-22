@@ -95,58 +95,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/switch";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Switch";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Switches";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Swytch";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -161,7 +161,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Save()
 		{
-			return ((Swytch)(this._save()));
+			return ((Swytch)(this._Save()));
 		}
 		
 		/**
@@ -174,7 +174,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Swytch Reload()
 		{
-			return ((Swytch)(this._reload()));
+			return ((Swytch)(this._Reload()));
 		}
 		
 		/**
@@ -627,7 +627,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_userMaskLen = false;
 			if (Util.ExistsPath(r, "Internet")) {
-				this.M_router = Util.GetByPath(r, "Internet") == null ? null : new Router(this._client, Util.GetByPath(r, "Internet"));
+				this.M_router = Util.GetByPath(r, "Internet") == null ? null : new Router(this._Client, Util.GetByPath(r, "Internet"));
 			}
 			else {
 				this.M_router = null;
@@ -643,7 +643,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets"))) as System.Collections.IList).Count; __it1++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets")))[__it1];
 						Ipv4Net v1 = null;
-						v1 = t == null ? null : new Ipv4Net(this._client, t);
+						v1 = t == null ? null : new Ipv4Net(this._Client, t);
 						(this.M_ipv4Nets as System.Collections.IList).Add(v1);
 					}
 				}
@@ -662,7 +662,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets"))) as System.Collections.IList).Count; __it2++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets")))[__it2];
 						Ipv6Net v2 = null;
-						v2 = t == null ? null : new Ipv6Net(this._client, t);
+						v2 = t == null ? null : new Ipv6Net(this._Client, t);
 						(this.M_ipv6Nets as System.Collections.IList).Add(v2);
 					}
 				}

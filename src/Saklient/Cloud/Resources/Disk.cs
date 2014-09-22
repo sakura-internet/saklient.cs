@@ -116,58 +116,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Disks";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -182,7 +182,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Disk Save()
 		{
-			return ((Disk)(this._save()));
+			return ((Disk)(this._Save()));
 		}
 		
 		/**
@@ -195,7 +195,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Disk Reload()
 		{
-			return ((Disk)(this._reload()));
+			return ((Disk)(this._Reload()));
 		}
 		
 		/**
@@ -275,11 +275,11 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.Disk#_source
+		 * @member saklient.cloud.resources.Disk#_Source
 		 * @type Resource
 		 * @ignore
 		 */
-		private Resource _source;
+		private Resource _Source;
 		
 		/**
 		 * @method Get_source
@@ -288,7 +288,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource Get_source()
 		{
-			return this._source;
+			return this._Source;
 		}
 		
 		/**
@@ -299,7 +299,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource Set_source(Resource source)
 		{
-			this._source = source;
+			this._Source = source;
 			return source;
 		}
 		
@@ -318,14 +318,14 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onAfterApiDeserialize
+		 * @method _OnAfterApiDeserialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {object} root
 		 * @return {void}
 		 */
-		internal override void _onAfterApiDeserialize(object r, object root)
+		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (r != null) {
 				if ((r as System.Collections.Generic.Dictionary<string, object>).ContainsKey("SourceDisk")) {
@@ -333,7 +333,7 @@ namespace Saklient.Cloud.Resources
 					if (s != null) {
 						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							this._source = new Disk(this._client, s);
+							this._Source = new Disk(this._Client, s);
 						}
 					}
 				}
@@ -342,8 +342,8 @@ namespace Saklient.Cloud.Resources
 					if (s != null) {
 						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							object obj = Util.CreateClassInstance("saklient.cloud.resources.Archive", new System.Collections.Generic.List<object> { this._client, s, false });
-							this._source = ((Resource)(obj));
+							object obj = Util.CreateClassInstance("saklient.cloud.resources.Archive", new System.Collections.Generic.List<object> { this._Client, s, false });
+							this._Source = ((Resource)(obj));
 						}
 					}
 				}
@@ -352,31 +352,31 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onAfterApiSerialize
+		 * @method _OnAfterApiSerialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {bool} withClean
 		 * @return {void}
 		 */
-		internal override void _onAfterApiSerialize(object r, bool withClean)
+		internal override void _OnAfterApiSerialize(object r, bool withClean)
 		{
 			if (r == null) {
 				return;
 			}
-			if (this._source != null) {
-				if (this._source._className() == "Disk") {
-					object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+			if (this._Source != null) {
+				if (this._Source._ClassName() == "Disk") {
+					object s = withClean ? this._Source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._Source._Id() } };
 					(r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"] = s;
 				}
 				else {
-					if (this._source._className() == "Archive") {
-						object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+					if (this._Source._ClassName() == "Archive") {
+						object s = withClean ? this._Source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._Source._Id() } };
 						(r as System.Collections.Generic.Dictionary<string, object>)["SourceArchive"] = s;
 					}
 					else {
-						this._source = null;
-						Util.ValidateType(this._source, "Disk or Archive", true);
+						this._Source = null;
+						Util.ValidateType(this._Source, "Disk or Archive", true);
 					}
 				}
 			}
@@ -393,7 +393,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Disk ConnectTo(Server server)
 		{
-			this._client.Request("PUT", "/disk/" + this._id() + "/to/server/" + server._id());
+			this._Client.Request("PUT", "/disk/" + this._Id() + "/to/server/" + server._Id());
 			return this;
 		}
 		
@@ -407,7 +407,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Disk Disconnect()
 		{
-			this._client.Request("DELETE", "/disk/" + this._id() + "/to/server");
+			this._Client.Request("DELETE", "/disk/" + this._Id() + "/to/server");
 			return this;
 		}
 		
@@ -422,7 +422,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig CreateConfig()
 		{
-			return new DiskConfig(this._client, this._id());
+			return new DiskConfig(this._Client, this._Id());
 		}
 		
 		/**
@@ -968,7 +968,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
-				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
 			}
 			else {
 				this.M_icon = null;
@@ -992,7 +992,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_serviceClass = false;
 			if (Util.ExistsPath(r, "Plan")) {
-				this.M_plan = Util.GetByPath(r, "Plan") == null ? null : new DiskPlan(this._client, Util.GetByPath(r, "Plan"));
+				this.M_plan = Util.GetByPath(r, "Plan") == null ? null : new DiskPlan(this._Client, Util.GetByPath(r, "Plan"));
 			}
 			else {
 				this.M_plan = null;
@@ -1000,7 +1000,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_plan = false;
 			if (Util.ExistsPath(r, "Server")) {
-				this.M_server = Util.GetByPath(r, "Server") == null ? null : new Server(this._client, Util.GetByPath(r, "Server"));
+				this.M_server = Util.GetByPath(r, "Server") == null ? null : new Server(this._Client, Util.GetByPath(r, "Server"));
 			}
 			else {
 				this.M_server = null;

@@ -15,12 +15,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.FtpInfo#_hostName
+		 * @member saklient.cloud.resources.FtpInfo#_HostName
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _hostName;
+		internal string _HostName;
 		
 		/**
 		 * @method Get_hostName
@@ -29,7 +29,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public string Get_hostName()
 		{
-			return this._hostName;
+			return this._HostName;
 		}
 		
 		/**
@@ -47,12 +47,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.FtpInfo#_user
+		 * @member saklient.cloud.resources.FtpInfo#_User
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _user;
+		internal string _User;
 		
 		/**
 		 * @method Get_user
@@ -61,7 +61,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public string Get_user()
 		{
-			return this._user;
+			return this._User;
 		}
 		
 		/**
@@ -79,12 +79,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.FtpInfo#_password
+		 * @member saklient.cloud.resources.FtpInfo#_Password
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _password;
+		internal string _Password;
 		
 		/**
 		 * @method Get_password
@@ -93,7 +93,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public string Get_password()
 		{
-			return this._password;
+			return this._Password;
 		}
 		
 		/**
@@ -116,9 +116,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		public FtpInfo(object obj)
 		{
-			this._hostName = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["HostName"]));
-			this._user = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["User"]));
-			this._password = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["Password"]));
+			this._HostName = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["HostName"]));
+			this._User = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["User"]));
+			this._Password = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["Password"]));
 		}
 		
 	}

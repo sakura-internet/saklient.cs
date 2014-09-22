@@ -22,48 +22,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/server";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Server";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Servers";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Server";
 		}
@@ -79,7 +79,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Offset(long offset)
 		{
-			return ((Model_Server)(this._offset(offset)));
+			return ((Model_Server)(this._Offset(offset)));
 		}
 		
 		/**
@@ -93,7 +93,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Limit(long count)
 		{
-			return ((Model_Server)(this._limit(count)));
+			return ((Model_Server)(this._Limit(count)));
 		}
 		
 		/**
@@ -109,7 +109,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Server)(this._filterBy(key, value, multiple)));
+			return ((Model_Server)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -122,7 +122,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server Reset()
 		{
-			return ((Model_Server)(this._reset()));
+			return ((Model_Server)(this._Reset()));
 		}
 		
 		/**
@@ -136,7 +136,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Server Create()
 		{
-			return ((Server)(this._create()));
+			return ((Server)(this._Create()));
 		}
 		
 		/**
@@ -149,7 +149,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Server GetById(string id)
 		{
-			return ((Server)(this._getById(id)));
+			return ((Server)(this._GetById(id)));
 		}
 		
 		/**
@@ -161,7 +161,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Server> Find()
 		{
-			return Util.CastArray(this._find(), ((Server)(null)));
+			return Util.CastArray(this._Find(), ((Server)(null)));
 		}
 		
 		/**
@@ -179,7 +179,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithNameLike(string name)
 		{
-			return ((Model_Server)(this._withNameLike(name)));
+			return ((Model_Server)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -196,7 +196,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTag(string tag)
 		{
-			return ((Model_Server)(this._withTag(tag)));
+			return ((Model_Server)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -211,7 +211,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_Server)(this._withTags(tags)));
+			return ((Model_Server)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -226,7 +226,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_Server)(this._withTagDnf(dnf)));
+			return ((Model_Server)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -241,7 +241,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByName(bool reverse=false)
 		{
-			return ((Model_Server)(this._sortByName(reverse)));
+			return ((Model_Server)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -265,7 +265,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithPlan(ServerPlan plan)
 		{
-			this._filterBy("ServerPlan.ID", new System.Collections.Generic.List<object> { plan._id() });
+			this._FilterBy("ServerPlan.ID", new System.Collections.Generic.List<object> { plan._Id() });
 			return this;
 		}
 		
@@ -280,7 +280,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithStatus(string status)
 		{
-			this._filterBy("Instance.Status", new System.Collections.Generic.List<object> { status });
+			this._FilterBy("Instance.Status", new System.Collections.Generic.List<object> { status });
 			return this;
 		}
 		
@@ -321,7 +321,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server WithIsoImage(IsoImage iso)
 		{
-			this._filterBy("Instance.CDROM.ID", new System.Collections.Generic.List<object> { iso._id() });
+			this._FilterBy("Instance.CDROM.ID", new System.Collections.Generic.List<object> { iso._Id() });
 			return this;
 		}
 		
@@ -336,7 +336,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByCpu(bool reverse=false)
 		{
-			this._sort("ServerPlan.CPU", reverse);
+			this._Sort("ServerPlan.CPU", reverse);
 			return this;
 		}
 		
@@ -351,7 +351,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Server SortByMemory(bool reverse=false)
 		{
-			this._sort("ServerPlan.MemoryMB", reverse);
+			this._Sort("ServerPlan.MemoryMB", reverse);
 			return this;
 		}
 		

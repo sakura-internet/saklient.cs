@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/product/server";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "ServerPlan";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "ServerPlans";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "ServerPlan";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan Offset(long offset)
 		{
-			return ((Model_ServerPlan)(this._offset(offset)));
+			return ((Model_ServerPlan)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan Limit(long count)
 		{
-			return ((Model_ServerPlan)(this._limit(count)));
+			return ((Model_ServerPlan)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_ServerPlan)(this._filterBy(key, value, multiple)));
+			return ((Model_ServerPlan)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_ServerPlan Reset()
 		{
-			return ((Model_ServerPlan)(this._reset()));
+			return ((Model_ServerPlan)(this._Reset()));
 		}
 		
 		/**
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public ServerPlan GetById(string id)
 		{
-			return ((ServerPlan)(this._getById(id)));
+			return ((ServerPlan)(this._GetById(id)));
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<ServerPlan> Find()
 		{
-			return Util.CastArray(this._find(), ((ServerPlan)(null)));
+			return Util.CastArray(this._Find(), ((ServerPlan)(null)));
 		}
 		
 		/**
@@ -168,9 +168,9 @@ namespace Saklient.Cloud.Models
 		 */
 		public ServerPlan GetBySpec(long cores, long memoryGib)
 		{
-			this._filterBy("CPU", new System.Collections.Generic.List<object> { cores });
-			this._filterBy("MemoryMB", new System.Collections.Generic.List<object> { memoryGib * 1024 });
-			return ((ServerPlan)(this._findOne()));
+			this._FilterBy("CPU", new System.Collections.Generic.List<object> { cores });
+			this._FilterBy("MemoryMB", new System.Collections.Generic.List<object> { memoryGib * 1024 });
+			return ((ServerPlan)(this._FindOne()));
 		}
 		
 	}

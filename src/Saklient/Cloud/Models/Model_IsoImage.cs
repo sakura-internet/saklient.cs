@@ -20,48 +20,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/cdrom";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "CDROM";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "CDROMs";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "IsoImage";
 		}
@@ -77,7 +77,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage Offset(long offset)
 		{
-			return ((Model_IsoImage)(this._offset(offset)));
+			return ((Model_IsoImage)(this._Offset(offset)));
 		}
 		
 		/**
@@ -91,7 +91,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage Limit(long count)
 		{
-			return ((Model_IsoImage)(this._limit(count)));
+			return ((Model_IsoImage)(this._Limit(count)));
 		}
 		
 		/**
@@ -107,7 +107,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_IsoImage)(this._filterBy(key, value, multiple)));
+			return ((Model_IsoImage)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -120,7 +120,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage Reset()
 		{
-			return ((Model_IsoImage)(this._reset()));
+			return ((Model_IsoImage)(this._Reset()));
 		}
 		
 		/**
@@ -134,7 +134,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public IsoImage Create()
 		{
-			return ((IsoImage)(this._create()));
+			return ((IsoImage)(this._Create()));
 		}
 		
 		/**
@@ -147,7 +147,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public IsoImage GetById(string id)
 		{
-			return ((IsoImage)(this._getById(id)));
+			return ((IsoImage)(this._GetById(id)));
 		}
 		
 		/**
@@ -159,7 +159,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<IsoImage> Find()
 		{
-			return Util.CastArray(this._find(), ((IsoImage)(null)));
+			return Util.CastArray(this._Find(), ((IsoImage)(null)));
 		}
 		
 		/**
@@ -177,7 +177,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithNameLike(string name)
 		{
-			return ((Model_IsoImage)(this._withNameLike(name)));
+			return ((Model_IsoImage)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -194,7 +194,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithTag(string tag)
 		{
-			return ((Model_IsoImage)(this._withTag(tag)));
+			return ((Model_IsoImage)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -209,7 +209,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_IsoImage)(this._withTags(tags)));
+			return ((Model_IsoImage)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -224,7 +224,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_IsoImage)(this._withTagDnf(dnf)));
+			return ((Model_IsoImage)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -239,7 +239,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage SortByName(bool reverse=false)
 		{
-			return ((Model_IsoImage)(this._sortByName(reverse)));
+			return ((Model_IsoImage)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -263,7 +263,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithSizeGib(long sizeGib)
 		{
-			this._filterBy("SizeMB", new System.Collections.Generic.List<object> { sizeGib * 1024 });
+			this._FilterBy("SizeMB", new System.Collections.Generic.List<object> { sizeGib * 1024 });
 			return this;
 		}
 		
@@ -277,7 +277,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithSharedScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
 			return this;
 		}
 		
@@ -291,7 +291,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage WithUserScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
 			return this;
 		}
 		
@@ -306,7 +306,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_IsoImage SortBySize(bool reverse=false)
 		{
-			this._sort("SizeMB", reverse);
+			this._Sort("SizeMB", reverse);
 			return this;
 		}
 		

@@ -266,7 +266,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_statusChangedAt = false;
 			if (Util.ExistsPath(r, "CDROM")) {
-				this.M_isoImage = Util.GetByPath(r, "CDROM") == null ? null : new IsoImage(this._client, Util.GetByPath(r, "CDROM"));
+				this.M_isoImage = Util.GetByPath(r, "CDROM") == null ? null : new IsoImage(this._Client, Util.GetByPath(r, "CDROM"));
 			}
 			else {
 				this.M_isoImage = null;

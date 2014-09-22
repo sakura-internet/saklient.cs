@@ -20,48 +20,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/icon";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Icon";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Icons";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Icon";
 		}
@@ -77,7 +77,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Offset(long offset)
 		{
-			return ((Model_Icon)(this._offset(offset)));
+			return ((Model_Icon)(this._Offset(offset)));
 		}
 		
 		/**
@@ -91,7 +91,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Limit(long count)
 		{
-			return ((Model_Icon)(this._limit(count)));
+			return ((Model_Icon)(this._Limit(count)));
 		}
 		
 		/**
@@ -107,7 +107,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Icon)(this._filterBy(key, value, multiple)));
+			return ((Model_Icon)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -120,7 +120,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon Reset()
 		{
-			return ((Model_Icon)(this._reset()));
+			return ((Model_Icon)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Icon GetById(string id)
 		{
-			return ((Icon)(this._getById(id)));
+			return ((Icon)(this._GetById(id)));
 		}
 		
 		/**
@@ -145,7 +145,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Icon> Find()
 		{
-			return Util.CastArray(this._find(), ((Icon)(null)));
+			return Util.CastArray(this._Find(), ((Icon)(null)));
 		}
 		
 		/**
@@ -163,7 +163,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithNameLike(string name)
 		{
-			return ((Model_Icon)(this._withNameLike(name)));
+			return ((Model_Icon)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -180,7 +180,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTag(string tag)
 		{
-			return ((Model_Icon)(this._withTag(tag)));
+			return ((Model_Icon)(this._WithTag(tag)));
 		}
 		
 		/**
@@ -195,7 +195,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTags(System.Collections.Generic.List<string> tags)
 		{
-			return ((Model_Icon)(this._withTags(tags)));
+			return ((Model_Icon)(this._WithTags(tags)));
 		}
 		
 		/**
@@ -210,7 +210,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
 		{
-			return ((Model_Icon)(this._withTagDnf(dnf)));
+			return ((Model_Icon)(this._WithTagDnf(dnf)));
 		}
 		
 		/**
@@ -225,7 +225,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon SortByName(bool reverse=false)
 		{
-			return ((Model_Icon)(this._sortByName(reverse)));
+			return ((Model_Icon)(this._SortByName(reverse)));
 		}
 		
 		/**
@@ -248,7 +248,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithSharedScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.Shared });
 			return this;
 		}
 		
@@ -262,7 +262,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Icon WithUserScope()
 		{
-			this._filterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
+			this._FilterBy("Scope", new System.Collections.Generic.List<object> { EScope.User });
 			return this;
 		}
 		

@@ -17,12 +17,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_client
+		 * @member saklient.cloud.resources.DiskConfig#_Client
 		 * @type Client
 		 * @internal
 		 * @ignore
 		 */
-		internal Client _client;
+		internal Client _Client;
 		
 		/**
 		 * @method Get_client
@@ -32,7 +32,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal Client Get_client()
 		{
-			return this._client;
+			return this._Client;
 		}
 		
 		/**
@@ -48,12 +48,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_diskId
+		 * @member saklient.cloud.resources.DiskConfig#_DiskId
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _diskId;
+		internal string _DiskId;
 		
 		/**
 		 * @method Get_diskId
@@ -63,7 +63,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_diskId()
 		{
-			return this._diskId;
+			return this._DiskId;
 		}
 		
 		/**
@@ -79,12 +79,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_hostName
+		 * @member saklient.cloud.resources.DiskConfig#_HostName
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _hostName;
+		internal string _HostName;
 		
 		/**
 		 * @method Get_hostName
@@ -94,7 +94,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_hostName()
 		{
-			return this._hostName;
+			return this._HostName;
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_hostName(string v)
 		{
-			this._hostName = v;
+			this._HostName = v;
 			return v;
 		}
 		
@@ -125,12 +125,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_password
+		 * @member saklient.cloud.resources.DiskConfig#_Password
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _password;
+		internal string _Password;
 		
 		/**
 		 * @method Get_password
@@ -140,7 +140,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_password()
 		{
-			return this._password;
+			return this._Password;
 		}
 		
 		/**
@@ -152,7 +152,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_password(string v)
 		{
-			this._password = v;
+			this._Password = v;
 			return v;
 		}
 		
@@ -171,12 +171,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_sshKey
+		 * @member saklient.cloud.resources.DiskConfig#_SshKey
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _sshKey;
+		internal string _SshKey;
 		
 		/**
 		 * @method Get_sshKey
@@ -186,7 +186,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_sshKey()
 		{
-			return this._sshKey;
+			return this._SshKey;
 		}
 		
 		/**
@@ -198,7 +198,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_sshKey(string v)
 		{
-			this._sshKey = v;
+			this._SshKey = v;
 			return v;
 		}
 		
@@ -217,12 +217,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_ipAddress
+		 * @member saklient.cloud.resources.DiskConfig#_IpAddress
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _ipAddress;
+		internal string _IpAddress;
 		
 		/**
 		 * @method Get_ipAddress
@@ -232,7 +232,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_ipAddress()
 		{
-			return this._ipAddress;
+			return this._IpAddress;
 		}
 		
 		/**
@@ -244,7 +244,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_ipAddress(string v)
 		{
-			this._ipAddress = v;
+			this._IpAddress = v;
 			return v;
 		}
 		
@@ -263,12 +263,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_defaultRoute
+		 * @member saklient.cloud.resources.DiskConfig#_DefaultRoute
 		 * @type string
 		 * @internal
 		 * @ignore
 		 */
-		internal string _defaultRoute;
+		internal string _DefaultRoute;
 		
 		/**
 		 * @method Get_defaultRoute
@@ -278,7 +278,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Get_defaultRoute()
 		{
-			return this._defaultRoute;
+			return this._DefaultRoute;
 		}
 		
 		/**
@@ -290,7 +290,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal string Set_defaultRoute(string v)
 		{
-			this._defaultRoute = v;
+			this._DefaultRoute = v;
 			return v;
 		}
 		
@@ -309,12 +309,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_networkMaskLen
+		 * @member saklient.cloud.resources.DiskConfig#_NetworkMaskLen
 		 * @type long?
 		 * @internal
 		 * @ignore
 		 */
-		internal long? _networkMaskLen;
+		internal long? _NetworkMaskLen;
 		
 		/**
 		 * @method Get_networkMaskLen
@@ -324,7 +324,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal long? Get_networkMaskLen()
 		{
-			return this._networkMaskLen;
+			return this._NetworkMaskLen;
 		}
 		
 		/**
@@ -336,7 +336,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal long? Set_networkMaskLen(long? v)
 		{
-			this._networkMaskLen = v;
+			this._NetworkMaskLen = v;
 			return v;
 		}
 		
@@ -355,12 +355,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.DiskConfig#_scripts
+		 * @member saklient.cloud.resources.DiskConfig#_Scripts
 		 * @type System.Collections.Generic.List<Script>
 		 * @internal
 		 * @ignore
 		 */
-		internal System.Collections.Generic.List<Script> _scripts;
+		internal System.Collections.Generic.List<Script> _Scripts;
 		
 		/**
 		 * @method Get_scripts
@@ -370,7 +370,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		internal System.Collections.Generic.List<Script> Get_scripts()
 		{
-			return this._scripts;
+			return this._Scripts;
 		}
 		
 		/**
@@ -394,15 +394,15 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig(Client client, string diskId)
 		{
-			this._client = client;
-			this._diskId = diskId;
-			this._hostName = null;
-			this._password = null;
-			this._sshKey = null;
-			this._ipAddress = null;
-			this._defaultRoute = null;
-			this._networkMaskLen = null;
-			this._scripts = new System.Collections.Generic.List<Script> {  };
+			this._Client = client;
+			this._DiskId = diskId;
+			this._HostName = null;
+			this._Password = null;
+			this._SshKey = null;
+			this._IpAddress = null;
+			this._DefaultRoute = null;
+			this._NetworkMaskLen = null;
+			this._Scripts = new System.Collections.Generic.List<Script> {  };
 		}
 		
 		/**
@@ -418,7 +418,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public DiskConfig AddScript(Script script)
 		{
-			(this._scripts as System.Collections.IList).Add(script);
+			(this._Scripts as System.Collections.IList).Add(script);
 			return this;
 		}
 		
@@ -433,34 +433,34 @@ namespace Saklient.Cloud.Resources
 		public DiskConfig Write()
 		{
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
-			if (this._hostName != null) {
-				Util.SetByPath(q, "HostName", this._hostName);
+			if (this._HostName != null) {
+				Util.SetByPath(q, "HostName", this._HostName);
 			}
-			if (this._password != null) {
-				Util.SetByPath(q, "Password", this._password);
+			if (this._Password != null) {
+				Util.SetByPath(q, "Password", this._Password);
 			}
-			if (this._sshKey != null) {
-				Util.SetByPath(q, "SSHKey.PublicKey", this._sshKey);
+			if (this._SshKey != null) {
+				Util.SetByPath(q, "SSHKey.PublicKey", this._SshKey);
 			}
-			if (this._ipAddress != null) {
-				Util.SetByPath(q, "UserIPAddress", this._ipAddress);
+			if (this._IpAddress != null) {
+				Util.SetByPath(q, "UserIPAddress", this._IpAddress);
 			}
-			if (this._defaultRoute != null) {
-				Util.SetByPath(q, "UserSubnet.DefaultRoute", this._defaultRoute);
+			if (this._DefaultRoute != null) {
+				Util.SetByPath(q, "UserSubnet.DefaultRoute", this._DefaultRoute);
 			}
-			if (this._networkMaskLen != null) {
-				Util.SetByPath(q, "UserSubnet.NetworkMaskLen", this._networkMaskLen);
+			if (this._NetworkMaskLen != null) {
+				Util.SetByPath(q, "UserSubnet.NetworkMaskLen", this._NetworkMaskLen);
 			}
-			if (0 < this._scripts.Count) {
+			if (0 < this._Scripts.Count) {
 				System.Collections.Generic.List<object> notes = new System.Collections.Generic.List<object> {  };
-				for (int __it1=0; __it1 < (this._scripts as System.Collections.IList).Count; __it1++) {
-					var script = this._scripts[__it1];
-					(notes as System.Collections.IList).Add(new System.Collections.Generic.Dictionary<string, object> { { "ID", script._id() } });
+				for (int __it1=0; __it1 < (this._Scripts as System.Collections.IList).Count; __it1++) {
+					var script = this._Scripts[__it1];
+					(notes as System.Collections.IList).Add(new System.Collections.Generic.Dictionary<string, object> { { "ID", script._Id() } });
 				}
 				Util.SetByPath(q, "Notes", notes);
 			}
-			string path = "/disk/" + this._diskId + "/config";
-			this._client.Request("PUT", path, q);
+			string path = "/disk/" + this._DiskId + "/config";
+			this._Client.Request("PUT", path, q);
 			return this;
 		}
 		

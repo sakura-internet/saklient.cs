@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/product/disk";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "DiskPlan";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "DiskPlans";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "DiskPlan";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan Offset(long offset)
 		{
-			return ((Model_DiskPlan)(this._offset(offset)));
+			return ((Model_DiskPlan)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan Limit(long count)
 		{
-			return ((Model_DiskPlan)(this._limit(count)));
+			return ((Model_DiskPlan)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_DiskPlan)(this._filterBy(key, value, multiple)));
+			return ((Model_DiskPlan)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_DiskPlan Reset()
 		{
-			return ((Model_DiskPlan)(this._reset()));
+			return ((Model_DiskPlan)(this._Reset()));
 		}
 		
 		/**
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public DiskPlan GetById(string id)
 		{
-			return ((DiskPlan)(this._getById(id)));
+			return ((DiskPlan)(this._GetById(id)));
 		}
 		
 		/**
@@ -144,7 +144,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<DiskPlan> Find()
 		{
-			return Util.CastArray(this._find(), ((DiskPlan)(null)));
+			return Util.CastArray(this._Find(), ((DiskPlan)(null)));
 		}
 		
 		/**
@@ -155,18 +155,18 @@ namespace Saklient.Cloud.Models
 		public Model_DiskPlan(Client client) : base(client)
 		{
 			/*!base!*/;
-			this._hdd = null;
-			this._ssd = null;
+			this._Hdd = null;
+			this._Ssd = null;
 		}
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model_DiskPlan#_hdd
+		 * @member saklient.cloud.models.Model_DiskPlan#_Hdd
 		 * @type DiskPlan
 		 * @internal
 		 * @ignore
 		 */
-		internal DiskPlan _hdd;
+		internal DiskPlan _Hdd;
 		
 		/**
 		 * @method Get_hdd
@@ -176,10 +176,10 @@ namespace Saklient.Cloud.Models
 		 */
 		internal DiskPlan Get_hdd()
 		{
-			if (this._hdd == null) {
-				this._hdd = this.GetById("2");
+			if (this._Hdd == null) {
+				this._Hdd = this.GetById("2");
 			}
-			return this._hdd;
+			return this._Hdd;
 		}
 		
 		/**
@@ -197,12 +197,12 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.models.Model_DiskPlan#_ssd
+		 * @member saklient.cloud.models.Model_DiskPlan#_Ssd
 		 * @type DiskPlan
 		 * @internal
 		 * @ignore
 		 */
-		internal DiskPlan _ssd;
+		internal DiskPlan _Ssd;
 		
 		/**
 		 * @method Get_ssd
@@ -212,10 +212,10 @@ namespace Saklient.Cloud.Models
 		 */
 		internal DiskPlan Get_ssd()
 		{
-			if (this._ssd == null) {
-				this._ssd = this.GetById("4");
+			if (this._Ssd == null) {
+				this._Ssd = this.GetById("4");
 			}
-			return this._ssd;
+			return this._Ssd;
 		}
 		
 		/**

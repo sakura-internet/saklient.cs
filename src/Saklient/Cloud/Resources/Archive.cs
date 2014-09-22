@@ -124,58 +124,58 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/archive";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Archive";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Archives";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _className()
+		public override string _ClassName()
 		{
 			return "Archive";
 		}
 		
 		/**
 		 * @private
-		 * @method _id
+		 * @method _Id
 		 * @ignore
 		 * @return {string}
 		 */
-		public override string _id()
+		public override string _Id()
 		{
 			return this.Get_id();
 		}
@@ -190,7 +190,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive Save()
 		{
-			return ((Archive)(this._save()));
+			return ((Archive)(this._Save()));
 		}
 		
 		/**
@@ -203,7 +203,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive Reload()
 		{
-			return ((Archive)(this._reload()));
+			return ((Archive)(this._Reload()));
 		}
 		
 		/**
@@ -283,11 +283,11 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.Archive#_source
+		 * @member saklient.cloud.resources.Archive#_Source
 		 * @type Resource
 		 * @ignore
 		 */
-		private Resource _source;
+		private Resource _Source;
 		
 		/**
 		 * @method Get_source
@@ -296,7 +296,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource Get_source()
 		{
-			return this._source;
+			return this._Source;
 		}
 		
 		/**
@@ -307,7 +307,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Resource Set_source(Resource source)
 		{
-			this._source = source;
+			this._Source = source;
 			return source;
 		}
 		
@@ -326,12 +326,12 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @member saklient.cloud.resources.Archive#_ftpInfo
+		 * @member saklient.cloud.resources.Archive#_FtpInfo
 		 * @type FtpInfo
 		 * @internal
 		 * @ignore
 		 */
-		internal FtpInfo _ftpInfo;
+		internal FtpInfo _FtpInfo;
 		
 		/**
 		 * @method Get_ftpInfo
@@ -340,7 +340,7 @@ namespace Saklient.Cloud.Resources
 		 */
 		public FtpInfo Get_ftpInfo()
 		{
-			return this._ftpInfo;
+			return this._FtpInfo;
 		}
 		
 		/**
@@ -358,20 +358,20 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onAfterApiDeserialize
+		 * @method _OnAfterApiDeserialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {object} root
 		 * @return {void}
 		 */
-		internal override void _onAfterApiDeserialize(object r, object root)
+		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (root != null) {
 				if ((root as System.Collections.Generic.Dictionary<string, object>).ContainsKey("FTPServer")) {
 					object ftp = (root as System.Collections.Generic.Dictionary<string, object>)["FTPServer"];
 					if (ftp != null) {
-						this._ftpInfo = new FtpInfo(ftp);
+						this._FtpInfo = new FtpInfo(ftp);
 					}
 				}
 			}
@@ -381,7 +381,7 @@ namespace Saklient.Cloud.Resources
 					if (s != null) {
 						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							this._source = new Archive(this._client, s);
+							this._Source = new Archive(this._Client, s);
 						}
 					}
 				}
@@ -390,8 +390,8 @@ namespace Saklient.Cloud.Resources
 					if (s != null) {
 						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							object obj = Util.CreateClassInstance("saklient.cloud.resources.Disk", new System.Collections.Generic.List<object> { this._client, s, false });
-							this._source = ((Resource)(obj));
+							object obj = Util.CreateClassInstance("saklient.cloud.resources.Disk", new System.Collections.Generic.List<object> { this._Client, s, false });
+							this._Source = ((Resource)(obj));
 						}
 					}
 				}
@@ -400,31 +400,31 @@ namespace Saklient.Cloud.Resources
 		
 		/**
 		 * @private
-		 * @method _onAfterApiSerialize
+		 * @method _OnAfterApiSerialize
 		 * @internal
 		 * @ignore
 		 * @param {object} r
 		 * @param {bool} withClean
 		 * @return {void}
 		 */
-		internal override void _onAfterApiSerialize(object r, bool withClean)
+		internal override void _OnAfterApiSerialize(object r, bool withClean)
 		{
 			if (r == null) {
 				return;
 			}
-			if (this._source != null) {
-				if (this._source._className() == "Archive") {
-					object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+			if (this._Source != null) {
+				if (this._Source._ClassName() == "Archive") {
+					object s = withClean ? this._Source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._Source._Id() } };
 					(r as System.Collections.Generic.Dictionary<string, object>)["SourceArchive"] = s;
 				}
 				else {
-					if (this._source._className() == "Disk") {
-						object s = withClean ? this._source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._source._id() } };
+					if (this._Source._ClassName() == "Disk") {
+						object s = withClean ? this._Source.ApiSerialize(true) : new System.Collections.Generic.Dictionary<string, object> { { "ID", this._Source._Id() } };
 						(r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"] = s;
 					}
 					else {
-						this._source = null;
-						Util.ValidateType(this._source, "Disk or Archive", true);
+						this._Source = null;
+						Util.ValidateType(this._Source, "Disk or Archive", true);
 					}
 				}
 			}
@@ -443,11 +443,11 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive OpenFtp(bool reset=false)
 		{
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "ChangePassword", reset);
-			object result = this._client.Request("PUT", path, q);
-			this._onAfterApiDeserialize(null, result);
+			object result = this._Client.Request("PUT", path, q);
+			this._OnAfterApiDeserialize(null, result);
 			return this;
 		}
 		
@@ -461,9 +461,9 @@ namespace Saklient.Cloud.Resources
 		 */
 		public Archive CloseFtp()
 		{
-			string path = this._apiPath() + "/" + Util.UrlEncode(this._id()) + "/ftp";
-			this._client.Request("DELETE", path);
-			this._ftpInfo = null;
+			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
+			this._Client.Request("DELETE", path);
+			this._FtpInfo = null;
 			return this;
 		}
 		
@@ -1049,7 +1049,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_tags = false;
 			if (Util.ExistsPath(r, "Icon")) {
-				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._client, Util.GetByPath(r, "Icon"));
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
 			}
 			else {
 				this.M_icon = null;
@@ -1081,7 +1081,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_serviceClass = false;
 			if (Util.ExistsPath(r, "Plan")) {
-				this.M_plan = Util.GetByPath(r, "Plan") == null ? null : new DiskPlan(this._client, Util.GetByPath(r, "Plan"));
+				this.M_plan = Util.GetByPath(r, "Plan") == null ? null : new DiskPlan(this._Client, Util.GetByPath(r, "Plan"));
 			}
 			else {
 				this.M_plan = null;

@@ -19,48 +19,48 @@ namespace Saklient.Cloud.Models
 		
 		/**
 		 * @private
-		 * @method _apiPath
+		 * @method _ApiPath
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _apiPath()
+		internal override string _ApiPath()
 		{
 			return "/switch";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKey
+		 * @method _RootKey
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKey()
+		internal override string _RootKey()
 		{
 			return "Switch";
 		}
 		
 		/**
 		 * @private
-		 * @method _rootKeyM
+		 * @method _RootKeyM
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _rootKeyM()
+		internal override string _RootKeyM()
 		{
 			return "Switches";
 		}
 		
 		/**
 		 * @private
-		 * @method _className
+		 * @method _ClassName
 		 * @internal
 		 * @ignore
 		 * @return {string}
 		 */
-		internal override string _className()
+		internal override string _ClassName()
 		{
 			return "Swytch";
 		}
@@ -76,7 +76,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Offset(long offset)
 		{
-			return ((Model_Swytch)(this._offset(offset)));
+			return ((Model_Swytch)(this._Offset(offset)));
 		}
 		
 		/**
@@ -90,7 +90,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Limit(long count)
 		{
-			return ((Model_Swytch)(this._limit(count)));
+			return ((Model_Swytch)(this._Limit(count)));
 		}
 		
 		/**
@@ -106,7 +106,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch FilterBy(string key, object value, bool multiple=false)
 		{
-			return ((Model_Swytch)(this._filterBy(key, value, multiple)));
+			return ((Model_Swytch)(this._FilterBy(key, value, multiple)));
 		}
 		
 		/**
@@ -119,7 +119,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch Reset()
 		{
-			return ((Model_Swytch)(this._reset()));
+			return ((Model_Swytch)(this._Reset()));
 		}
 		
 		/**
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Swytch Create()
 		{
-			return ((Swytch)(this._create()));
+			return ((Swytch)(this._Create()));
 		}
 		
 		/**
@@ -146,7 +146,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Swytch GetById(string id)
 		{
-			return ((Swytch)(this._getById(id)));
+			return ((Swytch)(this._GetById(id)));
 		}
 		
 		/**
@@ -158,7 +158,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public System.Collections.Generic.List<Swytch> Find()
 		{
-			return Util.CastArray(this._find(), ((Swytch)(null)));
+			return Util.CastArray(this._Find(), ((Swytch)(null)));
 		}
 		
 		/**
@@ -176,7 +176,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch WithNameLike(string name)
 		{
-			return ((Model_Swytch)(this._withNameLike(name)));
+			return ((Model_Swytch)(this._WithNameLike(name)));
 		}
 		
 		/**
@@ -191,7 +191,7 @@ namespace Saklient.Cloud.Models
 		 */
 		public Model_Swytch SortByName(bool reverse=false)
 		{
-			return ((Model_Swytch)(this._sortByName(reverse)));
+			return ((Model_Swytch)(this._SortByName(reverse)));
 		}
 		
 		/**
