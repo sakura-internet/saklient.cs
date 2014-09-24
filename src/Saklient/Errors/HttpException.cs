@@ -1,36 +1,18 @@
 namespace Saklient.Errors
 {
 
-	/**
-	 * @module saklient.errors.HttpException
-	 * @class HttpException
-	 * @constructor
-	 * @extends System.Exception
-	 */
 	public class HttpException : System.Exception
 	{
 		
-		/**
-		 * @member saklient.errors.HttpException#Status
-		 * @type long
-		 * @public
-		 */
 		public long Status;
 		
-		/**
-		 * @member saklient.errors.HttpException#Code
-		 * @type string
-		 * @public
-		 */
 		public string Code;
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpException(long status, string code=null, string message="") : base(message)
 		{
 			/*!base!*/;

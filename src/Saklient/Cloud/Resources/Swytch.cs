@@ -10,193 +10,96 @@ using Ipv6Net = Saklient.Cloud.Resources.Ipv6Net;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * スイッチの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Swytch
-	 * @class Swytch
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>スイッチの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Swytch : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * ユーザ設定IPv4ネットワークのゲートウェイ
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_userDefaultRoute
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ユーザ設定IPv4ネットワークのゲートウェイ
+		/// </summary>
 		internal string M_userDefaultRoute;
 		
-		/**
-		 * ユーザ設定IPv4ネットワークのマスク長
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_userMaskLen
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>ユーザ設定IPv4ネットワークのマスク長
+		/// </summary>
 		internal long? M_userMaskLen;
 		
-		/**
-		 * 接続されているルータ
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_router
-		 * @type Router
-		 * @internal
-		 */
+		/// <summary>接続されているルータ
+		/// </summary>
 		internal Router M_router;
 		
-		/**
-		 * IPv4ネットワーク（ルータによる自動割当）
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_ipv4Nets
-		 * @type System.Collections.Generic.List<Ipv4Net>
-		 * @internal
-		 */
+		/// <summary>IPv4ネットワーク（ルータによる自動割当）
+		/// </summary>
 		internal System.Collections.Generic.List<Ipv4Net> M_ipv4Nets;
 		
-		/**
-		 * IPv6ネットワーク（ルータによる自動割当）
-		 * 
-		 * @member saklient.cloud.resources.Swytch#M_ipv6Nets
-		 * @type System.Collections.Generic.List<Ipv6Net>
-		 * @internal
-		 */
+		/// <summary>IPv6ネットワーク（ルータによる自動割当）
+		/// </summary>
 		internal System.Collections.Generic.List<Ipv6Net> M_ipv6Nets;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/switch";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Switch";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Switches";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Swytch";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Swytch} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch Save()
 		{
 			return ((Swytch)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Swytch} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch Reload()
 		{
 			return ((Swytch)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Swytch(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * このルータ＋スイッチでIPv6アドレスを有効にします。
-		 * 
-		 * @method AddIpv6Net
-		 * @public
-		 * @return {Ipv6Net} 有効化されたIPv6ネットワーク
-		 */
+		/// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
+		/// 
+		/// <returns>有効化されたIPv6ネットワーク</returns>
+		/// </summary>
 		public Ipv6Net AddIpv6Net()
 		{
 			Ipv6Net ret = this.Get_router().AddIpv6Net();
@@ -204,14 +107,10 @@ namespace Saklient.Cloud.Resources
 			return ret;
 		}
 		
-		/**
-		 * このルータ＋スイッチでIPv6アドレスを無効にします。
-		 * 
-		 * @method RemoveIpv6Net
-		 * @chainable
-		 * @public
-		 * @return {Swytch} this
-		 */
+		/// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch RemoveIpv6Net()
 		{
 			System.Collections.Generic.List<Ipv6Net> nets = this.Get_ipv6Nets();
@@ -220,15 +119,12 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * このルータ＋スイッチにスタティックルートを追加します。
-		 * 
-		 * @method AddStaticRoute
-		 * @public
-		 * @param {long} maskLen
-		 * @param {string} nextHop
-		 * @return {Ipv4Net} 追加されたIPv4ネットワーク
-		 */
+		/// <summary>このルータ＋スイッチにスタティックルートを追加します。
+		/// 
+		/// <param name="maskLen" />
+		/// <param name="nextHop" />
+		/// <returns>追加されたIPv4ネットワーク</returns>
+		/// </summary>
 		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
 			Ipv4Net ret = this.Get_router().AddStaticRoute(maskLen, nextHop);
@@ -236,15 +132,11 @@ namespace Saklient.Cloud.Resources
 			return ret;
 		}
 		
-		/**
-		 * このルータ＋スイッチからスタティックルートを削除します。
-		 * 
-		 * @method RemoveStaticRoute
-		 * @chainable
-		 * @public
-		 * @param {Ipv4Net} ipv4Net
-		 * @return {Swytch} this
-		 */
+		/// <summary>このルータ＋スイッチからスタティックルートを削除します。
+		/// 
+		/// <param name="ipv4Net" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
 			this.Get_router().RemoveStaticRoute(ipv4Net);
@@ -252,15 +144,11 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * このルータ＋スイッチの帯域プランを変更します。
-		 * 
-		 * @method ChangePlan
-		 * @chainable
-		 * @public
-		 * @param {long} bandWidthMbps
-		 * @return {Swytch} this
-		 */
+		/// <summary>このルータ＋スイッチの帯域プランを変更します。
+		/// 
+		/// <param name="bandWidthMbps" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch ChangePlan(long bandWidthMbps)
 		{
 			this.Get_router().ChangePlan(bandWidthMbps);
@@ -268,70 +156,27 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -339,49 +184,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -389,196 +206,88 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_userDefaultRoute
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_userDefaultRoute = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_userDefaultRoute
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_userDefaultRoute()
 		{
 			return this.M_userDefaultRoute;
 		}
 		
-		/**
-		 * ユーザ設定IPv4ネットワークのゲートウェイ
-		 * 
-		 * @property UserDefaultRoute
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ユーザ設定IPv4ネットワークのゲートウェイ
+		/// </summary>
 		public string UserDefaultRoute
 		{
 			get { return this.Get_userDefaultRoute(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_userMaskLen
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_userMaskLen = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_userMaskLen
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_userMaskLen()
 		{
 			return this.M_userMaskLen;
 		}
 		
-		/**
-		 * ユーザ設定IPv4ネットワークのマスク長
-		 * 
-		 * @property UserMaskLen
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ユーザ設定IPv4ネットワークのマスク長
+		/// </summary>
 		public long? UserMaskLen
 		{
 			get { return this.Get_userMaskLen(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_router
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_router = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_router
-		 * @private
-		 * @ignore
-		 * @return {Router}
-		 */
 		private Router Get_router()
 		{
 			return this.M_router;
 		}
 		
-		/**
-		 * 接続されているルータ
-		 * 
-		 * @property Router
-		 * @type Router
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>接続されているルータ
+		/// </summary>
 		public Router Router
 		{
 			get { return this.Get_router(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_ipv4Nets
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_ipv4Nets = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_ipv4Nets
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<Ipv4Net>}
-		 */
 		private System.Collections.Generic.List<Ipv4Net> Get_ipv4Nets()
 		{
 			return this.M_ipv4Nets;
 		}
 		
-		/**
-		 * IPv4ネットワーク（ルータによる自動割当）
-		 * 
-		 * @property Ipv4Nets
-		 * @type System.Collections.Generic.List<Ipv4Net>
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>IPv4ネットワーク（ルータによる自動割当）
+		/// </summary>
 		public System.Collections.Generic.List<Ipv4Net> Ipv4Nets
 		{
 			get { return this.Get_ipv4Nets(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Swytch#N_ipv6Nets
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_ipv6Nets = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_ipv6Nets
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<Ipv6Net>}
-		 */
 		private System.Collections.Generic.List<Ipv6Net> Get_ipv6Nets()
 		{
 			return this.M_ipv6Nets;
 		}
 		
-		/**
-		 * IPv6ネットワーク（ルータによる自動割当）
-		 * 
-		 * @property Ipv6Nets
-		 * @type System.Collections.Generic.List<Ipv6Net>
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>IPv6ネットワーク（ルータによる自動割当）
+		/// </summary>
 		public System.Collections.Generic.List<Ipv6Net> Ipv6Nets
 		{
 			get { return this.Get_ipv6Nets(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -674,13 +383,6 @@ namespace Saklient.Cloud.Resources
 			this.N_ipv6Nets = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

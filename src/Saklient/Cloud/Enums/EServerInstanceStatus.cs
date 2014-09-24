@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * サーバの起動状態を表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EServerInstanceStatus
-	 * @class EServerInstanceStatus
-	 */
+	/// <summary>サーバの起動状態を表す列挙子。
+	/// </summary>
 	public class EServerInstanceStatus
 	{
 		
@@ -19,31 +15,16 @@ namespace Saklient.Cloud.Enums
 			{ "up", 100 }
 		};
 		
-		/**
-		 * @property DOWN
-		 * @default "down"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>DOWN
+		/// </summary>
 		public static string DOWN = "down";
 		
-		/**
-		 * @property CLEANING
-		 * @default "cleaning"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>CLEANING
+		/// </summary>
 		public static string CLEANING = "cleaning";
 		
-		/**
-		 * @property UP
-		 * @default "up"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>UP
+		/// </summary>
 		public static string UP = "up";
 		
 		public static long? Compare(string lhs, string rhs)

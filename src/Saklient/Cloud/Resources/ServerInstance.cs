@@ -7,233 +7,107 @@ using EServerInstanceStatus = Saklient.Cloud.Enums.EServerInstanceStatus;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * サーバインスタンスの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.ServerInstance
-	 * @class ServerInstance
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>サーバインスタンスの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class ServerInstance : Resource
 	{
 		
-		/**
-		 * 起動状態 {@link EServerInstanceStatus}
-		 * 
-		 * @member saklient.cloud.resources.ServerInstance#M_status
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
 		internal string M_status;
 		
-		/**
-		 * 前回の起動状態 {@link EServerInstanceStatus}
-		 * 
-		 * @member saklient.cloud.resources.ServerInstance#M_beforeStatus
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>前回の起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
 		internal string M_beforeStatus;
 		
-		/**
-		 * 現在の起動状態に変化した日時
-		 * 
-		 * @member saklient.cloud.resources.ServerInstance#M_statusChangedAt
-		 * @type System.DateTime?
-		 * @internal
-		 */
+		/// <summary>現在の起動状態に変化した日時
+		/// </summary>
 		internal System.DateTime? M_statusChangedAt;
 		
-		/**
-		 * 挿入されているISOイメージ
-		 * 
-		 * @member saklient.cloud.resources.ServerInstance#M_isoImage
-		 * @type IsoImage
-		 * @internal
-		 */
+		/// <summary>挿入されているISOイメージ
+		/// </summary>
 		internal IsoImage M_isoImage;
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public ServerInstance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * サーバが起動しているときtrueを返します。
-		 * 
-		 * @method IsUp
-		 * @public
-		 * @return {bool}
-		 */
+		/// <summary>サーバが起動しているときtrueを返します。
+		/// </summary>
 		public bool IsUp()
 		{
 			return this.Get_status() != null && EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.UP) == 0;
 		}
 		
-		/**
-		 * サーバが停止しているときtrueを返します。
-		 * 
-		 * @method IsDown
-		 * @public
-		 * @return {bool}
-		 */
+		/// <summary>サーバが停止しているときtrueを返します。
+		/// </summary>
 		public bool IsDown()
 		{
 			return this.Get_status() == null || EServerInstanceStatus.Compare(this.Get_status(), EServerInstanceStatus.DOWN) == 0;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerInstance#N_status
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_status = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_status
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_status()
 		{
 			return this.M_status;
 		}
 		
-		/**
-		 * 起動状態 {@link EServerInstanceStatus}
-		 * 
-		 * @property Status
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
 		public string Status
 		{
 			get { return this.Get_status(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerInstance#N_beforeStatus
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_beforeStatus = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_beforeStatus
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_beforeStatus()
 		{
 			return this.M_beforeStatus;
 		}
 		
-		/**
-		 * 前回の起動状態 {@link EServerInstanceStatus}
-		 * 
-		 * @property BeforeStatus
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>前回の起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
 		public string BeforeStatus
 		{
 			get { return this.Get_beforeStatus(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerInstance#N_statusChangedAt
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_statusChangedAt = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_statusChangedAt
-		 * @private
-		 * @ignore
-		 * @return {System.DateTime?}
-		 */
 		private System.DateTime? Get_statusChangedAt()
 		{
 			return this.M_statusChangedAt;
 		}
 		
-		/**
-		 * 現在の起動状態に変化した日時
-		 * 
-		 * @property StatusChangedAt
-		 * @type System.DateTime?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>現在の起動状態に変化した日時
+		/// </summary>
 		public System.DateTime? StatusChangedAt
 		{
 			get { return this.Get_statusChangedAt(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerInstance#N_isoImage
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_isoImage = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_isoImage
-		 * @private
-		 * @ignore
-		 * @return {IsoImage}
-		 */
 		private IsoImage Get_isoImage()
 		{
 			return this.M_isoImage;
 		}
 		
-		/**
-		 * 挿入されているISOイメージ
-		 * 
-		 * @property IsoImage
-		 * @type IsoImage
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>挿入されているISOイメージ
+		/// </summary>
 		public IsoImage IsoImage
 		{
 			get { return this.Get_isoImage(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -275,13 +149,6 @@ namespace Saklient.Cloud.Resources
 			this.N_isoImage = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };

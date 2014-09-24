@@ -153,23 +153,14 @@ using VncProxyRequestFailureException = Saklient.Cloud.Errors.VncProxyRequestFai
 namespace Saklient.Errors
 {
 
-	/**
-	 * @module saklient.errors.ExceptionFactory
-	 * @class ExceptionFactory
-	 * @constructor
-	 */
 	public class ExceptionFactory
 	{
 		
-		/**
-		 * @method Create
-		 * @static
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 * @return {HttpException}
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public static HttpException Create(long status, string code=null, string message="")
 		{
 			switch (code) {

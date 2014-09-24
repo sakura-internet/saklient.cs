@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * リソースの有効性を表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EAvailability
-	 * @class EAvailability
-	 */
+	/// <summary>リソースの有効性を表す列挙子。
+	/// </summary>
 	public class EAvailability
 	{
 		
@@ -26,94 +22,44 @@ namespace Saklient.Cloud.Enums
 			{ "available", 100 }
 		};
 		
-		/**
-		 * @property SELECTABLE
-		 * @default "selectable"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>SELECTABLE
+		/// </summary>
 		public static string SELECTABLE = "selectable";
 		
-		/**
-		 * @property MIGRATING
-		 * @default "migrating"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>MIGRATING
+		/// </summary>
 		public static string MIGRATING = "migrating";
 		
-		/**
-		 * @property PRECREATE
-		 * @default "precreate"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>PRECREATE
+		/// </summary>
 		public static string PRECREATE = "precreate";
 		
-		/**
-		 * @property REPLICATING
-		 * @default "replicating"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>REPLICATING
+		/// </summary>
 		public static string REPLICATING = "replicating";
 		
-		/**
-		 * @property TRANSFERING
-		 * @default "transfering"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>TRANSFERING
+		/// </summary>
 		public static string TRANSFERING = "transfering";
 		
-		/**
-		 * @property STOPPED
-		 * @default "stopped"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>STOPPED
+		/// </summary>
 		public static string STOPPED = "stopped";
 		
-		/**
-		 * @property FAILED
-		 * @default "failed"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>FAILED
+		/// </summary>
 		public static string FAILED = "failed";
 		
-		/**
-		 * @property CHARGED
-		 * @default "charged"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>CHARGED
+		/// </summary>
 		public static string CHARGED = "charged";
 		
-		/**
-		 * @property UPLOADING
-		 * @default "uploading"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>UPLOADING
+		/// </summary>
 		public static string UPLOADING = "uploading";
 		
-		/**
-		 * @property AVAILABLE
-		 * @default "available"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>AVAILABLE
+		/// </summary>
 		public static string AVAILABLE = "available";
 		
 		public static long? Compare(string lhs, string rhs)

@@ -7,248 +7,111 @@ using EScope = Saklient.Cloud.Enums.EScope;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * アイコンの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Icon
-	 * @class Icon
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>アイコンの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Icon : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Icon#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @member saklient.cloud.resources.Icon#M_scope
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		internal string M_scope;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Icon#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * URL
-		 * 
-		 * @member saklient.cloud.resources.Icon#M_url
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>URL
+		/// </summary>
 		internal string M_url;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/icon";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Icon";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Icons";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Icon";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Icon} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Icon Save()
 		{
 			return ((Icon)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Icon} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Icon Reload()
 		{
 			return ((Icon)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Icon(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Icon#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Icon#N_scope
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_scope = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_scope
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_scope()
 		{
 			return this.M_scope;
 		}
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @property Scope
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		public string Scope
 		{
 			get { return this.Get_scope(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Icon#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -256,60 +119,32 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Icon#N_url
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_url = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_url
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_url()
 		{
 			return this.M_url;
 		}
 		
-		/**
-		 * URL
-		 * 
-		 * @property Url
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>URL
+		/// </summary>
 		public string Url
 		{
 			get { return this.Get_url(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -351,13 +186,6 @@ namespace Saklient.Cloud.Resources
 			this.N_url = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

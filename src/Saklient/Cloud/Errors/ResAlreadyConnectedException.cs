@@ -3,19 +3,16 @@ using HttpConflictException = Saklient.Errors.HttpConflictException;
 namespace Saklient.Cloud.Errors
 {
 
-	/**
-	 * 要求された操作を行えません。このリソースは他のリソースと既に接続されています。
-	 */
+	/// <summary>要求された操作を行えません。このリソースは他のリソースと既に接続されています。
+	/// </summary>
 	public class ResAlreadyConnectedException : HttpConflictException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public ResAlreadyConnectedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作を行えません。このリソースは他のリソースと既に接続されています。" : message)
 		{
 			/*!base!*/;

@@ -3,19 +3,16 @@ using HttpException = Saklient.Errors.HttpException;
 namespace Saklient.Errors
 {
 
-	/**
-	 * HTTPエラー。Locked.
-	 */
+	/// <summary>HTTPエラー。Locked.
+	/// </summary>
 	public class HttpLockedException : HttpException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpLockedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Locked." : message)
 		{
 			/*!base!*/;

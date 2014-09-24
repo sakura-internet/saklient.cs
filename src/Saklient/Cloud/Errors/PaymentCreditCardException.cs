@@ -3,19 +3,16 @@ using HttpPaymentRequiredException = Saklient.Errors.HttpPaymentRequiredExceptio
 namespace Saklient.Cloud.Errors
 {
 
-	/**
-	 * 要求を受け付けできません。クレジットカードの使用期限、利用限度額をご確認ください。
-	 */
+	/// <summary>要求を受け付けできません。クレジットカードの使用期限、利用限度額をご確認ください。
+	/// </summary>
 	public class PaymentCreditCardException : HttpPaymentRequiredException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public PaymentCreditCardException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。クレジットカードの使用期限、利用限度額をご確認ください。" : message)
 		{
 			/*!base!*/;

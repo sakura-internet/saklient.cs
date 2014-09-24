@@ -6,322 +6,145 @@ using Swytch = Saklient.Cloud.Resources.Swytch;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * IPv4ネットワークの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Ipv4Net
-	 * @class Ipv4Net
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>IPv4ネットワークの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Ipv4Net : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Ipv4Net#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * ネットワークアドレス
-		 * 
-		 * @member saklient.cloud.resources.Ipv4Net#M_address
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ネットワークアドレス
+		/// </summary>
 		internal string M_address;
 		
-		/**
-		 * マスク長
-		 * 
-		 * @member saklient.cloud.resources.Ipv4Net#M_maskLen
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>マスク長
+		/// </summary>
 		internal long? M_maskLen;
 		
-		/**
-		 * デフォルトルート
-		 * 
-		 * @member saklient.cloud.resources.Ipv4Net#M_defaultRoute
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>デフォルトルート
+		/// </summary>
 		internal string M_defaultRoute;
 		
-		/**
-		 * ネクストホップ
-		 * 
-		 * @member saklient.cloud.resources.Ipv4Net#M_nextHop
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ネクストホップ
+		/// </summary>
 		internal string M_nextHop;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/subnet";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Subnet";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Subnets";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Ipv4Net";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @public
-		 * @return {Swytch} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch Reload()
 		{
 			return ((Swytch)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Ipv4Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv4Net#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv4Net#N_address
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_address = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_address
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_address()
 		{
 			return this.M_address;
 		}
 		
-		/**
-		 * ネットワークアドレス
-		 * 
-		 * @property Address
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ネットワークアドレス
+		/// </summary>
 		public string Address
 		{
 			get { return this.Get_address(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv4Net#N_maskLen
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_maskLen = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_maskLen
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_maskLen()
 		{
 			return this.M_maskLen;
 		}
 		
-		/**
-		 * マスク長
-		 * 
-		 * @property MaskLen
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>マスク長
+		/// </summary>
 		public long? MaskLen
 		{
 			get { return this.Get_maskLen(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv4Net#N_defaultRoute
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_defaultRoute = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_defaultRoute
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_defaultRoute()
 		{
 			return this.M_defaultRoute;
 		}
 		
-		/**
-		 * デフォルトルート
-		 * 
-		 * @property DefaultRoute
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>デフォルトルート
+		/// </summary>
 		public string DefaultRoute
 		{
 			get { return this.Get_defaultRoute(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv4Net#N_nextHop
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_nextHop = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_nextHop
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_nextHop()
 		{
 			return this.M_nextHop;
 		}
 		
-		/**
-		 * ネクストホップ
-		 * 
-		 * @property NextHop
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ネクストホップ
+		/// </summary>
 		public string NextHop
 		{
 			get { return this.Get_nextHop(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -371,13 +194,6 @@ namespace Saklient.Cloud.Resources
 			this.N_nextHop = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };

@@ -3,19 +3,16 @@ using HttpException = Saklient.Errors.HttpException;
 namespace Saklient.Errors
 {
 
-	/**
-	 * HTTPエラー。Variant Also Negotiates.
-	 */
+	/// <summary>HTTPエラー。Variant Also Negotiates.
+	/// </summary>
 	public class HttpVariantAlsoNegotiatesException : HttpException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpVariantAlsoNegotiatesException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Variant Also Negotiates." : message)
 		{
 			/*!base!*/;

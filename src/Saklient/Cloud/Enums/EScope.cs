@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * リソースの公開範囲を表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EScope
-	 * @class EScope
-	 */
+	/// <summary>リソースの公開範囲を表す列挙子。
+	/// </summary>
 	public class EScope
 	{
 		
@@ -18,22 +14,12 @@ namespace Saklient.Cloud.Enums
 			{ "shared", 200 }
 		};
 		
-		/**
-		 * @property USER
-		 * @default "user"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>USER
+		/// </summary>
 		public static string USER = "user";
 		
-		/**
-		 * @property SHARED
-		 * @default "shared"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>SHARED
+		/// </summary>
 		public static string SHARED = "shared";
 		
 		public static long? Compare(string lhs, string rhs)

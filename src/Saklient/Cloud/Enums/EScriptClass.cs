@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * スクリプトのクラスを表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EScriptClass
-	 * @class EScriptClass
-	 */
+	/// <summary>スクリプトのクラスを表す列挙子。
+	/// </summary>
 	public class EScriptClass
 	{
 		
@@ -18,22 +14,12 @@ namespace Saklient.Cloud.Enums
 			{ "ansible", 300 }
 		};
 		
-		/**
-		 * @property SHELL
-		 * @default "shell"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>SHELL
+		/// </summary>
 		public static string SHELL = "shell";
 		
-		/**
-		 * @property ANSIBLE
-		 * @default "ansible"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>ANSIBLE
+		/// </summary>
 		public static string ANSIBLE = "ansible";
 		
 		public static long? Compare(string lhs, string rhs)

@@ -11,191 +11,101 @@ using Model_Swytch = Saklient.Cloud.Models.Model_Swytch;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * ルータの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Router
-	 * @class Router
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>ルータの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Router : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Router#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Router#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Router#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * ネットワークのマスク長
-		 * 
-		 * @member saklient.cloud.resources.Router#M_networkMaskLen
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>ネットワークのマスク長
+		/// </summary>
 		internal long? M_networkMaskLen;
 		
-		/**
-		 * 帯域幅
-		 * 
-		 * @member saklient.cloud.resources.Router#M_bandWidthMbps
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>帯域幅
+		/// </summary>
 		internal long? M_bandWidthMbps;
 		
-		/**
-		 * スイッチ
-		 * 
-		 * @member saklient.cloud.resources.Router#M_swytchId
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>スイッチ
+		/// </summary>
 		internal string M_swytchId;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/internet";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Internet";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Internet";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Router";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Router} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Router Save()
 		{
 			return ((Router)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Router} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Router Reload()
 		{
 			return ((Router)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Router(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * 作成中のルータが利用可能になるまで待機します。
-		 * 
-		 * @ignore
-		 * @method AfterCreate
-		 * @param {long} timeoutSec
-		 * @param {System.Action<Router, bool>} callback
-		 * @return {void}
-		 */
+		/// <summary>作成中のルータが利用可能になるまで待機します。
+		/// 
+		/// 
+		/// <param name="timeoutSec" />
+		/// <param name="callback" />
+		/// </summary>
 		public void AfterCreate(long timeoutSec, System.Action<Router, bool> callback)
 		{
 			bool ret = this.SleepWhileCreating(timeoutSec);
 			callback(this, ret);
 		}
 		
-		/**
-		 * 作成中のルータが利用可能になるまで待機します。
-		 * 
-		 * @method SleepWhileCreating
-		 * @public
-		 * @param {long} timeoutSec=120
-		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
-		 */
+		/// <summary>作成中のルータが利用可能になるまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
 		public bool SleepWhileCreating(long timeoutSec=120)
 		{
 			long step = 3;
@@ -212,13 +122,8 @@ namespace Saklient.Cloud.Resources
 			return false;
 		}
 		
-		/**
-		 * このルータが接続されているスイッチを取得します。
-		 * 
-		 * @method GetSwytch
-		 * @public
-		 * @return {Swytch}
-		 */
+		/// <summary>このルータが接続されているスイッチを取得します。
+		/// </summary>
 		public Swytch GetSwytch()
 		{
 			Model_Swytch model = new Model_Swytch(this._Client);
@@ -226,13 +131,10 @@ namespace Saklient.Cloud.Resources
 			return model.GetById(id);
 		}
 		
-		/**
-		 * このルータ＋スイッチでIPv6アドレスを有効にします。
-		 * 
-		 * @method AddIpv6Net
-		 * @public
-		 * @return {Ipv6Net} 有効化されたIPv6ネットワーク
-		 */
+		/// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
+		/// 
+		/// <returns>有効化されたIPv6ネットワーク</returns>
+		/// </summary>
 		public Ipv6Net AddIpv6Net()
 		{
 			object result = this._Client.Request("POST", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net");
@@ -240,15 +142,11 @@ namespace Saklient.Cloud.Resources
 			return new Ipv6Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["IPv6Net"]);
 		}
 		
-		/**
-		 * このルータ＋スイッチでIPv6アドレスを無効にします。
-		 * 
-		 * @method RemoveIpv6Net
-		 * @chainable
-		 * @public
-		 * @param {Ipv6Net} ipv6Net
-		 * @return {Router} this
-		 */
+		/// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
+		/// 
+		/// <param name="ipv6Net" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Router RemoveIpv6Net(Ipv6Net ipv6Net)
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net/" + ipv6Net._Id());
@@ -256,15 +154,12 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * このルータ＋スイッチにスタティックルートを追加します。
-		 * 
-		 * @method AddStaticRoute
-		 * @public
-		 * @param {long} maskLen
-		 * @param {string} nextHop
-		 * @return {Ipv4Net} 追加されたスタティックルート
-		 */
+		/// <summary>このルータ＋スイッチにスタティックルートを追加します。
+		/// 
+		/// <param name="maskLen" />
+		/// <param name="nextHop" />
+		/// <returns>追加されたスタティックルート</returns>
+		/// </summary>
 		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
@@ -275,15 +170,11 @@ namespace Saklient.Cloud.Resources
 			return new Ipv4Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["Subnet"]);
 		}
 		
-		/**
-		 * このルータ＋スイッチからスタティックルートを削除します。
-		 * 
-		 * @method RemoveStaticRoute
-		 * @chainable
-		 * @public
-		 * @param {Ipv4Net} ipv4Net
-		 * @return {Router} this
-		 */
+		/// <summary>このルータ＋スイッチからスタティックルートを削除します。
+		/// 
+		/// <param name="ipv4Net" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Router RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/subnet/" + ipv4Net._Id());
@@ -291,17 +182,13 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * このルータ＋スイッチの帯域プランを変更します。
-		 * 
-		 * 成功時はリソースIDが変わることにご注意ください。
-		 * 
-		 * @method ChangePlan
-		 * @chainable
-		 * @public
-		 * @param {long} bandWidthMbps
-		 * @return {Router} this
-		 */
+		/// <summary>このルータ＋スイッチの帯域プランを変更します。
+		/// 
+		/// 成功時はリソースIDが変わることにご注意ください。
+		/// 
+		/// <param name="bandWidthMbps" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Router ChangePlan(long bandWidthMbps)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/bandwidth";
@@ -312,70 +199,27 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -383,49 +227,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -433,49 +249,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_networkMaskLen
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_networkMaskLen = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_networkMaskLen
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_networkMaskLen()
 		{
 			return this.M_networkMaskLen;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_networkMaskLen
-		 * @private
-		 * @ignore
-		 * @param {long?} v
-		 * @return {long?}
-		 */
 		private long? Set_networkMaskLen(long? v)
 		{
 			if (!this.IsNew) {
@@ -486,49 +274,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_networkMaskLen;
 		}
 		
-		/**
-		 * ネットワークのマスク長
-		 * 
-		 * @property NetworkMaskLen
-		 * @type long?
-		 * @public
-		 */
+		/// <summary>ネットワークのマスク長
+		/// </summary>
 		public long? NetworkMaskLen
 		{
 			get { return this.Get_networkMaskLen(); }
 			set { this.Set_networkMaskLen(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_bandWidthMbps
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_bandWidthMbps = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_bandWidthMbps
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_bandWidthMbps()
 		{
 			return this.M_bandWidthMbps;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_bandWidthMbps
-		 * @private
-		 * @ignore
-		 * @param {long?} v
-		 * @return {long?}
-		 */
 		private long? Set_bandWidthMbps(long? v)
 		{
 			if (!this.IsNew) {
@@ -539,60 +299,32 @@ namespace Saklient.Cloud.Resources
 			return this.M_bandWidthMbps;
 		}
 		
-		/**
-		 * 帯域幅
-		 * 
-		 * @property BandWidthMbps
-		 * @type long?
-		 * @public
-		 */
+		/// <summary>帯域幅
+		/// </summary>
 		public long? BandWidthMbps
 		{
 			get { return this.Get_bandWidthMbps(); }
 			set { this.Set_bandWidthMbps(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Router#N_swytchId
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_swytchId = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_swytchId
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_swytchId()
 		{
 			return this.M_swytchId;
 		}
 		
-		/**
-		 * スイッチ
-		 * 
-		 * @property SwytchId
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>スイッチ
+		/// </summary>
 		public string SwytchId
 		{
 			get { return this.Get_swytchId(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -650,13 +382,6 @@ namespace Saklient.Cloud.Resources
 			this.N_swytchId = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

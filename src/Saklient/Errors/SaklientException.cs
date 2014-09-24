@@ -1,28 +1,15 @@
 namespace Saklient.Errors
 {
 
-	/**
-	 * @module saklient.errors.SaklientException
-	 * @class SaklientException
-	 * @constructor
-	 * @extends System.Exception
-	 */
 	public class SaklientException : System.Exception
 	{
 		
-		/**
-		 * @member saklient.errors.SaklientException#Code
-		 * @type string
-		 * @public
-		 */
 		public string Code;
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public SaklientException(string code=null, string message="") : base(message)
 		{
 			/*!base!*/;

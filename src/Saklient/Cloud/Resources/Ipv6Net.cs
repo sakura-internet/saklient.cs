@@ -6,279 +6,127 @@ using Swytch = Saklient.Cloud.Resources.Swytch;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * IPv6ネットワークの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Ipv6Net
-	 * @class Ipv6Net
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>IPv6ネットワークの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Ipv6Net : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Ipv6Net#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * ネットワークプレフィックス
-		 * 
-		 * @member saklient.cloud.resources.Ipv6Net#M_prefix
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ネットワークプレフィックス
+		/// </summary>
 		internal string M_prefix;
 		
-		/**
-		 * ネットワークプレフィックス長
-		 * 
-		 * @member saklient.cloud.resources.Ipv6Net#M_prefixLen
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>ネットワークプレフィックス長
+		/// </summary>
 		internal long? M_prefixLen;
 		
-		/**
-		 * このネットワーク範囲における最後のIPv6アドレス
-		 * 
-		 * @member saklient.cloud.resources.Ipv6Net#M_prefixTail
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>このネットワーク範囲における最後のIPv6アドレス
+		/// </summary>
 		internal string M_prefixTail;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/ipv6net";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "IPv6Net";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "IPv6Nets";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Ipv6Net";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @public
-		 * @return {Swytch} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Swytch Reload()
 		{
 			return ((Swytch)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Ipv6Net(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv6Net#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv6Net#N_prefix
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_prefix = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_prefix
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_prefix()
 		{
 			return this.M_prefix;
 		}
 		
-		/**
-		 * ネットワークプレフィックス
-		 * 
-		 * @property Prefix
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ネットワークプレフィックス
+		/// </summary>
 		public string Prefix
 		{
 			get { return this.Get_prefix(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv6Net#N_prefixLen
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_prefixLen = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_prefixLen
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_prefixLen()
 		{
 			return this.M_prefixLen;
 		}
 		
-		/**
-		 * ネットワークプレフィックス長
-		 * 
-		 * @property PrefixLen
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ネットワークプレフィックス長
+		/// </summary>
 		public long? PrefixLen
 		{
 			get { return this.Get_prefixLen(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Ipv6Net#N_prefixTail
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_prefixTail = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_prefixTail
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_prefixTail()
 		{
 			return this.M_prefixTail;
 		}
 		
-		/**
-		 * このネットワーク範囲における最後のIPv6アドレス
-		 * 
-		 * @property PrefixTail
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>このネットワーク範囲における最後のIPv6アドレス
+		/// </summary>
 		public string PrefixTail
 		{
 			get { return this.Get_prefixTail(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -320,13 +168,6 @@ namespace Saklient.Cloud.Resources
 			this.N_prefixTail = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };

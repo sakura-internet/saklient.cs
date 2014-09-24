@@ -3,19 +3,16 @@ using HttpException = Saklient.Errors.HttpException;
 namespace Saklient.Errors
 {
 
-	/**
-	 * サービスが利用できません。対象は利用できない、またはサーバが混雑しています。このエラーが繰り返し発生する場合は、メンテナンス情報、サポートサイトをご確認ください。
-	 */
+	/// <summary>サービスが利用できません。対象は利用できない、またはサーバが混雑しています。このエラーが繰り返し発生する場合は、メンテナンス情報、サポートサイトをご確認ください。
+	/// </summary>
 	public class HttpServiceUnavailableException : HttpException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpServiceUnavailableException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "サービスが利用できません。対象は利用できない、またはサーバが混雑しています。このエラーが繰り返し発生する場合は、メンテナンス情報、サポートサイトをご確認ください。" : message)
 		{
 			/*!base!*/;

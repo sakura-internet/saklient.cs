@@ -6,305 +6,139 @@ using Resource = Saklient.Cloud.Resources.Resource;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * インタフェースの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Iface
-	 * @class Iface
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>インタフェースの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Iface : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Iface#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * MACアドレス
-		 * 
-		 * @member saklient.cloud.resources.Iface#M_macAddress
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>MACアドレス
+		/// </summary>
 		internal string M_macAddress;
 		
-		/**
-		 * IPv4アドレス（共有セグメントによる自動割当）
-		 * 
-		 * @member saklient.cloud.resources.Iface#M_ipAddress
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>IPv4アドレス（共有セグメントによる自動割当）
+		/// </summary>
 		internal string M_ipAddress;
 		
-		/**
-		 * ユーザ設定IPv4アドレス
-		 * 
-		 * @member saklient.cloud.resources.Iface#M_userIpAddress
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ユーザ設定IPv4アドレス
+		/// </summary>
 		internal string M_userIpAddress;
 		
-		/**
-		 * このインタフェースが取り付けられているサーバのID
-		 * 
-		 * @member saklient.cloud.resources.Iface#M_serverId
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>このインタフェースが取り付けられているサーバのID
+		/// </summary>
 		internal string M_serverId;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/interface";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Interface";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Interfaces";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Iface";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Iface} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Iface Save()
 		{
 			return ((Iface)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Iface} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Iface Reload()
 		{
 			return ((Iface)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Iface(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * 共有セグメントに接続します。
-		 * 
-		 * @method ConnectToSharedSegment
-		 * @chainable
-		 * @public
-		 * @return {Iface} this
-		 */
+		/// <summary>共有セグメントに接続します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Iface ConnectToSharedSegment()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/shared");
 			return this.Reload();
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Iface#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Iface#N_macAddress
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_macAddress = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_macAddress
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_macAddress()
 		{
 			return this.M_macAddress;
 		}
 		
-		/**
-		 * MACアドレス
-		 * 
-		 * @property MacAddress
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>MACアドレス
+		/// </summary>
 		public string MacAddress
 		{
 			get { return this.Get_macAddress(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Iface#N_ipAddress
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_ipAddress = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_ipAddress
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_ipAddress()
 		{
 			return this.M_ipAddress;
 		}
 		
-		/**
-		 * IPv4アドレス（共有セグメントによる自動割当）
-		 * 
-		 * @property IpAddress
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>IPv4アドレス（共有セグメントによる自動割当）
+		/// </summary>
 		public string IpAddress
 		{
 			get { return this.Get_ipAddress(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Iface#N_userIpAddress
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_userIpAddress = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_userIpAddress
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_userIpAddress()
 		{
 			return this.M_userIpAddress;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_userIpAddress
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_userIpAddress(string v)
 		{
 			this.M_userIpAddress = v;
@@ -312,49 +146,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_userIpAddress;
 		}
 		
-		/**
-		 * ユーザ設定IPv4アドレス
-		 * 
-		 * @property UserIpAddress
-		 * @type string
-		 * @public
-		 */
+		/// <summary>ユーザ設定IPv4アドレス
+		/// </summary>
 		public string UserIpAddress
 		{
 			get { return this.Get_userIpAddress(); }
 			set { this.Set_userIpAddress(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Iface#N_serverId
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_serverId = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_serverId
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_serverId()
 		{
 			return this.M_serverId;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_serverId
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_serverId(string v)
 		{
 			if (!this.IsNew) {
@@ -365,26 +171,18 @@ namespace Saklient.Cloud.Resources
 			return this.M_serverId;
 		}
 		
-		/**
-		 * このインタフェースが取り付けられているサーバのID
-		 * 
-		 * @property ServerId
-		 * @type string
-		 * @public
-		 */
+		/// <summary>このインタフェースが取り付けられているサーバのID
+		/// </summary>
 		public string ServerId
 		{
 			get { return this.Get_serverId(); }
 			set { this.Set_serverId(value); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -434,13 +232,6 @@ namespace Saklient.Cloud.Resources
 			this.N_serverId = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

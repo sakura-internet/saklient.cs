@@ -3,19 +3,16 @@ using HttpException = Saklient.Errors.HttpException;
 namespace Saklient.Errors
 {
 
-	/**
-	 * 要求されたHTTPメソッドは対応していません。
-	 */
+	/// <summary>要求されたHTTPメソッドは対応していません。
+	/// </summary>
 	public class HttpMethodNotAllowedException : HttpException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpMethodNotAllowedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求されたHTTPメソッドは対応していません。" : message)
 		{
 			/*!base!*/;

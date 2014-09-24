@@ -3,19 +3,16 @@ using HttpPaymentRequiredException = Saklient.Errors.HttpPaymentRequiredExceptio
 namespace Saklient.Cloud.Errors
 {
 
-	/**
-	 * 要求を受け付けできません。電話認証を先に実行してください。
-	 */
+	/// <summary>要求を受け付けできません。電話認証を先に実行してください。
+	/// </summary>
 	public class PaymentTelCertificationException : HttpPaymentRequiredException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public PaymentTelCertificationException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。電話認証を先に実行してください。" : message)
 		{
 			/*!base!*/;

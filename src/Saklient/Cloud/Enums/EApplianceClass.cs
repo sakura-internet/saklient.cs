@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * アプライアンスのクラスを表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EApplianceClass
-	 * @class EApplianceClass
-	 */
+	/// <summary>アプライアンスのクラスを表す列挙子。
+	/// </summary>
 	public class EApplianceClass
 	{
 		
@@ -18,22 +14,12 @@ namespace Saklient.Cloud.Enums
 			{ "vpcrouter", 20 }
 		};
 		
-		/**
-		 * @property LOADBALANCER
-		 * @default "loadbalancer"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>LOADBALANCER
+		/// </summary>
 		public static string LOADBALANCER = "loadbalancer";
 		
-		/**
-		 * @property VPCROUTER
-		 * @default "vpcrouter"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>VPCROUTER
+		/// </summary>
 		public static string VPCROUTER = "vpcrouter";
 		
 		public static long? Compare(string lhs, string rhs)

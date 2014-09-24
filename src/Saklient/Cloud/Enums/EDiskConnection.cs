@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * ディスクの接続方式を表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EDiskConnection
-	 * @class EDiskConnection
-	 */
+	/// <summary>ディスクの接続方式を表す列挙子。
+	/// </summary>
 	public class EDiskConnection
 	{
 		
@@ -18,22 +14,12 @@ namespace Saklient.Cloud.Enums
 			{ "virtio", 300 }
 		};
 		
-		/**
-		 * @property IDE
-		 * @default "ide"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>IDE
+		/// </summary>
 		public static string IDE = "ide";
 		
-		/**
-		 * @property VIRTIO
-		 * @default "virtio"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>VIRTIO
+		/// </summary>
 		public static string VIRTIO = "virtio";
 		
 		public static long? Compare(string lhs, string rhs)

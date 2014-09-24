@@ -9,306 +9,153 @@ using EApplianceClass = Saklient.Cloud.Enums.EApplianceClass;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * アプライアンスの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Appliance
-	 * @class Appliance
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>アプライアンスの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Appliance : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * クラス {@link EApplianceClass}
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_clazz
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>クラス <see cref="Saklient.Cloud.Enums.EApplianceClass" />
+		/// </summary>
 		internal string M_clazz;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * タグ
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_tags
-		 * @type System.Collections.Generic.List<string>
-		 * @internal
-		 */
+		/// <summary>タグ
+		/// </summary>
 		internal System.Collections.Generic.List<string> M_tags;
 		
-		/**
-		 * アイコン
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_icon
-		 * @type Icon
-		 * @internal
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		internal Icon M_icon;
 		
-		/**
-		 * プラン
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_ifaces
-		 * @type System.Collections.Generic.List<Iface>
-		 * @internal
-		 */
+		/// <summary>プラン
+		/// </summary>
 		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @member saklient.cloud.resources.Appliance#M_serviceClass
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		internal string M_serviceClass;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/appliance";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Appliance";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Appliances";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Appliance";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Save()
 		{
 			return ((Appliance)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Reload()
 		{
 			return ((Appliance)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Appliance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * アプライアンスを起動します。
-		 * 
-		 * @method Boot
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>アプライアンスを起動します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Boot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
 		
-		/**
-		 * アプライアンスをシャットダウンします。
-		 * 
-		 * @method Shutdown
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>アプライアンスをシャットダウンします。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Shutdown()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
 		
-		/**
-		 * アプライアンスを強制停止します。
-		 * 
-		 * @method Stop
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>アプライアンスを強制停止します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Stop()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
 			return this;
 		}
 		
-		/**
-		 * アプライアンスを強制再起動します。
-		 * 
-		 * @method Reboot
-		 * @chainable
-		 * @public
-		 * @return {Appliance} this
-		 */
+		/// <summary>アプライアンスを強制再起動します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Appliance Reboot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_clazz
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_clazz = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_clazz
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_clazz()
 		{
 			return this.M_clazz;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_clazz
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_clazz(string v)
 		{
 			if (!this.IsNew) {
@@ -319,49 +166,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_clazz;
 		}
 		
-		/**
-		 * クラス {@link EApplianceClass}
-		 * 
-		 * @property Clazz
-		 * @type string
-		 * @public
-		 */
+		/// <summary>クラス <see cref="Saklient.Cloud.Enums.EApplianceClass" />
+		/// </summary>
 		public string Clazz
 		{
 			get { return this.Get_clazz(); }
 			set { this.Set_clazz(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -369,49 +188,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -419,49 +210,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_tags
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_tags = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_tags
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_tags
-		 * @private
-		 * @ignore
-		 * @param {System.Collections.Generic.List<string>} v
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			this.M_tags = v;
@@ -469,49 +232,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_tags;
 		}
 		
-		/**
-		 * タグ
-		 * 
-		 * @property Tags
-		 * @type System.Collections.Generic.List<string>
-		 * @public
-		 */
+		/// <summary>タグ
+		/// </summary>
 		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_icon
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_icon = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_icon
-		 * @private
-		 * @ignore
-		 * @return {Icon}
-		 */
 		private Icon Get_icon()
 		{
 			return this.M_icon;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_icon
-		 * @private
-		 * @ignore
-		 * @param {Icon} v
-		 * @return {Icon}
-		 */
 		private Icon Set_icon(Icon v)
 		{
 			this.M_icon = v;
@@ -519,94 +254,46 @@ namespace Saklient.Cloud.Resources
 			return this.M_icon;
 		}
 		
-		/**
-		 * アイコン
-		 * 
-		 * @property Icon
-		 * @type Icon
-		 * @public
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		public Icon Icon
 		{
 			get { return this.Get_icon(); }
 			set { this.Set_icon(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_ifaces
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_ifaces = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_ifaces
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<Iface>}
-		 */
 		private System.Collections.Generic.List<Iface> Get_ifaces()
 		{
 			return this.M_ifaces;
 		}
 		
-		/**
-		 * プラン
-		 * 
-		 * @property Ifaces
-		 * @type System.Collections.Generic.List<Iface>
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>プラン
+		/// </summary>
 		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Appliance#N_serviceClass
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_serviceClass = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_serviceClass
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_serviceClass()
 		{
 			return this.M_serviceClass;
 		}
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @property ServiceClass
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		public string ServiceClass
 		{
 			get { return this.Get_serviceClass(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -702,13 +389,6 @@ namespace Saklient.Cloud.Resources
 			this.N_serviceClass = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

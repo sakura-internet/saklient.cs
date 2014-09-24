@@ -5,333 +5,147 @@ using Resource = Saklient.Cloud.Resources.Resource;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * サーバプラン情報の1レコードに対応するクラス。
-	 * 
-	 * @module saklient.cloud.resources.ServerPlan
-	 * @class ServerPlan
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>サーバプラン情報の1レコードに対応するクラス。
+	/// </summary>
 	public class ServerPlan : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.ServerPlan#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.ServerPlan#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 仮想コア数
-		 * 
-		 * @member saklient.cloud.resources.ServerPlan#M_cpu
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>仮想コア数
+		/// </summary>
 		internal long? M_cpu;
 		
-		/**
-		 * メモリ容量[MiB]
-		 * 
-		 * @member saklient.cloud.resources.ServerPlan#M_memoryMib
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>メモリ容量[MiB]
+		/// </summary>
 		internal long? M_memoryMib;
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @member saklient.cloud.resources.ServerPlan#M_serviceClass
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		internal string M_serviceClass;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/product/server";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "ServerPlan";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "ServerPlans";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "ServerPlan";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public ServerPlan(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @method Get_memoryGib
-		 * @internal
-		 * @ignore
-		 * @return {long?}
-		 */
 		internal long? Get_memoryGib()
 		{
 			long? memoryMib = this.Get_memoryMib();
 			return memoryMib == null ? null : memoryMib >> 10;
 		}
 		
-		/**
-		 * @property MemoryGib
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
 		public long? MemoryGib
 		{
 			get { return this.Get_memoryGib(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerPlan#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerPlan#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerPlan#N_cpu
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_cpu = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_cpu
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_cpu()
 		{
 			return this.M_cpu;
 		}
 		
-		/**
-		 * 仮想コア数
-		 * 
-		 * @property Cpu
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>仮想コア数
+		/// </summary>
 		public long? Cpu
 		{
 			get { return this.Get_cpu(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerPlan#N_memoryMib
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_memoryMib = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_memoryMib
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_memoryMib()
 		{
 			return this.M_memoryMib;
 		}
 		
-		/**
-		 * メモリ容量[MiB]
-		 * 
-		 * @property MemoryMib
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>メモリ容量[MiB]
+		/// </summary>
 		public long? MemoryMib
 		{
 			get { return this.Get_memoryMib(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.ServerPlan#N_serviceClass
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_serviceClass = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_serviceClass
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_serviceClass()
 		{
 			return this.M_serviceClass;
 		}
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @property ServiceClass
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		public string ServiceClass
 		{
 			get { return this.Get_serviceClass(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -381,13 +195,6 @@ namespace Saklient.Cloud.Resources
 			this.N_serviceClass = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };

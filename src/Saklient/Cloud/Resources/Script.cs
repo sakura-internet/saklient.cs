@@ -9,293 +9,131 @@ using EScriptClass = Saklient.Cloud.Enums.EScriptClass;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * スクリプトの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Script
-	 * @class Script
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>スクリプトの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Script : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Script#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @member saklient.cloud.resources.Script#M_scope
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		internal string M_scope;
 		
-		/**
-		 * クラス {@link EScriptClass}
-		 * 
-		 * @member saklient.cloud.resources.Script#M_clazz
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>クラス <see cref="Saklient.Cloud.Enums.EScriptClass" />
+		/// </summary>
 		internal string M_clazz;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Script#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Script#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * タグ
-		 * 
-		 * @member saklient.cloud.resources.Script#M_tags
-		 * @type System.Collections.Generic.List<string>
-		 * @internal
-		 */
+		/// <summary>タグ
+		/// </summary>
 		internal System.Collections.Generic.List<string> M_tags;
 		
-		/**
-		 * アイコン
-		 * 
-		 * @member saklient.cloud.resources.Script#M_icon
-		 * @type Icon
-		 * @internal
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		internal Icon M_icon;
 		
-		/**
-		 * 内容
-		 * 
-		 * @member saklient.cloud.resources.Script#M_content
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>内容
+		/// </summary>
 		internal string M_content;
 		
-		/**
-		 * 注釈
-		 * 
-		 * @member saklient.cloud.resources.Script#M_annotation
-		 * @type object
-		 * @internal
-		 */
+		/// <summary>注釈
+		/// </summary>
 		internal object M_annotation;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/note";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Note";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Notes";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Script";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Script} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Script Save()
 		{
 			return ((Script)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Script} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Script Reload()
 		{
 			return ((Script)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Script(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_scope
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_scope = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_scope
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_scope()
 		{
 			return this.M_scope;
 		}
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @property Scope
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		public string Scope
 		{
 			get { return this.Get_scope(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_clazz
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_clazz = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_clazz
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_clazz()
 		{
 			return this.M_clazz;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_clazz
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_clazz(string v)
 		{
 			this.M_clazz = v;
@@ -303,83 +141,35 @@ namespace Saklient.Cloud.Resources
 			return this.M_clazz;
 		}
 		
-		/**
-		 * クラス {@link EScriptClass}
-		 * 
-		 * @property Clazz
-		 * @type string
-		 * @public
-		 */
+		/// <summary>クラス <see cref="Saklient.Cloud.Enums.EScriptClass" />
+		/// </summary>
 		public string Clazz
 		{
 			get { return this.Get_clazz(); }
 			set { this.Set_clazz(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -387,49 +177,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_tags
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_tags = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_tags
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_tags
-		 * @private
-		 * @ignore
-		 * @param {System.Collections.Generic.List<string>} v
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			this.M_tags = v;
@@ -437,49 +199,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_tags;
 		}
 		
-		/**
-		 * タグ
-		 * 
-		 * @property Tags
-		 * @type System.Collections.Generic.List<string>
-		 * @public
-		 */
+		/// <summary>タグ
+		/// </summary>
 		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_icon
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_icon = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_icon
-		 * @private
-		 * @ignore
-		 * @return {Icon}
-		 */
 		private Icon Get_icon()
 		{
 			return this.M_icon;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_icon
-		 * @private
-		 * @ignore
-		 * @param {Icon} v
-		 * @return {Icon}
-		 */
 		private Icon Set_icon(Icon v)
 		{
 			this.M_icon = v;
@@ -487,49 +221,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_icon;
 		}
 		
-		/**
-		 * アイコン
-		 * 
-		 * @property Icon
-		 * @type Icon
-		 * @public
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		public Icon Icon
 		{
 			get { return this.Get_icon(); }
 			set { this.Set_icon(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_content
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_content = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_content
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_content()
 		{
 			return this.M_content;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_content
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_content(string v)
 		{
 			this.M_content = v;
@@ -537,49 +243,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_content;
 		}
 		
-		/**
-		 * 内容
-		 * 
-		 * @property Content
-		 * @type string
-		 * @public
-		 */
+		/// <summary>内容
+		/// </summary>
 		public string Content
 		{
 			get { return this.Get_content(); }
 			set { this.Set_content(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Script#N_annotation
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_annotation = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_annotation
-		 * @private
-		 * @ignore
-		 * @return {object}
-		 */
 		private object Get_annotation()
 		{
 			return this.M_annotation;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_annotation
-		 * @private
-		 * @ignore
-		 * @param {object} v
-		 * @return {object}
-		 */
 		private object Set_annotation(object v)
 		{
 			this.M_annotation = v;
@@ -587,26 +265,18 @@ namespace Saklient.Cloud.Resources
 			return this.M_annotation;
 		}
 		
-		/**
-		 * 注釈
-		 * 
-		 * @property Annotation
-		 * @type object
-		 * @public
-		 */
+		/// <summary>注釈
+		/// </summary>
 		public object Annotation
 		{
 			get { return this.Get_annotation(); }
 			set { this.Set_annotation(value); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -699,13 +369,6 @@ namespace Saklient.Cloud.Resources
 			this.N_annotation = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

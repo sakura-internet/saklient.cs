@@ -3,12 +3,8 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Enums
 {
 
-	/**
-	 * ストレージのクラスを表す列挙子。
-	 * 
-	 * @module saklient.cloud.enums.EStorageClass
-	 * @class EStorageClass
-	 */
+	/// <summary>ストレージのクラスを表す列挙子。
+	/// </summary>
 	public class EStorageClass
 	{
 		
@@ -17,13 +13,8 @@ namespace Saklient.Cloud.Enums
 			{ "iscsi1204", 110 }
 		};
 		
-		/**
-		 * @property ISCSI1204
-		 * @default "iscsi1204"
-		 * @type string
-		 * @static
-		 * @public
-		 */
+		/// <summary>ISCSI1204
+		/// </summary>
 		public static string ISCSI1204 = "iscsi1204";
 		
 		public static long? Compare(string lhs, string rhs)

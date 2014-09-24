@@ -16,329 +16,190 @@ using Model_Iface = Saklient.Cloud.Models.Model_Iface;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * サーバの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Server
-	 * @class Server
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>サーバの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Server : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Server#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Server#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Server#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * タグ
-		 * 
-		 * @member saklient.cloud.resources.Server#M_tags
-		 * @type System.Collections.Generic.List<string>
-		 * @internal
-		 */
+		/// <summary>タグ
+		/// </summary>
 		internal System.Collections.Generic.List<string> M_tags;
 		
-		/**
-		 * アイコン
-		 * 
-		 * @member saklient.cloud.resources.Server#M_icon
-		 * @type Icon
-		 * @internal
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		internal Icon M_icon;
 		
-		/**
-		 * プラン
-		 * 
-		 * @member saklient.cloud.resources.Server#M_plan
-		 * @type ServerPlan
-		 * @internal
-		 */
+		/// <summary>プラン
+		/// </summary>
 		internal ServerPlan M_plan;
 		
-		/**
-		 * インタフェース
-		 * 
-		 * @member saklient.cloud.resources.Server#M_ifaces
-		 * @type System.Collections.Generic.List<Iface>
-		 * @internal
-		 */
+		/// <summary>インタフェース
+		/// </summary>
 		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
-		/**
-		 * インスタンス情報
-		 * 
-		 * @member saklient.cloud.resources.Server#M_instance
-		 * @type ServerInstance
-		 * @internal
-		 */
+		/// <summary>インスタンス情報
+		/// </summary>
 		internal ServerInstance M_instance;
 		
-		/**
-		 * 有効状態 {@link EAvailability}
-		 * 
-		 * @member saklient.cloud.resources.Server#M_availability
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
 		internal string M_availability;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/server";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Server";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Servers";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Server";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Save()
 		{
 			return ((Server)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Reload()
 		{
 			return ((Server)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Server(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * サーバが起動しているときtrueを返します。
-		 * 
-		 * @method IsUp
-		 * @public
-		 * @return {bool}
-		 */
+		/// <summary>サーバが起動しているときtrueを返します。
+		/// </summary>
 		public bool IsUp()
 		{
 			return this.Get_instance().IsUp();
 		}
 		
-		/**
-		 * サーバが停止しているときtrueを返します。
-		 * 
-		 * @method IsDown
-		 * @public
-		 * @return {bool}
-		 */
+		/// <summary>サーバが停止しているときtrueを返します。
+		/// </summary>
 		public bool IsDown()
 		{
 			return this.Get_instance().IsDown();
 		}
 		
-		/**
-		 * サーバを起動します。
-		 * 
-		 * @method Boot
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>サーバを起動します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Boot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this.Reload();
 		}
 		
-		/**
-		 * サーバをシャットダウンします。
-		 * 
-		 * @method Shutdown
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>サーバをシャットダウンします。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Shutdown()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this.Reload();
 		}
 		
-		/**
-		 * サーバを強制停止します。
-		 * 
-		 * @method Stop
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>サーバを強制停止します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Stop()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
 			return this.Reload();
 		}
 		
-		/**
-		 * サーバを強制再起動します。
-		 * 
-		 * @method Reboot
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>サーバを強制再起動します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server Reboot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this.Reload();
 		}
 		
-		/**
-		 * サーバが停止するまで待機します。
-		 * 
-		 * @method AfterDown
-		 * @public
-		 * @param {long} timeoutSec
-		 * @param {System.Action<Server, bool>} callback
-		 * @return {void} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
-		 */
+		/// <summary>サーバが停止するまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <param name="callback" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
 		public void AfterDown(long timeoutSec, System.Action<Server, bool> callback)
 		{
 			this.AfterStatus(EServerInstanceStatus.DOWN, timeoutSec, callback);
 		}
 		
-		/**
-		 * サーバが指定のステータスに遷移するまで待機します。
-		 * 
-		 * @ignore
-		 * @method AfterStatus
-		 * @private
-		 * @param {string} status
-		 * @param {long} timeoutSec
-		 * @param {System.Action<Server, bool>} callback
-		 * @return {void}
-		 */
+		/// <summary>サーバが指定のステータスに遷移するまで待機します。
+		/// 
+		/// 
+		/// <param name="status" />
+		/// <param name="timeoutSec" />
+		/// <param name="callback" />
+		/// </summary>
 		private void AfterStatus(string status, long timeoutSec, System.Action<Server, bool> callback)
 		{
 			bool ret = this.SleepUntil(status, timeoutSec);
 			callback(this, ret);
 		}
 		
-		/**
-		 * サーバが停止するまで待機します。
-		 * 
-		 * @method SleepUntilDown
-		 * @public
-		 * @param {long} timeoutSec=180
-		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
-		 */
+		/// <summary>サーバが停止するまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
 		public bool SleepUntilDown(long timeoutSec=180)
 		{
 			return this.SleepUntil(EServerInstanceStatus.DOWN, timeoutSec);
 		}
 		
-		/**
-		 * サーバが指定のステータスに遷移するまで待機します。
-		 * 
-		 * @ignore
-		 * @method SleepUntil
-		 * @private
-		 * @param {string} status
-		 * @param {long} timeoutSec=180
-		 * @return {bool}
-		 */
+		/// <summary>サーバが指定のステータスに遷移するまで待機します。
+		/// 
+		/// 
+		/// <param name="status" />
+		/// <param name="timeoutSec" />
+		/// </summary>
 		private bool SleepUntil(string status, long timeoutSec=180)
 		{
 			long step = 3;
@@ -359,17 +220,13 @@ namespace Saklient.Cloud.Resources
 			return false;
 		}
 		
-		/**
-		 * サーバプランを変更します。
-		 * 
-		 * 成功時はリソースIDが変わることにご注意ください。
-		 * 
-		 * @method ChangePlan
-		 * @chainable
-		 * @public
-		 * @param {ServerPlan} planTo
-		 * @return {Server} this
-		 */
+		/// <summary>サーバプランを変更します。
+		/// 
+		/// 成功時はリソースIDが変わることにご注意ください。
+		/// 
+		/// <param name="planTo" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Server ChangePlan(ServerPlan planTo)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/plan/" + Util.UrlEncode(planTo._Id());
@@ -378,26 +235,18 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * サーバに接続されているディスクのリストを取得します。
-		 * 
-		 * @method FindDisks
-		 * @public
-		 * @return {System.Collections.Generic.List<Disk>}
-		 */
+		/// <summary>サーバに接続されているディスクのリストを取得します。
+		/// </summary>
 		public System.Collections.Generic.List<Disk> FindDisks()
 		{
 			Model_Disk model = new Model_Disk(this._Client);
 			return model.WithServerId(this._Id()).Find();
 		}
 		
-		/**
-		 * サーバにインタフェースを1つ増設し、それを取得します。
-		 * 
-		 * @method AddIface
-		 * @public
-		 * @return {Iface} 増設されたインタフェース
-		 */
+		/// <summary>サーバにインタフェースを1つ増設し、それを取得します。
+		/// 
+		/// <returns>増設されたインタフェース</returns>
+		/// </summary>
 		public Iface AddIface()
 		{
 			Model_Iface model = new Model_Iface(this._Client);
@@ -406,15 +255,11 @@ namespace Saklient.Cloud.Resources
 			return res.Save();
 		}
 		
-		/**
-		 * サーバにISOイメージを挿入します。
-		 * 
-		 * @method InsertIsoImage
-		 * @chainable
-		 * @public
-		 * @param {IsoImage} iso
-		 * @return {Server} this
-		 */
+		/// <summary>サーバにISOイメージを挿入します。
+		/// 
+		/// <param name="iso" />
+		/// <returns>this</returns>
+		/// </summary>
 		public Server InsertIsoImage(IsoImage iso)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/cdrom";
@@ -424,14 +269,10 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * サーバに挿入されているISOイメージを排出します。
-		 * 
-		 * @method EjectIsoImage
-		 * @chainable
-		 * @public
-		 * @return {Server} this
-		 */
+		/// <summary>サーバに挿入されているISOイメージを排出します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Server EjectIsoImage()
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/cdrom";
@@ -440,70 +281,27 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -511,49 +309,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -561,49 +331,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_tags
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_tags = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_tags
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_tags
-		 * @private
-		 * @ignore
-		 * @param {System.Collections.Generic.List<string>} v
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			this.M_tags = v;
@@ -611,49 +353,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_tags;
 		}
 		
-		/**
-		 * タグ
-		 * 
-		 * @property Tags
-		 * @type System.Collections.Generic.List<string>
-		 * @public
-		 */
+		/// <summary>タグ
+		/// </summary>
 		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_icon
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_icon = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_icon
-		 * @private
-		 * @ignore
-		 * @return {Icon}
-		 */
 		private Icon Get_icon()
 		{
 			return this.M_icon;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_icon
-		 * @private
-		 * @ignore
-		 * @param {Icon} v
-		 * @return {Icon}
-		 */
 		private Icon Set_icon(Icon v)
 		{
 			this.M_icon = v;
@@ -661,49 +375,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_icon;
 		}
 		
-		/**
-		 * アイコン
-		 * 
-		 * @property Icon
-		 * @type Icon
-		 * @public
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		public Icon Icon
 		{
 			get { return this.Get_icon(); }
 			set { this.Set_icon(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_plan
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_plan = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_plan
-		 * @private
-		 * @ignore
-		 * @return {ServerPlan}
-		 */
 		private ServerPlan Get_plan()
 		{
 			return this.M_plan;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_plan
-		 * @private
-		 * @ignore
-		 * @param {ServerPlan} v
-		 * @return {ServerPlan}
-		 */
 		private ServerPlan Set_plan(ServerPlan v)
 		{
 			if (!this.IsNew) {
@@ -714,128 +400,60 @@ namespace Saklient.Cloud.Resources
 			return this.M_plan;
 		}
 		
-		/**
-		 * プラン
-		 * 
-		 * @property Plan
-		 * @type ServerPlan
-		 * @public
-		 */
+		/// <summary>プラン
+		/// </summary>
 		public ServerPlan Plan
 		{
 			get { return this.Get_plan(); }
 			set { this.Set_plan(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_ifaces
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_ifaces = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_ifaces
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<Iface>}
-		 */
 		private System.Collections.Generic.List<Iface> Get_ifaces()
 		{
 			return this.M_ifaces;
 		}
 		
-		/**
-		 * インタフェース
-		 * 
-		 * @property Ifaces
-		 * @type System.Collections.Generic.List<Iface>
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>インタフェース
+		/// </summary>
 		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_instance
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_instance = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_instance
-		 * @private
-		 * @ignore
-		 * @return {ServerInstance}
-		 */
 		private ServerInstance Get_instance()
 		{
 			return this.M_instance;
 		}
 		
-		/**
-		 * インスタンス情報
-		 * 
-		 * @property Instance
-		 * @type ServerInstance
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>インスタンス情報
+		/// </summary>
 		public ServerInstance Instance
 		{
 			get { return this.Get_instance(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Server#N_availability
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_availability = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_availability
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_availability()
 		{
 			return this.M_availability;
 		}
 		
-		/**
-		 * 有効状態 {@link EAvailability}
-		 * 
-		 * @property Availability
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
 		public string Availability
 		{
 			get { return this.Get_availability(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -939,13 +557,6 @@ namespace Saklient.Cloud.Resources
 			this.N_availability = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };

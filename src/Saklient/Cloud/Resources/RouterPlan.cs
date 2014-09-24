@@ -5,267 +5,118 @@ using Resource = Saklient.Cloud.Resources.Resource;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * ルータ帯域プラン情報の1レコードに対応するクラス。
-	 * 
-	 * @module saklient.cloud.resources.RouterPlan
-	 * @class RouterPlan
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>ルータ帯域プラン情報の1レコードに対応するクラス。
+	/// </summary>
 	public class RouterPlan : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.RouterPlan#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.RouterPlan#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 帯域幅
-		 * 
-		 * @member saklient.cloud.resources.RouterPlan#M_bandWidthMbps
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>帯域幅
+		/// </summary>
 		internal long? M_bandWidthMbps;
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @member saklient.cloud.resources.RouterPlan#M_serviceClass
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		internal string M_serviceClass;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/product/internet";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "InternetPlan";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "InternetPlans";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "RouterPlan";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public RouterPlan(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.RouterPlan#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.RouterPlan#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.RouterPlan#N_bandWidthMbps
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_bandWidthMbps = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_bandWidthMbps
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_bandWidthMbps()
 		{
 			return this.M_bandWidthMbps;
 		}
 		
-		/**
-		 * 帯域幅
-		 * 
-		 * @property BandWidthMbps
-		 * @type long?
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>帯域幅
+		/// </summary>
 		public long? BandWidthMbps
 		{
 			get { return this.Get_bandWidthMbps(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.RouterPlan#N_serviceClass
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_serviceClass = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_serviceClass
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_serviceClass()
 		{
 			return this.M_serviceClass;
 		}
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @property ServiceClass
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		public string ServiceClass
 		{
 			get { return this.Get_serviceClass(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -307,13 +158,6 @@ namespace Saklient.Cloud.Resources
 			this.N_serviceClass = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			object ret = new System.Collections.Generic.Dictionary<string, object> {  };

@@ -3,19 +3,16 @@ using HttpServiceUnavailableException = Saklient.Errors.HttpServiceUnavailableEx
 namespace Saklient.Cloud.Errors
 {
 
-	/**
-	 * サービスが利用できません。PTRレコードを設定できません。
-	 */
+	/// <summary>サービスが利用できません。PTRレコードを設定できません。
+	/// </summary>
 	public class DnsPtrUpdateFailureException : HttpServiceUnavailableException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public DnsPtrUpdateFailureException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "サービスが利用できません。PTRレコードを設定できません。" : message)
 		{
 			/*!base!*/;

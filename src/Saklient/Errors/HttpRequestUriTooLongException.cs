@@ -3,19 +3,16 @@ using HttpException = Saklient.Errors.HttpException;
 namespace Saklient.Errors
 {
 
-	/**
-	 * HTTPエラー。Request Uri Too Long.
-	 */
+	/// <summary>HTTPエラー。Request Uri Too Long.
+	/// </summary>
 	public class HttpRequestUriTooLongException : HttpException
 	{
 		
-		/**
-		 * @constructor
-		 * @public
-		 * @param {long} status
-		 * @param {string} code=null
-		 * @param {string} message=""
-		 */
+		/// <summary>
+		/// <param name="status" />
+		/// <param name="code" />
+		/// <param name="message" />
+		/// </summary>
 		public HttpRequestUriTooLongException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Request Uri Too Long." : message)
 		{
 			/*!base!*/;

@@ -12,359 +12,171 @@ using SaklientException = Saklient.Errors.SaklientException;
 namespace Saklient.Cloud.Resources
 {
 
-	/**
-	 * アーカイブの実体1つに対応し、属性の取得や操作を行うためのクラス。
-	 * 
-	 * @module saklient.cloud.resources.Archive
-	 * @class Archive
-	 * @constructor
-	 * @extends Resource
-	 */
+	/// <summary>アーカイブの実体1つに対応し、属性の取得や操作を行うためのクラス。
+	/// </summary>
 	public class Archive : Resource
 	{
 		
-		/**
-		 * ID
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_id
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>ID
+		/// </summary>
 		internal string M_id;
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_scope
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		internal string M_scope;
 		
-		/**
-		 * 名前
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_name
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>名前
+		/// </summary>
 		internal string M_name;
 		
-		/**
-		 * 説明
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_description
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>説明
+		/// </summary>
 		internal string M_description;
 		
-		/**
-		 * タグ
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_tags
-		 * @type System.Collections.Generic.List<string>
-		 * @internal
-		 */
+		/// <summary>タグ
+		/// </summary>
 		internal System.Collections.Generic.List<string> M_tags;
 		
-		/**
-		 * アイコン
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_icon
-		 * @type Icon
-		 * @internal
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		internal Icon M_icon;
 		
-		/**
-		 * 表示順序
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_displayOrder
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>表示順序
+		/// </summary>
 		internal long? M_displayOrder;
 		
-		/**
-		 * サイズ[MiB]
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_sizeMib
-		 * @type long?
-		 * @internal
-		 */
+		/// <summary>サイズ[MiB]
+		/// </summary>
 		internal long? M_sizeMib;
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_serviceClass
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		internal string M_serviceClass;
 		
-		/**
-		 * プラン
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_plan
-		 * @type DiskPlan
-		 * @internal
-		 */
+		/// <summary>プラン
+		/// </summary>
 		internal DiskPlan M_plan;
 		
-		/**
-		 * 有効状態 {@link EAvailability}
-		 * 
-		 * @member saklient.cloud.resources.Archive#M_availability
-		 * @type string
-		 * @internal
-		 */
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
 		internal string M_availability;
 		
-		/**
-		 * @private
-		 * @method _ApiPath
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _ApiPath()
 		{
 			return "/archive";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKey
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKey()
 		{
 			return "Archive";
 		}
 		
-		/**
-		 * @private
-		 * @method _RootKeyM
-		 * @internal
-		 * @ignore
-		 * @return {string}
-		 */
 		internal override string _RootKeyM()
 		{
 			return "Archives";
 		}
 		
-		/**
-		 * @private
-		 * @method _ClassName
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _ClassName()
 		{
 			return "Archive";
 		}
 		
-		/**
-		 * @private
-		 * @method _Id
-		 * @ignore
-		 * @return {string}
-		 */
 		public override string _Id()
 		{
 			return this.Get_id();
 		}
 		
-		/**
-		 * このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		 * 
-		 * @method Save
-		 * @chainable
-		 * @public
-		 * @return {Archive} this
-		 */
+		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Archive Save()
 		{
 			return ((Archive)(this._Save()));
 		}
 		
-		/**
-		 * 最新のリソース情報を再取得します。
-		 * 
-		 * @method Reload
-		 * @chainable
-		 * @public
-		 * @return {Archive} this
-		 */
+		/// <summary>最新のリソース情報を再取得します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Archive Reload()
 		{
 			return ((Archive)(this._Reload()));
 		}
 		
-		/**
-		 * @ignore
-		 * @constructor
-		 * @param {Client} client
-		 * @param {object} obj
-		 * @param {bool} wrapped=false
-		 */
 		public Archive(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
-		/**
-		 * @method Get_isAvailable
-		 * @internal
-		 * @ignore
-		 * @return {bool}
-		 */
 		internal bool Get_isAvailable()
 		{
 			return this.Get_availability() == EAvailability.AVAILABLE;
 		}
 		
-		/**
-		 * ディスクが利用可能なときtrueを返します。
-		 * 
-		 * @property IsAvailable
-		 * @type bool
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ディスクが利用可能なときtrueを返します。
+		/// </summary>
 		public bool IsAvailable
 		{
 			get { return this.Get_isAvailable(); }
 		}
 		
-		/**
-		 * @method Get_sizeGib
-		 * @internal
-		 * @ignore
-		 * @return {long?}
-		 */
 		internal long? Get_sizeGib()
 		{
 			long? sizeMib = this.Get_sizeMib();
 			return sizeMib == null ? null : sizeMib >> 10;
 		}
 		
-		/**
-		 * @method Set_sizeGib
-		 * @internal
-		 * @ignore
-		 * @param {long?} sizeGib
-		 * @return {long?}
-		 */
 		internal long? Set_sizeGib(long? sizeGib)
 		{
 			this.Set_sizeMib(sizeGib == null ? null : sizeGib * 1024);
 			return sizeGib;
 		}
 		
-		/**
-		 * サイズ[GiB]
-		 * 
-		 * @property SizeGib
-		 * @type long?
-		 * @public
-		 */
+		/// <summary>サイズ[GiB]
+		/// </summary>
 		public long? SizeGib
 		{
 			get { return this.Get_sizeGib(); }
 			set { this.Set_sizeGib(value); }
 		}
 		
-		/**
-		 * @private
-		 * @member saklient.cloud.resources.Archive#_Source
-		 * @type Resource
-		 * @ignore
-		 */
 		private Resource _Source;
 		
-		/**
-		 * @method Get_source
-		 * @ignore
-		 * @return {Resource}
-		 */
 		public Resource Get_source()
 		{
 			return this._Source;
 		}
 		
-		/**
-		 * @method Set_source
-		 * @ignore
-		 * @param {Resource} source
-		 * @return {Resource}
-		 */
 		public Resource Set_source(Resource source)
 		{
 			this._Source = source;
 			return source;
 		}
 		
-		/**
-		 * アーカイブのコピー元
-		 * 
-		 * @property Source
-		 * @type Resource
-		 * @public
-		 */
+		/// <summary>アーカイブのコピー元
+		/// </summary>
 		public Resource Source
 		{
 			get { return this.Get_source(); }
 			set { this.Set_source(value); }
 		}
 		
-		/**
-		 * @private
-		 * @member saklient.cloud.resources.Archive#_FtpInfo
-		 * @type FtpInfo
-		 * @internal
-		 * @ignore
-		 */
 		internal FtpInfo _FtpInfo;
 		
-		/**
-		 * @method Get_ftpInfo
-		 * @ignore
-		 * @return {FtpInfo}
-		 */
 		public FtpInfo Get_ftpInfo()
 		{
 			return this._FtpInfo;
 		}
 		
-		/**
-		 * FTP情報
-		 * 
-		 * @property FtpInfo
-		 * @type FtpInfo
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>FTP情報
+		/// </summary>
 		public FtpInfo FtpInfo
 		{
 			get { return this.Get_ftpInfo(); }
 		}
 		
-		/**
-		 * @private
-		 * @method _OnAfterApiDeserialize
-		 * @internal
-		 * @ignore
-		 * @param {object} r
-		 * @param {object} root
-		 * @return {void}
-		 */
 		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (root != null) {
@@ -398,15 +210,6 @@ namespace Saklient.Cloud.Resources
 			}
 		}
 		
-		/**
-		 * @private
-		 * @method _OnAfterApiSerialize
-		 * @internal
-		 * @ignore
-		 * @param {object} r
-		 * @param {bool} withClean
-		 * @return {void}
-		 */
 		internal override void _OnAfterApiSerialize(object r, bool withClean)
 		{
 			if (r == null) {
@@ -430,17 +233,13 @@ namespace Saklient.Cloud.Resources
 			}
 		}
 		
-		/**
-		 * FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
-		 * 
-		 * アカウント情報は、ftpInfo プロパティから取得することができます。
-		 * 
-		 * @method OpenFtp
-		 * @chainable
-		 * @public
-		 * @param {bool} reset=false 既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。
-		 * @return {Archive} this
-		 */
+		/// <summary>FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
+		/// 
+		/// アカウント情報は、ftpInfo プロパティから取得することができます。
+		/// 
+		/// <param name="reset">既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。</param>
+		/// <returns>this</returns>
+		/// </summary>
 		public Archive OpenFtp(bool reset=false)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
@@ -451,14 +250,10 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * FTPSを終了し、アーカイブを利用可能な状態にします。
-		 * 
-		 * @method CloseFtp
-		 * @chainable
-		 * @public
-		 * @return {Archive} this
-		 */
+		/// <summary>FTPSを終了し、アーカイブを利用可能な状態にします。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
 		public Archive CloseFtp()
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
@@ -467,29 +262,23 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/**
-		 * コピー中のアーカイブが利用可能になるまで待機します。
-		 * 
-		 * @ignore
-		 * @method AfterCopy
-		 * @param {long} timeoutSec
-		 * @param {System.Action<Archive, bool>} callback
-		 * @return {void}
-		 */
+		/// <summary>コピー中のアーカイブが利用可能になるまで待機します。
+		/// 
+		/// 
+		/// <param name="timeoutSec" />
+		/// <param name="callback" />
+		/// </summary>
 		public void AfterCopy(long timeoutSec, System.Action<Archive, bool> callback)
 		{
 			bool ret = this.SleepWhileCopying(timeoutSec);
 			callback(this, ret);
 		}
 		
-		/**
-		 * コピー中のアーカイブが利用可能になるまで待機します。
-		 * 
-		 * @method SleepWhileCopying
-		 * @public
-		 * @param {long} timeoutSec=3600
-		 * @return {bool} 成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。
-		 */
+		/// <summary>コピー中のアーカイブが利用可能になるまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
 		public bool SleepWhileCopying(long timeoutSec=3600)
 		{
 			long step = 3;
@@ -510,104 +299,41 @@ namespace Saklient.Cloud.Resources
 			return false;
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_id
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_id = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_id
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_id()
 		{
 			return this.M_id;
 		}
 		
-		/**
-		 * ID
-		 * 
-		 * @property Id
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>ID
+		/// </summary>
 		public string Id
 		{
 			get { return this.Get_id(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_scope
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_scope = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_scope
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_scope()
 		{
 			return this.M_scope;
 		}
 		
-		/**
-		 * スコープ {@link EScope}
-		 * 
-		 * @property Scope
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>スコープ <see cref="Saklient.Cloud.Enums.EScope" />
+		/// </summary>
 		public string Scope
 		{
 			get { return this.Get_scope(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_name
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_name = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_name
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_name()
 		{
 			return this.M_name;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_name
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_name(string v)
 		{
 			this.M_name = v;
@@ -615,49 +341,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_name;
 		}
 		
-		/**
-		 * 名前
-		 * 
-		 * @property Name
-		 * @type string
-		 * @public
-		 */
+		/// <summary>名前
+		/// </summary>
 		public string Name
 		{
 			get { return this.Get_name(); }
 			set { this.Set_name(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_description
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_description = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_description
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_description()
 		{
 			return this.M_description;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_description
-		 * @private
-		 * @ignore
-		 * @param {string} v
-		 * @return {string}
-		 */
 		private string Set_description(string v)
 		{
 			this.M_description = v;
@@ -665,49 +363,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_description;
 		}
 		
-		/**
-		 * 説明
-		 * 
-		 * @property Description
-		 * @type string
-		 * @public
-		 */
+		/// <summary>説明
+		/// </summary>
 		public string Description
 		{
 			get { return this.Get_description(); }
 			set { this.Set_description(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_tags
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_tags = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_tags
-		 * @private
-		 * @ignore
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Get_tags()
 		{
 			return this.M_tags;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_tags
-		 * @private
-		 * @ignore
-		 * @param {System.Collections.Generic.List<string>} v
-		 * @return {System.Collections.Generic.List<string>}
-		 */
 		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
 		{
 			this.M_tags = v;
@@ -715,49 +385,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_tags;
 		}
 		
-		/**
-		 * タグ
-		 * 
-		 * @property Tags
-		 * @type System.Collections.Generic.List<string>
-		 * @public
-		 */
+		/// <summary>タグ
+		/// </summary>
 		public System.Collections.Generic.List<string> Tags
 		{
 			get { return this.Get_tags(); }
 			set { this.Set_tags(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_icon
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_icon = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_icon
-		 * @private
-		 * @ignore
-		 * @return {Icon}
-		 */
 		private Icon Get_icon()
 		{
 			return this.M_icon;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_icon
-		 * @private
-		 * @ignore
-		 * @param {Icon} v
-		 * @return {Icon}
-		 */
 		private Icon Set_icon(Icon v)
 		{
 			this.M_icon = v;
@@ -765,49 +407,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_icon;
 		}
 		
-		/**
-		 * アイコン
-		 * 
-		 * @property Icon
-		 * @type Icon
-		 * @public
-		 */
+		/// <summary>アイコン
+		/// </summary>
 		public Icon Icon
 		{
 			get { return this.Get_icon(); }
 			set { this.Set_icon(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_displayOrder
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_displayOrder = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_displayOrder
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_displayOrder()
 		{
 			return this.M_displayOrder;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_displayOrder
-		 * @private
-		 * @ignore
-		 * @param {long?} v
-		 * @return {long?}
-		 */
 		private long? Set_displayOrder(long? v)
 		{
 			this.M_displayOrder = v;
@@ -815,49 +429,21 @@ namespace Saklient.Cloud.Resources
 			return this.M_displayOrder;
 		}
 		
-		/**
-		 * 表示順序
-		 * 
-		 * @property DisplayOrder
-		 * @type long?
-		 * @public
-		 */
+		/// <summary>表示順序
+		/// </summary>
 		public long? DisplayOrder
 		{
 			get { return this.Get_displayOrder(); }
 			set { this.Set_displayOrder(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_sizeMib
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_sizeMib = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_sizeMib
-		 * @private
-		 * @ignore
-		 * @return {long?}
-		 */
 		private long? Get_sizeMib()
 		{
 			return this.M_sizeMib;
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Set_sizeMib
-		 * @private
-		 * @ignore
-		 * @param {long?} v
-		 * @return {long?}
-		 */
 		private long? Set_sizeMib(long? v)
 		{
 			if (!this.IsNew) {
@@ -868,128 +454,60 @@ namespace Saklient.Cloud.Resources
 			return this.M_sizeMib;
 		}
 		
-		/**
-		 * サイズ[MiB]
-		 * 
-		 * @property SizeMib
-		 * @type long?
-		 * @public
-		 */
+		/// <summary>サイズ[MiB]
+		/// </summary>
 		public long? SizeMib
 		{
 			get { return this.Get_sizeMib(); }
 			set { this.Set_sizeMib(value); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_serviceClass
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_serviceClass = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_serviceClass
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_serviceClass()
 		{
 			return this.M_serviceClass;
 		}
 		
-		/**
-		 * サービスクラス
-		 * 
-		 * @property ServiceClass
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>サービスクラス
+		/// </summary>
 		public string ServiceClass
 		{
 			get { return this.Get_serviceClass(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_plan
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_plan = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_plan
-		 * @private
-		 * @ignore
-		 * @return {DiskPlan}
-		 */
 		private DiskPlan Get_plan()
 		{
 			return this.M_plan;
 		}
 		
-		/**
-		 * プラン
-		 * 
-		 * @property Plan
-		 * @type DiskPlan
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>プラン
+		/// </summary>
 		public DiskPlan Plan
 		{
 			get { return this.Get_plan(); }
 		}
 		
-		/**
-		 * @member saklient.cloud.resources.Archive#N_availability
-		 * @default false
-		 * @type bool
-		 * @private
-		 */
 		private bool N_availability = false;
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method Get_availability
-		 * @private
-		 * @ignore
-		 * @return {string}
-		 */
 		private string Get_availability()
 		{
 			return this.M_availability;
 		}
 		
-		/**
-		 * 有効状態 {@link EAvailability}
-		 * 
-		 * @property Availability
-		 * @type string
-		 * @readOnly
-		 * @public
-		 */
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
 		public string Availability
 		{
 			get { return this.Get_availability(); }
 		}
 		
-		/**
-		 * (This method is generated in Translator_default#buildImpl)
-		 * 
-		 * @method ApiDeserializeImpl
-		 * @internal
-		 * @param {object} r
-		 */
+		/// <summary>(This method is generated in Translator_default#buildImpl)
+		/// 
+		/// <param name="r" />
+		/// </summary>
 		internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
@@ -1098,13 +616,6 @@ namespace Saklient.Cloud.Resources
 			this.N_availability = false;
 		}
 		
-		/**
-		 * @ignore
-		 * @method ApiSerializeImpl
-		 * @internal
-		 * @param {bool} withClean=false
-		 * @return {object}
-		 */
 		internal override object ApiSerializeImpl(bool withClean=false)
 		{
 			System.Collections.Generic.List<string> missing = new System.Collections.Generic.List<string> {  };
