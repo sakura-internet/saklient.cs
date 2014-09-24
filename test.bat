@@ -5,10 +5,10 @@ CALL config.bat
 
 IF EXIST packages GOTO RESTORE_NUGET
 nuget.exe install
-if %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
+IF %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
 :RESTORE_NUGET
 nuget.exe restore
-if %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
+IF %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
 
 FOR /F "usebackq" %%w IN (`DIR /s /b Tamir.SharpSSH.dll`) DO SET SHARPSSH=%%w
 FOR /F "usebackq" %%w IN (`DIR /s /b DiffieHellman.dll`) DO SET DIFFIEHELLMAN=%%w
@@ -26,7 +26,7 @@ csc.exe /nologo /optimize+ /unsafe- ^
   /r:%DIFFIEHELLMAN% ^
   /r:%MENTALIS_SECURITY% ^
   /r:%NUNIT_FRAMEWORK%
-if %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
+IF %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
 
 COPY /y %SHARPSSH% out\
 COPY /y %DIFFIEHELLMAN% out\
@@ -34,6 +34,6 @@ COPY /y %MENTALIS_SECURITY% out\
 COPY /y %NUNIT_FRAMEWORK% out\
 
 %NUNIT_CONSOLE% out\tests.dll %*
-if %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
+IF %ERRORLEVEL% NEQ 0 EXIT /b %ERRORLEVEL%
 
 nuget.exe pack
