@@ -3,3 +3,5 @@ out
 packages
 nuget.exe
 config.sh
+config.bat
+*.nupkg

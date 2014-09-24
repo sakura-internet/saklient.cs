@@ -179,10 +179,15 @@ namespace Saklient.Cloud.Tests
 				Console.WriteLine("trying to SSH to the server...");
 				for (int i=0; i<10; i++) {
 					Thread.Sleep(5);
-					SshExec ssh = new SshExec(ipAddress, "root", diskconf.Password);
-					ssh.Connect();
-					string result = ssh.RunCommand("hostname 2>/dev/null").TrimEnd();
-					ssh.Close();
+					string result = null;
+					try {
+						SshExec ssh = new SshExec(ipAddress, "root", diskconf.Password);
+						ssh.Connect();
+						result = ssh.RunCommand("hostname 2>/dev/null").TrimEnd();
+						ssh.Close();
+					}
+					catch (Exception ex) {
+					}
 					if (hostName != result) continue;
 					sshSuccess = true;
 					break;

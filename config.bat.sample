@@ -1,0 +1,3 @@
+SET SACLOUD_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+SET SACLOUD_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+SET SACLOUD_ZONE=is1b
