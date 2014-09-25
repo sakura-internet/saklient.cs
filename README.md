@@ -8,6 +8,7 @@ This library gives you an easy interface to control your resources on
 
 * [Requirements](#requirements)
 * [How to use this library in your project](#how-to-use-this-library-in-your-project)
+* [Examples](#examples)
 * [Copyright and license](#copyright-and-license)
 
 
@@ -39,7 +40,7 @@ EOT
 
 # Install packages
 wget http://nuget.org/nuget.exe
-mono nuget.exe install
+mono nuget.exe install -o packages
 
 # Edit your code
 vim YOUR-CODE.cs
@@ -60,8 +61,16 @@ class Example {
 
 ```bash
 # Add a compiler option reference to saklient.dll
-mcs ... -r:`find packages -name saklient.dll` YOUR-CODE.cs
+ln -s `find packages -name saklient.dll` ./
+mcs ... -r:saklient.dll YOUR-CODE.cs
+mono YOUR-CODE.exe
 ```
+
+
+## Examples
+
+Code examples are available [here](http://sakura-internet.github.io/saklient.doc/).
+
 
 ## Copyright and license
 
