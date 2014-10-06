@@ -259,6 +259,7 @@ namespace Saklient.Cloud.Resources
 		
 		private System.Collections.Generic.List<string> Get_tags()
 		{
+			this.N_tags = true;
 			return this.M_tags;
 		}
 		

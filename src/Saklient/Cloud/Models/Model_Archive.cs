@@ -2,6 +2,8 @@ using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Archive = Saklient.Cloud.Resources.Archive;
+using LoadBalancer = Saklient.Cloud.Resources.LoadBalancer;
+using VpcRouter = Saklient.Cloud.Resources.VpcRouter;
 using EScope = Saklient.Cloud.Enums.EScope;
 
 namespace Saklient.Cloud.Models

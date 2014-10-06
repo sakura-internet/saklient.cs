@@ -42,6 +42,16 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
+		/// <summary>注釈
+		/// </summary>
+		internal object M_annotation;
+		
+		/// <summary>設定の生データ
+		/// </summary>
+		internal object M_rawSettings;
+		
+		internal string M_rawSettingsHash;
+		
 		/// <summary>サービスクラス
 		/// </summary>
 		internal string M_serviceClass;
@@ -89,10 +99,29 @@ namespace Saklient.Cloud.Resources
 			return ((Appliance)(this._Reload()));
 		}
 		
+		public override string TrueClassName()
+		{
+			switch (this.Get_clazz()) {
+				case "loadbalancer": {
+					return "LoadBalancer";
+				}
+				case "vpcrouter": {
+					return "VpcRouter";
+				}
+			}
+			
+			return null;
+		}
+		
 		public Appliance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
+		}
+		
+		internal override void _OnBeforeSave(object query)
+		{
+			Util.SetByPath(query, "OriginalSettingsHash", this.Get_rawSettingsHash());
 		}
 		
 		/// <summary>アプライアンスを起動します。
@@ -222,6 +251,7 @@ namespace Saklient.Cloud.Resources
 		
 		private System.Collections.Generic.List<string> Get_tags()
 		{
+			this.N_tags = true;
 			return this.M_tags;
 		}
 		
@@ -274,6 +304,55 @@ namespace Saklient.Cloud.Resources
 		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
+		}
+		
+		private bool N_annotation = false;
+		
+		private object Get_annotation()
+		{
+			return this.M_annotation;
+		}
+		
+		/// <summary>注釈
+		/// </summary>
+		public object Annotation
+		{
+			get { return this.Get_annotation(); }
+		}
+		
+		private bool N_rawSettings = false;
+		
+		private object Get_rawSettings()
+		{
+			this.N_rawSettings = true;
+			return this.M_rawSettings;
+		}
+		
+		private object Set_rawSettings(object v)
+		{
+			this.M_rawSettings = v;
+			this.N_rawSettings = true;
+			return this.M_rawSettings;
+		}
+		
+		/// <summary>設定の生データ
+		/// </summary>
+		public object RawSettings
+		{
+			get { return this.Get_rawSettings(); }
+			set { this.Set_rawSettings(value); }
+		}
+		
+		private bool N_rawSettingsHash = false;
+		
+		private string Get_rawSettingsHash()
+		{
+			return this.M_rawSettingsHash;
+		}
+		
+		public string RawSettingsHash
+		{
+			get { return this.Get_rawSettingsHash(); }
 		}
 		
 		private bool N_serviceClass = false;
@@ -379,6 +458,30 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_ifaces = false;
+			if (Util.ExistsPath(r, "Remark")) {
+				this.M_annotation = Util.GetByPath(r, "Remark");
+			}
+			else {
+				this.M_annotation = null;
+				this.IsIncomplete = true;
+			}
+			this.N_annotation = false;
+			if (Util.ExistsPath(r, "Settings")) {
+				this.M_rawSettings = Util.GetByPath(r, "Settings");
+			}
+			else {
+				this.M_rawSettings = null;
+				this.IsIncomplete = true;
+			}
+			this.N_rawSettings = false;
+			if (Util.ExistsPath(r, "SettingsHash")) {
+				this.M_rawSettingsHash = Util.GetByPath(r, "SettingsHash") == null ? null : "" + Util.GetByPath(r, "SettingsHash");
+			}
+			else {
+				this.M_rawSettingsHash = null;
+				this.IsIncomplete = true;
+			}
+			this.N_rawSettingsHash = false;
 			if (Util.ExistsPath(r, "ServiceClass")) {
 				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? null : "" + Util.GetByPath(r, "ServiceClass");
 			}
@@ -435,6 +538,15 @@ namespace Saklient.Cloud.Resources
 					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
 				}
+			}
+			if (withClean || this.N_annotation) {
+				Util.SetByPath(ret, "Remark", this.M_annotation);
+			}
+			if (withClean || this.N_rawSettings) {
+				Util.SetByPath(ret, "Settings", this.M_rawSettings);
+			}
+			if (withClean || this.N_rawSettingsHash) {
+				Util.SetByPath(ret, "SettingsHash", this.M_rawSettingsHash);
 			}
 			if (withClean || this.N_serviceClass) {
 				Util.SetByPath(ret, "ServiceClass", this.M_serviceClass);

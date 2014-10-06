@@ -64,7 +64,7 @@ namespace Saklient.Cloud.Resources
 		
 		internal bool IsIncomplete;
 		
-		internal virtual void _OnBeforeSave(object r)
+		internal virtual void _OnBeforeSave(object query)
 		{
 			
 		}
@@ -135,6 +135,13 @@ namespace Saklient.Cloud.Resources
 			return name;
 		}
 		
+		public object GetProperty(string name)
+		{
+			name = this.NormalizeFieldName(name);
+			System.Reflection.PropertyInfo prop = this.GetType().GetProperty("M_"+name);
+			return prop.GetValue(this, null);
+		}
+		
 		public void SetProperty(string name, object value)
 		{
 			name = this.NormalizeFieldName(name);
@@ -155,7 +162,6 @@ namespace Saklient.Cloud.Resources
 				object v = (query as System.Collections.Generic.Dictionary<string, object>)[k];
 				(r as System.Collections.Generic.Dictionary<string, object>)[k] = v;
 			}
-			this._OnBeforeSave(r);
 			string method = this.IsNew ? "POST" : "PUT";
 			string path = this._ApiPath();
 			if (!this.IsNew) {
@@ -163,6 +169,7 @@ namespace Saklient.Cloud.Resources
 			}
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			(q as System.Collections.Generic.Dictionary<string, object>)[this._RootKey()] = r;
+			this._OnBeforeSave(q);
 			object result = this._Client.Request(method, path, q);
 			this.ApiDeserialize(result, true);
 			return this;
@@ -201,6 +208,22 @@ namespace Saklient.Cloud.Resources
 		public object Dump()
 		{
 			return this.ApiSerialize(true);
+		}
+		
+		public virtual string TrueClassName()
+		{
+			return null;
+		}
+		
+		public static Resource CreateWith(string className, Client client, object obj, bool wrapped=false)
+		{
+			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { client, obj, wrapped };
+			Resource ret = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + className, a)));
+			string trueClassName = ret.TrueClassName();
+			if (trueClassName != null) {
+				ret = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + trueClassName, a)));
+			}
+			return ret;
 		}
 		
 	}

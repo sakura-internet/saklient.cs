@@ -205,7 +205,11 @@ namespace Saklient.Cloud.Resources
 			long step = 3;
 			while (0 < timeoutSec) {
 				this.Reload();
-				string s = this.Get_instance().Status;
+				string s = null;
+				ServerInstance inst = this.Get_instance();
+				if (inst != null) {
+					s = ((string)(inst.Status));
+				}
 				if (s == null) {
 					s = EServerInstanceStatus.DOWN;
 				}
@@ -343,6 +347,7 @@ namespace Saklient.Cloud.Resources
 		
 		private System.Collections.Generic.List<string> Get_tags()
 		{
+			this.N_tags = true;
 			return this.M_tags;
 		}
 		

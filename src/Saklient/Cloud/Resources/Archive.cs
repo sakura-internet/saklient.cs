@@ -202,8 +202,7 @@ namespace Saklient.Cloud.Resources
 					if (s != null) {
 						object id = (s as System.Collections.Generic.Dictionary<string, object>)["ID"];
 						if (id != null) {
-							object obj = Util.CreateClassInstance("saklient.cloud.resources.Disk", new System.Collections.Generic.List<object> { this._Client, s, false });
-							this._Source = ((Resource)(obj));
+							this._Source = Resource.CreateWith("Disk", this._Client, s);
 						}
 					}
 				}
@@ -375,6 +374,7 @@ namespace Saklient.Cloud.Resources
 		
 		private System.Collections.Generic.List<string> Get_tags()
 		{
+			this.N_tags = true;
 			return this.M_tags;
 		}
 		

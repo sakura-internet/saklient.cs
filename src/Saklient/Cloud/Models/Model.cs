@@ -136,10 +136,14 @@ namespace Saklient.Cloud.Models
 			return this;
 		}
 		
+		internal Resource _CreateResourceWith(object obj, bool wrapped=false)
+		{
+			return Resource.CreateWith(this._ClassName(), this._Client, obj, wrapped);
+		}
+		
 		internal Resource _Create()
 		{
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, null, false };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
+			return this._CreateResourceWith(null);
 		}
 		
 		internal Resource _GetById(string id)
@@ -149,8 +153,7 @@ namespace Saklient.Cloud.Models
 			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(id), query);
 			this._Total = 1;
 			this._Count = 1;
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, result, true };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
+			return this._CreateResourceWith(result, true);
 		}
 		
 		internal System.Collections.Generic.List<Resource> _Find()
@@ -164,9 +167,7 @@ namespace Saklient.Cloud.Models
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
 			for (int __it1=0; __it1 < (records as System.Collections.IList).Count; __it1++) {
 				var record = records[__it1];
-				System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, record, false };
-				Resource i = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
-				(data as System.Collections.IList).Add(i);
+				(data as System.Collections.IList).Add(this._CreateResourceWith(record));
 			}
 			return ((System.Collections.Generic.List<Resource>)(data));
 		}
@@ -182,8 +183,7 @@ namespace Saklient.Cloud.Models
 				return null;
 			}
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
-			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { this._Client, records[System.Convert.ToInt32(0)], false };
-			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + this._ClassName(), a)));
+			return this._CreateResourceWith(records[System.Convert.ToInt32(0)]);
 		}
 		
 		internal Model _WithNameLike(string name)

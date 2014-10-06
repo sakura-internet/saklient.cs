@@ -189,6 +189,7 @@ namespace Saklient.Cloud.Resources
 		
 		private System.Collections.Generic.List<string> Get_tags()
 		{
+			this.N_tags = true;
 			return this.M_tags;
 		}
 		
@@ -258,19 +259,11 @@ namespace Saklient.Cloud.Resources
 			return this.M_annotation;
 		}
 		
-		private object Set_annotation(object v)
-		{
-			this.M_annotation = v;
-			this.N_annotation = true;
-			return this.M_annotation;
-		}
-		
 		/// <summary>注釈
 		/// </summary>
 		public object Annotation
 		{
 			get { return this.Get_annotation(); }
-			set { this.Set_annotation(value); }
 		}
 		
 		/// <summary>(This method is generated in Translator_default#buildImpl)
