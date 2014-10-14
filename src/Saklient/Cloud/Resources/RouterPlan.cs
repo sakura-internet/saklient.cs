@@ -125,7 +125,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -133,7 +133,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -141,7 +141,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
-				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
+				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
 			}
 			else {
 				this.M_bandWidthMbps = null;
@@ -149,7 +149,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_bandWidthMbps = false;
 			if (Util.ExistsPath(r, "ServiceClass")) {
-				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? null : "" + Util.GetByPath(r, "ServiceClass");
+				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ServiceClass");
 			}
 			else {
 				this.M_serviceClass = null;

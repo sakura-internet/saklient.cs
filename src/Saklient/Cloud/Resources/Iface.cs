@@ -191,7 +191,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -199,7 +199,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "MACAddress")) {
-				this.M_macAddress = Util.GetByPath(r, "MACAddress") == null ? null : "" + Util.GetByPath(r, "MACAddress");
+				this.M_macAddress = Util.GetByPath(r, "MACAddress") == null ? ((string)(null)) : "" + Util.GetByPath(r, "MACAddress");
 			}
 			else {
 				this.M_macAddress = null;
@@ -207,7 +207,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_macAddress = false;
 			if (Util.ExistsPath(r, "IPAddress")) {
-				this.M_ipAddress = Util.GetByPath(r, "IPAddress") == null ? null : "" + Util.GetByPath(r, "IPAddress");
+				this.M_ipAddress = Util.GetByPath(r, "IPAddress") == null ? ((string)(null)) : "" + Util.GetByPath(r, "IPAddress");
 			}
 			else {
 				this.M_ipAddress = null;
@@ -215,7 +215,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_ipAddress = false;
 			if (Util.ExistsPath(r, "UserIPAddress")) {
-				this.M_userIpAddress = Util.GetByPath(r, "UserIPAddress") == null ? null : "" + Util.GetByPath(r, "UserIPAddress");
+				this.M_userIpAddress = Util.GetByPath(r, "UserIPAddress") == null ? ((string)(null)) : "" + Util.GetByPath(r, "UserIPAddress");
 			}
 			else {
 				this.M_userIpAddress = null;
@@ -223,7 +223,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_userIpAddress = false;
 			if (Util.ExistsPath(r, "Server.ID")) {
-				this.M_serverId = Util.GetByPath(r, "Server.ID") == null ? null : "" + Util.GetByPath(r, "Server.ID");
+				this.M_serverId = Util.GetByPath(r, "Server.ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Server.ID");
 			}
 			else {
 				this.M_serverId = null;

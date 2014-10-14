@@ -1,5 +1,6 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
+using HttpException = Saklient.Errors.HttpException;
 
 namespace Saklient.Cloud.Resources
 {
@@ -74,6 +75,11 @@ namespace Saklient.Cloud.Resources
 			
 		}
 		
+		internal virtual void _OnBeforeApiSerialize(bool withClean)
+		{
+			
+		}
+		
 		internal virtual void _OnAfterApiSerialize(object r, bool withClean)
 		{
 			
@@ -113,6 +119,7 @@ namespace Saklient.Cloud.Resources
 		
 		public object ApiSerialize(bool withClean=false)
 		{
+			this._OnBeforeApiSerialize(withClean);
 			object ret = this.ApiSerializeImpl(withClean);
 			this._OnAfterApiSerialize(ret, withClean);
 			return ret;
@@ -133,22 +140,6 @@ namespace Saklient.Cloud.Resources
 		{
 			name = name.Substring(0, 1).ToUpper() + name.Substring(1);
 			return name;
-		}
-		
-		public object GetProperty(string name)
-		{
-			name = this.NormalizeFieldName(name);
-			System.Reflection.PropertyInfo prop = this.GetType().GetProperty("M_"+name);
-			return prop.GetValue(this, null);
-		}
-		
-		public void SetProperty(string name, object value)
-		{
-			name = this.NormalizeFieldName(name);
-			System.Reflection.PropertyInfo prop = this.GetType().GetProperty("M_"+name);
-			prop.SetValue(this, System.Convert.ChangeType(value, prop.PropertyType), null);
-			prop = this.GetType().GetProperty("N_"+name);
-			prop.SetValue(this, System.Convert.ChangeType(true, prop.PropertyType), null);
 		}
 		
 		internal Resource _Save()
@@ -183,12 +174,12 @@ namespace Saklient.Cloud.Resources
 				return;
 			}
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id());
-			this._Client.Request("DELETE", path);
+			this.RequestRetry("DELETE", path);
 		}
 		
 		internal Resource _Reload()
 		{
-			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()));
+			object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()));
 			this.ApiDeserialize(result, true);
 			return this;
 		}
@@ -199,8 +190,8 @@ namespace Saklient.Cloud.Resources
 		{
 			object query = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(query, "Filter.ID", new System.Collections.Generic.List<object> { this._Id() });
-			Util.SetByPath(query, "Include", new System.Collections.Generic.List<object> { "ID" });
-			object result = this._Client.Request("GET", this._ApiPath(), query);
+			Util.SetByPath(query, "Include", new System.Collections.Generic.List<string> { "ID" });
+			object result = this.RequestRetry("GET", this._ApiPath(), query);
 			object cnt = (result as System.Collections.Generic.Dictionary<string, object>)["Count"];
 			return System.Convert.ToInt64(cnt) == 1;
 		}
@@ -222,6 +213,39 @@ namespace Saklient.Cloud.Resources
 			string trueClassName = ret.TrueClassName();
 			if (trueClassName != null) {
 				ret = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + trueClassName, a)));
+			}
+			return ret;
+		}
+		
+		/// <summary>
+		/// <param name="method" />
+		/// <param name="path" />
+		/// <param name="query" />
+		/// <param name="retryCount" />
+		/// <param name="retrySleep" />
+		/// </summary>
+		public object RequestRetry(string method, string path, object query=null, long retryCount=5, long retrySleep=5)
+		{
+			object ret = null;
+			while (1 < retryCount) {
+				bool isOk = false;
+				try {
+					ret = this._Client.Request(method, path, query);
+					isOk = true;
+				}
+				catch (HttpException ex) {
+					isOk = false;
+				}
+				if (isOk) {
+					retryCount = -1;
+				}
+				else {
+					retryCount -= 1;
+					Util.Sleep(retrySleep);
+				}
+			}
+			if (retryCount == 0) {
+				ret = this._Client.Request(method, path, query);
 			}
 			return ret;
 		}

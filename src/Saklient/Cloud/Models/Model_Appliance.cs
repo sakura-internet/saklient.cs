@@ -2,6 +2,9 @@ using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
 using Appliance = Saklient.Cloud.Resources.Appliance;
+using LoadBalancer = Saklient.Cloud.Resources.LoadBalancer;
+using VpcRouter = Saklient.Cloud.Resources.VpcRouter;
+using Swytch = Saklient.Cloud.Resources.Swytch;
 
 namespace Saklient.Cloud.Models
 {
@@ -69,6 +72,23 @@ namespace Saklient.Cloud.Models
 		public Model_Appliance Reset()
 		{
 			return ((Model_Appliance)(this._Reset()));
+		}
+		
+		/// <summary>
+		/// <param name="swytch" />
+		/// <param name="vrid" />
+		/// <param name="realIps" />
+		/// <param name="isHighSpec" />
+		/// </summary>
+		public LoadBalancer CreateLoadBalancer(Swytch swytch, long vrid, System.Collections.Generic.List<string> realIps, bool isHighSpec=false)
+		{
+			LoadBalancer ret = ((LoadBalancer)(this._Create("LoadBalancer")));
+			return ret.SetInitialParams(swytch, vrid, realIps, isHighSpec);
+		}
+		
+		public VpcRouter CreateVpcRouter()
+		{
+			return ((VpcRouter)(this._Create("VpcRouter")));
 		}
 		
 		/// <summary>指定したIDを持つ唯一のリソースを取得します。

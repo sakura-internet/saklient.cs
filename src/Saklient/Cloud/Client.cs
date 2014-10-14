@@ -70,8 +70,8 @@ namespace Saklient.Cloud {
 			//
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(path);
 			req.Method = method != "GET" ? "POST" : "GET";
-			req.ContentType = "application/x-www-form-urlencoded";
-			req.UserAgent = "sacloud-client-cs";
+			req.ContentType = json != null ? "application/json" : "application/x-www-form-urlencoded";
+			req.UserAgent = "saklient.cs ver-0.0.2.1 rev-db45c711111688489d58012369002fc306601f27";
 			req.Headers.Add(HttpRequestHeader.Authorization, this.authorization);
 			req.Headers.Add("X-Requested-With", "XMLHttpRequest");
 			req.Headers.Add("X-Sakura-No-Authenticate-Header", "1");
@@ -80,7 +80,6 @@ namespace Saklient.Cloud {
 			req.Headers.Add("X-Sakura-Response-Format", "json");
 			req.Headers.Add("X-Sakura-Error-Level", "warning");
 			if (json != null) {
-				req.ContentType = "application/json";
 				StreamWriter writer = new StreamWriter(req.GetRequestStream());
 				writer.Write(json);
 				writer.Flush();

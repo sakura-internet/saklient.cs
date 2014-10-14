@@ -153,7 +153,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -161,7 +161,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "NetworkAddress")) {
-				this.M_address = Util.GetByPath(r, "NetworkAddress") == null ? null : "" + Util.GetByPath(r, "NetworkAddress");
+				this.M_address = Util.GetByPath(r, "NetworkAddress") == null ? ((string)(null)) : "" + Util.GetByPath(r, "NetworkAddress");
 			}
 			else {
 				this.M_address = null;
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_address = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
-				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
+				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
 			}
 			else {
 				this.M_maskLen = null;
@@ -177,7 +177,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_maskLen = false;
 			if (Util.ExistsPath(r, "DefaultRoute")) {
-				this.M_defaultRoute = Util.GetByPath(r, "DefaultRoute") == null ? null : "" + Util.GetByPath(r, "DefaultRoute");
+				this.M_defaultRoute = Util.GetByPath(r, "DefaultRoute") == null ? ((string)(null)) : "" + Util.GetByPath(r, "DefaultRoute");
 			}
 			else {
 				this.M_defaultRoute = null;
@@ -185,7 +185,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_defaultRoute = false;
 			if (Util.ExistsPath(r, "NextHop")) {
-				this.M_nextHop = Util.GetByPath(r, "NextHop") == null ? null : "" + Util.GetByPath(r, "NextHop");
+				this.M_nextHop = Util.GetByPath(r, "NextHop") == null ? ((string)(null)) : "" + Util.GetByPath(r, "NextHop");
 			}
 			else {
 				this.M_nextHop = null;

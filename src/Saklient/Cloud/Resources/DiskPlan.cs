@@ -108,7 +108,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -116,7 +116,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -124,7 +124,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "StorageClass")) {
-				this.M_storageClass = Util.GetByPath(r, "StorageClass") == null ? null : "" + Util.GetByPath(r, "StorageClass");
+				this.M_storageClass = Util.GetByPath(r, "StorageClass") == null ? ((string)(null)) : "" + Util.GetByPath(r, "StorageClass");
 			}
 			else {
 				this.M_storageClass = null;

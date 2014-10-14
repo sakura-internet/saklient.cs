@@ -71,6 +71,18 @@ namespace Saklient {
 			}
 			return obj;
 		}
+		
+		public static object GetByPathAny(System.Collections.Generic.List<object> objects, System.Collections.Generic.List<string> pathes) {
+			foreach (object obj in objects)
+			{
+				foreach (string path in pathes)
+				{
+					object ret = GetByPath(obj, path);
+					if (ret != null) return ret;
+				}
+			}
+			return null;
+		}
 
 		public static void SetByPath(object obj, string path, object value)
 		{

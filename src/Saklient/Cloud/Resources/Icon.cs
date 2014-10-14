@@ -153,7 +153,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -161,7 +161,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Scope")) {
-				this.M_scope = Util.GetByPath(r, "Scope") == null ? null : "" + Util.GetByPath(r, "Scope");
+				this.M_scope = Util.GetByPath(r, "Scope") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Scope");
 			}
 			else {
 				this.M_scope = null;
@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_scope = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -177,7 +177,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "URL")) {
-				this.M_url = Util.GetByPath(r, "URL") == null ? null : "" + Util.GetByPath(r, "URL");
+				this.M_url = Util.GetByPath(r, "URL") == null ? ((string)(null)) : "" + Util.GetByPath(r, "URL");
 			}
 			else {
 				this.M_url = null;

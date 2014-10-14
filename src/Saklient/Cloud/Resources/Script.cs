@@ -278,7 +278,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -286,7 +286,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Scope")) {
-				this.M_scope = Util.GetByPath(r, "Scope") == null ? null : "" + Util.GetByPath(r, "Scope");
+				this.M_scope = Util.GetByPath(r, "Scope") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Scope");
 			}
 			else {
 				this.M_scope = null;
@@ -294,7 +294,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_scope = false;
 			if (Util.ExistsPath(r, "Class")) {
-				this.M_clazz = Util.GetByPath(r, "Class") == null ? null : "" + Util.GetByPath(r, "Class");
+				this.M_clazz = Util.GetByPath(r, "Class") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Class");
 			}
 			else {
 				this.M_clazz = null;
@@ -302,7 +302,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_clazz = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -310,7 +310,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
-				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
+				this.M_description = Util.GetByPath(r, "Description") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Description");
 			}
 			else {
 				this.M_description = null;
@@ -326,7 +326,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
-						v1 = t == null ? null : "" + t;
+						v1 = t == null ? ((string)(null)) : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
 					}
 				}
@@ -345,7 +345,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "Content")) {
-				this.M_content = Util.GetByPath(r, "Content") == null ? null : "" + Util.GetByPath(r, "Content");
+				this.M_content = Util.GetByPath(r, "Content") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Content");
 			}
 			else {
 				this.M_content = null;
@@ -396,7 +396,7 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 			if (withClean || this.N_icon) {
-				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
+				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? ((Icon)(null)) : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
 			}
 			if (withClean || this.N_content) {
 				Util.SetByPath(ret, "Content", this.M_content);

@@ -296,7 +296,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -304,7 +304,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -312,7 +312,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
-				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
+				this.M_description = Util.GetByPath(r, "Description") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Description");
 			}
 			else {
 				this.M_description = null;
@@ -320,7 +320,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_description = false;
 			if (Util.ExistsPath(r, "UserSubnet.DefaultRoute")) {
-				this.M_userDefaultRoute = Util.GetByPath(r, "UserSubnet.DefaultRoute") == null ? null : "" + Util.GetByPath(r, "UserSubnet.DefaultRoute");
+				this.M_userDefaultRoute = Util.GetByPath(r, "UserSubnet.DefaultRoute") == null ? ((string)(null)) : "" + Util.GetByPath(r, "UserSubnet.DefaultRoute");
 			}
 			else {
 				this.M_userDefaultRoute = null;
@@ -328,7 +328,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_userDefaultRoute = false;
 			if (Util.ExistsPath(r, "UserSubnet.NetworkMaskLen")) {
-				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
+				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
 			}
 			else {
 				this.M_userMaskLen = null;
@@ -408,14 +408,14 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "UserSubnet.NetworkMaskLen", this.M_userMaskLen);
 			}
 			if (withClean || this.N_router) {
-				Util.SetByPath(ret, "Internet", withClean ? (this.M_router == null ? null : this.M_router.ApiSerialize(withClean)) : (this.M_router == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_router.ApiSerializeID()));
+				Util.SetByPath(ret, "Internet", withClean ? (this.M_router == null ? ((Router)(null)) : this.M_router.ApiSerialize(withClean)) : (this.M_router == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_router.ApiSerializeID()));
 			}
 			if (withClean || this.N_ipv4Nets) {
 				Util.SetByPath(ret, "Subnets", new System.Collections.Generic.List<object> {  });
 				for (int __it1=0; __it1 < (this.M_ipv4Nets as System.Collections.IList).Count; __it1++) {
 					var r1 = this.M_ipv4Nets[__it1];
 					object v = null;
-					v = withClean ? (r1 == null ? null : r1.ApiSerialize(withClean)) : (r1 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r1.ApiSerializeID());
+					v = withClean ? (r1 == null ? ((Ipv4Net)(null)) : r1.ApiSerialize(withClean)) : (r1 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r1.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Subnets"] as System.Collections.IList).Add(v);
 				}
 			}
@@ -424,7 +424,7 @@ namespace Saklient.Cloud.Resources
 				for (int __it2=0; __it2 < (this.M_ipv6Nets as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ipv6Nets[__it2];
 					object v = null;
-					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
+					v = withClean ? (r2 == null ? ((Ipv6Net)(null)) : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["IPv6Nets"] as System.Collections.IList).Add(v);
 				}
 			}

@@ -116,7 +116,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "Status")) {
-				this.M_status = Util.GetByPath(r, "Status") == null ? null : "" + Util.GetByPath(r, "Status");
+				this.M_status = Util.GetByPath(r, "Status") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Status");
 			}
 			else {
 				this.M_status = null;
@@ -124,7 +124,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_status = false;
 			if (Util.ExistsPath(r, "BeforeStatus")) {
-				this.M_beforeStatus = Util.GetByPath(r, "BeforeStatus") == null ? null : "" + Util.GetByPath(r, "BeforeStatus");
+				this.M_beforeStatus = Util.GetByPath(r, "BeforeStatus") == null ? ((string)(null)) : "" + Util.GetByPath(r, "BeforeStatus");
 			}
 			else {
 				this.M_beforeStatus = null;
@@ -132,7 +132,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_beforeStatus = false;
 			if (Util.ExistsPath(r, "StatusChangedAt")) {
-				this.M_statusChangedAt = Util.GetByPath(r, "StatusChangedAt") == null ? null : Util.Str2date("" + Util.GetByPath(r, "StatusChangedAt"));
+				this.M_statusChangedAt = Util.GetByPath(r, "StatusChangedAt") == null ? ((System.DateTime?)(null)) : Util.Str2date("" + Util.GetByPath(r, "StatusChangedAt"));
 			}
 			else {
 				this.M_statusChangedAt = null;
@@ -159,10 +159,10 @@ namespace Saklient.Cloud.Resources
 				Util.SetByPath(ret, "BeforeStatus", this.M_beforeStatus);
 			}
 			if (withClean || this.N_statusChangedAt) {
-				Util.SetByPath(ret, "StatusChangedAt", this.M_statusChangedAt == null ? null : Util.Date2str(this.M_statusChangedAt));
+				Util.SetByPath(ret, "StatusChangedAt", this.M_statusChangedAt == null ? ((string)(null)) : Util.Date2str(this.M_statusChangedAt));
 			}
 			if (withClean || this.N_isoImage) {
-				Util.SetByPath(ret, "CDROM", withClean ? (this.M_isoImage == null ? null : this.M_isoImage.ApiSerialize(withClean)) : (this.M_isoImage == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_isoImage.ApiSerializeID()));
+				Util.SetByPath(ret, "CDROM", withClean ? (this.M_isoImage == null ? ((IsoImage)(null)) : this.M_isoImage.ApiSerialize(withClean)) : (this.M_isoImage == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_isoImage.ApiSerializeID()));
 			}
 			return ret;
 		}

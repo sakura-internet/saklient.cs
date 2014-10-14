@@ -135,7 +135,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -143,7 +143,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "IPv6Prefix")) {
-				this.M_prefix = Util.GetByPath(r, "IPv6Prefix") == null ? null : "" + Util.GetByPath(r, "IPv6Prefix");
+				this.M_prefix = Util.GetByPath(r, "IPv6Prefix") == null ? ((string)(null)) : "" + Util.GetByPath(r, "IPv6Prefix");
 			}
 			else {
 				this.M_prefix = null;
@@ -151,7 +151,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_prefix = false;
 			if (Util.ExistsPath(r, "IPv6PrefixLen")) {
-				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? null : (long?)System.Convert.ToInt64("" + Util.GetByPath(r, "IPv6PrefixLen"));
+				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "IPv6PrefixLen"));
 			}
 			else {
 				this.M_prefixLen = null;
@@ -159,7 +159,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_prefixLen = false;
 			if (Util.ExistsPath(r, "IPv6PrefixTail")) {
-				this.M_prefixTail = Util.GetByPath(r, "IPv6PrefixTail") == null ? null : "" + Util.GetByPath(r, "IPv6PrefixTail");
+				this.M_prefixTail = Util.GetByPath(r, "IPv6PrefixTail") == null ? ((string)(null)) : "" + Util.GetByPath(r, "IPv6PrefixTail");
 			}
 			else {
 				this.M_prefixTail = null;

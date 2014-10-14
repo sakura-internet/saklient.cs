@@ -5,6 +5,8 @@ using Resource = Saklient.Cloud.Resources.Resource;
 using Icon = Saklient.Cloud.Resources.Icon;
 using Iface = Saklient.Cloud.Resources.Iface;
 using EApplianceClass = Saklient.Cloud.Enums.EApplianceClass;
+using EAvailability = Saklient.Cloud.Enums.EAvailability;
+using EServerInstanceStatus = Saklient.Cloud.Enums.EServerInstanceStatus;
 
 namespace Saklient.Cloud.Resources
 {
@@ -40,11 +42,15 @@ namespace Saklient.Cloud.Resources
 		
 		/// <summary>プラン
 		/// </summary>
+		internal long? M_planId;
+		
+		/// <summary>インタフェース
+		/// </summary>
 		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
 		/// <summary>注釈
 		/// </summary>
-		internal object M_annotation;
+		internal object M_rawAnnotation;
 		
 		/// <summary>設定の生データ
 		/// </summary>
@@ -52,9 +58,17 @@ namespace Saklient.Cloud.Resources
 		
 		internal string M_rawSettingsHash;
 		
+		/// <summary>起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
+		internal string M_status;
+		
 		/// <summary>サービスクラス
 		/// </summary>
 		internal string M_serviceClass;
+		
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
+		internal string M_availability;
 		
 		internal override string _ApiPath()
 		{
@@ -101,7 +115,10 @@ namespace Saklient.Cloud.Resources
 		
 		public override string TrueClassName()
 		{
-			switch (this.Get_clazz()) {
+			if (this.Clazz == null) {
+				return null;
+			}
+			switch (this.Clazz) {
 				case "loadbalancer": {
 					return "LoadBalancer";
 				}
@@ -162,6 +179,76 @@ namespace Saklient.Cloud.Resources
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this;
+		}
+		
+		/// <summary>作成中のアプライアンスが利用可能になるまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
+		public bool SleepWhileCreating(long timeoutSec=600)
+		{
+			long step = 10;
+			while (0 < timeoutSec) {
+				this.Reload();
+				string a = this.Get_availability();
+				if (a == EAvailability.AVAILABLE) {
+					return true;
+				}
+				if (a != EAvailability.MIGRATING) {
+					timeoutSec = 0;
+				}
+				timeoutSec -= step;
+				if (0 < timeoutSec) {
+					Util.Sleep(step);
+				}
+			}
+			return false;
+		}
+		
+		/// <summary>アプライアンスが起動するまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// </summary>
+		public bool SleepUntilUp(long timeoutSec=600)
+		{
+			return this.SleepUntil(EServerInstanceStatus.UP, timeoutSec);
+		}
+		
+		/// <summary>アプライアンスが停止するまで待機します。
+		/// 
+		/// <param name="timeoutSec" />
+		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+		/// </summary>
+		public bool SleepUntilDown(long timeoutSec=600)
+		{
+			return this.SleepUntil(EServerInstanceStatus.DOWN, timeoutSec);
+		}
+		
+		/// <summary>アプライアンスが指定のステータスに遷移するまで待機します。
+		/// 
+		/// 
+		/// <param name="status" />
+		/// <param name="timeoutSec" />
+		/// </summary>
+		private bool SleepUntil(string status, long timeoutSec=600)
+		{
+			long step = 10;
+			while (0 < timeoutSec) {
+				this.Reload();
+				string s = this.Get_status();
+				if (s == null) {
+					s = EServerInstanceStatus.DOWN;
+				}
+				if (s == status) {
+					return true;
+				}
+				timeoutSec -= step;
+				if (0 < timeoutSec) {
+					Util.Sleep(step);
+				}
+			}
+			return false;
 		}
 		
 		private bool N_id = false;
@@ -292,6 +379,31 @@ namespace Saklient.Cloud.Resources
 			set { this.Set_icon(value); }
 		}
 		
+		private bool N_planId = false;
+		
+		private long? Get_planId()
+		{
+			return this.M_planId;
+		}
+		
+		private long? Set_planId(long? v)
+		{
+			if (!this.IsNew) {
+				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Appliance#Set_planId");
+			}
+			this.M_planId = v;
+			this.N_planId = true;
+			return this.M_planId;
+		}
+		
+		/// <summary>プラン
+		/// </summary>
+		public long? PlanId
+		{
+			get { return this.Get_planId(); }
+			set { this.Set_planId(value); }
+		}
+		
 		private bool N_ifaces = false;
 		
 		private System.Collections.Generic.List<Iface> Get_ifaces()
@@ -299,25 +411,36 @@ namespace Saklient.Cloud.Resources
 			return this.M_ifaces;
 		}
 		
-		/// <summary>プラン
+		/// <summary>インタフェース
 		/// </summary>
 		public System.Collections.Generic.List<Iface> Ifaces
 		{
 			get { return this.Get_ifaces(); }
 		}
 		
-		private bool N_annotation = false;
+		private bool N_rawAnnotation = false;
 		
-		private object Get_annotation()
+		private object Get_rawAnnotation()
 		{
-			return this.M_annotation;
+			return this.M_rawAnnotation;
+		}
+		
+		private object Set_rawAnnotation(object v)
+		{
+			if (!this.IsNew) {
+				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Appliance#Set_rawAnnotation");
+			}
+			this.M_rawAnnotation = v;
+			this.N_rawAnnotation = true;
+			return this.M_rawAnnotation;
 		}
 		
 		/// <summary>注釈
 		/// </summary>
-		public object Annotation
+		public object RawAnnotation
 		{
-			get { return this.Get_annotation(); }
+			get { return this.Get_rawAnnotation(); }
+			set { this.Set_rawAnnotation(value); }
 		}
 		
 		private bool N_rawSettings = false;
@@ -355,6 +478,20 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_rawSettingsHash(); }
 		}
 		
+		private bool N_status = false;
+		
+		private string Get_status()
+		{
+			return this.M_status;
+		}
+		
+		/// <summary>起動状態 <see cref="Saklient.Cloud.Enums.EServerInstanceStatus" />
+		/// </summary>
+		public string Status
+		{
+			get { return this.Get_status(); }
+		}
+		
 		private bool N_serviceClass = false;
 		
 		private string Get_serviceClass()
@@ -369,6 +506,20 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_serviceClass(); }
 		}
 		
+		private bool N_availability = false;
+		
+		private string Get_availability()
+		{
+			return this.M_availability;
+		}
+		
+		/// <summary>有効状態 <see cref="Saklient.Cloud.Enums.EAvailability" />
+		/// </summary>
+		public string Availability
+		{
+			get { return this.Get_availability(); }
+		}
+		
 		/// <summary>(This method is generated in Translator_default#buildImpl)
 		/// 
 		/// <param name="r" />
@@ -381,7 +532,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -389,7 +540,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Class")) {
-				this.M_clazz = Util.GetByPath(r, "Class") == null ? null : "" + Util.GetByPath(r, "Class");
+				this.M_clazz = Util.GetByPath(r, "Class") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Class");
 			}
 			else {
 				this.M_clazz = null;
@@ -397,7 +548,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_clazz = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -405,7 +556,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
-				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
+				this.M_description = Util.GetByPath(r, "Description") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Description");
 			}
 			else {
 				this.M_description = null;
@@ -421,7 +572,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
-						v1 = t == null ? null : "" + t;
+						v1 = t == null ? ((string)(null)) : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
 					}
 				}
@@ -439,6 +590,14 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_icon = false;
+			if (Util.ExistsPath(r, "Plan.ID")) {
+				this.M_planId = Util.GetByPath(r, "Plan.ID") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "Plan.ID"));
+			}
+			else {
+				this.M_planId = null;
+				this.IsIncomplete = true;
+			}
+			this.N_planId = false;
 			if (Util.ExistsPath(r, "Interfaces")) {
 				if (Util.GetByPath(r, "Interfaces") == null) {
 					this.M_ifaces = new System.Collections.Generic.List<Iface> {  };
@@ -459,13 +618,13 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_ifaces = false;
 			if (Util.ExistsPath(r, "Remark")) {
-				this.M_annotation = Util.GetByPath(r, "Remark");
+				this.M_rawAnnotation = Util.GetByPath(r, "Remark");
 			}
 			else {
-				this.M_annotation = null;
+				this.M_rawAnnotation = null;
 				this.IsIncomplete = true;
 			}
-			this.N_annotation = false;
+			this.N_rawAnnotation = false;
 			if (Util.ExistsPath(r, "Settings")) {
 				this.M_rawSettings = Util.GetByPath(r, "Settings");
 			}
@@ -475,21 +634,37 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_rawSettings = false;
 			if (Util.ExistsPath(r, "SettingsHash")) {
-				this.M_rawSettingsHash = Util.GetByPath(r, "SettingsHash") == null ? null : "" + Util.GetByPath(r, "SettingsHash");
+				this.M_rawSettingsHash = Util.GetByPath(r, "SettingsHash") == null ? ((string)(null)) : "" + Util.GetByPath(r, "SettingsHash");
 			}
 			else {
 				this.M_rawSettingsHash = null;
 				this.IsIncomplete = true;
 			}
 			this.N_rawSettingsHash = false;
+			if (Util.ExistsPath(r, "Instance.Status")) {
+				this.M_status = Util.GetByPath(r, "Instance.Status") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Instance.Status");
+			}
+			else {
+				this.M_status = null;
+				this.IsIncomplete = true;
+			}
+			this.N_status = false;
 			if (Util.ExistsPath(r, "ServiceClass")) {
-				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? null : "" + Util.GetByPath(r, "ServiceClass");
+				this.M_serviceClass = Util.GetByPath(r, "ServiceClass") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ServiceClass");
 			}
 			else {
 				this.M_serviceClass = null;
 				this.IsIncomplete = true;
 			}
 			this.N_serviceClass = false;
+			if (Util.ExistsPath(r, "Availability")) {
+				this.M_availability = Util.GetByPath(r, "Availability") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Availability");
+			}
+			else {
+				this.M_availability = null;
+				this.IsIncomplete = true;
+			}
+			this.N_availability = false;
 		}
 		
 		internal override object ApiSerializeImpl(bool withClean=false)
@@ -528,19 +703,32 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 			if (withClean || this.N_icon) {
-				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
+				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? ((Icon)(null)) : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
+			}
+			if (withClean || this.N_planId) {
+				Util.SetByPath(ret, "Plan.ID", this.M_planId);
+			}
+			else {
+				if (this.IsNew) {
+					(missing as System.Collections.IList).Add("planId");
+				}
 			}
 			if (withClean || this.N_ifaces) {
 				Util.SetByPath(ret, "Interfaces", new System.Collections.Generic.List<object> {  });
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ifaces[__it2];
 					object v = null;
-					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
+					v = withClean ? (r2 == null ? ((Iface)(null)) : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
 				}
 			}
-			if (withClean || this.N_annotation) {
-				Util.SetByPath(ret, "Remark", this.M_annotation);
+			if (withClean || this.N_rawAnnotation) {
+				Util.SetByPath(ret, "Remark", this.M_rawAnnotation);
+			}
+			else {
+				if (this.IsNew) {
+					(missing as System.Collections.IList).Add("rawAnnotation");
+				}
 			}
 			if (withClean || this.N_rawSettings) {
 				Util.SetByPath(ret, "Settings", this.M_rawSettings);
@@ -548,8 +736,14 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_rawSettingsHash) {
 				Util.SetByPath(ret, "SettingsHash", this.M_rawSettingsHash);
 			}
+			if (withClean || this.N_status) {
+				Util.SetByPath(ret, "Instance.Status", this.M_status);
+			}
 			if (withClean || this.N_serviceClass) {
 				Util.SetByPath(ret, "ServiceClass", this.M_serviceClass);
+			}
+			if (withClean || this.N_availability) {
+				Util.SetByPath(ret, "Availability", this.M_availability);
 			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Appliance creation: " + string.Join(", ", (missing).ToArray()));

@@ -114,6 +114,38 @@ namespace Saklient.Cloud.Models
 			return ((Model_Router)(this._WithNameLike(name)));
 		}
 		
+		/// <summary>指定したタグを持つリソースに絞り込みます。
+		/// 
+		/// 複数のタグを指定する場合は withTags() を利用してください。
+		/// 
+		/// 
+		/// <param name="tag" />
+		/// </summary>
+		public Model_Router WithTag(string tag)
+		{
+			return ((Model_Router)(this._WithTag(tag)));
+		}
+		
+		/// <summary>指定したすべてのタグを持つリソースに絞り込みます。
+		/// 
+		/// 
+		/// <param name="tags" />
+		/// </summary>
+		public Model_Router WithTags(System.Collections.Generic.List<string> tags)
+		{
+			return ((Model_Router)(this._WithTags(tags)));
+		}
+		
+		/// <summary>指定したDNFに合致するタグを持つリソースに絞り込みます。
+		/// 
+		/// 
+		/// <param name="dnf" />
+		/// </summary>
+		public Model_Router WithTagDnf(System.Collections.Generic.List<System.Collections.Generic.List<string>> dnf)
+		{
+			return ((Model_Router)(this._WithTagDnf(dnf)));
+		}
+		
 		/// <summary>名前でソートします。
 		/// 
 		/// 

@@ -136,14 +136,17 @@ namespace Saklient.Cloud.Models
 			return this;
 		}
 		
-		internal Resource _CreateResourceWith(object obj, bool wrapped=false)
+		internal Resource _CreateResourceWith(string className, object obj, bool wrapped=false)
 		{
-			return Resource.CreateWith(this._ClassName(), this._Client, obj, wrapped);
+			if (className == null) {
+				className = this._ClassName();
+			}
+			return Resource.CreateWith(className, this._Client, obj, wrapped);
 		}
 		
-		internal Resource _Create()
+		internal Resource _Create(string className=null)
 		{
-			return this._CreateResourceWith(null);
+			return this._CreateResourceWith(className, null);
 		}
 		
 		internal Resource _GetById(string id)
@@ -153,7 +156,7 @@ namespace Saklient.Cloud.Models
 			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(id), query);
 			this._Total = 1;
 			this._Count = 1;
-			return this._CreateResourceWith(result, true);
+			return this._CreateResourceWith(null, result, true);
 		}
 		
 		internal System.Collections.Generic.List<Resource> _Find()
@@ -167,7 +170,7 @@ namespace Saklient.Cloud.Models
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
 			for (int __it1=0; __it1 < (records as System.Collections.IList).Count; __it1++) {
 				var record = records[__it1];
-				(data as System.Collections.IList).Add(this._CreateResourceWith(record));
+				(data as System.Collections.IList).Add(this._CreateResourceWith(null, record));
 			}
 			return ((System.Collections.Generic.List<Resource>)(data));
 		}
@@ -183,7 +186,7 @@ namespace Saklient.Cloud.Models
 				return null;
 			}
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
-			return this._CreateResourceWith(records[System.Convert.ToInt32(0)]);
+			return this._CreateResourceWith(null, records[System.Convert.ToInt32(0)]);
 		}
 		
 		internal Model _WithNameLike(string name)

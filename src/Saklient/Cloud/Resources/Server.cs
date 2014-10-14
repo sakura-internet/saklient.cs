@@ -160,28 +160,13 @@ namespace Saklient.Cloud.Resources
 			return this.Reload();
 		}
 		
-		/// <summary>サーバが停止するまで待機します。
+		/// <summary>サーバが起動するまで待機します。
 		/// 
 		/// <param name="timeoutSec" />
-		/// <param name="callback" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
 		/// </summary>
-		public void AfterDown(long timeoutSec, System.Action<Server, bool> callback)
+		public bool SleepUntilUp(long timeoutSec=180)
 		{
-			this.AfterStatus(EServerInstanceStatus.DOWN, timeoutSec, callback);
-		}
-		
-		/// <summary>サーバが指定のステータスに遷移するまで待機します。
-		/// 
-		/// 
-		/// <param name="status" />
-		/// <param name="timeoutSec" />
-		/// <param name="callback" />
-		/// </summary>
-		private void AfterStatus(string status, long timeoutSec, System.Action<Server, bool> callback)
-		{
-			bool ret = this.SleepUntil(status, timeoutSec);
-			callback(this, ret);
+			return this.SleepUntil(EServerInstanceStatus.UP, timeoutSec);
 		}
 		
 		/// <summary>サーバが停止するまで待機します。
@@ -202,13 +187,13 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		private bool SleepUntil(string status, long timeoutSec=180)
 		{
-			long step = 3;
+			long step = 10;
 			while (0 < timeoutSec) {
 				this.Reload();
 				string s = null;
-				ServerInstance inst = this.Get_instance();
+				ServerInstance inst = this.Instance;
 				if (inst != null) {
-					s = ((string)(inst.Status));
+					s = inst.Status;
 				}
 				if (s == null) {
 					s = EServerInstanceStatus.DOWN;
@@ -467,7 +452,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.IsIncomplete = false;
 			if (Util.ExistsPath(r, "ID")) {
-				this.M_id = Util.GetByPath(r, "ID") == null ? null : "" + Util.GetByPath(r, "ID");
+				this.M_id = Util.GetByPath(r, "ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "ID");
 			}
 			else {
 				this.M_id = null;
@@ -475,7 +460,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_id = false;
 			if (Util.ExistsPath(r, "Name")) {
-				this.M_name = Util.GetByPath(r, "Name") == null ? null : "" + Util.GetByPath(r, "Name");
+				this.M_name = Util.GetByPath(r, "Name") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Name");
 			}
 			else {
 				this.M_name = null;
@@ -483,7 +468,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "Description")) {
-				this.M_description = Util.GetByPath(r, "Description") == null ? null : "" + Util.GetByPath(r, "Description");
+				this.M_description = Util.GetByPath(r, "Description") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Description");
 			}
 			else {
 				this.M_description = null;
@@ -499,7 +484,7 @@ namespace Saklient.Cloud.Resources
 					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
 						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
 						string v1 = null;
-						v1 = t == null ? null : "" + t;
+						v1 = t == null ? ((string)(null)) : "" + t;
 						(this.M_tags as System.Collections.IList).Add(v1);
 					}
 				}
@@ -553,7 +538,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_instance = false;
 			if (Util.ExistsPath(r, "Availability")) {
-				this.M_availability = Util.GetByPath(r, "Availability") == null ? null : "" + Util.GetByPath(r, "Availability");
+				this.M_availability = Util.GetByPath(r, "Availability") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Availability");
 			}
 			else {
 				this.M_availability = null;
@@ -590,10 +575,10 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 			if (withClean || this.N_icon) {
-				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? null : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
+				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? ((Icon)(null)) : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
 			}
 			if (withClean || this.N_plan) {
-				Util.SetByPath(ret, "ServerPlan", withClean ? (this.M_plan == null ? null : this.M_plan.ApiSerialize(withClean)) : (this.M_plan == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_plan.ApiSerializeID()));
+				Util.SetByPath(ret, "ServerPlan", withClean ? (this.M_plan == null ? ((ServerPlan)(null)) : this.M_plan.ApiSerialize(withClean)) : (this.M_plan == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_plan.ApiSerializeID()));
 			}
 			else {
 				if (this.IsNew) {
@@ -605,12 +590,12 @@ namespace Saklient.Cloud.Resources
 				for (int __it2=0; __it2 < (this.M_ifaces as System.Collections.IList).Count; __it2++) {
 					var r2 = this.M_ifaces[__it2];
 					object v = null;
-					v = withClean ? (r2 == null ? null : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
+					v = withClean ? (r2 == null ? ((Iface)(null)) : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Interfaces"] as System.Collections.IList).Add(v);
 				}
 			}
 			if (withClean || this.N_instance) {
-				Util.SetByPath(ret, "Instance", withClean ? (this.M_instance == null ? null : this.M_instance.ApiSerialize(withClean)) : (this.M_instance == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_instance.ApiSerializeID()));
+				Util.SetByPath(ret, "Instance", withClean ? (this.M_instance == null ? ((ServerInstance)(null)) : this.M_instance.ApiSerialize(withClean)) : (this.M_instance == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_instance.ApiSerializeID()));
 			}
 			if (withClean || this.N_availability) {
 				Util.SetByPath(ret, "Availability", this.M_availability);
