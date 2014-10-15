@@ -136,17 +136,14 @@ namespace Saklient.Cloud.Models
 			return this;
 		}
 		
-		internal Resource _CreateResourceWith(string className, object obj, bool wrapped=false)
+		internal virtual Resource _CreateResourceImpl(object obj, bool wrapped=false)
 		{
-			if (className == null) {
-				className = this._ClassName();
-			}
-			return Resource.CreateWith(className, this._Client, obj, wrapped);
+			return null;
 		}
 		
-		internal Resource _Create(string className=null)
+		internal Resource _Create()
 		{
-			return this._CreateResourceWith(className, null);
+			return this._CreateResourceImpl(null);
 		}
 		
 		internal Resource _GetById(string id)
@@ -156,7 +153,7 @@ namespace Saklient.Cloud.Models
 			object result = this._Client.Request("GET", this._ApiPath() + "/" + Util.UrlEncode(id), query);
 			this._Total = 1;
 			this._Count = 1;
-			return this._CreateResourceWith(null, result, true);
+			return this._CreateResourceImpl(result, true);
 		}
 		
 		internal System.Collections.Generic.List<Resource> _Find()
@@ -170,7 +167,7 @@ namespace Saklient.Cloud.Models
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
 			for (int __it1=0; __it1 < (records as System.Collections.IList).Count; __it1++) {
 				var record = records[__it1];
-				(data as System.Collections.IList).Add(this._CreateResourceWith(null, record));
+				(data as System.Collections.IList).Add(this._CreateResourceImpl(record));
 			}
 			return ((System.Collections.Generic.List<Resource>)(data));
 		}
@@ -186,7 +183,7 @@ namespace Saklient.Cloud.Models
 				return null;
 			}
 			System.Collections.Generic.List<object> records = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)[this._RootKeyM()]));
-			return this._CreateResourceWith(null, records[System.Convert.ToInt32(0)]);
+			return this._CreateResourceImpl(records[System.Convert.ToInt32(0)]);
 		}
 		
 		internal Model _WithNameLike(string name)

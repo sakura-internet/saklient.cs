@@ -29,18 +29,6 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_virtualIps(); }
 		}
 		
-		public string Get_swytchId()
-		{
-			return ((string)(Util.GetByPath(this.RawAnnotation, "Switch.ID")));
-		}
-		
-		/// <summary>スイッチID
-		/// </summary>
-		public string SwytchId
-		{
-			get { return this.Get_swytchId(); }
-		}
-		
 		public string Get_defaultRoute()
 		{
 			return ((string)(Util.GetByPath(this.RawAnnotation, "Network.DefaultRoute")));
@@ -66,7 +54,7 @@ namespace Saklient.Cloud.Resources
 			if (maskLen == null) {
 				throw new SaklientException("invalid_data", "Data of the resource is invalid");
 			}
-			return (long)System.Convert.ToInt64(maskLen);
+			return (long)System.Convert.ToInt64(""+maskLen);
 		}
 		
 		public long Set_maskLen(long v)
@@ -89,7 +77,7 @@ namespace Saklient.Cloud.Resources
 			if (vrid == null) {
 				throw new SaklientException("invalid_data", "Data of the resource is invalid");
 			}
-			return (long)System.Convert.ToInt64(vrid);
+			return (long)System.Convert.ToInt64(""+vrid);
 		}
 		
 		public long Set_vrid(long v)
@@ -145,7 +133,9 @@ namespace Saklient.Cloud.Resources
 				this.RawSettings = new System.Collections.Generic.Dictionary<string, object> {};
 			}
 			(this.RawSettings as System.Collections.Generic.Dictionary<string, object>)["LoadBalancer"] = lb;
-			this.Clazz = EApplianceClass.LOADBALANCER;
+			if (this.IsNew) {
+				this.Clazz = EApplianceClass.LOADBALANCER;
+			}
 		}
 		
 		/// <summary>
@@ -179,13 +169,22 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
+		public LoadBalancer ClearVirtualIps()
+		{
+			while (0 < this._VirtualIps.Count) {
+				Util.Pop(this._VirtualIps);
+			}
+			return this;
+		}
+		
 		/// <summary>
 		/// <param name="settings" />
 		/// </summary>
-		public LoadBalancer AddVirtualIp(object settings)
+		public LbVirtualIp AddVirtualIp(object settings=null)
 		{
-			(this._VirtualIps as System.Collections.IList).Add(new LbVirtualIp(settings));
-			return this;
+			LbVirtualIp ret = new LbVirtualIp(settings);
+			(this._VirtualIps as System.Collections.IList).Add(ret);
+			return ret;
 		}
 		
 		/// <summary>
@@ -200,6 +199,22 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 			return null;
+		}
+		
+		public LoadBalancer ReloadStatus()
+		{
+			object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/status");
+			System.Collections.Generic.List<object> vips = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)["LoadBalancer"]));
+			for (int __it1=0; __it1 < (vips as System.Collections.IList).Count; __it1++) {
+				var vipDyn = vips[__it1];
+				string vipStr = ((string)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["VirtualIPAddress"]));
+				LbVirtualIp vip = this.GetVirtualIpByAddress(vipStr);
+				if (vip == null) {
+					continue;
+				}
+				vip.UpdateStatus(((System.Collections.Generic.List<object>)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["Servers"])));
+			}
+			return this;
 		}
 		
 	}

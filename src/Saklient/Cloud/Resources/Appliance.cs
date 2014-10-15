@@ -4,9 +4,11 @@ using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
 using Icon = Saklient.Cloud.Resources.Icon;
 using Iface = Saklient.Cloud.Resources.Iface;
+using Swytch = Saklient.Cloud.Resources.Swytch;
 using EApplianceClass = Saklient.Cloud.Enums.EApplianceClass;
 using EAvailability = Saklient.Cloud.Enums.EAvailability;
 using EServerInstanceStatus = Saklient.Cloud.Enums.EServerInstanceStatus;
+using Model_Swytch = Saklient.Cloud.Models.Model_Swytch;
 
 namespace Saklient.Cloud.Resources
 {
@@ -70,6 +72,10 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal string M_availability;
 		
+		/// <summary>接続先スイッチID
+		/// </summary>
+		internal string M_swytchId;
+		
 		internal override string _ApiPath()
 		{
 			return "/appliance";
@@ -113,23 +119,6 @@ namespace Saklient.Cloud.Resources
 			return ((Appliance)(this._Reload()));
 		}
 		
-		public override string TrueClassName()
-		{
-			if (this.Clazz == null) {
-				return null;
-			}
-			switch (this.Clazz) {
-				case "loadbalancer": {
-					return "LoadBalancer";
-				}
-				case "vpcrouter": {
-					return "VpcRouter";
-				}
-			}
-			
-			return null;
-		}
-		
 		public Appliance(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
@@ -139,6 +128,25 @@ namespace Saklient.Cloud.Resources
 		internal override void _OnBeforeSave(object query)
 		{
 			Util.SetByPath(query, "OriginalSettingsHash", this.Get_rawSettingsHash());
+		}
+		
+		/// <summary>このルータが接続されているスイッチを取得します。
+		/// </summary>
+		public Swytch GetSwytch()
+		{
+			Model_Swytch model = new Model_Swytch(this._Client);
+			string id = this.Get_swytchId();
+			return model.GetById(id);
+		}
+		
+		/// <summary>アプライアンスの設定を反映します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
+		public Appliance Apply()
+		{
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/config");
+			return this;
 		}
 		
 		/// <summary>アプライアンスを起動します。
@@ -520,6 +528,20 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_availability(); }
 		}
 		
+		private bool N_swytchId = false;
+		
+		private string Get_swytchId()
+		{
+			return this.M_swytchId;
+		}
+		
+		/// <summary>接続先スイッチID
+		/// </summary>
+		public string SwytchId
+		{
+			get { return this.Get_swytchId(); }
+		}
+		
 		/// <summary>(This method is generated in Translator_default#buildImpl)
 		/// 
 		/// <param name="r" />
@@ -591,7 +613,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "Plan.ID")) {
-				this.M_planId = Util.GetByPath(r, "Plan.ID") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "Plan.ID"));
+				this.M_planId = Util.GetByPath(r, "Plan.ID") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "Plan.ID"));
 			}
 			else {
 				this.M_planId = null;
@@ -665,6 +687,14 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_availability = false;
+			if (Util.ExistsPath(r, "Switch.ID")) {
+				this.M_swytchId = Util.GetByPath(r, "Switch.ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Switch.ID");
+			}
+			else {
+				this.M_swytchId = null;
+				this.IsIncomplete = true;
+			}
+			this.N_swytchId = false;
 		}
 		
 		internal override object ApiSerializeImpl(bool withClean=false)
@@ -744,6 +774,9 @@ namespace Saklient.Cloud.Resources
 			}
 			if (withClean || this.N_availability) {
 				Util.SetByPath(ret, "Availability", this.M_availability);
+			}
+			if (withClean || this.N_swytchId) {
+				Util.SetByPath(ret, "Switch.ID", this.M_swytchId);
 			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Appliance creation: " + string.Join(", ", (missing).ToArray()));

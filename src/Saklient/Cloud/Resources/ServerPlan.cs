@@ -170,7 +170,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "CPU")) {
-				this.M_cpu = Util.GetByPath(r, "CPU") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "CPU"));
+				this.M_cpu = Util.GetByPath(r, "CPU") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "CPU"));
 			}
 			else {
 				this.M_cpu = null;
@@ -178,7 +178,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_cpu = false;
 			if (Util.ExistsPath(r, "MemoryMB")) {
-				this.M_memoryMib = Util.GetByPath(r, "MemoryMB") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "MemoryMB"));
+				this.M_memoryMib = Util.GetByPath(r, "MemoryMB") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "MemoryMB"));
 			}
 			else {
 				this.M_memoryMib = null;

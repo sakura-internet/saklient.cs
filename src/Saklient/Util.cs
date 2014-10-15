@@ -197,6 +197,15 @@ namespace Saklient {
 			return obj;
 		}
 		
+		public static T Pop<T>(System.Collections.Generic.List<T> a)
+		{
+			int i = a.Count - 1;
+			if (i<0) return default(T);
+			T ret = a[i];
+			a.RemoveAt(i);
+			return ret;
+		}
+		
 	}
 	
 }

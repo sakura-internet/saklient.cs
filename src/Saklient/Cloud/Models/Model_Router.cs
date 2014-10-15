@@ -1,6 +1,7 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
+using Resource = Saklient.Cloud.Resources.Resource;
 using Router = Saklient.Cloud.Resources.Router;
 
 namespace Saklient.Cloud.Models
@@ -29,6 +30,11 @@ namespace Saklient.Cloud.Models
 		internal override string _ClassName()
 		{
 			return "Router";
+		}
+		
+		internal override Resource _CreateResourceImpl(object obj, bool wrapped=false)
+		{
+			return new Router(this._Client, obj, wrapped);
 		}
 		
 		/// <summary>次に取得するリストの開始オフセットを指定します。

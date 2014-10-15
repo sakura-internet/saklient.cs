@@ -1,6 +1,7 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
+using Resource = Saklient.Cloud.Resources.Resource;
 using Server = Saklient.Cloud.Resources.Server;
 using ServerPlan = Saklient.Cloud.Resources.ServerPlan;
 using IsoImage = Saklient.Cloud.Resources.IsoImage;
@@ -32,6 +33,11 @@ namespace Saklient.Cloud.Models
 		internal override string _ClassName()
 		{
 			return "Server";
+		}
+		
+		internal override Resource _CreateResourceImpl(object obj, bool wrapped=false)
+		{
+			return new Server(this._Client, obj, wrapped);
 		}
 		
 		/// <summary>次に取得するリストの開始オフセットを指定します。

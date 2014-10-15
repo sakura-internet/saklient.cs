@@ -1,6 +1,7 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
+using Resource = Saklient.Cloud.Resources.Resource;
 using Archive = Saklient.Cloud.Resources.Archive;
 using LoadBalancer = Saklient.Cloud.Resources.LoadBalancer;
 using VpcRouter = Saklient.Cloud.Resources.VpcRouter;
@@ -32,6 +33,11 @@ namespace Saklient.Cloud.Models
 		internal override string _ClassName()
 		{
 			return "Archive";
+		}
+		
+		internal override Resource _CreateResourceImpl(object obj, bool wrapped=false)
+		{
+			return new Archive(this._Client, obj, wrapped);
 		}
 		
 		/// <summary>次に取得するリストの開始オフセットを指定します。

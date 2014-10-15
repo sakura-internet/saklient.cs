@@ -169,7 +169,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_address = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
-				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
+				this.M_maskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "NetworkMaskLen"));
 			}
 			else {
 				this.M_maskLen = null;

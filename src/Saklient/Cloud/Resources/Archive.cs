@@ -563,7 +563,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_icon = false;
 			if (Util.ExistsPath(r, "DisplayOrder")) {
-				this.M_displayOrder = Util.GetByPath(r, "DisplayOrder") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "DisplayOrder"));
+				this.M_displayOrder = Util.GetByPath(r, "DisplayOrder") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "DisplayOrder"));
 			}
 			else {
 				this.M_displayOrder = null;
@@ -571,7 +571,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_displayOrder = false;
 			if (Util.ExistsPath(r, "SizeMB")) {
-				this.M_sizeMib = Util.GetByPath(r, "SizeMB") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "SizeMB"));
+				this.M_sizeMib = Util.GetByPath(r, "SizeMB") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "SizeMB"));
 			}
 			else {
 				this.M_sizeMib = null;

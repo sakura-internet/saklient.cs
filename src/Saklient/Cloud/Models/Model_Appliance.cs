@@ -1,6 +1,7 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
+using Resource = Saklient.Cloud.Resources.Resource;
 using Appliance = Saklient.Cloud.Resources.Appliance;
 using LoadBalancer = Saklient.Cloud.Resources.LoadBalancer;
 using VpcRouter = Saklient.Cloud.Resources.VpcRouter;
@@ -32,6 +33,19 @@ namespace Saklient.Cloud.Models
 		internal override string _ClassName()
 		{
 			return "Appliance";
+		}
+		
+		internal override Resource _CreateResourceImpl(object obj, bool wrapped=false)
+		{
+			Appliance ret = new Appliance(this._Client, obj, wrapped);
+			string clazz = ((string)(ret.Clazz));
+			if (clazz == "loadbalancer") {
+				return new LoadBalancer(this._Client, obj, wrapped);
+			}
+			if (clazz == "vpcrouter") {
+				return new VpcRouter(this._Client, obj, wrapped);
+			}
+			return ret;
 		}
 		
 		/// <summary>次に取得するリストの開始オフセットを指定します。
@@ -82,13 +96,14 @@ namespace Saklient.Cloud.Models
 		/// </summary>
 		public LoadBalancer CreateLoadBalancer(Swytch swytch, long vrid, System.Collections.Generic.List<string> realIps, bool isHighSpec=false)
 		{
-			LoadBalancer ret = ((LoadBalancer)(this._Create("LoadBalancer")));
+			LoadBalancer ret = new LoadBalancer(this._Client, null);
 			return ret.SetInitialParams(swytch, vrid, realIps, isHighSpec);
 		}
 		
 		public VpcRouter CreateVpcRouter()
 		{
-			return ((VpcRouter)(this._Create("VpcRouter")));
+			VpcRouter ret = new VpcRouter(this._Client, null);
+			return ret;
 		}
 		
 		/// <summary>指定したIDを持つ唯一のリソースを取得します。

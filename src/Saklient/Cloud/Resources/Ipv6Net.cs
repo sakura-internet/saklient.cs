@@ -151,7 +151,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_prefix = false;
 			if (Util.ExistsPath(r, "IPv6PrefixLen")) {
-				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "IPv6PrefixLen"));
+				this.M_prefixLen = Util.GetByPath(r, "IPv6PrefixLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "IPv6PrefixLen"));
 			}
 			else {
 				this.M_prefixLen = null;

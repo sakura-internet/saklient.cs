@@ -328,7 +328,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_userDefaultRoute = false;
 			if (Util.ExistsPath(r, "UserSubnet.NetworkMaskLen")) {
-				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
+				this.M_userMaskLen = Util.GetByPath(r, "UserSubnet.NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "UserSubnet.NetworkMaskLen"));
 			}
 			else {
 				this.M_userMaskLen = null;

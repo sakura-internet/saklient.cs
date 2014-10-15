@@ -201,20 +201,10 @@ namespace Saklient.Cloud.Resources
 			return this.ApiSerialize(true);
 		}
 		
-		public virtual string TrueClassName()
-		{
-			return null;
-		}
-		
 		public static Resource CreateWith(string className, Client client, object obj, bool wrapped=false)
 		{
 			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { client, obj, wrapped };
-			Resource ret = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + className, a)));
-			string trueClassName = ret.TrueClassName();
-			if (trueClassName != null) {
-				ret = ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + trueClassName, a)));
-			}
-			return ret;
+			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + className, a)));
 		}
 		
 		/// <summary>

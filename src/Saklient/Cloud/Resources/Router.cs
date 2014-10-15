@@ -357,7 +357,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_description = false;
 			if (Util.ExistsPath(r, "NetworkMaskLen")) {
-				this.M_networkMaskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "NetworkMaskLen"));
+				this.M_networkMaskLen = Util.GetByPath(r, "NetworkMaskLen") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "NetworkMaskLen"));
 			}
 			else {
 				this.M_networkMaskLen = null;
@@ -365,7 +365,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_networkMaskLen = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
-				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
+				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "BandWidthMbps"));
 			}
 			else {
 				this.M_bandWidthMbps = null;

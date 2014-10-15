@@ -1,6 +1,7 @@
 using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Model = Saklient.Cloud.Models.Model;
+using Resource = Saklient.Cloud.Resources.Resource;
 using Icon = Saklient.Cloud.Resources.Icon;
 using EScope = Saklient.Cloud.Enums.EScope;
 
@@ -30,6 +31,11 @@ namespace Saklient.Cloud.Models
 		internal override string _ClassName()
 		{
 			return "Icon";
+		}
+		
+		internal override Resource _CreateResourceImpl(object obj, bool wrapped=false)
+		{
+			return new Icon(this._Client, obj, wrapped);
 		}
 		
 		/// <summary>次に取得するリストの開始オフセットを指定します。

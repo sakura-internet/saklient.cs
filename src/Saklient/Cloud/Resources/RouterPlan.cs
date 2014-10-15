@@ -141,7 +141,7 @@ namespace Saklient.Cloud.Resources
 			}
 			this.N_name = false;
 			if (Util.ExistsPath(r, "BandWidthMbps")) {
-				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64("" + Util.GetByPath(r, "BandWidthMbps"));
+				this.M_bandWidthMbps = Util.GetByPath(r, "BandWidthMbps") == null ? System.Convert.ToInt64(null) : (long)System.Convert.ToInt64(""+"" + Util.GetByPath(r, "BandWidthMbps"));
 			}
 			else {
 				this.M_bandWidthMbps = null;
