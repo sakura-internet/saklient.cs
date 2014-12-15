@@ -27,6 +27,14 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal string M_description;
 		
+		/// <summary>タグ文字列の配列
+		/// </summary>
+		internal System.Collections.Generic.List<string> M_tags;
+		
+		/// <summary>アイコン
+		/// </summary>
+		internal Icon M_icon;
+		
 		/// <summary>ユーザ設定IPv4ネットワークのゲートウェイ
 		/// </summary>
 		internal string M_userDefaultRoute;
@@ -214,6 +222,51 @@ namespace Saklient.Cloud.Resources
 			set { this.Set_description(value); }
 		}
 		
+		private bool N_tags = false;
+		
+		private System.Collections.Generic.List<string> Get_tags()
+		{
+			this.N_tags = true;
+			return this.M_tags;
+		}
+		
+		private System.Collections.Generic.List<string> Set_tags(System.Collections.Generic.List<string> v)
+		{
+			this.M_tags = v;
+			this.N_tags = true;
+			return this.M_tags;
+		}
+		
+		/// <summary>タグ文字列の配列
+		/// </summary>
+		public System.Collections.Generic.List<string> Tags
+		{
+			get { return this.Get_tags(); }
+			set { this.Set_tags(value); }
+		}
+		
+		private bool N_icon = false;
+		
+		private Icon Get_icon()
+		{
+			return this.M_icon;
+		}
+		
+		private Icon Set_icon(Icon v)
+		{
+			this.M_icon = v;
+			this.N_icon = true;
+			return this.M_icon;
+		}
+		
+		/// <summary>アイコン
+		/// </summary>
+		public Icon Icon
+		{
+			get { return this.Get_icon(); }
+			set { this.Set_icon(value); }
+		}
+		
 		private bool N_userDefaultRoute = false;
 		
 		private string Get_userDefaultRoute()
@@ -319,6 +372,33 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_description = false;
+			if (Util.ExistsPath(r, "Tags")) {
+				if (Util.GetByPath(r, "Tags") == null) {
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+				}
+				else {
+					this.M_tags = new System.Collections.Generic.List<string> {  };
+					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags"))) as System.Collections.IList).Count; __it1++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Tags")))[__it1];
+						string v1 = null;
+						v1 = t == null ? ((string)(null)) : "" + t;
+						(this.M_tags as System.Collections.IList).Add(v1);
+					}
+				}
+			}
+			else {
+				this.M_tags = null;
+				this.IsIncomplete = true;
+			}
+			this.N_tags = false;
+			if (Util.ExistsPath(r, "Icon")) {
+				this.M_icon = Util.GetByPath(r, "Icon") == null ? null : new Icon(this._Client, Util.GetByPath(r, "Icon"));
+			}
+			else {
+				this.M_icon = null;
+				this.IsIncomplete = true;
+			}
+			this.N_icon = false;
 			if (Util.ExistsPath(r, "UserSubnet.DefaultRoute")) {
 				this.M_userDefaultRoute = Util.GetByPath(r, "UserSubnet.DefaultRoute") == null ? ((string)(null)) : "" + Util.GetByPath(r, "UserSubnet.DefaultRoute");
 			}
@@ -349,11 +429,11 @@ namespace Saklient.Cloud.Resources
 				}
 				else {
 					this.M_ipv4Nets = new System.Collections.Generic.List<Ipv4Net> {  };
-					for (int __it1=0; __it1 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets"))) as System.Collections.IList).Count; __it1++) {
-						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets")))[__it1];
-						Ipv4Net v1 = null;
-						v1 = t == null ? null : new Ipv4Net(this._Client, t);
-						(this.M_ipv4Nets as System.Collections.IList).Add(v1);
+					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets"))) as System.Collections.IList).Count; __it2++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "Subnets")))[__it2];
+						Ipv4Net v2 = null;
+						v2 = t == null ? null : new Ipv4Net(this._Client, t);
+						(this.M_ipv4Nets as System.Collections.IList).Add(v2);
 					}
 				}
 			}
@@ -368,11 +448,11 @@ namespace Saklient.Cloud.Resources
 				}
 				else {
 					this.M_ipv6Nets = new System.Collections.Generic.List<Ipv6Net> {  };
-					for (int __it2=0; __it2 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets"))) as System.Collections.IList).Count; __it2++) {
-						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets")))[__it2];
-						Ipv6Net v2 = null;
-						v2 = t == null ? null : new Ipv6Net(this._Client, t);
-						(this.M_ipv6Nets as System.Collections.IList).Add(v2);
+					for (int __it3=0; __it3 < (((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets"))) as System.Collections.IList).Count; __it3++) {
+						var t = ((System.Collections.Generic.List<object>)(Util.GetByPath(r, "IPv6Nets")))[__it3];
+						Ipv6Net v3 = null;
+						v3 = t == null ? null : new Ipv6Net(this._Client, t);
+						(this.M_ipv6Nets as System.Collections.IList).Add(v3);
 					}
 				}
 			}
@@ -401,6 +481,18 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_description) {
 				Util.SetByPath(ret, "Description", this.M_description);
 			}
+			if (withClean || this.N_tags) {
+				Util.SetByPath(ret, "Tags", new System.Collections.Generic.List<object> {  });
+				for (int __it1=0; __it1 < (this.M_tags as System.Collections.IList).Count; __it1++) {
+					var r1 = this.M_tags[__it1];
+					object v = null;
+					v = r1;
+					((ret as System.Collections.Generic.Dictionary<string, object>)["Tags"] as System.Collections.IList).Add(v);
+				}
+			}
+			if (withClean || this.N_icon) {
+				Util.SetByPath(ret, "Icon", withClean ? (this.M_icon == null ? ((Icon)(null)) : this.M_icon.ApiSerialize(withClean)) : (this.M_icon == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_icon.ApiSerializeID()));
+			}
 			if (withClean || this.N_userDefaultRoute) {
 				Util.SetByPath(ret, "UserSubnet.DefaultRoute", this.M_userDefaultRoute);
 			}
@@ -412,19 +504,19 @@ namespace Saklient.Cloud.Resources
 			}
 			if (withClean || this.N_ipv4Nets) {
 				Util.SetByPath(ret, "Subnets", new System.Collections.Generic.List<object> {  });
-				for (int __it1=0; __it1 < (this.M_ipv4Nets as System.Collections.IList).Count; __it1++) {
-					var r1 = this.M_ipv4Nets[__it1];
+				for (int __it2=0; __it2 < (this.M_ipv4Nets as System.Collections.IList).Count; __it2++) {
+					var r2 = this.M_ipv4Nets[__it2];
 					object v = null;
-					v = withClean ? (r1 == null ? ((Ipv4Net)(null)) : r1.ApiSerialize(withClean)) : (r1 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r1.ApiSerializeID());
+					v = withClean ? (r2 == null ? ((Ipv4Net)(null)) : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["Subnets"] as System.Collections.IList).Add(v);
 				}
 			}
 			if (withClean || this.N_ipv6Nets) {
 				Util.SetByPath(ret, "IPv6Nets", new System.Collections.Generic.List<object> {  });
-				for (int __it2=0; __it2 < (this.M_ipv6Nets as System.Collections.IList).Count; __it2++) {
-					var r2 = this.M_ipv6Nets[__it2];
+				for (int __it3=0; __it3 < (this.M_ipv6Nets as System.Collections.IList).Count; __it3++) {
+					var r3 = this.M_ipv6Nets[__it3];
 					object v = null;
-					v = withClean ? (r2 == null ? ((Ipv6Net)(null)) : r2.ApiSerialize(withClean)) : (r2 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r2.ApiSerializeID());
+					v = withClean ? (r3 == null ? ((Ipv6Net)(null)) : r3.ApiSerialize(withClean)) : (r3 == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : r3.ApiSerializeID());
 					((ret as System.Collections.Generic.Dictionary<string, object>)["IPv6Nets"] as System.Collections.IList).Add(v);
 				}
 			}
