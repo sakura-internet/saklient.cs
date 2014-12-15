@@ -39,11 +39,11 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal Router M_router;
 		
-		/// <summary>IPv4ネットワーク（ルータによる自動割当）
+		/// <summary>IPv4ネットワーク（ルータによる自動割当） <see cref="Saklient.Cloud.Resources.Ipv4Net" /> の配列
 		/// </summary>
 		internal System.Collections.Generic.List<Ipv4Net> M_ipv4Nets;
 		
-		/// <summary>IPv6ネットワーク（ルータによる自動割当）
+		/// <summary>IPv6ネットワーク（ルータによる自動割当） <see cref="Saklient.Cloud.Resources.Ipv6Net" /> の配列
 		/// </summary>
 		internal System.Collections.Generic.List<Ipv6Net> M_ipv6Nets;
 		
@@ -263,7 +263,7 @@ namespace Saklient.Cloud.Resources
 			return this.M_ipv4Nets;
 		}
 		
-		/// <summary>IPv4ネットワーク（ルータによる自動割当）
+		/// <summary>IPv4ネットワーク（ルータによる自動割当） <see cref="Saklient.Cloud.Resources.Ipv4Net" /> の配列
 		/// </summary>
 		public System.Collections.Generic.List<Ipv4Net> Ipv4Nets
 		{
@@ -277,7 +277,7 @@ namespace Saklient.Cloud.Resources
 			return this.M_ipv6Nets;
 		}
 		
-		/// <summary>IPv6ネットワーク（ルータによる自動割当）
+		/// <summary>IPv6ネットワーク（ルータによる自動割当） <see cref="Saklient.Cloud.Resources.Ipv6Net" /> の配列
 		/// </summary>
 		public System.Collections.Generic.List<Ipv6Net> Ipv6Nets
 		{

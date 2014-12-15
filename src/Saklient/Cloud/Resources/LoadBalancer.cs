@@ -22,7 +22,7 @@ namespace Saklient.Cloud.Resources
 			return this._VirtualIps;
 		}
 		
-		/// <summary>仮想IPアドレス
+		/// <summary>仮想IPアドレス <see cref="Saklient.Cloud.Resources.LbVirtualIp" /> の配列
 		/// </summary>
 		public System.Collections.Generic.List<LbVirtualIp> VirtualIps
 		{

@@ -79,7 +79,7 @@ namespace Saklient.Cloud.Resources
 			return this._Servers;
 		}
 		
-		/// <summary>実サーバ
+		/// <summary>実サーバ <see cref="Saklient.Cloud.Resources.LbServer" /> の配列
 		/// </summary>
 		public System.Collections.Generic.List<LbServer> Servers
 		{

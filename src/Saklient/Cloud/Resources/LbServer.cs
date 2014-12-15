@@ -120,7 +120,7 @@ namespace Saklient.Cloud.Resources
 			return this._ActiveConnections;
 		}
 		
-		/// <summary>レスポンスコード
+		/// <summary>現在の接続数
 		/// </summary>
 		public long ActiveConnections
 		{
@@ -134,7 +134,7 @@ namespace Saklient.Cloud.Resources
 			return this._Status;
 		}
 		
-		/// <summary>レスポンスコード
+		/// <summary>現在の状態
 		/// </summary>
 		public string Status
 		{

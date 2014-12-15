@@ -34,7 +34,7 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal string M_description;
 		
-		/// <summary>タグ
+		/// <summary>タグ文字列の配列
 		/// </summary>
 		internal System.Collections.Generic.List<string> M_tags;
 		
@@ -46,7 +46,7 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal long? M_planId;
 		
-		/// <summary>インタフェース
+		/// <summary>インタフェース <see cref="Saklient.Cloud.Resources.Iface" /> の配列
 		/// </summary>
 		internal System.Collections.Generic.List<Iface> M_ifaces;
 		
@@ -357,7 +357,7 @@ namespace Saklient.Cloud.Resources
 			return this.M_tags;
 		}
 		
-		/// <summary>タグ
+		/// <summary>タグ文字列の配列
 		/// </summary>
 		public System.Collections.Generic.List<string> Tags
 		{
@@ -419,7 +419,7 @@ namespace Saklient.Cloud.Resources
 			return this.M_ifaces;
 		}
 		
-		/// <summary>インタフェース
+		/// <summary>インタフェース <see cref="Saklient.Cloud.Resources.Iface" /> の配列
 		/// </summary>
 		public System.Collections.Generic.List<Iface> Ifaces
 		{

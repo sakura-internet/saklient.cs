@@ -167,7 +167,7 @@ namespace Saklient.Cloud.Resources
 			return this._Scripts;
 		}
 		
-		/// <summary>スタートアップスクリプト（pushによりスクリプトを追加できます）
+		/// <summary>スタートアップスクリプト <see cref="Saklient.Cloud.Resources.Script" /> の配列（pushによりスクリプトを追加できます）
 		/// </summary>
 		public System.Collections.Generic.List<Script> Scripts
 		{
