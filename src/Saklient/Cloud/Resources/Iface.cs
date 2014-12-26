@@ -2,6 +2,7 @@ using Util = Saklient.Util;
 using SaklientException = Saklient.Errors.SaklientException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
+using Swytch = Saklient.Cloud.Resources.Swytch;
 
 namespace Saklient.Cloud.Resources
 {
@@ -80,6 +81,17 @@ namespace Saklient.Cloud.Resources
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
+		/// <summary>スイッチに接続します。
+		/// 
+		/// <param name="swytch">接続先のスイッチ。</param>
+		/// <returns>this</returns>
+		/// </summary>
+		public Iface ConnectToSwytch(Swytch swytch)
+		{
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/" + Util.UrlEncode(swytch._Id()));
+			return this.Reload();
+		}
+		
 		/// <summary>共有セグメントに接続します。
 		/// 
 		/// <returns>this</returns>
@@ -87,6 +99,16 @@ namespace Saklient.Cloud.Resources
 		public Iface ConnectToSharedSegment()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/shared");
+			return this.Reload();
+		}
+		
+		/// <summary>スイッチから切断します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
+		public Iface DisconnectFromSwytch()
+		{
+			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch");
 			return this.Reload();
 		}
 		

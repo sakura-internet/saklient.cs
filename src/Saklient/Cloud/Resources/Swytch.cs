@@ -6,6 +6,7 @@ using Icon = Saklient.Cloud.Resources.Icon;
 using Router = Saklient.Cloud.Resources.Router;
 using Ipv4Net = Saklient.Cloud.Resources.Ipv4Net;
 using Ipv6Net = Saklient.Cloud.Resources.Ipv6Net;
+using Bridge = Saklient.Cloud.Resources.Bridge;
 
 namespace Saklient.Cloud.Resources
 {
@@ -46,6 +47,10 @@ namespace Saklient.Cloud.Resources
 		/// <summary>接続されているルータ
 		/// </summary>
 		internal Router M_router;
+		
+		/// <summary>接続されているブリッジ
+		/// </summary>
+		internal Bridge M_bridge;
 		
 		/// <summary>IPv4ネットワーク（ルータによる自動割当） <see cref="Saklient.Cloud.Resources.Ipv4Net" /> の配列
 		/// </summary>
@@ -154,12 +159,36 @@ namespace Saklient.Cloud.Resources
 		
 		/// <summary>このルータ＋スイッチの帯域プランを変更します。
 		/// 
-		/// <param name="bandWidthMbps" />
+		/// <param name="bandWidthMbps">帯域幅（api.product.router.find() から取得できる <see cref="RouterPlan" /> の bandWidthMbps を指定）。</param>
 		/// <returns>this</returns>
 		/// </summary>
 		public Swytch ChangePlan(long bandWidthMbps)
 		{
 			this.Get_router().ChangePlan(bandWidthMbps);
+			this.Reload();
+			return this;
+		}
+		
+		/// <summary>このルータ＋スイッチをブリッジに接続します。
+		/// 
+		/// <param name="swytch">接続先のブリッジ。</param>
+		/// <param name="bridge" />
+		/// <returns>this</returns>
+		/// </summary>
+		public Swytch ConnectToBridge(Bridge bridge)
+		{
+			object result = this._Client.Request("PUT", this._ApiPath() + "/" + this._Id() + "/to/bridge/" + bridge._Id());
+			this.Reload();
+			return this;
+		}
+		
+		/// <summary>このルータ＋スイッチをブリッジから切断します。
+		/// 
+		/// <returns>this</returns>
+		/// </summary>
+		public Swytch DisconnectFromBridge()
+		{
+			object result = this._Client.Request("DELETE", this._ApiPath() + "/" + this._Id() + "/to/bridge");
 			this.Reload();
 			return this;
 		}
@@ -309,6 +338,20 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_router(); }
 		}
 		
+		private bool N_bridge = false;
+		
+		private Bridge Get_bridge()
+		{
+			return this.M_bridge;
+		}
+		
+		/// <summary>接続されているブリッジ
+		/// </summary>
+		public Bridge Bridge
+		{
+			get { return this.Get_bridge(); }
+		}
+		
 		private bool N_ipv4Nets = false;
 		
 		private System.Collections.Generic.List<Ipv4Net> Get_ipv4Nets()
@@ -423,6 +466,14 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_router = false;
+			if (Util.ExistsPath(r, "Bridge")) {
+				this.M_bridge = Util.GetByPath(r, "Bridge") == null ? null : new Bridge(this._Client, Util.GetByPath(r, "Bridge"));
+			}
+			else {
+				this.M_bridge = null;
+				this.IsIncomplete = true;
+			}
+			this.N_bridge = false;
 			if (Util.ExistsPath(r, "Subnets")) {
 				if (Util.GetByPath(r, "Subnets") == null) {
 					this.M_ipv4Nets = new System.Collections.Generic.List<Ipv4Net> {  };
@@ -501,6 +552,9 @@ namespace Saklient.Cloud.Resources
 			}
 			if (withClean || this.N_router) {
 				Util.SetByPath(ret, "Internet", withClean ? (this.M_router == null ? ((Router)(null)) : this.M_router.ApiSerialize(withClean)) : (this.M_router == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_router.ApiSerializeID()));
+			}
+			if (withClean || this.N_bridge) {
+				Util.SetByPath(ret, "Bridge", withClean ? (this.M_bridge == null ? ((Bridge)(null)) : this.M_bridge.ApiSerialize(withClean)) : (this.M_bridge == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_bridge.ApiSerializeID()));
 			}
 			if (withClean || this.N_ipv4Nets) {
 				Util.SetByPath(ret, "Subnets", new System.Collections.Generic.List<object> {  });
