@@ -6,11 +6,11 @@
 		<authors>SAKURA Internet Inc.</authors>
 		<owners>SAKURA Internet Inc.</owners>
 		<licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-		<projectUrl>https://github.com/sakura-internet/saklient.cs</projectUrl>
+		<projectUrl>http://sakura-internet.github.io/saklient.doc/</projectUrl>
 		<iconUrl>https://avatars0.githubusercontent.com/u/3508254?v=2&amp;s=200</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>An easy interface to control your resources on SAKURA Cloud.</description>
-		<releaseNotes>1.0.0</releaseNotes>
+		<releaseNotes></releaseNotes>
 		<copyright>Copyright 2014 SAKURA Internet Inc.</copyright>
 		<tags>cloud</tags>
 		<dependencies>
