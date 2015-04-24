@@ -3,7 +3,7 @@ using Util = Saklient.Util;
 namespace Saklient.Cloud.Resources
 {
 
-	/// <summary>ロードバランサの監視対象サーバ。
+	/// <summary>ロードバランサの監視対象サーバ設定。
 	/// </summary>
 	public class LbServer
 	{
@@ -201,9 +201,6 @@ namespace Saklient.Cloud.Resources
 			};
 		}
 		
-		/// <summary>
-		/// <param name="obj" />
-		/// </summary>
 		public LbServer UpdateStatus(object obj)
 		{
 			string connStr = ((string)((obj as System.Collections.Generic.Dictionary<string, object>)["ActiveConn"]));

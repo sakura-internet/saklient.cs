@@ -4,7 +4,7 @@ using LbServer = Saklient.Cloud.Resources.LbServer;
 namespace Saklient.Cloud.Resources
 {
 
-	/// <summary>ロードバランサの仮想IPアドレス。
+	/// <summary>ロードバランサの仮想IPアドレス設定。
 	/// </summary>
 	public class LbVirtualIp
 	{
@@ -130,8 +130,9 @@ namespace Saklient.Cloud.Resources
 			}
 		}
 		
-		/// <summary>
-		/// <param name="settings" />
+		/// <summary>監視対象サーバ設定を追加します。
+		/// 
+		/// <param name="settings">設定オブジェクト</param>
 		/// </summary>
 		public LbServer AddServer(object settings=null)
 		{
@@ -155,8 +156,10 @@ namespace Saklient.Cloud.Resources
 			};
 		}
 		
-		/// <summary>
-		/// <param name="address" />
+		/// <summary>指定したIPアドレスにマッチする監視対象サーバ設定のうち、最初にマッチしたものを取得します。
+		/// 
+		/// <param name="address">検索するIPアドレス</param>
+		/// <returns>監視対象サーバ設定（見つからなかった場合はnull）</returns>
 		/// </summary>
 		public LbServer GetServerByAddress(string address)
 		{
@@ -169,9 +172,23 @@ namespace Saklient.Cloud.Resources
 			return null;
 		}
 		
-		/// <summary>
-		/// <param name="srvs" />
+		/// <summary>指定したIPアドレスにマッチする監視対象サーバ設定をすべて削除します。
+		/// 
+		/// <param name="address" />
 		/// </summary>
+		public LbVirtualIp RemoveServerByAddress(string address)
+		{
+			System.Collections.Generic.List<LbServer> servers = new System.Collections.Generic.List<LbServer> {  };
+			for (int __it1=0; __it1 < (this._Servers as System.Collections.IList).Count; __it1++) {
+				var srv = this._Servers[__it1];
+				if (srv.IpAddress != address) {
+					(servers as System.Collections.IList).Add(srv);
+				}
+			}
+			this._Servers = servers;
+			return this;
+		}
+		
 		public LbVirtualIp UpdateStatus(System.Collections.Generic.List<object> srvs)
 		{
 			for (int __it1=0; __it1 < (srvs as System.Collections.IList).Count; __it1++) {

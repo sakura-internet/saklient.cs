@@ -177,8 +177,9 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
-		/// <summary>
-		/// <param name="settings" />
+		/// <summary>仮想IPアドレス設定を追加します。
+		/// 
+		/// <param name="settings">設定オブジェクト</param>
 		/// </summary>
 		public LbVirtualIp AddVirtualIp(object settings=null)
 		{
@@ -187,7 +188,8 @@ namespace Saklient.Cloud.Resources
 			return ret;
 		}
 		
-		/// <summary>
+		/// <summary>指定したIPアドレスにマッチする仮想IPアドレス設定を取得します。
+		/// 
 		/// <param name="address" />
 		/// </summary>
 		public LbVirtualIp GetVirtualIpByAddress(string address)
@@ -201,18 +203,22 @@ namespace Saklient.Cloud.Resources
 			return null;
 		}
 		
+		/// <summary>監視対象サーバのステータスを最新の状態に更新します。
+		/// </summary>
 		public LoadBalancer ReloadStatus()
 		{
 			object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/status");
-			System.Collections.Generic.List<object> vips = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)["LoadBalancer"]));
-			for (int __it1=0; __it1 < (vips as System.Collections.IList).Count; __it1++) {
-				var vipDyn = vips[__it1];
-				string vipStr = ((string)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["VirtualIPAddress"]));
-				LbVirtualIp vip = this.GetVirtualIpByAddress(vipStr);
-				if (vip == null) {
-					continue;
+			if ((result as System.Collections.Generic.Dictionary<string, object>).ContainsKey("LoadBalancer")) {
+				System.Collections.Generic.List<object> vips = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)["LoadBalancer"]));
+				for (int __it1=0; __it1 < (vips as System.Collections.IList).Count; __it1++) {
+					var vipDyn = vips[__it1];
+					string vipStr = ((string)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["VirtualIPAddress"]));
+					LbVirtualIp vip = this.GetVirtualIpByAddress(vipStr);
+					if (vip == null) {
+						continue;
+					}
+					vip.UpdateStatus(((System.Collections.Generic.List<object>)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["Servers"])));
 				}
-				vip.UpdateStatus(((System.Collections.Generic.List<object>)((vipDyn as System.Collections.Generic.Dictionary<string, object>)["Servers"])));
 			}
 			return this;
 		}
