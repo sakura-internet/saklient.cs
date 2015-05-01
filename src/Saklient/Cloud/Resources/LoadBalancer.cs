@@ -50,7 +50,7 @@ namespace Saklient.Cloud.Resources
 		
 		public long Get_maskLen()
 		{
-			string maskLen = ((string)(Util.GetByPath(this.RawAnnotation, "Network.NetworkMaskLen")));
+			string maskLen = Util.GetByPath(this.RawAnnotation, "Network.NetworkMaskLen").ToString();
 			if (maskLen == null) {
 				throw new SaklientException("invalid_data", "Data of the resource is invalid");
 			}
@@ -73,7 +73,7 @@ namespace Saklient.Cloud.Resources
 		
 		public long Get_vrid()
 		{
-			string vrid = ((string)(Util.GetByPath(this.RawAnnotation, "VRRP.VRID")));
+			string vrid = Util.GetByPath(this.RawAnnotation, "VRRP.VRID").ToString();
 			if (vrid == null) {
 				throw new SaklientException("invalid_data", "Data of the resource is invalid");
 			}
@@ -208,7 +208,7 @@ namespace Saklient.Cloud.Resources
 		public LoadBalancer ReloadStatus()
 		{
 			object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/status");
-			if ((result as System.Collections.Generic.Dictionary<string, object>).ContainsKey("LoadBalancer")) {
+			if (result != null && (result as System.Collections.Generic.Dictionary<string, object>).ContainsKey("LoadBalancer")) {
 				System.Collections.Generic.List<object> vips = ((System.Collections.Generic.List<object>)((result as System.Collections.Generic.Dictionary<string, object>)["LoadBalancer"]));
 				for (int __it1=0; __it1 < (vips as System.Collections.IList).Count; __it1++) {
 					var vipDyn = vips[__it1];

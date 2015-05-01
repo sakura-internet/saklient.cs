@@ -15,6 +15,7 @@ SHARPSSH=`find packages -name Tamir.SharpSSH.dll`
 DIFFIEHELLMAN=`find packages -name DiffieHellman.dll`
 MENTALIS_SECURITY=`find packages -name Org.Mentalis.Security.dll`
 
+rm -f out/tests.dll
 mcs -nologo -optimize+ -unsafe- \
 	-debug+ \
 	-target:library \

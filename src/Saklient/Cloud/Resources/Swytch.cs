@@ -193,6 +193,68 @@ namespace Saklient.Cloud.Resources
 			return this;
 		}
 		
+		internal object _UsedIpv4AddressHash()
+		{
+			object filter = new System.Collections.Generic.Dictionary<string, object> {};
+			(filter as System.Collections.Generic.Dictionary<string, object>)["Switch" + ".ID"] = this._Id();
+			object query = new System.Collections.Generic.Dictionary<string, object> {};
+			Util.SetByPath(query, "Count", 0);
+			Util.SetByPath(query, "Filter", filter);
+			Util.SetByPath(query, "Include", new System.Collections.Generic.List<string> { "IPAddress", "UserIPAddress" });
+			object result = this._Client.Request("GET", "/interface", query);
+			if (result == null) {
+				return null;
+			}
+			result = (result as System.Collections.Generic.Dictionary<string, object>)["Interfaces"];
+			if (result == null) {
+				return null;
+			}
+			System.Collections.Generic.List<object> ifaces = ((System.Collections.Generic.List<object>)(result));
+			if (ifaces == null) {
+				return null;
+			}
+			object found = new System.Collections.Generic.Dictionary<string, object> {};
+			for (int __it1=0; __it1 < (ifaces as System.Collections.IList).Count; __it1++) {
+				var iface = ifaces[__it1];
+				string ip = ((string)((iface as System.Collections.Generic.Dictionary<string, object>)["IPAddress"]));
+				string userIp = ((string)((iface as System.Collections.Generic.Dictionary<string, object>)["UserIPAddress"]));
+				if (ip == null) {
+					ip = userIp;
+				}
+				if (ip != null) {
+					(found as System.Collections.Generic.Dictionary<string, object>)[ip] = true;
+				}
+			}
+			return found;
+		}
+		
+		/// <summary>このルータ＋スイッチに接続中のインタフェースに割り当てられているIPアドレスを収集します。
+		/// </summary>
+		public System.Collections.Generic.List<string> CollectUsedIpv4Addresses()
+		{
+			object found = this._UsedIpv4AddressHash();
+			return Util.SortArray(Util.DictionaryKeys(found));
+		}
+		
+		/// <summary>このルータ＋スイッチで利用できる未使用のIPアドレスを収集します。
+		/// </summary>
+		public System.Collections.Generic.List<string> CollectUnusedIpv4Addresses()
+		{
+			System.Collections.Generic.List<Ipv4Net> nets = this.Get_ipv4Nets();
+			if (nets.Count < 1) {
+				return null;
+			}
+			object used = this._UsedIpv4AddressHash();
+			System.Collections.Generic.List<string> ret = new System.Collections.Generic.List<string> {  };
+			for (int __it1=0; __it1 < (nets[System.Convert.ToInt32(0)].Get_range().Get_asArray() as System.Collections.IList).Count; __it1++) {
+				var ip = nets[System.Convert.ToInt32(0)].Get_range().Get_asArray()[__it1];
+				if (!(used as System.Collections.Generic.Dictionary<string, object>).ContainsKey(ip)) {
+					(ret as System.Collections.IList).Add(ip);
+				}
+			}
+			return Util.SortArray(ret);
+		}
+		
 		private bool N_id = false;
 		
 		private string Get_id()

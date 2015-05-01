@@ -8,6 +8,7 @@ namespace Saklient.Tests
 	using Hash = Dictionary<string, object>;
 
 	[TestFixture]
+	[Category("Util")]
 	public class UtilTest
 	{
 
@@ -46,6 +47,32 @@ namespace Saklient.Tests
 			//
 			((Hash)test["first"])["second"] = (int)((Hash)test["first"])["second"] * 10;
 			Assert.AreEqual(4560, Util.GetByPath(test, "first.second"));
+			
+			//
+			Assert.AreEqual(0, Util.Ip2long("0.0.0.0"));
+			Assert.AreEqual(0x7FFFFFFF, Util.Ip2long("127.255.255.255"));
+			Assert.AreEqual(0x80000000, Util.Ip2long("128.0.0.0"));
+			Assert.AreEqual(0xFFFFFFFF, Util.Ip2long("255.255.255.255"));
+			Assert.AreEqual(0xDEADBEEF, Util.Ip2long("222.173.190.239"));
+			//
+			Assert.AreEqual("0.0.0.0", Util.Long2ip(0));
+			Assert.AreEqual("127.255.255.255", Util.Long2ip(0x7FFFFFFF));
+			Assert.AreEqual("128.0.0.0", Util.Long2ip(0x80000000));
+			Assert.AreEqual("255.255.255.255", Util.Long2ip(0xFFFFFFFF));
+			Assert.AreEqual("222.173.190.239", Util.Long2ip(0xDEADBEEF));
+			Assert.AreEqual("128.0.0.0", Util.Long2ip(Util.Ip2long("127.255.255.255") + 1));
+			//
+			Assert.AreEqual(-1, Util.Ip2long("0"));
+			Assert.AreEqual(-1, Util.Ip2long(""));
+			Assert.AreEqual(-1, Util.Ip2long("x"));
+			Assert.AreEqual(-1, Util.Ip2long("0.0.0"));
+			Assert.AreEqual(-1, Util.Ip2long("0.0.0.x"));
+			Assert.AreEqual(-1, Util.Ip2long("0.0.0.0.0"));
+			Assert.AreEqual(-1, Util.Ip2long("255.255.255.256"));
+			Assert.AreEqual(-1, Util.Ip2long("256.255.255.255"));
+			Assert.AreEqual("0.0.0.0", Util.Long2ip(0));
+			Assert.AreEqual("255.255.255.255", Util.Long2ip(Util.Ip2long("0.0.0.0") - 1));
+			Assert.AreEqual("0.0.0.0", Util.Long2ip(Util.Ip2long("255.255.255.255") + 1));
 			
 		}
 		

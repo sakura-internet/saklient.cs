@@ -186,6 +186,8 @@ namespace Saklient.Cloud.Resources
 			if (this._ResponseExpected == 0) {
 				this._ResponseExpected = null;
 			}
+			this._ActiveConnections = 0;
+			this._Status = null;
 		}
 		
 		public object ToRawSettings()

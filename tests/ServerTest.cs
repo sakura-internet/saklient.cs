@@ -68,7 +68,7 @@ namespace Saklient.Cloud.Tests
 				// search archives
 				Console.WriteLine("searching archives...");
 				List<Archive> archives = api.Archive
-					.WithNameLike("CentOS 6.5 64bit")
+					.WithNameLike("CentOS 6. 64bit")
 					.WithSizeGib(20)
 					.WithSharedScope()
 					.Limit(1)

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -71,7 +72,7 @@ namespace Saklient.Cloud {
 			HttpWebRequest req = (HttpWebRequest)WebRequest.Create(path);
 			req.Method = method != "GET" ? "POST" : "GET";
 			req.ContentType = json != null ? "application/json" : "application/x-www-form-urlencoded";
-			req.UserAgent = "saklient.cs ver-0.0.2.6 rev-ea935ca9d640e87509db882d9fd06ec2bf75fe23";
+			req.UserAgent = "saklient.cs ver-0.0.2.7 rev-3f3b3b7ce4b10e7ebcd77c17497763ba558bf424";
 			req.Headers.Add(HttpRequestHeader.Authorization, this.authorization);
 			req.Headers.Add("X-Requested-With", "XMLHttpRequest");
 			req.Headers.Add("X-Sakura-No-Authenticate-Header", "1");

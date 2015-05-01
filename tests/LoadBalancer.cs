@@ -19,22 +19,7 @@ namespace Saklient.Cloud.Tests
 	public class LoadBalancerTest
 	{
 		
-		const string TESTS_CONFIG_READYMADE_LB_ID = "112600809060";
-		
-		public static long ip2long(string str)
-		{
-			IPAddress ip;
-			if (!IPAddress.TryParse(str, out ip)) return -1;
-			Byte[] b = ip.GetAddressBytes();
-			return ((long)b[0])<<24 | ((long)b[1])<<16 | ((long)b[2])<<8 | ((long)b[3]);
-		}
-		
-		public static string long2ip(long val)
-		{
-			IPAddress ip;
-			if (!IPAddress.TryParse(val.ToString(), out ip)) return null;
-			return ip.ToString();
-		}
+		const string TESTS_CONFIG_READYMADE_LB_ID = null;
 		
 		[Test]
 		public void Test()
@@ -61,7 +46,7 @@ namespace Saklient.Cloud.Tests
 				
 				// search a switch
 				Console.WriteLine("searching a swytch...");
-				List<Swytch> swytches = api.Swytch.WithTag("lb-attached").Limit(1).Find();
+				List<Swytch> swytches = api.Swytch.WithNameLike("saklient-lb-attached").Limit(1).Find();
 				Assert.Greater(swytches.Count, 0);
 				swytch = swytches[0];
 				Assert.IsNotNull(swytch);
@@ -73,7 +58,9 @@ namespace Saklient.Cloud.Tests
 				// create a loadbalancer
 				Console.WriteLine("creating a LB...");
 				long vrid = 123;
-				lb = (LoadBalancer)api.Appliance.CreateLoadBalancer(swytch, vrid, new List<string>{"133.242.255.244", "133.242.255.245"}, true);
+				string realIp1 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 3);
+				string realIp2 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 4);
+				lb = (LoadBalancer)api.Appliance.CreateLoadBalancer(swytch, vrid, new List<string>{realIp1, realIp2}, true);
 				Assert.IsNotNull(lb);
 				
 				bool ok = false;
@@ -91,12 +78,12 @@ namespace Saklient.Cloud.Tests
 				lb.Save();
 				
 				lb.Reload();
-				Assert.AreEqual(lb.DefaultRoute, net.DefaultRoute); 
+				Assert.AreEqual(net.DefaultRoute, lb.DefaultRoute); 
 				Console.WriteLine(lb.MaskLen + " =? " + net.MaskLen);
 				Console.WriteLine(lb.Vrid + " =? " + vrid);
-//				Assert.AreEqual((long?)lb.MaskLen, net.MaskLen); 
-//				Assert.AreEqual((long?)lb.Vrid, vrid); 
-				Assert.AreEqual(lb.SwytchId, swytch.Id); 
+//				Assert.AreEqual(net.MaskLen, (long?)lb.MaskLen); 
+//				Assert.AreEqual(vrid, (long?)lb.Vrid); 
+				Assert.AreEqual(swytch.Id, lb.SwytchId);
 				
 				// wait the LB becomes up
 				Console.WriteLine("waiting the LB becomes up...");
@@ -122,17 +109,17 @@ namespace Saklient.Cloud.Tests
 			lb.ClearVirtualIps();
 			lb.Save();
 			lb.Reload();
-			Assert.AreEqual(lb.VirtualIps.Count, 0);
+			Assert.AreEqual(0, lb.VirtualIps.Count);
 			
 			
 			
 			// setting virtual ips test 1
 			
-			string vip1Ip     = long2ip(ip2long(net.DefaultRoute) + 5);
-			string vip1SrvIp1 = long2ip(ip2long(net.DefaultRoute) + 6);
-			string vip1SrvIp2 = long2ip(ip2long(net.DefaultRoute) + 7);
-			string vip1SrvIp3 = long2ip(ip2long(net.DefaultRoute) + 8);
-			string vip1SrvIp4 = long2ip(ip2long(net.DefaultRoute) + 9);
+			string vip1Ip     = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 5);
+			string vip1SrvIp1 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 6);
+			string vip1SrvIp2 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 7);
+			string vip1SrvIp3 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 8);
+			string vip1SrvIp4 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 9);
 			
 			lb.AddVirtualIp(new Hash{
 				{"vip", vip1Ip},
@@ -145,9 +132,9 @@ namespace Saklient.Cloud.Tests
 				}}
 			});
 			
-			string vip2Ip     = long2ip(ip2long(net.DefaultRoute) + 10);
-			string vip2SrvIp1 = long2ip(ip2long(net.DefaultRoute) + 11);
-			string vip2SrvIp2 = long2ip(ip2long(net.DefaultRoute) + 12);
+			string vip2Ip     = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 10);
+			string vip2SrvIp1 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 11);
+			string vip2SrvIp2 = Util.Long2ip(Util.Ip2long(net.DefaultRoute) + 12);
 			
 			LbVirtualIp vip2 = lb.AddVirtualIp();
 			vip2.VirtualIpAddress = vip2Ip;
@@ -166,32 +153,32 @@ namespace Saklient.Cloud.Tests
 			lb.Save();
 			lb.Reload();
 			
-			Assert.AreEqual(lb.VirtualIps.Count, 2);
-			Assert.AreEqual(lb.VirtualIps[0].VirtualIpAddress, vip1Ip);
-			Assert.AreEqual(lb.VirtualIps[0].Servers.Count, 3);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[0].IpAddress, vip1SrvIp1);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[0].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[0].Protocol, "http");
-			Assert.AreEqual(lb.VirtualIps[0].Servers[0].PathToCheck, "/index.html");
-			Assert.AreEqual(lb.VirtualIps[0].Servers[0].ResponseExpected, 200);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[1].IpAddress, vip1SrvIp2);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[1].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[1].Protocol, "https");
-			Assert.AreEqual(lb.VirtualIps[0].Servers[1].PathToCheck, "/");
-			Assert.AreEqual(lb.VirtualIps[0].Servers[1].ResponseExpected, 200);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[2].IpAddress, vip1SrvIp3);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[2].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[2].Protocol, "tcp");
-			Assert.AreEqual(lb.VirtualIps[1].VirtualIpAddress, vip2Ip);
-			Assert.AreEqual(lb.VirtualIps[1].Servers.Count, 2);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[0].IpAddress, vip2SrvIp1);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[0].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[0].Protocol, "http");
-			Assert.AreEqual(lb.VirtualIps[1].Servers[0].PathToCheck, "/index.html");
-			Assert.AreEqual(lb.VirtualIps[1].Servers[0].ResponseExpected, 200);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[1].IpAddress, vip2SrvIp2);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[1].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[1].Servers[1].Protocol, "tcp");
+			Assert.AreEqual(2,             lb.VirtualIps.Count);
+			Assert.AreEqual(vip1Ip,        lb.VirtualIps[0].VirtualIpAddress);
+			Assert.AreEqual(3,             lb.VirtualIps[0].Servers.Count);
+			Assert.AreEqual(vip1SrvIp1,    lb.VirtualIps[0].Servers[0].IpAddress);
+			Assert.AreEqual(80,            lb.VirtualIps[0].Servers[0].Port);
+			Assert.AreEqual("http",        lb.VirtualIps[0].Servers[0].Protocol);
+			Assert.AreEqual("/index.html", lb.VirtualIps[0].Servers[0].PathToCheck);
+			Assert.AreEqual(200,           lb.VirtualIps[0].Servers[0].ResponseExpected);
+			Assert.AreEqual(vip1SrvIp2,    lb.VirtualIps[0].Servers[1].IpAddress);
+			Assert.AreEqual(80,            lb.VirtualIps[0].Servers[1].Port);
+			Assert.AreEqual("https",       lb.VirtualIps[0].Servers[1].Protocol);
+			Assert.AreEqual("/",           lb.VirtualIps[0].Servers[1].PathToCheck);
+			Assert.AreEqual(200,           lb.VirtualIps[0].Servers[1].ResponseExpected);
+			Assert.AreEqual(vip1SrvIp3,    lb.VirtualIps[0].Servers[2].IpAddress);
+			Assert.AreEqual(80,            lb.VirtualIps[0].Servers[2].Port);
+			Assert.AreEqual("tcp",         lb.VirtualIps[0].Servers[2].Protocol);
+			Assert.AreEqual(vip2Ip,        lb.VirtualIps[1].VirtualIpAddress);
+			Assert.AreEqual(2,             lb.VirtualIps[1].Servers.Count);
+			Assert.AreEqual(vip2SrvIp1,    lb.VirtualIps[1].Servers[0].IpAddress);
+			Assert.AreEqual(80,            lb.VirtualIps[1].Servers[0].Port);
+			Assert.AreEqual("http",        lb.VirtualIps[1].Servers[0].Protocol);
+			Assert.AreEqual("/index.html", lb.VirtualIps[1].Servers[0].PathToCheck);
+			Assert.AreEqual(200,           lb.VirtualIps[1].Servers[0].ResponseExpected);
+			Assert.AreEqual(vip2SrvIp2,    lb.VirtualIps[1].Servers[1].IpAddress);
+			Assert.AreEqual(80,            lb.VirtualIps[1].Servers[1].Port);
+			Assert.AreEqual("tcp",         lb.VirtualIps[1].Servers[1].Protocol);
 			
 			
 			
@@ -205,12 +192,14 @@ namespace Saklient.Cloud.Tests
 			lb.Save();
 			lb.Reload();
 			
-			Assert.AreEqual(lb.VirtualIps.Count, 2);
-			Assert.AreEqual(lb.VirtualIps[0].Servers.Count, 4);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[3].IpAddress, vip1SrvIp4);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[3].Port, 80);
-			Assert.AreEqual(lb.VirtualIps[0].Servers[3].Protocol, "ping");
-			Assert.AreEqual(lb.VirtualIps[1].Servers.Count, 2);
+			Assert.AreEqual(2,          lb.VirtualIps.Count);
+			Assert.AreEqual(4,          lb.VirtualIps[0].Servers.Count);
+			Assert.AreEqual(vip1SrvIp4, lb.VirtualIps[0].Servers[3].IpAddress);
+			Assert.AreEqual(80,         lb.VirtualIps[0].Servers[3].Port);
+			Assert.AreEqual("ping",     lb.VirtualIps[0].Servers[3].Protocol);
+			Assert.AreEqual(2,          lb.VirtualIps[1].Servers.Count);
+			
+			lb.Apply();
 			
 			
 			
@@ -228,7 +217,7 @@ namespace Saklient.Cloud.Tests
 					msg += " answers";
 					if (server.ResponseExpected != null) msg += " " + server.ResponseExpected;
 					Console.WriteLine(msg);
-					Assert.AreEqual(server.Status, "down");
+//					Assert.AreEqual("down", server.Status);
 				}
 			}
 			

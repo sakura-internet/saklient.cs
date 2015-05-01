@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web.Script.Serialization;
+using System.Net;
+using System.Linq;
 
 namespace Saklient {
 	
@@ -142,11 +144,33 @@ namespace Saklient {
 			return d==null ? null : ((DateTime)d).ToString("s");
 		}
 		
+		public static long Ip2long(string str)
+		{
+			if (!Regex.IsMatch(str, @"^\d+\.\d+\.\d+\.\d+$")) return -1;
+			IPAddress ip;
+			if (!IPAddress.TryParse(str, out ip)) return -1;
+			Byte[] b = ip.GetAddressBytes();
+			return ((long)b[0])<<24 | ((long)b[1])<<16 | ((long)b[2])<<8 | ((long)b[3]);
+		}
+		
+		public static string Long2ip(long val)
+		{
+			IPAddress ip;
+			if (!IPAddress.TryParse(((UInt32)(long)val).ToString(), out ip)) return null;
+			return ip.ToString();
+		}
+		
 		public static string UrlEncode(string s)
 		{
 			return Uri.EscapeDataString(s);
 		}
-
+		
+		public static System.Collections.Generic.List<T> SortArray<T>(System.Collections.Generic.List<T> src) {
+			var ret = new List<T>(src);
+			ret.Sort();
+			return ret;
+		}
+		
 		public static void Sleep(long sec)
 		{
 			Thread.Sleep(System.Convert.ToInt32(1000 * sec));

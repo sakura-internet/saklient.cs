@@ -2,6 +2,7 @@ using Util = Saklient.Util;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
 using Swytch = Saklient.Cloud.Resources.Swytch;
+using Ipv4Range = Saklient.Cloud.Resources.Ipv4Range;
 
 namespace Saklient.Cloud.Resources
 {
@@ -30,6 +31,20 @@ namespace Saklient.Cloud.Resources
 		/// <summary>ネクストホップ
 		/// </summary>
 		internal string M_nextHop;
+		
+		internal Ipv4Range _Range;
+		
+		public Ipv4Range Get_range()
+		{
+			return this._Range;
+		}
+		
+		/// <summary>利用可能なIPアドレス範囲
+		/// </summary>
+		public Ipv4Range Range
+		{
+			get { return this.Get_range(); }
+		}
 		
 		internal override string _ApiPath()
 		{
@@ -69,6 +84,15 @@ namespace Saklient.Cloud.Resources
 		{
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
+		}
+		
+		internal override void _OnAfterApiDeserialize(object r, object root)
+		{
+			this._Range = null;
+			object addresses = (r as System.Collections.Generic.Dictionary<string, object>)["IPAddresses"];
+			if (addresses != null) {
+				this._Range = new Ipv4Range(addresses);
+			}
 		}
 		
 		private bool N_id = false;

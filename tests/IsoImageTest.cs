@@ -91,7 +91,7 @@ namespace Saklient.Cloud.Tests
 				// search iso images
 				Console.WriteLine("searching iso images...");
 				List<IsoImage> isos = api.IsoImage
-					.WithNameLike("CentOS 6.5 64bit")
+					.WithNameLike("CentOS 6. 64bit")
 					.WithSharedScope()
 					.Limit(1)
 					.Find();
