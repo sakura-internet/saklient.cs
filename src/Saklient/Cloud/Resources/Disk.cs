@@ -1,11 +1,13 @@
 using Util = Saklient.Util;
 using SaklientException = Saklient.Errors.SaklientException;
+using HttpException = Saklient.Errors.HttpException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
 using Icon = Saklient.Cloud.Resources.Icon;
 using DiskPlan = Saklient.Cloud.Resources.DiskPlan;
 using Server = Saklient.Cloud.Resources.Server;
 using DiskConfig = Saklient.Cloud.Resources.DiskConfig;
+using DiskActivity = Saklient.Cloud.Resources.DiskActivity;
 using EAvailability = Saklient.Cloud.Enums.EAvailability;
 using EDiskConnection = Saklient.Cloud.Enums.EDiskConnection;
 using EStorageClass = Saklient.Cloud.Enums.EStorageClass;
@@ -101,9 +103,24 @@ namespace Saklient.Cloud.Resources
 			return ((Disk)(this._Reload()));
 		}
 		
+		internal DiskActivity _Activity;
+		
+		public DiskActivity Get_activity()
+		{
+			return this._Activity;
+		}
+		
+		/// <summary>アクティビティ
+		/// </summary>
+		public DiskActivity Activity
+		{
+			get { return this.Get_activity(); }
+		}
+		
 		public Disk(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
+			this._Activity = new DiskActivity(client);
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
@@ -163,6 +180,7 @@ namespace Saklient.Cloud.Resources
 		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (r != null) {
+				this._Activity.SetSourceId(this._Id());
 				if ((r as System.Collections.Generic.Dictionary<string, object>).ContainsKey("SourceDisk")) {
 					object s = (r as System.Collections.Generic.Dictionary<string, object>)["SourceDisk"];
 					if (s != null) {
@@ -246,7 +264,12 @@ namespace Saklient.Cloud.Resources
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
-				this.Reload();
+				try {
+					this.Reload();
+				}
+				catch (HttpException ex) {
+					
+				}
 				string a = this.Get_availability();
 				if (a == EAvailability.AVAILABLE) {
 					return true;

@@ -3,6 +3,7 @@ using SaklientException = Saklient.Errors.SaklientException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
 using Swytch = Saklient.Cloud.Resources.Swytch;
+using IfaceActivity = Saklient.Cloud.Resources.IfaceActivity;
 
 namespace Saklient.Cloud.Resources
 {
@@ -75,10 +76,32 @@ namespace Saklient.Cloud.Resources
 			return ((Iface)(this._Reload()));
 		}
 		
+		internal IfaceActivity _Activity;
+		
+		public IfaceActivity Get_activity()
+		{
+			return this._Activity;
+		}
+		
+		/// <summary>アクティビティ
+		/// </summary>
+		public IfaceActivity Activity
+		{
+			get { return this.Get_activity(); }
+		}
+		
 		public Iface(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
+			this._Activity = new IfaceActivity(client);
 			this.ApiDeserialize(obj, wrapped);
+		}
+		
+		internal override void _OnAfterApiDeserialize(object r, object root)
+		{
+			if (r != null) {
+				this._Activity.SetSourceId(this._Id());
+			}
 		}
 		
 		/// <summary>スイッチに接続します。

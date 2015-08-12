@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using HttpException = Saklient.Errors.HttpException;
 using SaklientException = Saklient.Errors.SaklientException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
@@ -6,6 +7,7 @@ using Icon = Saklient.Cloud.Resources.Icon;
 using Swytch = Saklient.Cloud.Resources.Swytch;
 using Ipv4Net = Saklient.Cloud.Resources.Ipv4Net;
 using Ipv6Net = Saklient.Cloud.Resources.Ipv6Net;
+using RouterActivity = Saklient.Cloud.Resources.RouterActivity;
 using Model_Swytch = Saklient.Cloud.Models.Model_Swytch;
 
 namespace Saklient.Cloud.Resources
@@ -83,10 +85,32 @@ namespace Saklient.Cloud.Resources
 			return ((Router)(this._Reload()));
 		}
 		
+		internal RouterActivity _Activity;
+		
+		public RouterActivity Get_activity()
+		{
+			return this._Activity;
+		}
+		
+		/// <summary>アクティビティ
+		/// </summary>
+		public RouterActivity Activity
+		{
+			get { return this.Get_activity(); }
+		}
+		
 		public Router(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
+			this._Activity = new RouterActivity(client);
 			this.ApiDeserialize(obj, wrapped);
+		}
+		
+		internal override void _OnAfterApiDeserialize(object r, object root)
+		{
+			if (r != null) {
+				this._Activity.SetSourceId(this._Id());
+			}
 		}
 		
 		/// <summary>作成中のルータが利用可能になるまで待機します。
@@ -109,17 +133,26 @@ namespace Saklient.Cloud.Resources
 		public bool SleepWhileCreating(long timeoutSec=120)
 		{
 			long step = 3;
+			bool isOk = false;
 			while (0 < timeoutSec) {
-				if (this.Exists()) {
-					this.Reload();
-					return true;
+				try {
+					if (this.Exists()) {
+						this.Reload();
+						isOk = true;
+					}
+				}
+				catch (HttpException ex) {
+					
 				}
 				timeoutSec -= step;
+				if (isOk) {
+					timeoutSec = 0;
+				}
 				if (0 < timeoutSec) {
 					Util.Sleep(step);
 				}
 			}
-			return false;
+			return isOk;
 		}
 		
 		/// <summary>このルータが接続されているスイッチを取得します。

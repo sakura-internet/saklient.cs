@@ -76,16 +76,29 @@ namespace Saklient.Cloud.Resources
 			set { this.Set_password(value); }
 		}
 		
-		internal string _SshKey;
+		internal System.Collections.Generic.List<string> _SshKeys;
+		
+		internal System.Collections.Generic.List<string> Get_sshKeys()
+		{
+			return this._SshKeys;
+		}
 		
 		internal string Get_sshKey()
 		{
-			return this._SshKey;
+			if (this._SshKeys.Count < 1) {
+				return null;
+			}
+			return this._SshKeys[System.Convert.ToInt32(0)];
 		}
 		
 		internal string Set_sshKey(string v)
 		{
-			this._SshKey = v;
+			if (this._SshKeys.Count < 1) {
+				(this._SshKeys as System.Collections.IList).Add(v);
+			}
+			else {
+				this._SshKeys[System.Convert.ToInt32(0)] = v;
+			}
 			return v;
 		}
 		
@@ -95,6 +108,13 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_sshKey(); }
 			set { this.Set_sshKey(value); }
+		}
+		
+		/// <summary>SSHキー
+		/// </summary>
+		public System.Collections.Generic.List<string> SshKeys
+		{
+			get { return this.Get_sshKeys(); }
 		}
 		
 		internal string _IpAddress;
@@ -180,7 +200,7 @@ namespace Saklient.Cloud.Resources
 			this._DiskId = diskId;
 			this._HostName = null;
 			this._Password = null;
-			this._SshKey = null;
+			this._SshKeys = new System.Collections.Generic.List<string> {  };
 			this._IpAddress = null;
 			this._DefaultRoute = null;
 			this._NetworkMaskLen = null;
@@ -213,8 +233,8 @@ namespace Saklient.Cloud.Resources
 			if (this._Password != null) {
 				Util.SetByPath(q, "Password", this._Password);
 			}
-			if (this._SshKey != null) {
-				Util.SetByPath(q, "SSHKey.PublicKey", this._SshKey);
+			if (this._SshKeys.Count > 0) {
+				Util.SetByPath(q, "SSHKey.PublicKey", string.Join("\n", (this._SshKeys).ToArray()));
 			}
 			if (this._IpAddress != null) {
 				Util.SetByPath(q, "UserIPAddress", this._IpAddress);

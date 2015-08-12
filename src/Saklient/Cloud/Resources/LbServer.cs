@@ -8,6 +8,27 @@ namespace Saklient.Cloud.Resources
 	public class LbServer
 	{
 		
+		internal bool? _Enabled;
+		
+		public bool? Get_enabled()
+		{
+			return this._Enabled;
+		}
+		
+		public bool? Set_enabled(bool? v)
+		{
+			this._Enabled = v;
+			return this._Enabled;
+		}
+		
+		/// <summary>有効状態
+		/// </summary>
+		public bool? Enabled
+		{
+			get { return this.Get_enabled(); }
+			set { this.Set_enabled(value); }
+		}
+		
 		internal string _IpAddress;
 		
 		public string Get_ipAddress()
@@ -152,6 +173,12 @@ namespace Saklient.Cloud.Resources
 				"health_check",
 				"health"
 			});
+			object enabled = Util.GetByPathAny(new System.Collections.Generic.List<object> { obj }, new System.Collections.Generic.List<string> { "Enabled", "enabled" });
+			this._Enabled = null;
+			if (enabled != null) {
+				string enabledStr = ((string)(enabled));
+				this._Enabled = enabledStr.ToLower() == "true";
+			}
 			this._IpAddress = ((string)(Util.GetByPathAny(new System.Collections.Generic.List<object> { obj }, new System.Collections.Generic.List<string> {
 				"IPAddress",
 				"ipAddress",
@@ -193,13 +220,14 @@ namespace Saklient.Cloud.Resources
 		public object ToRawSettings()
 		{
 			return new System.Collections.Generic.Dictionary<string, object> {
-			{ "IPAddress", this._IpAddress },
-			{ "Port", this._Port },
-			{ "HealthCheck", new System.Collections.Generic.Dictionary<string, object> {
-			{ "Protocol", this._Protocol },
-			{ "Path", this._PathToCheck },
-			{ "Status", this._ResponseExpected }
-			} }
+				{ "Enabled", this._Enabled == null ? null : (((bool)(this._Enabled)) ? "True" : "False") },
+				{ "IPAddress", this._IpAddress },
+				{ "Port", this._Port },
+				{ "HealthCheck", new System.Collections.Generic.Dictionary<string, object> {
+				{ "Protocol", this._Protocol },
+				{ "Path", this._PathToCheck },
+				{ "Status", this._ResponseExpected }
+				} }
 			};
 		}
 		

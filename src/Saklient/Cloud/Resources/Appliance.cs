@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using HttpException = Saklient.Errors.HttpException;
 using SaklientException = Saklient.Errors.SaklientException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
@@ -198,7 +199,12 @@ namespace Saklient.Cloud.Resources
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
-				this.Reload();
+				try {
+					this.Reload();
+				}
+				catch (HttpException ex) {
+					
+				}
 				string a = this.Get_availability();
 				if (a == EAvailability.AVAILABLE) {
 					return true;
@@ -243,7 +249,12 @@ namespace Saklient.Cloud.Resources
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
-				this.Reload();
+				try {
+					this.Reload();
+				}
+				catch (HttpException ex) {
+					
+				}
 				string s = this.Get_status();
 				if (s == null) {
 					s = EServerInstanceStatus.DOWN;

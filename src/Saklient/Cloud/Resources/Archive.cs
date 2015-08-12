@@ -7,6 +7,7 @@ using DiskPlan = Saklient.Cloud.Resources.DiskPlan;
 using Server = Saklient.Cloud.Resources.Server;
 using EScope = Saklient.Cloud.Enums.EScope;
 using EAvailability = Saklient.Cloud.Enums.EAvailability;
+using HttpException = Saklient.Errors.HttpException;
 using SaklientException = Saklient.Errors.SaklientException;
 
 namespace Saklient.Cloud.Resources
@@ -270,7 +271,12 @@ namespace Saklient.Cloud.Resources
 		{
 			long step = 3;
 			while (0 < timeoutSec) {
-				this.Reload();
+				try {
+					this.Reload();
+				}
+				catch (HttpException ex) {
+					
+				}
 				string a = this.Get_availability();
 				if (a == EAvailability.AVAILABLE) {
 					return true;

@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using HttpException = Saklient.Errors.HttpException;
 using SaklientException = Saklient.Errors.SaklientException;
 using Client = Saklient.Cloud.Client;
 using Resource = Saklient.Cloud.Resources.Resource;
@@ -8,6 +9,7 @@ using Iface = Saklient.Cloud.Resources.Iface;
 using ServerPlan = Saklient.Cloud.Resources.ServerPlan;
 using ServerInstance = Saklient.Cloud.Resources.ServerInstance;
 using IsoImage = Saklient.Cloud.Resources.IsoImage;
+using ServerActivity = Saklient.Cloud.Resources.ServerActivity;
 using EServerInstanceStatus = Saklient.Cloud.Enums.EServerInstanceStatus;
 using EAvailability = Saklient.Cloud.Enums.EAvailability;
 using Model_Disk = Saklient.Cloud.Models.Model_Disk;
@@ -100,10 +102,32 @@ namespace Saklient.Cloud.Resources
 			return ((Server)(this._Reload()));
 		}
 		
+		internal ServerActivity _Activity;
+		
+		public ServerActivity Get_activity()
+		{
+			return this._Activity;
+		}
+		
+		/// <summary>アクティビティ
+		/// </summary>
+		public ServerActivity Activity
+		{
+			get { return this.Get_activity(); }
+		}
+		
 		public Server(Client client, object obj, bool wrapped=false) : base(client)
 		{
 			/*!base!*/;
+			this._Activity = new ServerActivity(client);
 			this.ApiDeserialize(obj, wrapped);
+		}
+		
+		internal override void _OnAfterApiDeserialize(object r, object root)
+		{
+			if (r != null) {
+				this._Activity.SetSourceId(this._Id());
+			}
 		}
 		
 		/// <summary>サーバが起動しているときtrueを返します。
@@ -189,7 +213,12 @@ namespace Saklient.Cloud.Resources
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
-				this.Reload();
+				try {
+					this.Reload();
+				}
+				catch (HttpException ex) {
+					
+				}
 				string s = null;
 				ServerInstance inst = this.Instance;
 				if (inst != null) {
