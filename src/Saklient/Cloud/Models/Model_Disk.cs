@@ -162,6 +162,14 @@ namespace Saklient.Cloud.Models
 			return ((Model_Disk)(this._SortByName(reverse)));
 		}
 		
+		/// <summary>
+		/// <param name="reverse" />
+		/// </summary>
+		public Model_Disk SortByConnectionOrder(bool reverse=false)
+		{
+			return ((Model_Disk)(this._Sort("ConnectionOrder", reverse)));
+		}
+		
 		public Model_Disk(Client client) : base(client)
 		{
 			/*!base!*/;

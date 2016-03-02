@@ -226,11 +226,6 @@ namespace Saklient.Cloud.Resources
 			if (withClean || this.N_region) {
 				Util.SetByPath(ret, "Region", withClean ? (this.M_region == null ? ((Region)(null)) : this.M_region.ApiSerialize(withClean)) : (this.M_region == null ? new System.Collections.Generic.Dictionary<string, object> { { "ID", "0" } } : this.M_region.ApiSerializeID()));
 			}
-			else {
-				if (this.IsNew) {
-					(missing as System.Collections.IList).Add("region");
-				}
-			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Bridge creation: " + string.Join(", ", (missing).ToArray()));
 			}

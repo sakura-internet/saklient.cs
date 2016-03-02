@@ -70,6 +70,11 @@ namespace Saklient.Cloud.Resources
 			
 		}
 		
+		internal virtual void _OnBeforeApiDeserialize(object r, object root)
+		{
+			
+		}
+		
 		internal virtual void _OnAfterApiDeserialize(object r, object root)
 		{
 			
@@ -108,6 +113,7 @@ namespace Saklient.Cloud.Resources
 					record = (obj as System.Collections.Generic.Dictionary<string, object>)[rkey];
 				}
 			}
+			this._OnBeforeApiDeserialize(record, root);
 			this.ApiDeserializeImpl(record);
 			this._OnAfterApiDeserialize(record, root);
 		}
@@ -179,8 +185,11 @@ namespace Saklient.Cloud.Resources
 		
 		internal Resource _Reload()
 		{
-			object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(this._Id()));
-			this.ApiDeserialize(result, true);
+			string id = this._Id();
+			if (id != null) {
+				object result = this.RequestRetry("GET", this._ApiPath() + "/" + Util.UrlEncode(id));
+				this.ApiDeserialize(result, true);
+			}
 			return this;
 		}
 		

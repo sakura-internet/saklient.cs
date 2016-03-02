@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Activity = Saklient.Cloud.Resources.Activity;
 using RouterActivitySample = Saklient.Cloud.Resources.RouterActivitySample;
 

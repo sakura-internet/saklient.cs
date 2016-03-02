@@ -123,6 +123,29 @@ namespace Saklient.Cloud.Resources
 			this.ApiDeserialize(obj, wrapped);
 		}
 		
+		internal override void _OnBeforeApiDeserialize(object r, object root)
+		{
+			if (r == null) {
+				return;
+			}
+			object id = (r as System.Collections.Generic.Dictionary<string, object>)["ID"];
+			System.Collections.Generic.List<object> ifaces = ((System.Collections.Generic.List<object>)((r as System.Collections.Generic.Dictionary<string, object>)["Interfaces"]));
+			if (ifaces != null) {
+				for (int __it1=0; __it1 < (ifaces as System.Collections.IList).Count; __it1++) {
+					var iface = ifaces[__it1];
+					object server = null;
+					if ((iface as System.Collections.Generic.Dictionary<string, object>).ContainsKey("Server")) {
+						server = (iface as System.Collections.Generic.Dictionary<string, object>)["Server"];
+					}
+					else {
+						server = new System.Collections.Generic.Dictionary<string, object> {};
+						(iface as System.Collections.Generic.Dictionary<string, object>)["Server"] = server;
+					}
+					(server as System.Collections.Generic.Dictionary<string, object>)["ID"] = id;
+				}
+			}
+		}
+		
 		internal override void _OnAfterApiDeserialize(object r, object root)
 		{
 			if (r != null) {
@@ -258,7 +281,7 @@ namespace Saklient.Cloud.Resources
 		public System.Collections.Generic.List<Disk> FindDisks()
 		{
 			Model_Disk model = new Model_Disk(this._Client);
-			return model.WithServerId(this._Id()).Find();
+			return model.WithServerId(this._Id()).SortByConnectionOrder().Find();
 		}
 		
 		/// <summary>サーバにインタフェースを1つ増設し、それを取得します。

@@ -57,10 +57,18 @@ namespace Saklient.Cloud.Tests
 				Console.WriteLine("インタフェースを増設しています...");
 				Iface iface = server.AddIface();
 				Assert.Greater(Convert.ToInt64(iface.Id), 0);
+				Assert.AreEqual(server.Id, iface.ServerId);
+				server.Reload();
+				Assert.AreEqual(iface.Id, server.Ifaces[0].Id);
+				Assert.AreEqual(server.Id, server.Ifaces[0].ServerId);
+				iface.Reload();
+				Assert.IsNull(iface.SwytchId);
 				
 				//
 				Console.WriteLine("インタフェースをスイッチに接続しています...");
 				iface.ConnectToSwytch(swytch);
+				Assert.AreEqual(swytch.Id, iface.SwytchId);
+                Assert.AreEqual(swytch.Id, api.Swytch.GetById(iface.SwytchId).Id);
 				
 				//
 				Console.WriteLine("インタフェースをスイッチから切断しています...");

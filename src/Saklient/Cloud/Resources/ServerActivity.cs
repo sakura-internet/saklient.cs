@@ -1,4 +1,5 @@
 using Util = Saklient.Util;
+using Client = Saklient.Cloud.Client;
 using Activity = Saklient.Cloud.Resources.Activity;
 using ServerActivitySample = Saklient.Cloud.Resources.ServerActivitySample;
 

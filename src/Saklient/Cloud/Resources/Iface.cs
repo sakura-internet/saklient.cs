@@ -33,6 +33,10 @@ namespace Saklient.Cloud.Resources
 		/// </summary>
 		internal string M_serverId;
 		
+		/// <summary>このインタフェースの接続先スイッチのID
+		/// </summary>
+		internal string M_swytchId;
+		
 		internal override string _ApiPath()
 		{
 			return "/interface";
@@ -112,6 +116,17 @@ namespace Saklient.Cloud.Resources
 		public Iface ConnectToSwytch(Swytch swytch)
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/" + Util.UrlEncode(swytch._Id()));
+			return this.Reload();
+		}
+		
+		/// <summary>指定したIDのスイッチに接続します。
+		/// 
+		/// <param name="swytchId">接続先のスイッチID。</param>
+		/// <returns>this</returns>
+		/// </summary>
+		public Iface ConnectToSwytchById(string swytchId)
+		{
+			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/" + swytchId);
 			return this.Reload();
 		}
 		
@@ -224,6 +239,31 @@ namespace Saklient.Cloud.Resources
 			set { this.Set_serverId(value); }
 		}
 		
+		private bool N_swytchId = false;
+		
+		private string Get_swytchId()
+		{
+			return this.M_swytchId;
+		}
+		
+		private string Set_swytchId(string v)
+		{
+			if (!this.IsNew) {
+				throw new SaklientException("immutable_field", "Immutable fields cannot be modified after the resource creation: " + "saklient.cloud.resources.Iface#Set_swytchId");
+			}
+			this.M_swytchId = v;
+			this.N_swytchId = true;
+			return this.M_swytchId;
+		}
+		
+		/// <summary>このインタフェースの接続先スイッチのID
+		/// </summary>
+		public string SwytchId
+		{
+			get { return this.Get_swytchId(); }
+			set { this.Set_swytchId(value); }
+		}
+		
 		/// <summary>(This method is generated in Translator_default#buildImpl)
 		/// 
 		/// <param name="r" />
@@ -275,6 +315,14 @@ namespace Saklient.Cloud.Resources
 				this.IsIncomplete = true;
 			}
 			this.N_serverId = false;
+			if (Util.ExistsPath(r, "Switch.ID")) {
+				this.M_swytchId = Util.GetByPath(r, "Switch.ID") == null ? ((string)(null)) : "" + Util.GetByPath(r, "Switch.ID");
+			}
+			else {
+				this.M_swytchId = null;
+				this.IsIncomplete = true;
+			}
+			this.N_swytchId = false;
 		}
 		
 		internal override object ApiSerializeImpl(bool withClean=false)
@@ -300,6 +348,9 @@ namespace Saklient.Cloud.Resources
 				if (this.IsNew) {
 					(missing as System.Collections.IList).Add("serverId");
 				}
+			}
+			if (withClean || this.N_swytchId) {
+				Util.SetByPath(ret, "Switch.ID", this.M_swytchId);
 			}
 			if (missing.Count > 0) {
 				throw new SaklientException("required_field", "Required fields must be set before the Iface creation: " + string.Join(", ", (missing).ToArray()));

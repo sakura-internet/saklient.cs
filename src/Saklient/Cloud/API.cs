@@ -7,6 +7,7 @@ using Model_Server = Saklient.Cloud.Models.Model_Server;
 using Model_Disk = Saklient.Cloud.Models.Model_Disk;
 using Model_Appliance = Saklient.Cloud.Models.Model_Appliance;
 using Model_Archive = Saklient.Cloud.Models.Model_Archive;
+using Model_CommonServiceItem = Saklient.Cloud.Models.Model_CommonServiceItem;
 using Model_IsoImage = Saklient.Cloud.Models.Model_IsoImage;
 using Model_Iface = Saklient.Cloud.Models.Model_Iface;
 using Model_Swytch = Saklient.Cloud.Models.Model_Swytch;
@@ -234,6 +235,20 @@ namespace Saklient.Cloud
 			get { return this.Get_script(); }
 		}
 		
+		internal Model_CommonServiceItem _CommonServiceItem;
+		
+		internal Model_CommonServiceItem Get_commonServiceItem()
+		{
+			return this._CommonServiceItem;
+		}
+		
+		/// <summary>共通サービス契約にアクセスするためのモデル。
+		/// </summary>
+		public Model_CommonServiceItem CommonServiceItem
+		{
+			get { return this.Get_commonServiceItem(); }
+		}
+		
 		internal Model_License _License;
 		
 		internal Model_License Get_license()
@@ -269,6 +284,7 @@ namespace Saklient.Cloud
 			this._Bridge = new Model_Bridge(client);
 			this._Ipv6Net = new Model_Ipv6Net(client);
 			this._Script = new Model_Script(client);
+			this._CommonServiceItem = new Model_CommonServiceItem(client);
 			this._License = new Model_License(client);
 		}
 		
