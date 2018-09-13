@@ -206,25 +206,22 @@ namespace Saklient.Cloud.Resources
 			this._NetworkMaskLen = null;
 			this._Scripts = new System.Collections.Generic.List<Script> {  };
 		}
-		
-		/// <summary>スタートアップスクリプトを追加します。
-		/// 
-		/// diskConfig.addScript(script) と diskConfig.scripts.push(script) の効果は同等です。
-		/// 
-		/// <param name="script" />
-		/// <returns>this</returns>
-		/// </summary>
-		public DiskConfig AddScript(Script script)
+
+        /// <summary>スタートアップスクリプトを追加します。
+        /// diskConfig.addScript(script) と diskConfig.scripts.push(script) の効果は同等です。
+        /// </summary>
+        /// <param name="script" />
+        /// <returns>this</returns>
+        public DiskConfig AddScript(Script script)
 		{
 			(this._Scripts as System.Collections.IList).Add(script);
 			return this;
 		}
-		
-		/// <summary>修正内容を実際のディスクに書き込みます。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public DiskConfig Write()
+
+        /// <summary>修正内容を実際のディスクに書き込みます。
+        /// </summary>
+        /// <returns>this</returns>
+        public DiskConfig Write()
 		{
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			if (this._HostName != null) {

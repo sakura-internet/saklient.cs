@@ -129,12 +129,11 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 		}
-		
-		/// <summary>監視対象サーバ設定を追加します。
-		/// 
-		/// <param name="settings">設定オブジェクト</param>
-		/// </summary>
-		public LbServer AddServer(object settings=null)
+
+        /// <summary>監視対象サーバ設定を追加します。
+        /// </summary>
+        /// <param name="settings">設定オブジェクト</param>
+        public LbServer AddServer(object settings=null)
 		{
 			LbServer ret = new LbServer(settings);
 			(this._Servers as System.Collections.IList).Add(ret);
@@ -155,13 +154,12 @@ namespace Saklient.Cloud.Resources
 				{ "Servers", servers }
 			};
 		}
-		
-		/// <summary>指定したIPアドレスにマッチする監視対象サーバ設定のうち、最初にマッチしたものを取得します。
-		/// 
-		/// <param name="address">検索するIPアドレス</param>
-		/// <returns>監視対象サーバ設定（見つからなかった場合はnull）</returns>
-		/// </summary>
-		public LbServer GetServerByAddress(string address)
+
+        /// <summary>指定したIPアドレスにマッチする監視対象サーバ設定のうち、最初にマッチしたものを取得します。
+        /// </summary>
+        /// <param name="address">検索するIPアドレス</param>
+        /// <returns>監視対象サーバ設定（見つからなかった場合はnull）</returns>
+        public LbServer GetServerByAddress(string address)
 		{
 			for (int __it1=0; __it1 < (this._Servers as System.Collections.IList).Count; __it1++) {
 				var srv = this._Servers[__it1];
@@ -171,12 +169,11 @@ namespace Saklient.Cloud.Resources
 			}
 			return null;
 		}
-		
-		/// <summary>指定したIPアドレスにマッチする監視対象サーバ設定をすべて削除します。
-		/// 
-		/// <param name="address" />
-		/// </summary>
-		public LbVirtualIp RemoveServerByAddress(string address)
+
+        /// <summary>指定したIPアドレスにマッチする監視対象サーバ設定をすべて削除します。
+        /// </summary>
+        /// <param name="address" />
+        public LbVirtualIp RemoveServerByAddress(string address)
 		{
 			System.Collections.Generic.List<LbServer> servers = new System.Collections.Generic.List<LbServer> {  };
 			for (int __it1=0; __it1 < (this._Servers as System.Collections.IList).Count; __it1++) {

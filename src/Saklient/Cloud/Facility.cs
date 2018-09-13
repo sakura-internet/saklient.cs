@@ -23,12 +23,11 @@ namespace Saklient.Cloud
 		{
 			get { return this.Get_region(); }
 		}
-		
-		/// <summary>
-		/// 
-		/// <param name="client" />
-		/// </summary>
-		public Facility(Client client)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="client" />
+        public Facility(Client client)
 		{
 			this._Region = new Model_Region(client);
 		}

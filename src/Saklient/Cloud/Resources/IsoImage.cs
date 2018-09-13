@@ -74,21 +74,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public IsoImage Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public IsoImage Save()
 		{
 			return ((IsoImage)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public IsoImage Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public IsoImage Reload()
 		{
 			return ((IsoImage)(this._Reload()));
 		}
@@ -145,15 +143,13 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_ftpInfo(); }
 		}
-		
-		/// <summary>FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
-		/// 
-		/// アカウント情報は、ftpInfo プロパティから取得することができます。
-		/// 
-		/// <param name="reset">既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public IsoImage OpenFtp(bool reset=false)
+
+        /// <summary>FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
+        /// アカウント情報は、ftpInfo プロパティから取得することができます。
+        /// </summary>
+        /// <param name="reset">既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。</param>
+        /// <returns>this</returns>
+        public IsoImage OpenFtp(bool reset=false)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
@@ -162,12 +158,11 @@ namespace Saklient.Cloud.Resources
 			this._OnAfterApiDeserialize(null, result);
 			return this;
 		}
-		
-		/// <summary>FTPSを終了し、ISOイメージを利用可能な状態にします。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public IsoImage CloseFtp()
+
+        /// <summary>FTPSを終了し、ISOイメージを利用可能な状態にします。
+        /// </summary>
+        /// <returns>this</returns>
+        public IsoImage CloseFtp()
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			this._Client.Request("DELETE", path);
@@ -360,12 +355,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_serviceClass(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

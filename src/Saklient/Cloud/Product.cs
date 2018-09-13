@@ -68,12 +68,11 @@ namespace Saklient.Cloud
 		{
 			get { return this.Get_license(); }
 		}
-		
-		/// <summary>
-		/// 
-		/// <param name="client" />
-		/// </summary>
-		public Product(Client client)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="client" />
+        public Product(Client client)
 		{
 			this._Server = new Model_ServerPlan(client);
 			this._Disk = new Model_DiskPlan(client);

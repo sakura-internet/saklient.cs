@@ -215,15 +215,15 @@ namespace Saklient.Cloud.Resources
 			System.Collections.Generic.List<object> a = new System.Collections.Generic.List<object> { client, obj, wrapped };
 			return ((Resource)(Util.CreateClassInstance("saklient.cloud.resources." + className, a)));
 		}
-		
-		/// <summary>
-		/// <param name="method" />
-		/// <param name="path" />
-		/// <param name="query" />
-		/// <param name="retryCount" />
-		/// <param name="retrySleep" />
-		/// </summary>
-		public object RequestRetry(string method, string path, object query=null, long retryCount=5, long retrySleep=5)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="method" />
+        /// <param name="path" />
+        /// <param name="query" />
+        /// <param name="retryCount" />
+        /// <param name="retrySleep" />
+        public object RequestRetry(string method, string path, object query=null, long retryCount=5, long retrySleep=5)
 		{
 			object ret = null;
 			while (1 < retryCount) {

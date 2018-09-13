@@ -37,15 +37,13 @@ namespace Saklient.Cloud.Resources
 		{
 			(this._Samples as System.Collections.IList).Add(new DiskActivitySample(atStr, data));
 		}
-		
-		/// <summary>現在の最新のアクティビティ情報を取得し、samplesに格納します。
-		///  
-		///  	 * @return this
-		/// 
-		/// <param name="startDate" />
-		/// <param name="endDate" />
-		/// </summary>
-		public DiskActivity Fetch(System.DateTime? startDate=null, System.DateTime? endDate=null)
+
+        /// <summary>現在の最新のアクティビティ情報を取得し、samplesに格納します。
+        /// </summary>
+        /// <param name="startDate" />
+        /// <param name="endDate" />
+        /// <returns>this</returns>
+        public DiskActivity Fetch(System.DateTime? startDate=null, System.DateTime? endDate=null)
 		{
 			this._Samples = new System.Collections.Generic.List<DiskActivitySample> {  };
 			return ((DiskActivity)(this._Fetch(startDate, endDate)));

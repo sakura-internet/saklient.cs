@@ -84,21 +84,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Swytch Save()
 		{
 			return ((Swytch)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Swytch Reload()
 		{
 			return ((Swytch)(this._Reload()));
 		}
@@ -108,85 +106,78 @@ namespace Saklient.Cloud.Resources
 			/*!base!*/;
 			this.ApiDeserialize(obj, wrapped);
 		}
-		
-		/// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
-		/// 
-		/// <returns>有効化されたIPv6ネットワーク</returns>
-		/// </summary>
-		public Ipv6Net AddIpv6Net()
+
+        /// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
+        /// </summary>
+        /// <returns>有効化されたIPv6ネットワーク</returns>
+        public Ipv6Net AddIpv6Net()
 		{
 			Ipv6Net ret = this.Get_router().AddIpv6Net();
 			this.Reload();
 			return ret;
 		}
-		
-		/// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch RemoveIpv6Net()
+
+        /// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
+        /// </summary>
+        /// <returns>this</returns>
+        public Swytch RemoveIpv6Net()
 		{
 			System.Collections.Generic.List<Ipv6Net> nets = this.Get_ipv6Nets();
 			this.Get_router().RemoveIpv6Net(nets[System.Convert.ToInt32(0)]);
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチにスタティックルートを追加します。
-		/// 
-		/// <param name="maskLen" />
-		/// <param name="nextHop" />
-		/// <returns>追加されたIPv4ネットワーク</returns>
-		/// </summary>
-		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
+
+        /// <summary>このルータ＋スイッチにスタティックルートを追加します。
+        /// </summary>
+        /// <param name="maskLen" />
+        /// <param name="nextHop" />
+        /// <returns>追加されたIPv4ネットワーク</returns>
+        public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
 			Ipv4Net ret = this.Get_router().AddStaticRoute(maskLen, nextHop);
 			this.Reload();
 			return ret;
 		}
-		
-		/// <summary>このルータ＋スイッチからスタティックルートを削除します。
-		/// 
-		/// <param name="ipv4Net" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch RemoveStaticRoute(Ipv4Net ipv4Net)
+
+        /// <summary>このルータ＋スイッチからスタティックルートを削除します。
+        /// </summary>
+        /// <param name="ipv4Net" />
+        /// <returns>this</returns>
+        public Swytch RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
 			this.Get_router().RemoveStaticRoute(ipv4Net);
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチの帯域プランを変更します。
-		/// 
-		/// <param name="bandWidthMbps">帯域幅（api.product.router.find() から取得できる <see cref="RouterPlan" /> の bandWidthMbps を指定）。</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch ChangePlan(long bandWidthMbps)
+
+        /// <summary>このルータ＋スイッチの帯域プランを変更します。
+        /// </summary>
+        /// <param name="bandWidthMbps">帯域幅（api.product.router.find() から取得できる <see cref="RouterPlan" /> の bandWidthMbps を指定）。</param>
+        /// <returns>this</returns>
+        public Swytch ChangePlan(long bandWidthMbps)
 		{
 			this.Get_router().ChangePlan(bandWidthMbps);
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチをブリッジに接続します。
-		/// 
-		/// <param name="swytch">接続先のブリッジ。</param>
-		/// <param name="bridge" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch ConnectToBridge(Bridge bridge)
+
+        /// <summary>このルータ＋スイッチをブリッジに接続します。
+        /// </summary>
+        /// <param name="swytch">接続先のブリッジ。</param>
+        /// <param name="bridge" />
+        /// <returns>this</returns>
+        public Swytch ConnectToBridge(Bridge bridge)
 		{
 			object result = this._Client.Request("PUT", this._ApiPath() + "/" + this._Id() + "/to/bridge/" + bridge._Id());
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチをブリッジから切断します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Swytch DisconnectFromBridge()
+
+        /// <summary>このルータ＋スイッチをブリッジから切断します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Swytch DisconnectFromBridge()
 		{
 			object result = this._Client.Request("DELETE", this._ApiPath() + "/" + this._Id() + "/to/bridge");
 			this.Reload();
@@ -441,12 +432,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_ipv6Nets(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

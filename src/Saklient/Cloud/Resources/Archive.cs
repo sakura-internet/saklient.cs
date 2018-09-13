@@ -86,21 +86,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Archive Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Archive Save()
 		{
 			return ((Archive)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Archive Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Archive Reload()
 		{
 			return ((Archive)(this._Reload()));
 		}
@@ -232,15 +230,13 @@ namespace Saklient.Cloud.Resources
 				}
 			}
 		}
-		
-		/// <summary>FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
-		/// 
-		/// アカウント情報は、ftpInfo プロパティから取得することができます。
-		/// 
-		/// <param name="reset">既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Archive OpenFtp(bool reset=false)
+
+        /// <summary>FTPSを開始し、イメージファイルをアップロード・ダウンロードできる状態にします。
+        /// アカウント情報は、ftpInfo プロパティから取得することができます。
+        /// </summary>
+        /// <param name="reset">既にFTPSが開始されているとき、trueを指定してこのメソッドを呼ぶことでパスワードを再設定します。</param>
+        /// <returns>this</returns>
+        public Archive OpenFtp(bool reset=false)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
@@ -249,25 +245,23 @@ namespace Saklient.Cloud.Resources
 			this._OnAfterApiDeserialize(null, result);
 			return this;
 		}
-		
-		/// <summary>FTPSを終了し、アーカイブを利用可能な状態にします。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Archive CloseFtp()
+
+        /// <summary>FTPSを終了し、アーカイブを利用可能な状態にします。
+        /// </summary>
+        /// <returns>this</returns>
+        public Archive CloseFtp()
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ftp";
 			this._Client.Request("DELETE", path);
 			this._FtpInfo = null;
 			return this;
 		}
-		
-		/// <summary>コピー中のアーカイブが利用可能になるまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
-		/// </summary>
-		public bool SleepWhileCopying(long timeoutSec=3600)
+
+        /// <summary>コピー中のアーカイブが利用可能になるまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+        public bool SleepWhileCopying(long timeoutSec=3600)
 		{
 			long step = 3;
 			while (0 < timeoutSec) {
@@ -497,12 +491,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_availability(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

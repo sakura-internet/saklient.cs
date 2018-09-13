@@ -7,13 +7,13 @@ namespace Saklient.Errors
 	/// </summary>
 	public class HttpUnauthorizedException : HttpException
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpUnauthorizedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "この操作は認証が必要です。IDまたはパスワードが誤っている可能性があります。" : message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpUnauthorizedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "この操作は認証が必要です。IDまたはパスワードが誤っている可能性があります。" : message)
 		{
 			/*!base!*/;
 		}
