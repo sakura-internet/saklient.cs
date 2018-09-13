@@ -10,7 +10,7 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "iscsi1204", 110 }
+			{ ISCSI1204, 110 }
 		};
 		
 		/// <summary>ISCSI1204

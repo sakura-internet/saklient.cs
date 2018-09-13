@@ -10,9 +10,9 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "down", 0 },
-			{ "cleaning", 5 },
-			{ "up", 100 }
+			{ DOWN, 0 },
+			{ CLEANING, 5 },
+			{ UP, 100 }
 		};
 		
 		/// <summary>DOWN

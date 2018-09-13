@@ -10,8 +10,8 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "ide", 100 },
-			{ "virtio", 300 }
+			{ IDE, 100 },
+			{ VIRTIO, 300 }
 		};
 		
 		/// <summary>IDE

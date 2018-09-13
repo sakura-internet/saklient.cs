@@ -10,8 +10,8 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "shell", 200 },
-			{ "ansible", 300 }
+			{ SHELL, 200 },
+			{ ANSIBLE, 300 }
 		};
 		
 		/// <summary>SHELL
