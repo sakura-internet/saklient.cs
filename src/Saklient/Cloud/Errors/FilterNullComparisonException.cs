@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public FilterNullComparisonException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。nullとは比較できない演算子がフィルタ中に含まれています。" : message)
+		public FilterNullComparisonException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "不適切な要求です。nullとは比較できない演算子がフィルタ中に含まれています。" : message)
 		{
 			/*!base!*/;
 		}

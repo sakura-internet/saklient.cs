@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public FilterUnknownOperatorException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。不明な演算子がフィルタ中に含まれています。" : message)
+		public FilterUnknownOperatorException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "不適切な要求です。不明な演算子がフィルタ中に含まれています。" : message)
 		{
 			/*!base!*/;
 		}

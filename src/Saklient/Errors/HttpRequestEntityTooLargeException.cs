@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpRequestEntityTooLargeException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Request Entity Too Large." : message)
+		public HttpRequestEntityTooLargeException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Request Entity Too Large." : message)
 		{
 			/*!base!*/;
 		}

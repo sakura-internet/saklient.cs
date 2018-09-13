@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpNotImplementedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Not Implemented." : message)
+		public HttpNotImplementedException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Not Implemented." : message)
 		{
 			/*!base!*/;
 		}

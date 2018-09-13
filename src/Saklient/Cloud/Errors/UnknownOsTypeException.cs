@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public UnknownOsTypeException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "サービスが利用できません。ディスクにインストールされたOSが特定できないため、正しく修正できません。" : message)
+		public UnknownOsTypeException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "サービスが利用できません。ディスクにインストールされたOSが特定できないため、正しく修正できません。" : message)
 		{
 			/*!base!*/;
 		}

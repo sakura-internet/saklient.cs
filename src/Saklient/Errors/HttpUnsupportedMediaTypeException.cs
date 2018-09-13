@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpUnsupportedMediaTypeException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Unsupported Media Type." : message)
+		public HttpUnsupportedMediaTypeException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Unsupported Media Type." : message)
 		{
 			/*!base!*/;
 		}

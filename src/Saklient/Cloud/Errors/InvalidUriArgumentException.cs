@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public InvalidUriArgumentException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "対象が見つかりません。パスに使用できない文字が含まれています。" : message)
+		public InvalidUriArgumentException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "対象が見つかりません。パスに使用できない文字が含まれています。" : message)
 		{
 			/*!base!*/;
 		}

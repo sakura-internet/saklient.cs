@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public MissingParamException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。必要なパラメータが指定されていません。" : message)
+		public MissingParamException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "不適切な要求です。必要なパラメータが指定されていません。" : message)
 		{
 			/*!base!*/;
 		}

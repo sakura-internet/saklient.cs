@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpBadGatewayException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Bad Gateway." : message)
+		public HttpBadGatewayException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Bad Gateway." : message)
 		{
 			/*!base!*/;
 		}

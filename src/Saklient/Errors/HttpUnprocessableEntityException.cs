@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpUnprocessableEntityException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Unprocessable Entity." : message)
+		public HttpUnprocessableEntityException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Unprocessable Entity." : message)
 		{
 			/*!base!*/;
 		}

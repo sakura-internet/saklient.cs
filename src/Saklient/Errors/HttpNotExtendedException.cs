@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpNotExtendedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Not Extended." : message)
+		public HttpNotExtendedException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Not Extended." : message)
 		{
 			/*!base!*/;
 		}

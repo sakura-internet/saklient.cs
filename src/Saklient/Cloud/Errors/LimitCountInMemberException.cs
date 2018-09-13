@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public LimitCountInMemberException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。アカウント数上限により作成失敗しました。" : message)
+		public LimitCountInMemberException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "要求を受け付けできません。アカウント数上限により作成失敗しました。" : message)
 		{
 			/*!base!*/;
 		}
