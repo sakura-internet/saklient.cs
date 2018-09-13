@@ -80,11 +80,11 @@ namespace Saklient.Cloud.Models
 		{
 			return null;
 		}
-		
-		/// <summary>
-		/// <param name="client" />
-		/// </summary>
-		public Model(Client client)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="client" />
+        public Model(Client client)
 		{
 			this._Client = client;
 			this._Reset();

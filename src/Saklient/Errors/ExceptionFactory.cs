@@ -155,13 +155,13 @@ namespace Saklient.Errors
 
 	public class ExceptionFactory
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public static HttpException Create(long status, string code=null, string message="")
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public static HttpException Create(long status, string code=null, string message="")
 		{
 			switch (code) {
 				case "access_apikey_disabled": {

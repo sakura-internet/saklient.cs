@@ -262,12 +262,11 @@ namespace Saklient.Cloud
 		{
 			get { return this.Get_license(); }
 		}
-		
-		/// <summary>
-		/// 
-		/// <param name="client" />
-		/// </summary>
-		internal API(Client client)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="client" />
+        internal API(Client client)
 		{
 			this._Client = client;
 			this._Product = new Product(client);
@@ -287,30 +286,27 @@ namespace Saklient.Cloud
 			this._CommonServiceItem = new Model_CommonServiceItem(client);
 			this._License = new Model_License(client);
 		}
-		
-		/// <summary>指定した認証情報を用いてアクセスを行うAPIクライアントを作成します。
-		/// 
-		/// 必要な認証情報は、コントロールパネル右上にあるアカウントのプルダウンから
-		/// 「設定」を選択し、「APIキー」のページにて作成できます。
-		/// 
-		/// <param name="token">ACCESS TOKEN</param>
-		/// <param name="secret">ACCESS TOKEN SECRET</param>
-		/// <param name="zone">ゾーン名</param>
-		/// <returns>APIクライアント</returns>
-		/// </summary>
-		public static API Authorize(string token, string secret, string zone=null)
+
+        /// <summary>指定した認証情報を用いてアクセスを行うAPIクライアントを作成します。
+        /// 必要な認証情報は、コントロールパネル右上にあるアカウントのプルダウンから
+        /// 「設定」を選択し、「APIキー」のページにて作成できます。
+        /// </summary>
+        /// <param name="token">ACCESS TOKEN</param>
+        /// <param name="secret">ACCESS TOKEN SECRET</param>
+        /// <param name="zone">ゾーン名</param>
+        /// <returns>APIクライアント</returns>
+        public static API Authorize(string token, string secret, string zone=null)
 		{
 			Client c = new Client(token, secret);
 			API ret = new API(c);
 			return zone != null ? ret.InZone(zone) : ret;
 		}
-		
-		/// <summary>認証情報を引き継ぎ、指定したゾーンへのアクセスを行うAPIクライアントを作成します。
-		/// 
-		/// <param name="name">ゾーン名</param>
-		/// <returns>APIクライアント</returns>
-		/// </summary>
-		public API InZone(string name)
+
+        /// <summary>認証情報を引き継ぎ、指定したゾーンへのアクセスを行うAPIクライアントを作成します。
+        /// </summary>
+        /// <param name="name">ゾーン名</param>
+        /// <returns>APIクライアント</returns>
+        public API InZone(string name)
 		{
 			API ret = new API(this._Client.CloneInstance());
 			string suffix = "";

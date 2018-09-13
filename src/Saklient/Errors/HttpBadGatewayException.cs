@@ -7,13 +7,13 @@ namespace Saklient.Errors
 	/// </summary>
 	public class HttpBadGatewayException : HttpException
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpBadGatewayException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Bad Gateway." : message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpBadGatewayException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Bad Gateway." : message)
 		{
 			/*!base!*/;
 		}

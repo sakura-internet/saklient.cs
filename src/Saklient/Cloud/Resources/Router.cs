@@ -66,21 +66,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Router Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Router Save()
 		{
 			return ((Router)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Router Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Router Reload()
 		{
 			return ((Router)(this._Reload()));
 		}
@@ -112,25 +110,22 @@ namespace Saklient.Cloud.Resources
 				this._Activity.SetSourceId(this._Id());
 			}
 		}
-		
-		/// <summary>作成中のルータが利用可能になるまで待機します。
-		/// 
-		/// 
-		/// <param name="timeoutSec" />
-		/// <param name="callback" />
-		/// </summary>
-		public void AfterCreate(long timeoutSec, System.Action<Router, bool> callback)
+
+        /// <summary>作成中のルータが利用可能になるまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <param name="callback" />
+        public void AfterCreate(long timeoutSec, System.Action<Router, bool> callback)
 		{
 			bool ret = this.SleepWhileCreating(timeoutSec);
 			callback(this, ret);
 		}
-		
-		/// <summary>作成中のルータが利用可能になるまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
-		/// </summary>
-		public bool SleepWhileCreating(long timeoutSec=120)
+
+        /// <summary>作成中のルータが利用可能になるまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+        public bool SleepWhileCreating(long timeoutSec=120)
 		{
 			long step = 3;
 			bool isOk = false;
@@ -163,37 +158,34 @@ namespace Saklient.Cloud.Resources
 			string id = this.Get_swytchId();
 			return model.GetById(id);
 		}
-		
-		/// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
-		/// 
-		/// <returns>有効化されたIPv6ネットワーク</returns>
-		/// </summary>
-		public Ipv6Net AddIpv6Net()
+
+        /// <summary>このルータ＋スイッチでIPv6アドレスを有効にします。
+        /// </summary>
+        /// <returns>有効化されたIPv6ネットワーク</returns>
+        public Ipv6Net AddIpv6Net()
 		{
 			object result = this._Client.Request("POST", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net");
 			this.Reload();
 			return new Ipv6Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["IPv6Net"]);
 		}
-		
-		/// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
-		/// 
-		/// <param name="ipv6Net" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Router RemoveIpv6Net(Ipv6Net ipv6Net)
+
+        /// <summary>このルータ＋スイッチでIPv6アドレスを無効にします。
+        /// </summary>
+        /// <param name="ipv6Net" />
+        /// <returns>this</returns>
+        public Router RemoveIpv6Net(Ipv6Net ipv6Net)
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/ipv6net/" + ipv6Net._Id());
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチにスタティックルートを追加します。
-		/// 
-		/// <param name="maskLen" />
-		/// <param name="nextHop" />
-		/// <returns>追加されたスタティックルート</returns>
-		/// </summary>
-		public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
+
+        /// <summary>このルータ＋スイッチにスタティックルートを追加します。
+        /// </summary>
+        /// <param name="maskLen" />
+        /// <param name="nextHop" />
+        /// <returns>追加されたスタティックルート</returns>
+        public Ipv4Net AddStaticRoute(long maskLen, string nextHop)
 		{
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
 			Util.SetByPath(q, "NetworkMaskLen", maskLen);
@@ -202,27 +194,24 @@ namespace Saklient.Cloud.Resources
 			this.Reload();
 			return new Ipv4Net(this._Client, (result as System.Collections.Generic.Dictionary<string, object>)["Subnet"]);
 		}
-		
-		/// <summary>このルータ＋スイッチからスタティックルートを削除します。
-		/// 
-		/// <param name="ipv4Net" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Router RemoveStaticRoute(Ipv4Net ipv4Net)
+
+        /// <summary>このルータ＋スイッチからスタティックルートを削除します。
+        /// </summary>
+        /// <param name="ipv4Net" />
+        /// <returns>this</returns>
+        public Router RemoveStaticRoute(Ipv4Net ipv4Net)
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/subnet/" + ipv4Net._Id());
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>このルータ＋スイッチの帯域プランを変更します。
-		/// 
-		/// 成功時はリソースIDが変わることにご注意ください。
-		/// 
-		/// <param name="bandWidthMbps" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Router ChangePlan(long bandWidthMbps)
+
+        /// <summary>このルータ＋スイッチの帯域プランを変更します。
+        /// 成功時はリソースIDが変わることにご注意ください。
+        /// </summary>
+        /// <param name="bandWidthMbps" />
+        /// <returns>this</returns>
+        public Router ChangePlan(long bandWidthMbps)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/bandwidth";
 			object q = new System.Collections.Generic.Dictionary<string, object> {};
@@ -353,12 +342,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_swytchId(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

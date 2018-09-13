@@ -207,14 +207,13 @@ namespace Saklient.Cloud.Resources
 			Util.SetByPath(r, "Provider", new System.Collections.Generic.Dictionary<string, object> {});
 			Util.SetByPath(r, "Provider.Class", "gslb");
 		}
-		
-		/// <summary>
-		/// 
-		/// <param name="protocol" />
-		/// <param name="delayLoop" />
-		/// <param name="weighted" />
-		/// </summary>
-		public Gslb SetInitialParams(string protocol, long delayLoop=10, bool weighted=true)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="protocol" />
+        /// <param name="delayLoop" />
+        /// <param name="weighted" />
+        public Gslb SetInitialParams(string protocol, long delayLoop=10, bool weighted=true)
 		{
 			object settings = this.RawSettings;
 			this.Protocol = protocol;
@@ -222,12 +221,11 @@ namespace Saklient.Cloud.Resources
 			this.Weighted = weighted;
 			return this;
 		}
-		
-		/// <summary>監視対象サーバ設定を追加します。
-		/// 
-		/// <param name="settings">設定オブジェクト</param>
-		/// </summary>
-		public GslbServer AddServer(object settings=null)
+
+        /// <summary>監視対象サーバ設定を追加します。
+        /// </summary>
+        /// <param name="settings">設定オブジェクト</param>
+        public GslbServer AddServer(object settings=null)
 		{
 			GslbServer ret = new GslbServer(settings);
 			(this._Servers as System.Collections.IList).Add(ret);

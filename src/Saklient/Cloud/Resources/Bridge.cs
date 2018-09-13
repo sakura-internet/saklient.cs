@@ -52,21 +52,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Bridge Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Bridge Save()
 		{
 			return ((Bridge)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Bridge Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Bridge Reload()
 		{
 			return ((Bridge)(this._Reload()));
 		}
@@ -159,12 +157,11 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_region(); }
 			set { this.Set_region(value); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

@@ -7,13 +7,13 @@ namespace Saklient.Errors
 	/// </summary>
 	public class HttpPreconditionFailedException : HttpException
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpPreconditionFailedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Precondition Failed." : message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpPreconditionFailedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Precondition Failed." : message)
 		{
 			/*!base!*/;
 		}

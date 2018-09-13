@@ -83,21 +83,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Save()
 		{
 			return ((Server)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Reload()
 		{
 			return ((Server)(this._Reload()));
 		}
@@ -166,73 +164,65 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_instance().IsDown();
 		}
-		
-		/// <summary>サーバを起動します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Boot()
+
+        /// <summary>サーバを起動します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Boot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this.Reload();
 		}
-		
-		/// <summary>サーバをシャットダウンします。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Shutdown()
+
+        /// <summary>サーバをシャットダウンします。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Shutdown()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this.Reload();
 		}
-		
-		/// <summary>サーバを強制停止します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Stop()
+
+        /// <summary>サーバを強制停止します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Stop()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
 			return this.Reload();
 		}
-		
-		/// <summary>サーバを強制再起動します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server Reboot()
+
+        /// <summary>サーバを強制再起動します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server Reboot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this.Reload();
 		}
-		
-		/// <summary>サーバが起動するまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// </summary>
-		public bool SleepUntilUp(long timeoutSec=180)
+
+        /// <summary>サーバが起動するまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        public bool SleepUntilUp(long timeoutSec=180)
 		{
 			return this.SleepUntil(EServerInstanceStatus.UP, timeoutSec);
 		}
-		
-		/// <summary>サーバが停止するまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
-		/// </summary>
-		public bool SleepUntilDown(long timeoutSec=180)
+
+        /// <summary>サーバが停止するまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+        public bool SleepUntilDown(long timeoutSec=180)
 		{
 			return this.SleepUntil(EServerInstanceStatus.DOWN, timeoutSec);
 		}
-		
-		/// <summary>サーバが指定のステータスに遷移するまで待機します。
-		/// 
-		/// 
-		/// <param name="status" />
-		/// <param name="timeoutSec" />
-		/// </summary>
-		private bool SleepUntil(string status, long timeoutSec=180)
+
+        /// <summary>サーバが指定のステータスに遷移するまで待機します。
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="timeoutSec" />
+        private bool SleepUntil(string status, long timeoutSec=180)
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
@@ -260,15 +250,13 @@ namespace Saklient.Cloud.Resources
 			}
 			return false;
 		}
-		
-		/// <summary>サーバプランを変更します。
-		/// 
-		/// 成功時はリソースIDが変わることにご注意ください。
-		/// 
-		/// <param name="planTo" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Server ChangePlan(ServerPlan planTo)
+
+        /// <summary>サーバプランを変更します。
+        /// 成功時はリソースIDが変わることにご注意ください。
+        /// </summary>
+        /// <param name="planTo" />
+        /// <returns>this</returns>
+        public Server ChangePlan(ServerPlan planTo)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/plan/" + Util.UrlEncode(planTo._Id());
 			object result = this._Client.Request("PUT", path);
@@ -283,25 +271,23 @@ namespace Saklient.Cloud.Resources
 			Model_Disk model = new Model_Disk(this._Client);
 			return model.WithServerId(this._Id()).SortByConnectionOrder().Find();
 		}
-		
-		/// <summary>サーバにインタフェースを1つ増設し、それを取得します。
-		/// 
-		/// <returns>増設されたインタフェース</returns>
-		/// </summary>
-		public Iface AddIface()
+
+        /// <summary>サーバにインタフェースを1つ増設し、それを取得します。
+        /// </summary>
+        /// <returns>増設されたインタフェース</returns>
+        public Iface AddIface()
 		{
 			Model_Iface model = new Model_Iface(this._Client);
 			Iface res = model.Create();
 			res.ServerId = this._Id();
 			return res.Save();
 		}
-		
-		/// <summary>サーバにISOイメージを挿入します。
-		/// 
-		/// <param name="iso" />
-		/// <returns>this</returns>
-		/// </summary>
-		public Server InsertIsoImage(IsoImage iso)
+
+        /// <summary>サーバにISOイメージを挿入します。
+        /// </summary>
+        /// <param name="iso" />
+        /// <returns>this</returns>
+        public Server InsertIsoImage(IsoImage iso)
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/cdrom";
 			object q = new System.Collections.Generic.Dictionary<string, object> { { "CDROM", new System.Collections.Generic.Dictionary<string, object> { { "ID", iso._Id() } } } };
@@ -309,12 +295,11 @@ namespace Saklient.Cloud.Resources
 			this.Reload();
 			return this;
 		}
-		
-		/// <summary>サーバに挿入されているISOイメージを排出します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Server EjectIsoImage()
+
+        /// <summary>サーバに挿入されているISOイメージを排出します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Server EjectIsoImage()
 		{
 			string path = this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/cdrom";
 			this._Client.Request("DELETE", path);
@@ -491,12 +476,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_availability(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

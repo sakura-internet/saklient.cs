@@ -64,12 +64,12 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_receive(); }
 		}
-		
-		/// <summary>
-		/// <param name="atStr" />
-		/// <param name="data" />
-		/// </summary>
-		public IfaceActivitySample(string atStr, object data)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="atStr" />
+        /// <param name="data" />
+        public IfaceActivitySample(string atStr, object data)
 		{
 			this._At = ((System.DateTime)(Util.Str2date(atStr)));
 			this._IsAvailable = true;

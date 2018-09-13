@@ -7,13 +7,13 @@ namespace Saklient.Errors
 		public long Status;
 		
 		public string Code;
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpException(long status, string code=null, string message="") : base(message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpException(long status, string code=null, string message="") : base(message)
 		{
 			/*!base!*/;
 			this.Status = status;

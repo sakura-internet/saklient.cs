@@ -61,21 +61,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Iface Save()
 		{
 			return ((Iface)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Iface Reload()
 		{
 			return ((Iface)(this._Reload()));
 		}
@@ -107,44 +105,40 @@ namespace Saklient.Cloud.Resources
 				this._Activity.SetSourceId(this._Id());
 			}
 		}
-		
-		/// <summary>スイッチに接続します。
-		/// 
-		/// <param name="swytch">接続先のスイッチ。</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface ConnectToSwytch(Swytch swytch)
+
+        /// <summary>スイッチに接続します。
+        /// </summary>
+        /// <param name="swytch">接続先のスイッチ。</param>
+        /// <returns>this</returns>
+        public Iface ConnectToSwytch(Swytch swytch)
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/" + Util.UrlEncode(swytch._Id()));
 			return this.Reload();
 		}
-		
-		/// <summary>指定したIDのスイッチに接続します。
-		/// 
-		/// <param name="swytchId">接続先のスイッチID。</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface ConnectToSwytchById(string swytchId)
+
+        /// <summary>指定したIDのスイッチに接続します。
+        /// </summary>
+        /// <param name="swytchId">接続先のスイッチID。</param>
+        /// <returns>this</returns>
+        public Iface ConnectToSwytchById(string swytchId)
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/" + swytchId);
 			return this.Reload();
 		}
-		
-		/// <summary>共有セグメントに接続します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface ConnectToSharedSegment()
+
+        /// <summary>共有セグメントに接続します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Iface ConnectToSharedSegment()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch/shared");
 			return this.Reload();
 		}
-		
-		/// <summary>スイッチから切断します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Iface DisconnectFromSwytch()
+
+        /// <summary>スイッチから切断します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Iface DisconnectFromSwytch()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/to/switch");
 			return this.Reload();
@@ -263,12 +257,11 @@ namespace Saklient.Cloud.Resources
 			get { return this.Get_swytchId(); }
 			set { this.Set_swytchId(value); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

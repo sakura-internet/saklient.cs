@@ -7,13 +7,13 @@ namespace Saklient.Errors
 	/// </summary>
 	public class HttpLockedException : HttpException
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpLockedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Locked." : message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpLockedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Locked." : message)
 		{
 			/*!base!*/;
 		}

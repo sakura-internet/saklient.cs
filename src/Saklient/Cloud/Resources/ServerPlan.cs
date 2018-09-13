@@ -141,12 +141,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_serviceClass(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

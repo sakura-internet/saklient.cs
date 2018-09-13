@@ -7,13 +7,13 @@ namespace Saklient.Errors
 	/// </summary>
 	public class HttpNotAcceptableException : HttpException
 	{
-		
-		/// <summary>
-		/// <param name="status" />
-		/// <param name="code" />
-		/// <param name="message" />
-		/// </summary>
-		public HttpNotAcceptableException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。サポートサイトやメンテナンス情報をご確認ください。" : message)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="code" />
+        /// <param name="message" />
+        public HttpNotAcceptableException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。サポートサイトやメンテナンス情報をご確認ください。" : message)
 		{
 			/*!base!*/;
 		}

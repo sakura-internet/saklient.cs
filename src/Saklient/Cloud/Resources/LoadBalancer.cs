@@ -137,15 +137,14 @@ namespace Saklient.Cloud.Resources
 				this.Clazz = EApplianceClass.LOADBALANCER;
 			}
 		}
-		
-		/// <summary>
-		/// 
-		/// <param name="swytch" />
-		/// <param name="vrid" />
-		/// <param name="realIps" />
-		/// <param name="isHighSpec" />
-		/// </summary>
-		public LoadBalancer SetInitialParams(Swytch swytch, long vrid, System.Collections.Generic.List<string> realIps, bool isHighSpec=false)
+
+        /// <summary>
+        /// </summary>
+        /// <param name="swytch" />
+        /// <param name="vrid" />
+        /// <param name="realIps" />
+        /// <param name="isHighSpec" />
+        public LoadBalancer SetInitialParams(Swytch swytch, long vrid, System.Collections.Generic.List<string> realIps, bool isHighSpec=false)
 		{
 			object annot = this.RawAnnotation;
 			this.Vrid = vrid;
@@ -176,23 +175,21 @@ namespace Saklient.Cloud.Resources
 			}
 			return this;
 		}
-		
-		/// <summary>仮想IPアドレス設定を追加します。
-		/// 
-		/// <param name="settings">設定オブジェクト</param>
-		/// </summary>
-		public LbVirtualIp AddVirtualIp(object settings=null)
+
+        /// <summary>仮想IPアドレス設定を追加します。
+        /// </summary>
+        /// <param name="settings">設定オブジェクト</param>
+        public LbVirtualIp AddVirtualIp(object settings=null)
 		{
 			LbVirtualIp ret = new LbVirtualIp(settings);
 			(this._VirtualIps as System.Collections.IList).Add(ret);
 			return ret;
 		}
-		
-		/// <summary>指定したIPアドレスにマッチする仮想IPアドレス設定を取得します。
-		/// 
-		/// <param name="address" />
-		/// </summary>
-		public LbVirtualIp GetVirtualIpByAddress(string address)
+
+        /// <summary>指定したIPアドレスにマッチする仮想IPアドレス設定を取得します。
+        /// </summary>
+        /// <param name="address" />
+        public LbVirtualIp GetVirtualIpByAddress(string address)
 		{
 			for (int __it1=0; __it1 < (this._VirtualIps as System.Collections.IList).Count; __it1++) {
 				var vip = this._VirtualIps[__it1];

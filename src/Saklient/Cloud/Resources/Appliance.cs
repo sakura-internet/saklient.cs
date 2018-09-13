@@ -101,21 +101,19 @@ namespace Saklient.Cloud.Resources
 		{
 			return this.Get_id();
 		}
-		
-		/// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Save()
+
+        /// <summary>このローカルオブジェクトに現在設定されているリソース情報をAPIに送信し、新規作成または上書き保存します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Save()
 		{
 			return ((Appliance)(this._Save()));
 		}
-		
-		/// <summary>最新のリソース情報を再取得します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Reload()
+
+        /// <summary>最新のリソース情報を再取得します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Reload()
 		{
 			return ((Appliance)(this._Reload()));
 		}
@@ -139,63 +137,57 @@ namespace Saklient.Cloud.Resources
 			string id = this.Get_swytchId();
 			return model.GetById(id);
 		}
-		
-		/// <summary>アプライアンスの設定を反映します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Apply()
+
+        /// <summary>アプライアンスの設定を反映します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Apply()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/config");
 			return this;
 		}
-		
-		/// <summary>アプライアンスを起動します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Boot()
+
+        /// <summary>アプライアンスを起動します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Boot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
-		
-		/// <summary>アプライアンスをシャットダウンします。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Shutdown()
+
+        /// <summary>アプライアンスをシャットダウンします。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Shutdown()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power");
 			return this;
 		}
-		
-		/// <summary>アプライアンスを強制停止します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Stop()
+
+        /// <summary>アプライアンスを強制停止します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Stop()
 		{
 			this._Client.Request("DELETE", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/power", new System.Collections.Generic.Dictionary<string, object> { { "Force", true } });
 			return this;
 		}
-		
-		/// <summary>アプライアンスを強制再起動します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Appliance Reboot()
+
+        /// <summary>アプライアンスを強制再起動します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Appliance Reboot()
 		{
 			this._Client.Request("PUT", this._ApiPath() + "/" + Util.UrlEncode(this._Id()) + "/reset");
 			return this;
 		}
-		
-		/// <summary>作成中のアプライアンスが利用可能になるまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
-		/// </summary>
-		public bool SleepWhileCreating(long timeoutSec=600)
+
+        /// <summary>作成中のアプライアンスが利用可能になるまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+        public bool SleepWhileCreating(long timeoutSec=600)
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
@@ -219,33 +211,29 @@ namespace Saklient.Cloud.Resources
 			}
 			return false;
 		}
-		
-		/// <summary>アプライアンスが起動するまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// </summary>
-		public bool SleepUntilUp(long timeoutSec=600)
+
+        /// <summary>アプライアンスが起動するまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        public bool SleepUntilUp(long timeoutSec=600)
 		{
 			return this.SleepUntil(EServerInstanceStatus.UP, timeoutSec);
 		}
-		
-		/// <summary>アプライアンスが停止するまで待機します。
-		/// 
-		/// <param name="timeoutSec" />
-		/// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
-		/// </summary>
-		public bool SleepUntilDown(long timeoutSec=600)
+
+        /// <summary>アプライアンスが停止するまで待機します。
+        /// </summary>
+        /// <param name="timeoutSec" />
+        /// <returns>成功時はtrue、タイムアウトやエラーによる失敗時はfalseを返します。</returns>
+        public bool SleepUntilDown(long timeoutSec=600)
 		{
 			return this.SleepUntil(EServerInstanceStatus.DOWN, timeoutSec);
 		}
-		
-		/// <summary>アプライアンスが指定のステータスに遷移するまで待機します。
-		/// 
-		/// 
-		/// <param name="status" />
-		/// <param name="timeoutSec" />
-		/// </summary>
-		private bool SleepUntil(string status, long timeoutSec=600)
+
+        /// <summary>アプライアンスが指定のステータスに遷移するまで待機します。
+        /// </summary>
+        /// <param name="status" />
+        /// <param name="timeoutSec" />
+        private bool SleepUntil(string status, long timeoutSec=600)
 		{
 			long step = 10;
 			while (0 < timeoutSec) {
@@ -552,12 +540,11 @@ namespace Saklient.Cloud.Resources
 		{
 			get { return this.Get_swytchId(); }
 		}
-		
-		/// <summary>(This method is generated in Translator_default#buildImpl)
-		/// 
-		/// <param name="r" />
-		/// </summary>
-		internal override void ApiDeserializeImpl(object r)
+
+        /// <summary>(This method is generated in Translator_default#buildImpl)
+        /// </summary>
+        /// <param name="r" />
+        internal override void ApiDeserializeImpl(object r)
 		{
 			this.IsNew = r == null;
 			if (this.IsNew) {

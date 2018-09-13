@@ -36,62 +36,56 @@ namespace Saklient.Cloud.Models
 		{
 			return new RouterPlan(this._Client, obj, wrapped);
 		}
-		
-		/// <summary>次に取得するリストの開始オフセットを指定します。
-		/// 
-		/// <param name="offset">オフセット</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Model_RouterPlan Offset(long offset)
+
+        /// <summary>次に取得するリストの開始オフセットを指定します。
+        /// </summary>
+        /// <param name="offset">オフセット</param>
+        /// <returns>this</returns>
+        public Model_RouterPlan Offset(long offset)
 		{
 			return ((Model_RouterPlan)(this._Offset(offset)));
 		}
-		
-		/// <summary>次に取得するリストの上限レコード数を指定します。
-		/// 
-		/// <param name="count">上限レコード数</param>
-		/// <returns>this</returns>
-		/// </summary>
-		public Model_RouterPlan Limit(long count)
+
+        /// <summary>次に取得するリストの上限レコード数を指定します。
+        /// </summary>
+        /// <param name="count">上限レコード数</param>
+        /// <returns>this</returns>
+        public Model_RouterPlan Limit(long count)
 		{
 			return ((Model_RouterPlan)(this._Limit(count)));
 		}
-		
-		/// <summary>Web APIのフィルタリング設定を直接指定します。
-		/// 
-		/// <param name="key">キー</param>
-		/// <param name="value">値</param>
-		/// <param name="multiple">valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。</param>
-		/// </summary>
-		public Model_RouterPlan FilterBy(string key, object value, bool multiple=false)
+
+        /// <summary>Web APIのフィルタリング設定を直接指定します。
+        /// </summary>
+        /// <param name="key">キー</param>
+        /// <param name="value">値</param>
+        /// <param name="multiple">valueに配列を与え、OR条件で完全一致検索する場合にtrueを指定します。通常、valueはスカラ値であいまい検索されます。</param>
+        public Model_RouterPlan FilterBy(string key, object value, bool multiple=false)
 		{
 			return ((Model_RouterPlan)(this._FilterBy(key, value, multiple)));
 		}
-		
-		/// <summary>次のリクエストのために設定されているステートをすべて破棄します。
-		/// 
-		/// <returns>this</returns>
-		/// </summary>
-		public Model_RouterPlan Reset()
+
+        /// <summary>次のリクエストのために設定されているステートをすべて破棄します。
+        /// </summary>
+        /// <returns>this</returns>
+        public Model_RouterPlan Reset()
 		{
 			return ((Model_RouterPlan)(this._Reset()));
 		}
-		
-		/// <summary>指定したIDを持つ唯一のリソースを取得します。
-		/// 
-		/// <param name="id" />
-		/// <returns>リソースオブジェクト</returns>
-		/// </summary>
-		public RouterPlan GetById(string id)
+
+        /// <summary>指定したIDを持つ唯一のリソースを取得します。
+        /// </summary>
+        /// <param name="id" />
+        /// <returns>リソースオブジェクト</returns>
+        public RouterPlan GetById(string id)
 		{
 			return ((RouterPlan)(this._GetById(id)));
 		}
-		
-		/// <summary>リソースの検索リクエストを実行し、結果をリストで取得します。
-		/// 
-		/// <returns>リソースオブジェクトの配列</returns>
-		/// </summary>
-		public System.Collections.Generic.List<RouterPlan> Find()
+
+        /// <summary>リソースの検索リクエストを実行し、結果をリストで取得します。
+        /// </summary>
+        /// <returns>リソースオブジェクトの配列</returns>
+        public System.Collections.Generic.List<RouterPlan> Find()
 		{
 			return Util.CastArray(this._Find(), ((RouterPlan)(null)));
 		}
