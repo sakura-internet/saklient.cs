@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public PaymentUnpayableException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "お客様のご都合により操作を受け付けることができません。" : message)
+		public PaymentUnpayableException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "お客様のご都合により操作を受け付けることができません。" : message)
 		{
 			/*!base!*/;
 		}

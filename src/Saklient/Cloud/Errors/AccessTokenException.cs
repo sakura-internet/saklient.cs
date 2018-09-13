@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public AccessTokenException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作は許可されていません。この操作は有効期限内のトークンが必要です。" : message)
+		public AccessTokenException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "要求された操作は許可されていません。この操作は有効期限内のトークンが必要です。" : message)
 		{
 			/*!base!*/;
 		}

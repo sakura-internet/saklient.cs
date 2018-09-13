@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpInsufficientStorageException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Insufficient Storage." : message)
+		public HttpInsufficientStorageException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Insufficient Storage." : message)
 		{
 			/*!base!*/;
 		}

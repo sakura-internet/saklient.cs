@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public RunOutOfIpAddressException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作を行えません。指定されたネットワークに属するIPアドレスはすべて使用中です。" : message)
+		public RunOutOfIpAddressException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "要求された操作を行えません。指定されたネットワークに属するIPアドレスはすべて使用中です。" : message)
 		{
 			/*!base!*/;
 		}

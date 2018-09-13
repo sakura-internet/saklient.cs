@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpFailedDependencyException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Failed Dependency." : message)
+		public HttpFailedDependencyException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Failed Dependency." : message)
 		{
 			/*!base!*/;
 		}

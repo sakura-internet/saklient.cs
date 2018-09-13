@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public LimitCountInZoneException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求を受け付けできません。ゾーン内リソース数上限により、リソースの割り当てに失敗しました。" : message)
+		public LimitCountInZoneException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "要求を受け付けできません。ゾーン内リソース数上限により、リソースの割り当てに失敗しました。" : message)
 		{
 			/*!base!*/;
 		}

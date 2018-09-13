@@ -10,16 +10,16 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "selectable", 69 },
-			{ "migrating", 70 },
-			{ "precreate", 71 },
-			{ "replicating", 72 },
-			{ "transfering", 73 },
-			{ "stopped", 75 },
-			{ "failed", 78 },
-			{ "charged", 79 },
-			{ "uploading", 80 },
-			{ "available", 100 }
+			{ SELECTABLE, 69 },
+			{ MIGRATING, 70 },
+			{ PRECREATE, 71 },
+			{ REPLICATING, 72 },
+			{ TRANSFERING, 73 },
+			{ STOPPED, 75 },
+			{ FAILED, 78 },
+			{ CHARGED, 79 },
+			{ UPLOADING, 80 },
+			{ AVAILABLE, 100 }
 		};
 		
 		/// <summary>SELECTABLE

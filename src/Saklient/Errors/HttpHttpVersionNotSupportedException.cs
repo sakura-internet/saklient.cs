@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpHttpVersionNotSupportedException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Http Version Not Supported." : message)
+		public HttpHttpVersionNotSupportedException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Http Version Not Supported." : message)
 		{
 			/*!base!*/;
 		}

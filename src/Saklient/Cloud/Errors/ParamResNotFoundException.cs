@@ -13,7 +13,7 @@ namespace Saklient.Cloud.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public ParamResNotFoundException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。" : message)
+		public ParamResNotFoundException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "不適切な要求です。パラメータで指定されたリソースが存在しません。IDをご確認ください。" : message)
 		{
 			/*!base!*/;
 		}

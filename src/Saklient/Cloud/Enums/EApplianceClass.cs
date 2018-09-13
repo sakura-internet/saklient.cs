@@ -10,8 +10,8 @@ namespace Saklient.Cloud.Enums
 		
 		static System.Collections.Generic.Dictionary<string, long?> _map_ = new System.Collections.Generic.Dictionary<string, long?>()
 		{
-			{ "loadbalancer", 10 },
-			{ "vpcrouter", 20 }
+			{ LOADBALANCER, 10 },
+			{ VPCROUTER, 20 }
 		};
 		
 		/// <summary>LOADBALANCER

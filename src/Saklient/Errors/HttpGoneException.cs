@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpGoneException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "HTTPエラー。Gone." : message)
+		public HttpGoneException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "HTTPエラー。Gone." : message)
 		{
 			/*!base!*/;
 		}

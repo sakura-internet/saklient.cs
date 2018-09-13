@@ -13,7 +13,7 @@ namespace Saklient.Errors
 		/// <param name="code" />
 		/// <param name="message" />
 		/// </summary>
-		public HttpForbiddenException(long status, string code=null, string message="") : base(status, code, message == null || message == "" ? "要求された操作は許可されていません。権限エラー。" : message)
+		public HttpForbiddenException(long status, string code=null, string message="") : base(status, code, string.IsNullOrEmpty(message) ? "要求された操作は許可されていません。権限エラー。" : message)
 		{
 			/*!base!*/;
 		}
